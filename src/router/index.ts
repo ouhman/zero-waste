@@ -1,0 +1,85 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import MapView from '@/views/MapView.vue'
+import { adminGuard } from './guards/adminGuard'
+
+// Lazy load non-critical routes for better performance
+const LocationDetailView = () => import('@/views/LocationDetailView.vue')
+const SubmitView = () => import('@/views/SubmitView.vue')
+const VerifyView = () => import('@/views/VerifyView.vue')
+const FavoritesView = () => import('@/views/FavoritesView.vue')
+const NotFoundView = () => import('@/views/NotFoundView.vue')
+
+// Admin routes - lazy loaded
+const LoginView = () => import('@/views/admin/LoginView.vue')
+const DashboardView = () => import('@/views/admin/DashboardView.vue')
+const PendingView = () => import('@/views/admin/PendingView.vue')
+const EditView = () => import('@/views/admin/EditView.vue')
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'map',
+      component: MapView
+    },
+    {
+      path: '/location/:slug',
+      name: 'location-detail',
+      component: LocationDetailView
+    },
+    {
+      path: '/submit',
+      name: 'submit',
+      component: SubmitView
+    },
+    {
+      path: '/verify',
+      name: 'verify',
+      component: VerifyView
+    },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component: FavoritesView
+    },
+    {
+      path: '/admin',
+      children: [
+        {
+          path: 'login',
+          name: 'admin-login',
+          component: LoginView
+        },
+        {
+          path: '',
+          name: 'admin-dashboard',
+          component: DashboardView,
+          meta: { requiresAdmin: true }
+        },
+        {
+          path: 'pending',
+          name: 'admin-pending',
+          component: PendingView,
+          meta: { requiresAdmin: true }
+        },
+        {
+          path: 'edit/:id',
+          name: 'admin-edit',
+          component: EditView,
+          meta: { requiresAdmin: true }
+        }
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFoundView
+    }
+  ]
+})
+
+// Apply admin guard to protected routes
+router.beforeEach(adminGuard)
+
+export default router

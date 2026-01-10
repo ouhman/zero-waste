@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@source "../index.html";
+@source "./**/*.vue";
+@source "./**/*.ts";
+
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5;
+    color: #1e293b;
+  }
+}
