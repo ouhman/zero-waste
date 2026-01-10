@@ -17,7 +17,7 @@ let nextId = 0
 export function useToast() {
   function show(options: ToastOptions) {
     const id = nextId++
-    const duration = options.duration ?? 3000
+    const duration = options.duration ?? 5000 // Default 5 seconds
     const toast: Toast = {
       id,
       message: options.message,
