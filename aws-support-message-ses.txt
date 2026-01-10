@@ -1,0 +1,40 @@
+i Subject: SES Production Access Request - zerowastefrankfurt.de (Transactional Verification Emails)
+
+  Message:
+
+  Hello,
+
+  I am requesting production access for Amazon SES in the eu-central-1 (Frankfurt) region for my verified domain zerowastefrankfurt.de.
+
+  Project: Zero Waste Frankfurt - A community-driven map helping people discover sustainable shops, bulk stores, and eco-friendly businesses in Frankfurt, Germany.
+
+  Website: https://map.zerowastefrankfurt.de
+
+  Email Type: Transactional only (no marketing emails)
+
+  Use Case:
+  When a business owner or community member submits a new location to our map, we send a single verification email to confirm their email address. This is a standard double opt-in process to prevent spam submissions.
+
+  Email Flow:
+  1. User submits a location via our form
+  2. System sends ONE verification email with a confirmation link
+  3. User clicks the link to verify their submission
+  4. No further emails are sent
+
+  Expected Volume:
+  - Estimated 50/100 emails per month
+  - Maximum 1-2 emails per day during peak periods
+  - Single email per user action (no bulk sending)
+
+  Bounce/Complaint Handling:
+  - SNS notifications configured for bounces and complaints
+  - Dedicated abuse contact: ouhman@gmail.com
+
+  Sender Address: noreply@zerowastefrankfurt.de
+
+  This is a low-volume, legitimate transactional use case for a community project. I would appreciate production access to allow users to verify their submissions.
+
+  Thank you for your consideration.
+
+  Best regards,
+

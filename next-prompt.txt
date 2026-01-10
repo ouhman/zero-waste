@@ -1,0 +1,164 @@
+  ## Zero Waste Frankfurt - Continuation
+
+  ### What Was Completed
+  All 7 phases of the MVP implementation are complete:
+  - Phase 1: Vue 3 + Supabase foundation
+  - Phase 2: Leaflet map with markers
+  - Phase 3: Filtering, search, i18n (DE/EN)
+  - Phase 4: Location submission form
+  - Phase 5: Admin panel + favorites
+  - Phase 6: AWS CDK infrastructure (ready to deploy)
+  - Phase 7: E2E tests, SEO, error handling
+
+  **Supabase is configured:**
+  - Project: zerowaste-map
+  - Database has 17 categories and 10 sample locations
+  - Admin user created with role
+
+  **Recent fixes applied:**
+  - SEO simplified (removed @unhead/vue issues)
+  - Map markers persist after navigation
+  - Location form restyled (modern card-based design)
+  - Marker popups show full info (categories, hours, website, directions)
+
+  ### Project Location
+  `/home/ouhman/projects/zerowaste-frankfurt`
+
+  ### Plan File
+  `/home/ouhman/projects/zerowaste-frankfurt/mvp-implementation.md`
+
+  ### Current Status
+  - App runs locally: `npm run dev`
+  - Tests: 126+ unit tests passing
+  - Build: Successful
+
+  ### What's Next (Options)
+  1. **Deploy to AWS** - Run CDK stack, configure domain `map.zerowastefrankfurt.de`
+  2. **Import real data** - Extract 200+ locations from Google My Maps
+  3. **Run E2E tests** - `npm run test:e2e`
+  4. **Polish UI** - Any remaining styling/UX improvements
+
+  ### Key Commands
+  ```bash
+  npm run dev          # Start dev server
+  npm run test         # Run unit tests
+  npm run build        # Production build
+  cd infra && cdk deploy  # Deploy AWS (needs setup first)
+
+  What would you like to work on next?
+
+  ---
+
+  ### Summary
+
+  The MVP is feature-complete and running. The main remaining tasks are:
+  1. Production deployment (AWS)
+  2. Real data import
+  3. Final testing
+
+  -----------------------------------------------------------
+
+   ## Project: Zero Waste Frankfurt
+
+  Vue 3 + TypeScript + Supabase app for sustainable locations in Frankfurt.
+
+  ## What Was Just Completed
+
+  Fixed critical RLS (Row Level Security) issue blocking location submissions:
+  - Added `GRANT INSERT ON locations TO anon`
+  - Updated RLS policies with explicit `TO anon, authenticated`
+  - Modified `src/composables/useSubmission.ts` to generate UUID/slug client-side (anon can't SELECT back inserted rows)
+  - Created `docs/supabase.md` with RLS troubleshooting guide
+  - Created `CLAUDE.md` for project reference
+
+  The Enhanced OSM Data Enrichment feature is now 100% complete:
+  - Payment methods extraction from OSM
+  - Opening hours parsing (OSM format → structured JSON)
+  - Instagram discovery (OSM → website fallback)
+  - All data saves correctly to Supabase
+
+  ## Current State
+
+  - All submissions work with RLS enabled
+  - Database has new columns: `payment_methods`, `opening_hours_osm`, `opening_hours_structured`
+  - UI displays payment methods in map popups and detail views
+
+  ## Key Files
+
+  - `CLAUDE.md` - Project overview
+  - `docs/supabase.md` - Supabase/RLS documentation
+  - `src/composables/useSubmission.ts` - Location submission logic
+  - `src/composables/useNominatim.ts` - OSM data extraction
+
+  ## What's Next
+
+  The project is at a good stopping point. Potential next steps:
+  1. Admin interface for approving pending submissions
+  2. "Open Now" filter using `opening_hours_structured`
+  3. Payment method filtering
+  4. E2E tests for submission flow
+
+  What would you like to work on?
+  ------------------------------------
+before going to bed:
+
+## Continuing: Zero Waste Frankfurt - CDK Deployment & Email Verification Setup
+
+  ### Project
+  Zero Waste Frankfurt - Vue 3 + Supabase app for sustainable locations
+  Working directory: `/home/ouhman/projects/zerowaste-frankfurt`
+
+  ### AWS Profile (REQUIRED for all AWS/CDK commands)
+  ```bash
+  export AWS_PROFILE=zerowaste-map-deployer
+
+  What Was Completed
+
+  1. IAM Policies - Created minimal policies in infra/iam-policies/
+    - cdk-core-policy.json - CDK/CloudFormation permissions
+    - zerowaste-resources-policy.json - S3, CloudFront, SES, IAM
+  2. CDK Bootstrap - ✅ Done for eu-central-1
+  3. EmailStack Deployed - ✅ ZeroWasteEmailStack
+    - SES domain identity: zerowastefrankfurt.de
+    - IAM user: zerowaste-ses-user (for sending emails only)
+    - Credentials stored in SSM: /zerowaste/ses/access-key-id, /zerowaste/ses/secret-access-key
+  4. DKIM DNS Records Added - 3 CNAME records (were validating)
+  5. Supabase Secrets Configured - Via Dashboard
+    - AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION, SES_FROM_EMAIL
+
+  Pending Items - Check Status First
+
+  1. DKIM Validation - Check if complete:
+  export AWS_PROFILE=zerowaste-map-deployer
+  aws sesv2 get-email-identity --email-identity zerowastefrankfurt.de --query 'DkimAttributes.Status'
+  1. Should return "SUCCESS"
+  2. SES Production Access - Check in AWS Console:
+  https://eu-central-1.console.aws.amazon.com/ses/home?region=eu-central-1#/account
+  Look for "Production access" status
+
+  What Needs To Be Done
+
+  1. Deploy Edge Functions (requires Supabase CLI):
+  npx supabase login
+  npx supabase link --project-ref <your-project-ref>
+  npx supabase functions deploy
+  1. Functions: submit-location, verify-submission, enrich-location
+  2. Deploy FrontendStack (S3 + CloudFront):
+  export AWS_PROFILE=zerowaste-map-deployer
+  cd infra && npx cdk deploy ZeroWasteFrankfurtStack
+  3. Wire up frontend - Update useSubmission.ts to call Edge Function instead of direct insert
+
+  Key Files
+
+  - infra/lib/email-stack.ts - SES infrastructure
+  - infra/lib/frontend-stack.ts - S3 + CloudFront
+  - supabase/functions/submit-location/index.ts - Email verification flow
+  - supabase/functions/verify-submission/index.ts - Token validation
+  - docs/aws-ses.md - SES setup documentation
+
+  What would you like to do?
+
+  1. Check DKIM/SES status
+  2. Deploy Edge Functions
+  3. Deploy FrontendStack
+  4. Something else
