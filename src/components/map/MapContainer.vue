@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css'
 import type { Database } from '@/types/database'
 import type { PaymentMethods } from '@/types/osm'
 import { PAYMENT_METHOD_ICONS } from '@/types/osm'
+import { getCategoryIcon } from '@/lib/markerIcons'
 
 type Location = Database['public']['Tables']['locations']['Row'] & {
   location_categories?: {
@@ -33,16 +34,6 @@ const DEFAULT_ZOOM = 13
 const mapElement = ref<HTMLElement | null>(null)
 let map: L.Map | null = null
 const markers: L.Marker[] = []
-
-// Fix Leaflet default icon issue with Vite
-if (L.Icon?.Default?.prototype) {
-  delete (L.Icon.Default.prototype as any)._getIconUrl
-  L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  })
-}
 
 function initializeMap() {
   if (!mapElement.value || map) return
@@ -110,7 +101,11 @@ function addMarkers() {
 
     if (isNaN(lat) || isNaN(lng)) return
 
-    const marker = L.marker([lat, lng]).addTo(map!)
+    // Get primary category for icon
+    const primaryCategorySlug = location.location_categories?.[0]?.categories?.slug || null
+    const icon = getCategoryIcon(primaryCategorySlug)
+
+    const marker = L.marker([lat, lng], { icon }).addTo(map!)
 
     // Get categories for this location
     const categories = location.location_categories
