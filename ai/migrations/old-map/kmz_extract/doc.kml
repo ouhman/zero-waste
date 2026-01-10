@@ -1,0 +1,4135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Zero Waste Frankfurt</name>
+    <description>Unverpackt, nachhaltig und ressourcenschonend einkaufen in Frankfurt und Umgebung</description>
+    <Style id="icon-1501-757575-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-12.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1501-757575-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-12.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1501-757575">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1501-757575-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1501-757575-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1501-757575-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-12.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1501-757575-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-12.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1501-757575-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1501-757575-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1501-757575-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1522-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-27.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1522-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-27.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1522-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1522-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1522-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1526-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-20.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1526-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-20.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1526-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1526-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1526-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1526-3949AB-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-18.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1526-3949AB-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-18.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1526-3949AB-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1526-3949AB-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1526-3949AB-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1534-880E4F-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-6.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1534-880E4F-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-6.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1534-880E4F">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1534-880E4F-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1534-880E4F-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1534-E65100-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-3.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1534-E65100-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-3.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1534-E65100">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1534-E65100-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1534-E65100-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1549-0097A7-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-15.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1549-0097A7-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-15.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1549-0097A7">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1549-0097A7-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1549-0097A7-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1549-0097A7-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-15.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1549-0097A7-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-15.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1549-0097A7-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1549-0097A7-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1549-0097A7-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1549-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-21.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1549-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-21.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1549-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1549-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1549-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1549-3949AB-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-16.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1549-3949AB-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-16.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1549-3949AB">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1549-3949AB-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1549-3949AB-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1549-3949AB-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-16.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1549-3949AB-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-16.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1549-3949AB-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1549-3949AB-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1549-3949AB-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1551-000000-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-29.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1551-000000-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-29.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1551-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1551-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1551-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1553-BDBDBD-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-9.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1553-BDBDBD-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-9.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1553-BDBDBD">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1553-BDBDBD-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1553-BDBDBD-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1577-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-23.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1577-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-23.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1577-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1577-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1577-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1577-E65100-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-2.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1577-E65100-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-2.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1577-E65100">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1577-E65100-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1577-E65100-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1577-FF5252-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-4.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1577-FF5252-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-4.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1577-FF5252">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1577-FF5252-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1577-FF5252-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1582-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-19.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1582-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-19.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1582-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1582-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1582-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1587-097138-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-26.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1587-097138-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-26.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1587-097138-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1587-097138-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1587-097138-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1602-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-24.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1602-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-24.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1602-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1602-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1602-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1607-880E4F-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-5.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1607-880E4F-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-5.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1607-880E4F">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1607-880E4F-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1607-880E4F-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-22.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-22.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-3949AB-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-17.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-3949AB-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-17.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-3949AB">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-3949AB-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-3949AB-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-3949AB-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-17.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1684-3949AB-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-17.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1684-3949AB-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-3949AB-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-3949AB-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-795548-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-13.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-795548-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-13.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-795548">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-795548-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-795548-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-7CB342-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-7CB342-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-7CB342">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-7CB342-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-7CB342-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-7CB342-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1684-7CB342-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1684-7CB342-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-7CB342-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-7CB342-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-C2185B-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-14.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-C2185B-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-14.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-C2185B">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-C2185B-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-C2185B-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-F57C00-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-8.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-F57C00-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-8.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-F57C00">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-F57C00-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-F57C00-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1684-FFD600-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-11.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1684-FFD600-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-11.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1684-FFD600">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1684-FFD600-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1684-FFD600-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1685-FFD600-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-10.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1685-FFD600-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-10.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1685-FFD600">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1685-FFD600-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1685-FFD600-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1685-FFD600-nodesc-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-10.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1685-FFD600-nodesc-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-10.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1685-FFD600-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1685-FFD600-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1685-FFD600-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1703-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-25.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1703-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-25.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1703-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1703-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1703-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1705-880E4F-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-7.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1705-880E4F-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-7.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1705-880E4F">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1705-880E4F-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1705-880E4F-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1742-097138-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-28.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1742-097138-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-28.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1742-097138">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1742-097138-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1742-097138-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Unverpackt-Läden</name>
+      <Placemark>
+        <name>Die Auffüllerei</name>
+        <description><![CDATA[In diesem Unverpackt-Laden in Frankfurt-Bornheim findest du fast alles, was das Herz begehrt. Was es nicht gibt, darfst du auf die Wunschliste schreiben.<br><br>Mehr Infos dazu:<br>https://www.zerowastefrankfurt.de/die-auffuellerei-in-bornheim-unverpackt-laden-nr-3/]]></description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.70008859999996,50.1245912,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>franco Unverpackt Laden</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6751198,50.1213844,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Höchst Unverpackt</name>
+        <description>Unverpackt-Marktstand in Höchst, geöffnet während der Markt-Öffnungszeiten</description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.5455944,50.0991412,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Ulf - un:verpackt Sachsenhausen</name>
+        <description>Kleiner aber feiner Unverpackt-Laden in Frankfurt Sachsenhausen. Hier gibt es Bio-Lebensmittel zum selbst Abfüllen, plastikfreie Haushalts- und Kosmetikprodukte sowie viele Upcycling-Objekte made in Frankfurt. Dazu Getränke, Wein und Milchprodukte in Pfandgläsern, Rollenbutter und Eier, Obst und Gemüse.</description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.69042,50.10232,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ADAM FAIRkaufen | Aschaffenburg</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            9.1552499,49.9782784,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>BIO-unverpackt | Wiesbaden</name>
+        <description>Unverpackt-Laden in Wiesbaden</description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.2339336,50.0788381,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>chez Martine | Hammelbach</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.831685,49.6351888,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>EINKORN | Viernheim</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.57869,49.5374121,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Emmas Erben | Otzberg</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.879234,49.8505301,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Honighalle | Friedrichsdorf</name>
+        <description>Honighalle mit Unverpackt-Laden und umfangreichem Sortiment.</description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.6481468,50.2694973,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mittendrin | Gelnhausen</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            9.19042899999999,50.197698,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mittendrin | Hanau</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.91599339999993,50.1322846,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>natürlichfrei | Dreieich
+</name>
+        <description>Unverpackt-Laden in Dreieich.</description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.7110366,49.9992961,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Nix-Drum-Rum | Bad Nauheim</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.73509539999998,50.3637339,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>OF Unverpackt | Offenbach</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.762807,50.094802,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Steffis unverpackt | Mönchberg</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            9.2670418,49.7925202,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Take it easy | Alzenau</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            9.0712433,50.0868796,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tante Erna Unverpackt | Mörfelden-Walldorf</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.5695809,49.974975,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Unverpackt Darmstadt</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6527854,49.8723196,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Unverpackt Mainz</name>
+        <description><![CDATA[Mehr als 400 Produkte, überwiegend in Bio-Qualität. Es gibt trockene Lebensmittel, Kosmetik- und Haushaltsprodukte zum selbst Abfüllen sowie Milchprodukte, Eier und Aufstriche im Glas.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/Bv4ltayHQ-K/]]></description>
+        <styleUrl>#icon-1684-7CB342</styleUrl>
+        <Point>
+          <coordinates>
+            8.264401,50.0036362,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Unverpacktes Gießen</name>
+        <styleUrl>#icon-1684-7CB342-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.67045929999995,50.5857467,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Restaurants, Cafés, Bars</name>
+      <Placemark>
+        <name>Africa Queen Restaurant</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6461513,50.1171057,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Baders Fisch Deli</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6447834,50.1228175,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bulli Burrito</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6474533,50.1218958,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Café Ana</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6808014,50.1210232,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Café Billabong</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.618355,50.1801667,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Café Menthe</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.7018944,50.1359325,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Die Brücke</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6876532,50.1056598,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fridas Cafe</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6411615,50.1239378,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Füny’s Café</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6414106,50.123636,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Glauburg Café</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.688177,50.12705,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kaffeemacherei</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6796317,50.1217017,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Karrys & Barrys]]></name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6297503,50.1761103,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Minerva Restaurant / Bistro</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6298897,50.1743522,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Onocubes</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6759169,50.1230724,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Pasta e Panini</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6491505,50.1204388,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Picknick Café Bornheim</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.7075458,50.1253702,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Purple Açaí</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6807743,50.1223994,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Restaurant Ponte</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6467792,50.1227475,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Savory</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6121735,50.1251867,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sushi Sensei</name>
+        <description><![CDATA[Beschreibung: Frankfurts erster Sushi-Lieferservice, der in Mehrweg-Boxen beliefert.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/Bvq0_2_HEWU/<br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value>Frankfurts erster Sushi-Lieferservice, der in Mehrweg-Boxen beliefert.
+
+Mehr Infos dazu:
+https://www.instagram.com/p/Bvq0_2_HEWU/</value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6676234,50.1373841,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tandoori Masala</name>
+        <description><![CDATA[Beschreibung: Dieser Imbiss bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieser Imbiss bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6504914,50.1591551,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Taverna Alpha</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.7005414,50.1256999,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Thai Art</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6806182,50.1223099,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Viet Pho Bockenheim</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.6473636,50.1220329,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Viet Pho Bornheim</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1577-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.7086693,50.1269947,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>BioMarkt | Bad Nauheim</name>
+        <description><![CDATA[Beschreibung: Hier wird dein Coffee to go in den mitgebrachten Becher gefüllt. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Hier wird dein Coffee to go in den mitgebrachten Becher gefüllt. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.7533999,50.3606988,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Café & Konditorei Müller | Bad Nauheim]]></name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.73791,50.36505,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Levante Café Bar | Bad Nauheim</name>
+        <description><![CDATA[Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br><br>name: ]]></description>
+        <styleUrl>#icon-1534-E65100</styleUrl>
+        <ExtendedData>
+          <Data name="Beschreibung">
+            <value><![CDATA[Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".
+]]></value>
+          </Data>
+          <Data name="name">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            8.7392636,50.3649701,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Bäckereien</name>
+      <Placemark>
+        <name>Bäckerei Huck Backstubenverkauf | Rödelheim</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.611674,50.126924,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Altstadt, Kleinmarkthalle</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.68373,50.11292,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Bad Homburg</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.6170927,50.2265443,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Bockenheim</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.6497673,50.1200077,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Flughafen</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.572016,50.0509344,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Ginnheim</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.658809,50.1465595,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Höchst</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.5419321,50.1033959,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Nordend</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.6839833,50.1360535,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Ostend</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.70404,50.11137,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Rödelheim</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.6135732,50.1269948,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Sachsenhausen</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.6792845,50.1033707,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bäckerei Huck | Westend</name>
+        <description><![CDATA[Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.675293,50.120721,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Yesternday by Huck | Bockenheim</name>
+        <description><![CDATA[Im Yesternday by Huck erhälst du Backwaren vom Vortag zum halben Preis. Die Erlöse werden an wohltätige Zwecke gespendet.<br>Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".<br>Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/]]></description>
+        <styleUrl>#icon-1577-FF5252</styleUrl>
+        <Point>
+          <coordinates>
+            8.6479342,50.1212771,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name><![CDATA[Spezialitätengeschäfte & Milchtankstellen]]></name>
+      <Placemark>
+        <name>Bizziice Eisdiele Nordend</name>
+        <description><![CDATA[Bio-Eis aus feinsten Zutaten, dazu hausgemachten Kuchen und Kaffeespezialitäten. Eigene Behälter für Kaffee und Eis (auch für die 1 Liter-Portion) werden gerne akzeptiert.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/B4IsKhVIOJ6/]]></description>
+        <styleUrl>#icon-1607-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.68809759999999,50.1232451,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bizziice Eisdiele Sachsenhausen</name>
+        <description><![CDATA[Bio-Eis aus feinsten Zutaten, dazu hausgemachten Kuchen und Kaffeespezialitäten. Eigene Behälter für Kaffee und Eis (auch für die 1 Liter-Portion) werden gerne akzeptiert.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/B4IsKhVIOJ6/]]></description>
+        <styleUrl>#icon-1607-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.68754999999999,50.10539,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Pallina Gelato</name>
+        <description>In dieser Eisdiele gibt es Eisbecher in der veganen Eiswaffel. Wenn du keine Waffeln magst, kannst du deinen eigenen Becher mitbringen und sparst so 20c, welche du für einen Einweg-Becher extra zahlen würdest. Alternativ kannst du auch ein Glas gegen Pfandgebühr mitnehmen.</description>
+        <styleUrl>#icon-1607-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.6872254,50.1101754,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Wacker's Kaffee Berger Straße]]></name>
+        <description>Hier werden Kaffeebohnen lose in mitgebrachte Behälter abgefüllt.</description>
+        <styleUrl>#icon-1534-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.7068471,50.1257136,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Wacker's Kaffee Grüneburgweg]]></name>
+        <description>Hier werden Kaffeebohnen lose in mitgebrachte Behälter abgefüllt.</description>
+        <styleUrl>#icon-1534-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.67212900000004,50.1209169,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Wacker's Kaffee Innenstadt]]></name>
+        <description>Hier werden Kaffeebohnen lose in mitgebrachte Behälter abgefüllt.</description>
+        <styleUrl>#icon-1534-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.67931049999993,50.112091,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Wacker's Kaffee Schweizer Straße]]></name>
+        <description>Hier werden Kaffeebohnen lose in mitgebrachte Behälter abgefüllt.</description>
+        <styleUrl>#icon-1534-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.67844719999994,50.1043724,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Cha-Lo Teehaus | Bad Nauheim</name>
+        <description><![CDATA[Hier wird der lose Tee in deine mitgebrachten Behälter gefüllt. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1705-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.73993,50.36534,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Belis Teeparadies | Wiesbaden</name>
+        <description><![CDATA[Hier wird der lose Tee in deine mitgebrachten Behälter gefüllt, du sparst damit 10c pro Behältnis. Ebenso sparst du 10c bei der Befüllung deines eigenen To-Go-Bechers.<br>Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1705-880E4F</styleUrl>
+        <Point>
+          <coordinates>
+            8.2411916,50.0743878,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Federvieh</name>
+        <description><![CDATA[Das Geflügelfachgeschäft bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.6439456,50.1230661,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Frankfurter Fass</name>
+        <description>Hier werden Essige und Öle, Spirituosen, Liköre und Wein auf Wunsch in eigene Flaschen abgefüllt. Die Füllmenge muss am Flaschenboden vermerkt sein. Außerdem im Angebot sind Spezilitäten im Glas wie Senf und Salz.</description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.68304149999994,50.1134037,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Käseladen Leipziger</name>
+        <description><![CDATA[Dieser Käseladen bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.6477191,50.1218466,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Käsestube - Gutes aus Milch</name>
+        <description><![CDATA[Neben Käse in allen Variationen gibt es Olivenöl und Balsamico-Essig zum Abfüllen. Eigene Behälter werden akzeptiert.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/BxU6_69HagP/]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.67908729999999,50.1162407,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Metzgerei Waibel</name>
+        <description><![CDATA[Diese Metzgerei bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.6487298,50.1209678,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Ciao Nonna | Bad Nauheim</name>
+        <description><![CDATA[Dieser Laden bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.740204,50.365308,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Heidi's Wurstladen | Kelkheim]]></name>
+        <description><![CDATA[Diese Metzgerei bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.4554746,50.1338844,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mini Asia | Bad Nauheim</name>
+        <description><![CDATA[Dieser asiatische Supermarkt bietet Mittagstisch als Take-Away an, welches du in deine mitgebrachten Behälter füllen lassen kannst. Das erkennst du auch an dem Sticker von "Einmal ohne bitte".]]></description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.7384512,50.3638569,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wajos | Neu-Isenburg</name>
+        <description>Hier können eigene Behälter mit Essigen, Ölen und Spirituosen befüllt werden. Die Flaschen müssen gespült sein und das Fassungsvermögen muss vermerkt sein. Weitere Spezialitäten gibt es auch im Glas, wie zum Beispiel Senf.</description>
+        <styleUrl>#icon-1684-F57C00</styleUrl>
+        <Point>
+          <coordinates>
+            8.69901110000001,50.0501094,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Brühlhof Holsteins | Sulzbach Ts.</name>
+        <description><![CDATA[Der Milchautomat ist rund um die Uhr zugänglich, auch an Feiertagen.<br><br>Mehr Infos hier: <br>https://www.heimischehoflaeden.de/hofladen/1-milchautomat-auf-dem-bruhlhof]]></description>
+        <styleUrl>#icon-1553-BDBDBD</styleUrl>
+        <Point>
+          <coordinates>
+            8.53457219999996,50.1303087,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Dairy Farm Wien | Friedrichsdorf</name>
+        <description>Milchtankstelle</description>
+        <styleUrl>#icon-1553-BDBDBD</styleUrl>
+        <Point>
+          <coordinates>
+            8.67192,50.25231,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hofladen Familie Lenhardt | Dreieich</name>
+        <description><![CDATA[Am Milchautomaten kann von 7 bis 19 Uhr Milch selbst gezapft werden. <br>Im Hofcafé gibt es Kuchen und Eis sowie Milchprodukte aus eigener Erzeugung. Eisbecher wurden kürzlich auf Waffelbecher umgestellt. ]]></description>
+        <styleUrl>#icon-1553-BDBDBD</styleUrl>
+        <Point>
+          <coordinates>
+            8.74427170000001,50.0064498,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Milchautomat Oranienhof | Wehrheim</name>
+        <description>Milchtankstelle</description>
+        <styleUrl>#icon-1553-BDBDBD</styleUrl>
+        <Point>
+          <coordinates>
+            8.56166919999998,50.3040521,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Löw´s Milchtankstelle | Rodgau</name>
+        <description>Milchtankstelle</description>
+        <styleUrl>#icon-1553-BDBDBD</styleUrl>
+        <Point>
+          <coordinates>
+            8.90632299999993,50.028503,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Unverpacktes Zusatzangebot</name>
+      <Placemark>
+        <name>Alnatura Bockenheim</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.648474,50.121104,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Bornheim</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.7020429,50.1265143,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Eckenheim</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.68143,50.14746,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Eschersheim</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.6582781,50.1557449,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Nordend
+</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.6760772,50.1224817,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Ostend</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.7093044,50.1111637,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Sachsenhausen, Südbahnhof
+</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1684-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.6870487,50.1004906,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Sachsenhausen, Schweizer Straße
+</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.6814725,50.1004985,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura Westend</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.669027,50.115597,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Galeria Karstadt Kaufhof</name>
+        <description><![CDATA[Süßigkeiten unverpackt einkaufen<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/B3usXNnoNZc/]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.67991099999995,50.114447,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Gärtnerei Anja Rappelt</name>
+        <description>Obst und Gemüse gibt es lose und zum größten Teil aus Eigenanbau. Dazu werden Marmeladen, eingekochtes Obst und Gemüse, Suppen und Soßen sowie süße und herzhafte Chutneys in Weckgläsern mit Pfand angeboten und können wieder zurückgebracht werden. Olivenöl gibt es zum Abfüllen. Auch kann man Anzuchterde in kleinen Mengen lose bekommen, zum Beispiel im mitgebrachten 5 Liter-Eimer.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.70093710000003,50.0943145,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Scheck-In-Center Ostend</name>
+        <description>An der Bedientheke werden mitgebrachte (unzerbrechliche) Dosen befüllt. Obst und Gemüse gibt es teilweise lose, ebenso Eier. Milchprodukte und Getränke gibt es in Pfandgläsern und -flaschen.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.71529940000005,50.1144059,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Scheck-In Center Niederrad</name>
+        <description>An der Bedientheke werden mitgebrachte (unzerbrechliche) Dosen befüllt. Obst und Gemüse gibt es teilweise lose, ebenso Eier. Milchprodukte und Getränke gibt es in Pfandgläsern und -flaschen.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.63402730000007,50.0817433,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Scheck-In Center Sachsenhausen</name>
+        <description>An der Bedientheke werden mitgebrachte (unzerbrechliche) Dosen befüllt. Obst und Gemüse gibt es teilweise lose, ebenso Eier. Milchprodukte und Getränke gibt es in Pfandgläsern und -flaschen.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.69336699999997,50.0973497,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sunflower Garten-Center</name>
+        <description><![CDATA[Neben Obst und Gemüse gibt es im Frischemarkt einige Lebensmittel lose zu kaufen wie Hülsenfrüchte und Trockenobst. Außerdem natürlich ein riesiges Angebot an Blumen und Kräutern.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/Bx0P3EhilVf/]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.65612999999996,50.18915,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut Bahnhofsviertel</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.66711,50.10832,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut Bockenheim</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.62639999999999,50.1137417,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut Bornheim</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.69908209999994,50.1397827,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut Innenstadt</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.68819,50.11407,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut Preungesheim</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.69986159999996,50.155924,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut Sachsenhausen</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.68839500000001,50.0916742,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura | Eschborn</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.5813423,50.1420158,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Alnatura | Kriftel</name>
+        <description><![CDATA[Bei Alnatura findest du<br>* Obst, Gemüse und Eier unverpackt<br>* viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern<br>* nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.]]></description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.4562993,50.0822772,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Scheck-In Center | Mainz</name>
+        <styleUrl>#icon-1685-FFD600-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.288429,49.9756918,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Scheck-In Center | Offenbach</name>
+        <styleUrl>#icon-1685-FFD600-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.744287,50.1060448,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Altenstadt</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.975788,50.289413,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Aschaffenburg</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            9.132587,49.984456,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bad Homburg vor der Höhe</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.611278,50.2206706,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bad Nauheim</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.7491751,50.356952,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bad Soden am Taunus</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.50404320000007,50.141018,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bad Vilbel</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.74229300000002,50.1919735,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bensheim</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.627636,49.669662,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bischofsheim</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.3641431,49.9820809,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bodenheim</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.3249747,49.9253294,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Braunfels</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.399105,50.519457,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Bruchköbel</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.908918,50.177826,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Darmstadt</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.647203,49.883202,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Dietzenbach</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.78771129999996,50.0171589,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Dreieich</name>
+        <description>An der Bedientheke kann Käse in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.695127,50.0236118,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Freigericht</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            9.10835,50.14696,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Friedberg</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.7619257,50.334119,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Friedberg</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.74394,50.34414,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Gelnhausen</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            9.161396,50.205561,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Ginsheim-Gustavsburg</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.3255199,49.98799,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Griesheim</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.55355,49.87045,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Groß-Zimmern</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.820947,49.881392,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Hanau</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.90804700000001,50.1487208,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Karben</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.75590050000005,50.2333701,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Kelsterbach</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.53222559999995,50.0615898,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Kronberg im Taunus</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.52308100000005,50.1741061,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Langenselbold</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            9.027862,50.180064,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Linsengericht</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            9.1986,50.19542,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Maintal</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.83435320000001,50.1417102,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Mainz Altstadt</name>
+        <description>An den Bedientheken können Fleisch, Wurst und Käse in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.276276,49.994677,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Mainz-Weisenau</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.2809911,49.9810495,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Mörfelden-Walldorf</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.56027779999999,49.9675,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Mühlheim am Main</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.84771049999995,50.1200514,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Niederdorfelden</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.802511,50.190134,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Offenbach</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.75449,50.10608,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Riedstadt</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.48628,49.85482,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Rodenbach</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            9.023402,50.139558,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Seligenstadt</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.961919,50.04427,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Weiterstadt</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.593687,49.899569,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Wiesbaden</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.249917,50.076917,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Wiesbaden Naurod</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.304048,50.139013,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Wiesbaden Nordost</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.249913,50.094277,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Wiesbaden-Schierstein</name>
+        <description>An den Bedientheken können Fleisch, Wurst, Käse, Fisch und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.2052236,50.0445361,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Tegut | Wölfersheim</name>
+        <description>An der Unverpackt-Station können über 100 Bio-Produkte in selbstmitgebrachte Behälter oder Papiertüten abgefüllt werden. An den Bedientheken können Fleisch, Wurst, Käse und Antipasti in mitgebrachte Behälter gefüllt werden. Bitte keine Glasbehälter mitbringen, wegen Bruchgefahr. Obst und Gemüse gibt es teilweise lose.</description>
+        <styleUrl>#icon-1685-FFD600</styleUrl>
+        <Point>
+          <coordinates>
+            8.816573,50.39659,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Zero Waste Basics</name>
+      <Placemark>
+        <name>Bürstenhaus</name>
+        <description><![CDATA[Hier gibt es Bürsten aller Art aus verschienden Naturborsten, sowie diverse Zero Waste Basics wie Rasierhobel und Olivenölseife.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/Bq73tXAHLJJ/]]></description>
+        <styleUrl>#icon-1501-757575</styleUrl>
+        <Point>
+          <coordinates>
+            8.68303700000001,50.113204,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hintz-Bürsten Bockenheim</name>
+        <styleUrl>#icon-1501-757575-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6480951,50.119712,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Langbrett</name>
+        <description>Hier gibt es den Guppyfriend Waschbeutel, um Mikroplastik von synthetischen Stoffen zu filtern, und Edelstahlflaschen von Klean Kanteen.</description>
+        <styleUrl>#icon-1501-757575</styleUrl>
+        <Point>
+          <coordinates>
+            8.67892729999994,50.1121322,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Lush Cosmetics</name>
+        <styleUrl>#icon-1501-757575-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68134090000001,50.1148648,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Manufactum</name>
+        <description><![CDATA[Hier gibt es Plastikfreies für Küche, Bad und Haushalt und vieles mehr. <br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/B29wlScom04/]]></description>
+        <styleUrl>#icon-1501-757575</styleUrl>
+        <Point>
+          <coordinates>
+            8.67055430000005,50.1160192,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Meder</name>
+        <description>In der Haushaltswarenabteilung findest du alles rund um die plastikfreie Küche. </description>
+        <styleUrl>#icon-1501-757575</styleUrl>
+        <Point>
+          <coordinates>
+            8.7074973,50.1258155,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hintz-Bürsten | Neu-Anspach</name>
+        <description>Bürsten aller Art findet man im gut sortierten Bürstenhaus im Hessenpark.</description>
+        <styleUrl>#icon-1501-757575</styleUrl>
+        <Point>
+          <coordinates>
+            8.53082810000001,50.2756814,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>LUSH Cosmetics | Wiesbaden</name>
+        <styleUrl>#icon-1501-757575-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.238932,50.082367,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name><![CDATA[Wochenmärkte & Flohmärkte]]></name>
+      <Placemark>
+        <name>Bauernmarkt Konstablerwache</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Donnerstag: 10-20 Uhr<br>Samstag: 8-17 Uhr<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/BuPF55MHjrY/]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.68695619999994,50.114476,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Blumenmarkt am Liebfrauenberg</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Freitag: 9-18 Uhr<br><br>www.hfm-frankfurt.de/sondermaerkte]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.68165880000004,50.1129065,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kleinmarkthalle</name>
+        <description>In der Kleinmarkthalle wird jeder fündig. Von Backwaren über Wurstwaren, Käse und Fisch bis hin zu Obst und Gemüse. An vielen Ständen werden gerne die eigenen Behälter befüllt. Es gibt sowohl lokale/regionale als auch internationale Spezialitäten und ein reichhaltiges gastronomisches Angebot.</description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.68384990000004,50.1128317,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Markt am Osthafen</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Mittwoch: 11-14 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.7202227,50.1126548,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Schillermarkt</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Freitag: 9-18:30 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.6785539,50.1148806,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Bockenheim</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Donnerstag: 8-18 Uhr]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.65137270000002,50.120058,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Bonames</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Donnerstag: 13-20 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.66561879999995,50.1850941,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Bornheim</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Mittwoch: 8-18:30 Uhr<br>Samstag: 8-16 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.70718839999995,50.1257173,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Campus Westend</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Donnerstag: 9-17 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.67100240000002,50.1269408,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt City-West</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Mittwoch: 10-20 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.63314509999998,50.1171741,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Dornbusch</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Dienstag: 8-18 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.67121589999999,50.140184,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Friedberger Warte</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Dienstag: 8-18 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.69919909999999,50.1406285,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Gallus</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Freitag: 8-18:30 Uhr]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.63524989999996,50.1041006,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Heddernheim</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Freitag: 9-18 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.64565600000003,50.160314,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Wochenmarkt Höchst & Markthalle]]></name>
+        <description><![CDATA[Markttage und -zeiten:<br>Dienstag: 7-13 Uhr<br>Freitag: 7-13 Uhr<br>Samstag: 7-13 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.5460738,50.0995147,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Kaiserstraße</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Dienstag: 9-19 Uhr<br>Donnerstag: 9-19 Uhr<br><br>https://markthandel.de/maerkte_lms.htm]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.66577840000002,50.107464,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Niederrad</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Samstag: 8-16 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.64457449999998,50.0865818,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Nordend</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Freitag: 10-20 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.6922406,50.1235132,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Nordwestzentrum</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Mittwoch: 9-18 Uhr<br><br>https://frankfurt.treffpunkt-wochenmarkt.de/]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.63292009999998,50.1579986,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Oberrad</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Samstag: 9-16 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.7241789,50.100715,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Preungesheim</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Freitag: 11-19 Uhr]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.69821139999999,50.1556463,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Riedberg</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Samstag: 9-16 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.62939230000006,50.1767158,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Rödelheim</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Mittwoch: 8-18 Uhr<br><br>www.hfm-frankfurt.de/wochenmarkt]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.6066634,50.12392,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt Sachsenhausen</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Dienstag: 8-18 Uhr<br>Freitag: 8-18 Uhr<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/BxkvNEiieop/]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.68559089999997,50.1000202,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt | Bad Nauheim</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Dienstag: 12-18 Uhr<br>Freitag: 8:30-13 Uhr<br><br>https://markthandel.de/maerkte_lms.htm]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.7381892,50.3651421,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt | Langen</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Samstag: 8-14 Uhr<br><br>https://markthandel.de/maerkte_lms.htm]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.6714667,49.9885045,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt | Maintal-Dörnigheim</name>
+        <description><![CDATA[Markttage und -zeiten: <br>Dienstag: 7-13 Uhr<br><br>www.maintal.de/seite/134460/wochenm%C3%A4rkte.html]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.84475999999995,50.1366,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wochenmarkt | Offenbach</name>
+        <description><![CDATA[Markttage und -zeiten:<br>Dienstag: 8-14 Uhr<br>Freitag: 8-14 Uhr<br>Samstag: 8-14 Uhr<br>Vom 01.04.-30.09. schon ab 7 Uhr<br><br>www.offenbach.de/gaeste/sehenswert/wilhelmsplatz/wochenmarkt.php]]></description>
+        <styleUrl>#icon-1684-795548</styleUrl>
+        <Point>
+          <coordinates>
+            8.7659683,50.1039905,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flohmarkt Schaumainkai</name>
+        <description><![CDATA[Jeden zweiten Samstag von 9 bis 14 Uhr.<br><br>Termine: www.hfm-frankfurt.de/flohmaerkte]]></description>
+        <styleUrl>#icon-1684-C2185B</styleUrl>
+        <Point>
+          <coordinates>
+            8.67501330000005,50.1043129,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Flohmarkt Lindleystraße</name>
+        <description><![CDATA[Jeden zweiten Samstag von 9 bis 14 Uhr.<br><br>Termine: www.hfm-frankfurt.de/flohmaerkte]]></description>
+        <styleUrl>#icon-1684-C2185B</styleUrl>
+        <Point>
+          <coordinates>
+            8.72062900000003,50.1128286,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name><![CDATA[Fair Fashion & Second Hand Läden]]></name>
+      <Placemark>
+        <name>Amanel - Natur für Baby und Kind</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68053199999997,50.153316,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Anton Emma</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7082746,50.1249903,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Atdress</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7077472,50.1252285,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>BUNT</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.709478,50.1277601,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Charlotte am Main</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.700239,50.1290726,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Early</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6999311,50.1252506,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>EKN Footwear</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.70620229999997,50.1126897,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>GEA Schuhe</name>
+        <description><![CDATA[Hier gibt es qualitativ hochwertige und nachhaltige Schuhe von Waldviertler aus Österreich. Für die Schuhe gibt es neue Einlagen, sie können neu besohlt werden. Kurz: alles, was repariert und ersetzt werden kann, wird auch gemacht. So können die Schuhe auch locker drei oder vier Kinder aushalten.<br>Weiterhin werden nachhaltige Möbel und zum Beispiel auch Kinderwägen angeboten.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/BzbP8p6i2mp/]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.6960517,50.115981,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Glore Frankfurt</name>
+        <description><![CDATA[Ausgiebiges Sortiment an Damen- und Herrenmode von tollen nachhaltigen Labels.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/B3jHkP0oWRC/]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.68025969999997,50.1217923,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Grüne Erde Store</name>
+        <description><![CDATA[Nachhaltige Mode für Damen und viele Zero Waste Basics. Auch Möbel aus Naturmaterialien und Schlafwelt zum Probeliegen.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/BqIVMhUn6wp/]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.67664579999996,50.111453,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Gudrun Sjödén</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.67658890000007,50.1113868,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hessnatur Store</name>
+        <description><![CDATA[Mehr Infos dazu:<br>www.instagram.com/p/Bu_sidkH8cc/]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.67673190000005,50.1115073,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>mi.na</name>
+        <description><![CDATA[Mehr Infos dazu:<br>www.instagram.com/p/CqrumssojbI]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.7003699,50.1223546,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Number Seven</name>
+        <description><![CDATA[Mehr Infos dazu:<br>www.instagram.com/p/CqrumssojbI]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.7002091,50.1222829,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Quartier Frau</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6939226,50.1230108,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sonnylemon</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7084266,50.1277505,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Weltladen Fair Fashion Bornheim</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7033847,50.124036,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Wunderwerk</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.69660640000006,50.1206279,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hessnatur Outlet | Butzbach</name>
+        <description><![CDATA[Mehr Infos dazu:<br>www.instagram.com/p/B0mA8BSoMRV/]]></description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.6857869,50.4303628,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hessnatur Store | Butzbach</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.69068459999994,50.4292185,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Maas Naturwaren | Bad Homburg</name>
+        <styleUrl>#icon-1549-0097A7-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.61838,50.226813,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Passepartout | Offenbach</name>
+        <description>Fair Fashion Store, Maßschneiderei und Nähschule</description>
+        <styleUrl>#icon-1549-0097A7</styleUrl>
+        <Point>
+          <coordinates>
+            8.762397,50.0960034,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Aschenputtel Second Hand</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68224199999997,50.112248,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>AURUM Second Hand Boutique</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6775768,50.1160537,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bonne Chance</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.67897470000003,50.1160206,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Carpe Diem First & Second Hand'ler]]></name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.67741019999994,50.1126787,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DRK Kleideratelier mit Nähecke</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.567144,50.1202824,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[DRK Kleiderladen Kreuz & Quer]]></name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.60685999999998,50.0925,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Edel Trödel</name>
+        <description>Im Herzen von Bornheim werde auf 250m² Verkaufsfläche Möbel Kunst und Krempel sowie Alltagsgegenstände für den täglichen Gebrauch angeboten.</description>
+        <styleUrl>#icon-1684-3949AB</styleUrl>
+        <Point>
+          <coordinates>
+            8.69578409999997,50.1211097,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[epiphany - Vintage & More]]></name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.69262639999999,50.1150062,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Kroetenkiste "Alles rund ums Kind"]]></name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.75370899999996,50.14967,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Matilda 2nd Hand Kinderwarenladen</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68476999999996,50.10461,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Monsters Kindersecondhandladen</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.70394340000007,50.127091,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Neufundland Second-Hand-Warenhaus</name>
+        <description><![CDATA[Vom Unikat bis zur kompletten Einrichtung, von der Jeans bis zur Waschmaschine. Bei Neufundland findest du gute gebrauchte Stücke zu fairen Preisen. für alle.<br><br>Kleinere Spenden kannst du über den Kofferraumservice abgeben. Für größere Spenden, wie z.B. Möbel, sollte ein Abholungstermin vereinbart werden.]]></description>
+        <styleUrl>#icon-1549-3949AB</styleUrl>
+        <Point>
+          <coordinates>
+            8.58853799999997,50.0962992,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Ola Ware Second Hand & Vintage Mode]]></name>
+        <description>Second Hand Laden mit coolen Vintage-Klamotten.</description>
+        <styleUrl>#icon-1549-3949AB</styleUrl>
+        <Point>
+          <coordinates>
+            8.6928956,50.1250893,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Outflip</name>
+        <description><![CDATA[Cooler Second Hand Laden in Bornheim. Die Klamotten, Schuhe, Taschen und Accessoires werden für etwa vier Wochen in Kommission angenommen. Das Angebot wechselt also ständig, es lohnt sich regelmäßig vorbeizuschauen. <br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/CCNcXgdgyns/]]></description>
+        <styleUrl>#icon-1549-3949AB</styleUrl>
+        <Point>
+          <coordinates>
+            8.70062210000003,50.124034,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Buchshop Innenstadt</name>
+        <styleUrl>#icon-1526-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68221249999999,50.1129994,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Fashionshop Bockenheim</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.64621220000004,50.1226438,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Fashionshop Sachsenhausen</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68124220000004,50.1014287,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Shop Bornheim</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.69520769999997,50.1203827,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Shop Nordend</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6799031,50.1200448,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Peggy Sue Vintage</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68821,50.10527,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA["raus aus dem keller" Antiquitäten, Schmuck, Porzellan uvm.]]></name>
+        <styleUrl>#icon-1684-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.63661200000001,50.123692,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ReSales</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68816870000001,50.1060193,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Samt & Sonders XXL (ehem. Familien-Markt)]]></name>
+        <description><![CDATA[In diesem Second Hand Kaufhaus kann jede:r einkaufen. Gegen Vorlage eines Frankfurt-Passes oder weiteren Nachweisen (s. Website) erhältst du Rabatte.<br><br>Gut erhaltene Sachspenden werden gerne entgegen genommen.<br>- Mode für Damen, Herren und Kinder<br>- Heimtextilien<br>- Haushaltsartikel<br>- Spielzeug<br>- Möbel<br>- Elektrogeräte]]></description>
+        <styleUrl>#icon-1549-3949AB</styleUrl>
+        <Point>
+          <coordinates>
+            8.7479218,50.1422515,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Scarlett Second Hand Boutique</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68324059999998,50.1124584,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Stellas First- und Secondhand</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.69652050000002,50.1175685,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Style Definery Showroom</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6655241,50.1198773,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vintage Revivals Bornheim</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7032175,50.1239913,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vintage Revivals Sachsenhausen</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.68754999999999,50.10514,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Yasmini - für Mutter und Kind</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.64293069999997,50.1240136,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Königskinder | Neu-Isenburg</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.69203970000001,50.0530758,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DRK Kleiderladen | Bad Vilbel</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7355577,50.1762731,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DRK Kleiderladen | Langen</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6745701,49.9901894,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DRK Kleiderladen | Mühlheim am Main</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.8277042,50.1235352,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DRK Kleiderladen | Neu-Isenburg</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6929416,50.0532722,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>DRK Kleiderladen | Offenbach</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.7634731,50.104706,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Buchshop | Darmstadt</name>
+        <styleUrl>#icon-1526-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6562983,49.8706914,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Shop | Darmstadt</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6492698,49.8723745,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Shop | Mainz</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.276766,49.995726,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Oxfam Shop | Wiesbaden</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.2339284,50.0788282,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ReSales | Darmstadt</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.6549226,49.871612,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ReSales | Offenbach</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.75918999999999,50.10269,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ReSales | Wiesbaden</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.2407412,50.0815727,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vintage Factory1977 | Kelsterbach</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.5332044,50.048973,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Vintage Revivals | Wiesbaden</name>
+        <styleUrl>#icon-1549-3949AB-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.24406,50.079249,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name><![CDATA[Nachhaltige Orte & Unternehmen]]></name>
+      <Placemark>
+        <name>Alter Flugplatz in Frankfurt-Bonames</name>
+        <description><![CDATA[Landschaftsschutzgebiet mit Feuerwehrmuseum, BIenenmuseum und Café.<br><br>Im Juni findet der alljährliche Handmade Markt im Grünen statt.]]></description>
+        <styleUrl>#icon-1582-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.65711690000001,50.1773416,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bücherschrank</name>
+        <description><![CDATA[Am Merianplatz wurde 2009 der erste "Offene Bücherschrank" aufgestellt. Heute gibt es über 70 Bücherschränke im ganze Stadtgebiet. <br><br>Eine Übersicht gibt es hier:<br>https://frankfurt.de/themen/kultur/literatur/bibliotheken/buecherschraenke]]></description>
+        <styleUrl>#icon-1526-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.696307,50.1204683,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Come on Closet</name>
+        <description><![CDATA[Nachhaltige Stilberatung in Frankfurt.<br><br>Weitere Infos zum Angebot und zur Terminvereinbarung findest du unter www.comeoncloset.de]]></description>
+        <styleUrl>#icon-1549-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.7003313,50.1272038,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Einzigware Frankfurt / Cariteam</name>
+        <description><![CDATA[Werksverkauf jeden 1. Donnerstag im Monat von 14-17 Uhr.<br><br>EiNZIGWARE® ist die Upcycling-Marke von Beschäftigungsbetrieben der Caritas in ganz Deutschland. Aktuell gehören rund 25 Standorte zur Marke EiNZIGWARE®<br>EiNZIGWARE macht aus entbehrlichen Klamotten unentbehrliche Lieblingskleidung, aus alten Möbeln neue Mitbewohner und aus einer ganzen Menge Sachen richtig tolle Dinge. EiNZIGWARE gibt Gegenständen neues Leben und Menschen neue Chancen. Von der Kleidersammlung über die Werkbank zur Webseite und auf den Laufsteg – EiNZIGWARE ist eine Bewegung.<br>Die Richtung ist dabei immer klar und auch die Richtlinien: ökologisch,, kreativ, sozial. EiNZIGWARE ist aus wiederverwerteten Materialien, die Umweltbewusstsein haben. Aus Ideen, die robust sind. Und von Menschen gemacht, die erstklassige Arbeit leisten, dies aber nicht auf dem ersten Arbeitsmarkt tun können.<br><br>Mehr Infos hier:<br>http://www.einzigware.de/<br>https://www.zerowastefrankfurt.de/ulf-der-neue-unverpackt-laden-in-der-frankfurter-altstadt/]]></description>
+        <styleUrl>#icon-1684-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.59726,50.09565,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fairteiler Bornheim</name>
+        <description><![CDATA[Dieser Fairteiler ist ein Umschlagplatz für noch genießbare Lebensmittel.<br><br>Mehr Infos dazu:<br>https://foodsharing.de/?page=fairteiler&bid=28&sub=ft&id=1879]]></description>
+        <styleUrl>#icon-1577-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.70359,50.12422,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Fairteiler im IZ Frankfurt</name>
+        <description><![CDATA[In diesem Fair-Teiler können Lebensmittel geteilt und auch kostenlos entnommen werden. Sie haben oft das Mindesthaltbarkeitsdatum überschritten, sind aber durchaus noch genießbar.<br><br>Mehr Infos und aktuelle Öffnungszeiten hier:<br>http://iz-ffm.de/?p=1868]]></description>
+        <styleUrl>#icon-1577-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.6472803,50.1067023,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Fairteiler Sankt Aposteln "Open Fridge"
+]]></name>
+        <description><![CDATA[Offener Kühlschrank in Sachsenhausen. In diesem Fairteiler können Lebensmittel geteilt und auch kostenlos entnommen werden. Sie haben oft das Mindesthaltbarkeitsdatum überschritten, sind aber durchaus noch genießbar.<br><br>Der Fairteiler ist geöffnet zu den Öffnungszeiten der Kirche, ausgenommen während Gottesdiensten und Veranstaltungen.<br><br>Mehr Infos dazu:<br>https://www.steyler-missionsschwestern.de/standorte/frankfurt-am/open-fridge]]></description>
+        <styleUrl>#icon-1577-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.6760396,50.0888021,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>FoodCoop KlaaKarott e.V.</name>
+        <description><![CDATA[Einkaufsgemeinschaft in Heddernheim, nur für Mitglieder. Hier werden regionale, umweltgerecht erzeugte Lebensmittel so verpackungsarm wie möglich direkt von den Produzent*innen gekauft und an die Vereinsmitglieder ohne Aufschlag weitergegeben. <br><br>Mehr Infos dazu:<br>https://klaakarott.jimdofree.com/]]></description>
+        <styleUrl>#icon-1577-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.6474916,50.1606826,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Hotel Villa Orange</name>
+        <description><![CDATA[Frankfurts erstes und einziges Bio-Hotel.<br><br>Mehr Infos dazu:<br>https://www.instagram.com/p/BwsB1L8ncea/]]></description>
+        <styleUrl>#icon-1602-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.68944759999999,50.1208991,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mainova Trinkbrunnen</name>
+        <description>Frisches Trinkwasser zum Abfüllen in die eigene Trinkflasche oder zum Erfrischen an heißen Tagen.</description>
+        <styleUrl>#icon-1703-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.68049159999998,50.1136498,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mainova Trinkbrunnen</name>
+        <description>Frisches Trinkwasser zum Abfüllen in die eigene Trinkflasche oder zum Erfrischen an heißen Tagen.</description>
+        <styleUrl>#icon-1703-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.67364399999997,50.1147236,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Nachhaltig Guide</name>
+        <styleUrl>#icon-1587-097138-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            8.67394590000004,50.0975847,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Neuer Frankfurter Garten</name>
+        <description>Urban Gardening. Gemeinschaftsgarten mit gastronomischem Angebot. Hier finden auch regelmäßig Flohmärkte statt.</description>
+        <styleUrl>#icon-1582-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.70716149999998,50.1131578,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Sachen auf Rädern</name>
+        <description>Nachhaltiger Lieferservice in Frankfurt mit Lastenrädern.</description>
+        <styleUrl>#icon-1522-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.70877459999997,50.1259268,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Windelfrei Frankfurt</name>
+        <description><![CDATA[Windelfrei Frankfurt bietet Kurse und regelmäßige Treffen zum Austausch über die Themen Windelfrei und sauber werden an. Nein, Windelfrei bedeutet nicht, dass das Baby zwangsläufig ohne Windel ist. Hier lernen Eltern, die Signale ihres Babys zu verstehen, damit sie es abhalten können, von Geburt an. Spannendes Thema... und es funktioniert tatsächlich! <br>Das ist keine Geschäftsadresse, mehr Infos auf der Website.]]></description>
+        <styleUrl>#icon-1742-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.69392010000001,50.1237599,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Die Windelzwerge</name>
+        <description><![CDATA[Die Windelzwerge bieten einen Leih-, Wasch- und Lieferservice für Stoffwindeln im Rhein-Main-Gebiet. <br>Weitere Infos zum Angebot inklusive des Liefergebiets findest du unter<br>www.diewindelzwerge.de]]></description>
+        <styleUrl>#icon-1742-097138</styleUrl>
+        <Point>
+          <coordinates>
+            8.5736476,50.2017259,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Repair Cafés</name>
+      <Placemark>
+        <name>Repair Café Bockenheim</name>
+        <description>Jeden letzten Sonntag im Monat (außer Feiertage) von 15 bis 17:30 Uhr im Café KoZ, Studierendenhaus, Campus Bockenheim</description>
+        <styleUrl>#icon-1551-000000</styleUrl>
+        <Point>
+          <coordinates>
+            8.65155100000004,50.118603,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Repair Café Sachsenhausen</name>
+        <description><![CDATA[Jeden 1. Dienstag im Monat von 17:30 bis 20 Uhr im Gemeindehaus Sankt Wendel (Kellergeschoss). Reparaturanmeldungen sind bis 19 Uhr möglich.<br><br>Repariert werden Elektrogeräte, Computer (Hardware, Software, Viren- und Trojaner-Infektionen), Fahrräder, Textilien sowie Holzobjekte, Metallobjekte, mechanische Geräte, Modeschmuck und Gitarren.]]></description>
+        <styleUrl>#icon-1551-000000</styleUrl>
+        <Point>
+          <coordinates>
+            8.69376,50.092,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

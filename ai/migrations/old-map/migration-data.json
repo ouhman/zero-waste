@@ -1,0 +1,4980 @@
+[
+  {
+    "name": "Die Auffüllerei",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.1245912,
+    "lng": 8.70008859999996,
+    "address": "Höhenstraße 40",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "In diesem Unverpackt-Laden in Frankfurt-Bornheim findest du fast alles, was das Herz begehrt. Was es nicht gibt, darfst du auf die Wunschliste schreiben. Mehr Infos dazu: https://www.zerowastefrankfurt.de/die-auffuellerei-in-bornheim-unverpackt-laden-nr-3/",
+    "phone": "+49 69 40564006",
+    "website": "https://dieauffuellerei.de/",
+    "email": "Hallo@dieauffuellerei.de",
+    "opening_hours_osm": "Tu-Fr 11:00-19:00; Sa 11:00-16:00; Su closed; PH closed",
+    "opening_hours_text": "Di-Fr 11:00-19:00,  Sa 11:00-16:00,  So closed,  Feiertage geschlossen",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true
+    },
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "franco Unverpackt Laden",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.1213844,
+    "lng": 8.6751198,
+    "address": "Eschersheimer Landstraße 47",
+    "city": "Frankfurt am Main",
+    "postal_code": "60322",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Höchst Unverpackt",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.0991412,
+    "lng": 8.5455944,
+    "address": "Antoniterstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "65929",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Ulf - un:verpackt Sachsenhausen",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.10232,
+    "lng": 8.69042,
+    "address": "Darmstädter Landstraße 44",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "ADAM FAIRkaufen | Aschaffenburg",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.9782784,
+    "lng": 9.1552499,
+    "address": "Danziger Straße",
+    "city": "Aschaffenburg",
+    "postal_code": "63739",
+    "description_de": "",
+    "website": "https://adam-fairkaufen.de",
+    "opening_hours_osm": "Mo-Fr 08:30-18:00;Sa 08:30-14:00;PH off",
+    "opening_hours_text": "Mo-Fr 08:30-18:00, Sa 08:30-14:00, Feiertage geschlossen",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "BIO-unverpackt | Wiesbaden",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.0788381,
+    "lng": 8.2339336,
+    "address": "Dotzheimer Straße 19",
+    "city": "Wiesbaden",
+    "postal_code": "65185",
+    "description_de": "",
+    "phone": "+49 611 44762306",
+    "website": "https://www.bio-unverpackt.com/",
+    "email": "info@Bio-unverpackt.de",
+    "opening_hours_osm": "Tu 11:00-18:00,Th-Fr 11:00-18:00,Sa 10:00-14:00; PH off",
+    "opening_hours_text": "Di 11:00-18:00,Do-Fr 11:00-18:00,Sa 10:00-14:00,  Feiertage geschlossen",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true,
+      "maestro": true,
+      "visa": true,
+      "mastercard": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "chez Martine | Hammelbach",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.6351888,
+    "lng": 8.831685,
+    "address": "Schulstraße 6",
+    "city": "Hammelbach",
+    "postal_code": "64689",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "EINKORN | Viernheim",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.5374121,
+    "lng": 8.57869,
+    "address": "Rathausstraße 41",
+    "city": "Viernheim",
+    "postal_code": "68519",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Emmas Erben | Otzberg",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.8505301,
+    "lng": 8.879234,
+    "address": "Schloßgasse",
+    "city": "Habitzheim",
+    "postal_code": "64853",
+    "description_de": "",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Honighalle | Friedrichsdorf",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.2694973,
+    "lng": 8.6481468,
+    "address": "Köpperner Straße 82-84",
+    "city": "Friedrichsdorf",
+    "postal_code": "61381",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 08:30-19:00",
+    "opening_hours_text": "Mo-Sa 08:30-19:00",
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Mittendrin | Gelnhausen",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.197698,
+    "lng": 9.19042899999999,
+    "address": "Bahnhofstraße 17",
+    "city": "Gelnhausen",
+    "postal_code": "63571",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Mittendrin | Hanau",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.1322846,
+    "lng": 8.91599339999993,
+    "address": "Römerstraße 1",
+    "city": "Hanau",
+    "postal_code": "63450",
+    "description_de": "",
+    "phone": "+49 6181 4901400",
+    "website": "https://www.mittendrin-hanau.de/",
+    "opening_hours_osm": "Mo 10:00-18:00; Tu 10:00-18:00; We 08:00-18:00; Th 09:00-18:00; Fr 10:00-18:00; Sa 08:00-15:00",
+    "opening_hours_text": "Mo 10:00-18:00,  Di 10:00-18:00,  Mi 08:00-18:00,  Do 09:00-18:00,  Fr 10:00-18:00,  Sa 08:00-15:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Nix-Drum-Rum | Bad Nauheim",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.3637339,
+    "lng": 8.73509539999998,
+    "address": "Marktplatz 9",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "",
+    "phone": "+49 6032 8675475",
+    "website": "https://nix-drum-rum.de/",
+    "opening_hours_osm": "Mo,Th-Fr 09:30-18:00; We 09:30-18:00; Sa 09:30-14:00",
+    "opening_hours_text": "Mo,Do-Fr 09:30-18:00,  Mi 09:30-18:00,  Sa 09:30-14:00",
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "OF Unverpackt | Offenbach",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.094802,
+    "lng": 8.762807,
+    "address": "Gabelsbergerstraße 48",
+    "city": "Offenbach am Main",
+    "postal_code": "63069",
+    "description_de": "",
+    "opening_hours_osm": "Tu-Fr 10:00-19:00, Sa 10:00-18:00",
+    "opening_hours_text": "Di-Fr 10:00-19:00, Sa 10:00-18:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Steffis unverpackt | Mönchberg",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.7925202,
+    "lng": 9.2670418,
+    "address": "Hauptstraße 49",
+    "city": "Mönchberg",
+    "postal_code": "63933",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Take it easy | Alzenau",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.0868796,
+    "lng": 9.0712433,
+    "address": "Hanauer Straße 23",
+    "city": "Alzenau",
+    "postal_code": "63755",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Tante Erna Unverpackt | Mörfelden-Walldorf",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.974975,
+    "lng": 8.5695809,
+    "address": "Schulgasse 3",
+    "city": "Mörfelden",
+    "postal_code": "64546",
+    "description_de": "",
+    "phone": "+49 6105 278485",
+    "website": "https://tante-erna.de/",
+    "email": "info@tante-erna.de",
+    "opening_hours_osm": "Th-Fr 10:00-12:30; Th-Fr 14:30-19:00; Sa 09:00-13:00",
+    "opening_hours_text": "Do-Fr 10:00-12:30,  Do-Fr 14:30-19:00,  Sa 09:00-13:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Unverpackt Darmstadt",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 49.8723196,
+    "lng": 8.6527854,
+    "address": "Gutenbergstraße 5b",
+    "city": "Darmstadt",
+    "postal_code": "64289",
+    "description_de": "",
+    "phone": "+49 178 281 55 98",
+    "website": "https://www.unverpacktdarmstadt.com/",
+    "opening_hours_osm": "Mo-Fr 10:00-19:00; Sa 10:00-14:00",
+    "opening_hours_text": "Mo-Fr 10:00-19:00,  Sa 10:00-14:00",
+    "payment_methods": {
+      "cash": true,
+      "debit_cards": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Unverpackt Mainz",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.0036362,
+    "lng": 8.264401,
+    "address": "Heidelbergerfaßgasse 16a",
+    "city": "Mainz",
+    "postal_code": "55116",
+    "description_de": "Mehr als 400 Produkte, überwiegend in Bio-Qualität. Es gibt trockene Lebensmittel, Kosmetik- und Haushaltsprodukte zum selbst Abfüllen sowie Milchprodukte, Eier und Aufstriche im Glas. Mehr Infos dazu: https://www.instagram.com/p/Bv4ltayHQ-K/",
+    "phone": "+49 6131 6356783",
+    "website": "https://unverpackt-mainz.de/",
+    "email": "info@unverpackt-mainz.de",
+    "opening_hours_osm": "Mo-Fr 10:00-19:00; Sa 10:00-16:00",
+    "opening_hours_text": "Mo-Fr 10:00-19:00,  Sa 10:00-16:00",
+    "payment_methods": {
+      "cash": true,
+      "maestro": true
+    },
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Unverpacktes Gießen",
+    "original_category": "Unverpackt-Läden",
+    "mapped_categories": [
+      "unverpackt"
+    ],
+    "lat": 50.5857467,
+    "lng": 8.67045929999995,
+    "address": "Johannette-Lein-Gasse 24",
+    "city": "Gießen",
+    "postal_code": "35390",
+    "description_de": "",
+    "website": "https://www.unverpacktes-giessen.de",
+    "opening_hours_osm": "Mo-Fr 10:00-19:00; Sa 10:00-18:00; PH off",
+    "opening_hours_text": "Mo-Fr 10:00-19:00,  Sa 10:00-18:00,  Feiertage geschlossen",
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Africa Queen Restaurant",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1171057,
+    "lng": 8.6461513,
+    "address": "Schloßstraße 113",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "opening_hours_osm": "Mo-Su,PH 12:00-23:00",
+    "opening_hours_text": "Mo-So,PH 12:00-23:00",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Baders Fisch Deli",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1228175,
+    "lng": 8.6447834,
+    "address": "Leipziger Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 775040",
+    "opening_hours_osm": "Mo-Fr 10:30-17:00; Sa 10:30-14:00",
+    "opening_hours_text": "Mo-Fr 10:30-17:00,  Sa 10:30-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bulli Burrito",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1218958,
+    "lng": 8.6474533,
+    "address": "Leipziger Straße 36",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Café Ana",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1210232,
+    "lng": 8.6808014,
+    "address": "Mittelweg 47",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Café Billabong",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1801667,
+    "lng": 8.618355,
+    "address": "Graf-von-Stauffenberg-Allee 44",
+    "city": "Frankfurt am Main",
+    "postal_code": "60438",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Café Menthe",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1359325,
+    "lng": 8.7018944,
+    "address": "Dortelweiler Straße 87",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "opening_hours_osm": "09:00-18:00",
+    "opening_hours_text": "09:00-18:00",
+    "facilities": {
+      "wheelchair": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Die Brücke",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1056598,
+    "lng": 8.6876532,
+    "address": "Brückenstraße 19",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Fridas Cafe",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1239378,
+    "lng": 8.6411615,
+    "address": "Leipziger Straße 108",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 27273023",
+    "website": "https://fridas-cafe.de/",
+    "opening_hours_osm": "Mar Su[-1]-Oct Su[-1] -1 day: Mo-Sa 09:00-22:00; Su,PH 10:00-21:00; Oct Su[-1]-Mar Su[-1] -1 day: Mo-Sa 09:00-20:00; Su,PH 10:00-19:00",
+    "opening_hours_text": "Mar So[-1]-Oct So[-1] -1 day: Mo-Sa 09:00-22:00,  So,PH 10:00-21:00,  Oct So[-1]-Mar So[-1] -1 day: Mo-Sa 09:00-20:00,  So,PH 10:00-19:00",
+    "facilities": {
+      "wifi": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Füny’s Café",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.123636,
+    "lng": 8.6414106,
+    "address": "Leipziger Straße 106",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "opening_hours_osm": "Mo-Su,PH 09:00-20:00",
+    "opening_hours_text": "Mo-So,PH 09:00-20:00",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Glauburg Café",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.12705,
+    "lng": 8.688177,
+    "address": "Glauburgstraße 28",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "website": "https://www.glauburg-cafe.de/",
+    "opening_hours_osm": "Mo-Su 09:00-17:00",
+    "opening_hours_text": "Mo-So 09:00-17:00",
+    "facilities": {
+      "wifi": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Kaffeemacherei",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1217017,
+    "lng": 8.6796317,
+    "address": "Bornwiesenweg 4",
+    "city": "Frankfurt am Main",
+    "postal_code": "60322",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "website": "http://www.die-kaffeemacherei.de",
+    "opening_hours_osm": "We-Su 10:00-18:00",
+    "opening_hours_text": "Mi-So 10:00-18:00",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Karrys & Barrys",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1761103,
+    "lng": 8.6297503,
+    "address": "Alfred-Wegener-Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60439",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 26940412",
+    "website": "https://karrysandbarrys.de/",
+    "opening_hours_osm": "Mo-Th 10:00-17:00; Fr-Su 10:00-18:00",
+    "opening_hours_text": "Mo-Do 10:00-17:00,  Fr-So 10:00-18:00",
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Minerva Restaurant / Bistro",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1743522,
+    "lng": 8.6298897,
+    "address": "Max-von-Laue-Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60439",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Onocubes",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1230724,
+    "lng": 8.6759169,
+    "address": "Eschersheimer Landstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60322",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 97764515",
+    "website": "https://www.onocubes.com",
+    "opening_hours_osm": "Tu-Fr 11:30-14:30,17:30-22:30; Sa 17:30-22:30; Su 17:30-21:30",
+    "opening_hours_text": "Di-Fr 11:30-14:30,17:30-22:30,  Sa 17:30-22:30,  So 17:30-21:30",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Pasta e Panini",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1204388,
+    "lng": 8.6491505,
+    "address": "Leipziger Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 97698388",
+    "website": "https://www.pastaepanini.de/",
+    "opening_hours_osm": "Mo-Sa 09:30-22:30",
+    "opening_hours_text": "Mo-Sa 09:30-22:30",
+    "facilities": {
+      "wheelchair": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Picknick Café Bornheim",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1253702,
+    "lng": 8.7075458,
+    "address": "Spessartstraße 2",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Purple Açaí",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1223994,
+    "lng": 8.6807743,
+    "address": "Oeder Weg",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Restaurant Ponte",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1227475,
+    "lng": 8.6467792,
+    "address": "Am Weingarten 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 24704041",
+    "website": "https://restaurant-ponte-frankfurt.de/",
+    "email": "info@restaurant-ponte-frankfurt.de",
+    "opening_hours_osm": "Mo-Sa 18:00-22:30; Mo-Fr 12:00-14:30",
+    "opening_hours_text": "Mo-Sa 18:00-22:30,  Mo-Fr 12:00-14:30",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Savory",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1251867,
+    "lng": 8.6121735,
+    "address": "Burgfriedenstraße 2",
+    "city": "Frankfurt am Main",
+    "postal_code": "60489",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Sushi Sensei",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1373841,
+    "lng": 8.6676234,
+    "address": "Hansaallee 162",
+    "city": "Frankfurt am Main",
+    "postal_code": "60320",
+    "description_de": "Beschreibung: Frankfurts erster Sushi-Lieferservice, der in Mehrweg-Boxen beliefert. Mehr Infos dazu: https://www.instagram.com/p/Bvq0_2_HEWU/ name:",
+    "phone": "+49 69 297 298 81",
+    "website": "https://www.sushi-sensei.de",
+    "opening_hours_osm": "Th,Fr 11:00-22:00; We,Sa-Mo 16:00-22:00; Tu off",
+    "opening_hours_text": "Do,Fr 11:00-22:00,  Mi,Sa-Mo 16:00-22:00,  Di off",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tandoori Masala",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1591551,
+    "lng": 8.6504914,
+    "address": "Heddernheimer Landstraße 3",
+    "city": "Frankfurt am Main",
+    "postal_code": "60439",
+    "description_de": "Beschreibung: Dieser Imbiss bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Taverna Alpha",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1256999,
+    "lng": 8.7005414,
+    "address": "Burgstraße 82",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Thai Art",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1223099,
+    "lng": 8.6806182,
+    "address": "Oeder Weg",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 90554820",
+    "website": "http://thaiart.de/",
+    "opening_hours_osm": "Mo 11:30-23:00; Tu-Sa 11:30-23:00; Su,PH 11:30-22:00",
+    "opening_hours_text": "Mo 11:30-23:00,  Di-Sa 11:30-23:00,  So,PH 11:30-22:00",
+    "facilities": {
+      "takeaway": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Viet Pho Bockenheim",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1220329,
+    "lng": 8.6473636,
+    "address": "Leipziger Straße 38",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Viet Pho Bornheim",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.1269947,
+    "lng": 8.7086693,
+    "address": "Berger Straße 213",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "phone": "+49 69 96866822",
+    "website": "https://www.vietpho.eu",
+    "email": "vietphoberger@yahoo.com",
+    "opening_hours_osm": "Tu-Fr 11:00-22:30; Sa 11:00-23:00; Su,PH 12:00-22:00; Mo off",
+    "opening_hours_text": "Di-Fr 11:00-22:30,  Sa 11:00-23:00,  So,PH 12:00-22:00,  Mo off",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "BioMarkt | Bad Nauheim",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.3606988,
+    "lng": 8.7533999,
+    "address": "Hubert-Vergölst-Straße 18",
+    "city": "Schwalheim",
+    "postal_code": "61231",
+    "description_de": "Beschreibung: Hier wird dein Coffee to go in den mitgebrachten Becher gefüllt. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "opening_hours_osm": "Mo-Sa 07:30-20:00",
+    "opening_hours_text": "Mo-Sa 07:30-20:00",
+    "payment_methods": {
+      "cash": true,
+      "maestro": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Café & Konditorei Müller | Bad Nauheim",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.36505,
+    "lng": 8.73791,
+    "address": "Aliceplatz 6",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Levante Café Bar | Bad Nauheim",
+    "original_category": "Restaurants, Cafés, Bars",
+    "mapped_categories": [
+      "gastronomie"
+    ],
+    "lat": 50.3649701,
+    "lng": 8.7392636,
+    "address": "Karlstraße 5",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "Beschreibung: Dieses Lokal bietet verpackungsfreies Take-Away an. Du kannst dein Essen in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". name:",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bäckerei Huck Backstubenverkauf | Rödelheim",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.126924,
+    "lng": 8.611674,
+    "address": "Alexanderstraße 51",
+    "city": "Frankfurt am Main",
+    "postal_code": "60489",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bäckerei Huck | Altstadt, Kleinmarkthalle",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.11292,
+    "lng": 8.68373,
+    "address": "Hasengasse 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bäckerei Huck | Bad Homburg",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.2265443,
+    "lng": 8.6170927,
+    "address": "Louisenstraße 69",
+    "city": "Bad Homburg vor der Höhe",
+    "postal_code": "61348",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bäckerei Huck | Bockenheim",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1200077,
+    "lng": 8.6497673,
+    "address": "Adalbertstraße 1",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "phone": "+49 69 26013139",
+    "website": "https://www.huckgmbh.de",
+    "opening_hours_osm": "Mo-Fr 06:30-19:00; Sa,Su,PH 07:00-14:00",
+    "opening_hours_text": "Mo-Fr 06:30-19:00,  Sa,So,PH 07:00-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bäckerei Huck | Flughafen",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.0509344,
+    "lng": 8.572016,
+    "address": "Ankunftbogen",
+    "city": "Frankfurt am Main",
+    "postal_code": "60549",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bäckerei Huck | Ginnheim",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1465595,
+    "lng": 8.658809,
+    "address": "Hügelstraße 190",
+    "city": "Frankfurt am Main",
+    "postal_code": "60431",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "phone": "+49 69 75844447",
+    "website": "https://www.baeckerei-huck.de/",
+    "opening_hours_osm": "Mo-Fr 06:30-19:00; Sa,Su,PH 07:00-14:00",
+    "opening_hours_text": "Mo-Fr 06:30-19:00,  Sa,So,PH 07:00-14:00",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bäckerei Huck | Höchst",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1033959,
+    "lng": 8.5419321,
+    "address": "Adelonstraße 27",
+    "city": "Frankfurt am Main",
+    "postal_code": "65929",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "phone": "+49 69 30039142",
+    "opening_hours_osm": "Mo-Fr 06:30-19:00; Sa-Su,PH 07:00-14:00",
+    "opening_hours_text": "Mo-Fr 06:30-19:00,  Sa-So,PH 07:00-14:00",
+    "facilities": {
+      "wheelchair": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bäckerei Huck | Nordend",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1360535,
+    "lng": 8.6839833,
+    "address": "Eckenheimer Landstraße 45",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "opening_hours_osm": "Mo-Fr 06:30-19:00; Sa,Su,PH 07:00-14:00",
+    "opening_hours_text": "Mo-Fr 06:30-19:00,  Sa,So,PH 07:00-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bäckerei Huck | Ostend",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.11137,
+    "lng": 8.70404,
+    "address": "Sonnemannstraße 81",
+    "city": "Frankfurt am Main",
+    "postal_code": "60314",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "phone": "+49 69 97766930",
+    "website": "https://www.baeckerei-huck.de",
+    "opening_hours_osm": "Sa,Su,PH 07:00-12:00",
+    "opening_hours_text": "Sa,So,PH 07:00-12:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bäckerei Huck | Rödelheim",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1269948,
+    "lng": 8.6135732,
+    "address": "Thudichumstraße 24",
+    "city": "Frankfurt am Main",
+    "postal_code": "60489",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "opening_hours_osm": "Mo-Sa 06:30-20:00; Su 07:00-17:00; PH 07:00-17:00",
+    "opening_hours_text": "Mo-Sa 06:30-20:00,  So 07:00-17:00,  PH 07:00-17:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bäckerei Huck | Sachsenhausen",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1033707,
+    "lng": 8.6792845,
+    "address": "Schweizer Straße 30",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bäckerei Huck | Westend",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.120721,
+    "lng": 8.675293,
+    "address": "Grüneburgweg 3",
+    "city": "Frankfurt am Main",
+    "postal_code": "60322",
+    "description_de": "Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "phone": "+49 69 59796770",
+    "website": "https://www.huckgmbh.de",
+    "opening_hours_osm": "Mo-Fr 06:30-19:00; Sa,Su,PH 07:00-14:00",
+    "opening_hours_text": "Mo-Fr 06:30-19:00,  Sa,So,PH 07:00-14:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Yesternday by Huck | Bockenheim",
+    "original_category": "Bäckereien",
+    "mapped_categories": [
+      "baeckereien"
+    ],
+    "lat": 50.1212771,
+    "lng": 8.6479342,
+    "address": "Landgrafenstraße 1",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "Im Yesternday by Huck erhälst du Backwaren vom Vortag zum halben Preis. Die Erlöse werden an wohltätige Zwecke gespendet. Diese Bäckerei bietet verpackungsfreies Einkaufen an. Du kannst deine Backwaren in deine mitgebrachten Beutel und Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\". Alle Standorte der Bäckerei Huck, unter anderem auch Stände auf Wochenmärkten, findest du hier: www.baeckerei-huck.de/standorte/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bizziice Eisdiele Nordend",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1232451,
+    "lng": 8.68809759999999,
+    "address": "Koselstraße 42",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Bio-Eis aus feinsten Zutaten, dazu hausgemachten Kuchen und Kaffeespezialitäten. Eigene Behälter für Kaffee und Eis (auch für die 1 Liter-Portion) werden gerne akzeptiert. Mehr Infos dazu: https://www.instagram.com/p/B4IsKhVIOJ6/",
+    "phone": "+496994942550",
+    "website": "https://bizzi-ice.com",
+    "opening_hours_osm": "May-Sep: Mo-Su 11:00-22:00; Oct-Apr: Mo-Su 11:00-19:00",
+    "opening_hours_text": "May-Sep: Mo-So 11:00-22:00,  Oct-Apr: Mo-So 11:00-19:00",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bizziice Eisdiele Sachsenhausen",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.10539,
+    "lng": 8.68754999999999,
+    "address": "Wallstraße 26",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "Bio-Eis aus feinsten Zutaten, dazu hausgemachten Kuchen und Kaffeespezialitäten. Eigene Behälter für Kaffee und Eis (auch für die 1 Liter-Portion) werden gerne akzeptiert. Mehr Infos dazu: https://www.instagram.com/p/B4IsKhVIOJ6/",
+    "website": "https://www.bizzi-ice.com/",
+    "email": "kbizzi@bizzi-ice.com",
+    "opening_hours_osm": "May-Sep Mo-Su 11:00-22:00; Oct-Apr Mo-Su 11:00-19:00",
+    "opening_hours_text": "May-Sep Mo-So 11:00-22:00,  Oct-Apr Mo-So 11:00-19:00",
+    "facilities": {
+      "organic": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Pallina Gelato",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1101754,
+    "lng": 8.6872254,
+    "address": "Fahrgasse",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "phone": "+49 69 34869345",
+    "website": "https://pallinagelato.de",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wacker's Kaffee Berger Straße",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1257136,
+    "lng": 8.7068471,
+    "address": "Berger Straße 185",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wacker's Kaffee Grüneburgweg",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1209169,
+    "lng": 8.67212900000004,
+    "address": "Grüneburgweg 29",
+    "city": "Frankfurt am Main",
+    "postal_code": "60322",
+    "description_de": "",
+    "phone": "+49 69 977 899 00",
+    "website": "https://wackers-kaffee.com/cafes#Grueneburgweg",
+    "opening_hours_osm": "Mo-Sa 07:30-17:00; Su 09:00-17:00",
+    "opening_hours_text": "Mo-Sa 07:30-17:00,  So 09:00-17:00",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wacker's Kaffee Innenstadt",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.112091,
+    "lng": 8.67931049999993,
+    "address": "Carl-Theodor-Reiffenstein-Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "facilities": {
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wacker's Kaffee Schweizer Straße",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1043724,
+    "lng": 8.67844719999994,
+    "address": "Schweizer Straße 18",
+    "city": "Frankfurt am Main",
+    "postal_code": "60596",
+    "description_de": "",
+    "phone": "+49 69 66058230",
+    "website": "https://wackers-kaffee.com/cafes",
+    "opening_hours_osm": "Mo-Fr 08:00-19:30; Sa 08:00-19:00; Su 09:00-19:00",
+    "opening_hours_text": "Mo-Fr 08:00-19:30,  Sa 08:00-19:00,  So 09:00-19:00",
+    "facilities": {
+      "wheelchair": true,
+      "outdoor_seating": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Cha-Lo Teehaus | Bad Nauheim",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.36534,
+    "lng": 8.73993,
+    "address": "Parkstraße 6",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "Hier wird der lose Tee in deine mitgebrachten Behälter gefüllt. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Belis Teeparadies | Wiesbaden",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.0743878,
+    "lng": 8.2411916,
+    "address": "Untere Albrechtstraße",
+    "city": "Wiesbaden",
+    "postal_code": "65189",
+    "description_de": "Hier wird der lose Tee in deine mitgebrachten Behälter gefüllt, du sparst damit 10c pro Behältnis. Ebenso sparst du 10c bei der Befüllung deines eigenen To-Go-Bechers. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "opening_hours_osm": "Tu-Fr 12:00-18:30; Sa 10:00-15:00; Su,Mo off",
+    "opening_hours_text": "Di-Fr 12:00-18:30,  Sa 10:00-15:00,  So,Mo off",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Federvieh",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1230661,
+    "lng": 8.6439456,
+    "address": "Leipziger Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Das Geflügelfachgeschäft bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Frankfurter Fass",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1134037,
+    "lng": 8.68304149999994,
+    "address": "Töngesgasse 38",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "website": "https://www.frankfurter-fass.de/",
+    "opening_hours_osm": "Mo,Tu,Th,Fr 10:00-18:30; Sa 10:00-16:00; We off",
+    "opening_hours_text": "Mo,Di,Do,Fr 10:00-18:30,  Sa 10:00-16:00,  Mi off",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Käseladen Leipziger",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1218466,
+    "lng": 8.6477191,
+    "address": "Leipziger Straße 34",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Dieser Käseladen bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "opening_hours_osm": "Mo-Fr 09:00-18:00; Sa 09:00-15:00",
+    "opening_hours_text": "Mo-Fr 09:00-18:00,  Sa 09:00-15:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Käsestube - Gutes aus Milch",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "milchtankstellen"
+    ],
+    "lat": 50.1162407,
+    "lng": 8.67908729999999,
+    "address": "Schillerstraße 30-40",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "Neben Käse in allen Variationen gibt es Olivenöl und Balsamico-Essig zum Abfüllen. Eigene Behälter werden akzeptiert. Mehr Infos dazu: https://www.instagram.com/p/BxU6_69HagP/",
+    "opening_hours_osm": "Mo-Th 11:30-20:00; Fr 11:00-21:00; Sa 11:00-19:00",
+    "opening_hours_text": "Mo-Do 11:30-20:00,  Fr 11:00-21:00,  Sa 11:00-19:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Metzgerei Waibel",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1209678,
+    "lng": 8.6487298,
+    "address": "Leipziger Straße 15",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Diese Metzgerei bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "phone": "+49 69 772634",
+    "website": "https://www.metzgerei-waibel.de",
+    "opening_hours_osm": "Mo-Fr 09:00-18:30, Sa 08:00-16:00",
+    "opening_hours_text": "Mo-Fr 09:00-18:30, Sa 08:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Ciao Nonna | Bad Nauheim",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.365308,
+    "lng": 8.740204,
+    "address": "Parkstraße 4",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "Dieser Laden bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "website": "https://ciao-nonna.de/#pasta",
+    "opening_hours_osm": "Tu-Fr 10:00-18:00, Sa 10:00-14:00",
+    "opening_hours_text": "Di-Fr 10:00-18:00, Sa 10:00-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Heidi's Wurstladen | Kelkheim",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1338844,
+    "lng": 8.4554746,
+    "address": "Breslauer Straße 67",
+    "city": "Kelkheim (Taunus)",
+    "postal_code": "65779",
+    "description_de": "Diese Metzgerei bietet verpackungsfreies Einkaufen an. Du kannst die Produkte in deine mitgebrachten Behälter füllen lassen. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Mini Asia | Bad Nauheim",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.3638569,
+    "lng": 8.7384512,
+    "address": "Hauptstraße 21",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "Dieser asiatische Supermarkt bietet Mittagstisch als Take-Away an, welches du in deine mitgebrachten Behälter füllen lassen kannst. Das erkennst du auch an dem Sticker von \"Einmal ohne bitte\".",
+    "website": "https://miniasia.eu/",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wajos | Neu-Isenburg",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.0501094,
+    "lng": 8.69901110000001,
+    "address": "Peterstraße",
+    "city": "Neu-Isenburg",
+    "postal_code": "63263",
+    "description_de": "",
+    "phone": "+49 6102 5998377",
+    "opening_hours_osm": "Mo-Sa 10:00-20:00",
+    "opening_hours_text": "Mo-Sa 10:00-20:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Brühlhof Holsteins | Sulzbach Ts.",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.1303087,
+    "lng": 8.53457219999996,
+    "address": "Im Brühl 13",
+    "city": "Sulzbach (Taunus)",
+    "postal_code": "65843",
+    "description_de": "Der Milchautomat ist rund um die Uhr zugänglich, auch an Feiertagen. Mehr Infos hier: https://www.heimischehoflaeden.de/hofladen/1-milchautomat-auf-dem-bruhlhof",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Dairy Farm Wien | Friedrichsdorf",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "milchtankstellen"
+    ],
+    "lat": 50.25231,
+    "lng": 8.67192,
+    "address": "Mainzer Straße",
+    "city": "Friedrichsdorf",
+    "postal_code": "61381",
+    "description_de": "",
+    "opening_hours_osm": "07:00-22:00",
+    "opening_hours_text": "07:00-22:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Hofladen Familie Lenhardt | Dreieich",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "feinkost"
+    ],
+    "lat": 50.0064498,
+    "lng": 8.74427170000001,
+    "address": "Am Kirchborn",
+    "city": "Götzenhain",
+    "postal_code": "63303",
+    "description_de": "Am Milchautomaten kann von 7 bis 19 Uhr Milch selbst gezapft werden. Im Hofcafé gibt es Kuchen und Eis sowie Milchprodukte aus eigener Erzeugung. Eisbecher wurden kürzlich auf Waffelbecher umgestellt.",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Milchautomat Oranienhof | Wehrheim",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "milchtankstellen"
+    ],
+    "lat": 50.3040521,
+    "lng": 8.56166919999998,
+    "address": "Langwiesenweg",
+    "city": "Wehrheim",
+    "postal_code": "61273",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Löw´s Milchtankstelle | Rodgau",
+    "original_category": "Spezialitätengeschäfte & Milchtankstellen",
+    "mapped_categories": [
+      "milchtankstellen"
+    ],
+    "lat": 50.028503,
+    "lng": 8.90632299999993,
+    "address": "Ostweiler",
+    "city": "Rodgau",
+    "postal_code": "63110",
+    "description_de": "",
+    "opening_hours_osm": "24/7",
+    "opening_hours_text": "Täglich 24 Stunden",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura Bockenheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.121104,
+    "lng": 8.648474,
+    "address": "Leipziger Straße 19",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "opening_hours_osm": "Mo-Sa 08:00-21:00",
+    "opening_hours_text": "Mo-Sa 08:00-21:00",
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura Bornheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1265143,
+    "lng": 8.7020429,
+    "address": "Burgstraße 106",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Alnatura Eckenheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.14746,
+    "lng": 8.68143,
+    "address": "Karl-von-Drais-Straße 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60435",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "opening_hours_osm": "Mo-Sa 07:00-20:00",
+    "opening_hours_text": "Mo-Sa 07:00-20:00",
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura Eschersheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1557449,
+    "lng": 8.6582781,
+    "address": "Eschersheimer Landstraße 526-532",
+    "city": "Frankfurt am Main",
+    "postal_code": "60433",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "website": "https://www.alnatura.de",
+    "opening_hours_osm": "Mo-Sa 08:00-21:00",
+    "opening_hours_text": "Mo-Sa 08:00-21:00",
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura Ostend",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1111637,
+    "lng": 8.7093044,
+    "address": "Hanauer Landstraße 110",
+    "city": "Frankfurt am Main",
+    "postal_code": "60314",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "phone": "+49 69 94340358",
+    "website": "https://www.alnatura.de/de-de/m%C3%A4rkte/alnatura-filialen-detailseiten/f/frankfurt-am-main-alnatura-super-natur-markt-f151",
+    "opening_hours_osm": "Mo-Fr 07:30-20:00; Sa 08:00-20:00",
+    "opening_hours_text": "Mo-Fr 07:30-20:00,  Sa 08:00-20:00",
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura Westend",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.115597,
+    "lng": 8.669027,
+    "address": "Bockenheimer Landstraße 13-15",
+    "city": "Frankfurt am Main",
+    "postal_code": "60325",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "opening_hours_osm": "Mo-Fr 07:30-20:00, Sa 08:00-20:00",
+    "opening_hours_text": "Mo-Fr 07:30-20:00, Sa 08:00-20:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "contactless": true,
+      "maestro": true,
+      "mastercard": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Galeria Karstadt Kaufhof",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.114447,
+    "lng": 8.67991099999995,
+    "address": "Zeil 116-126",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "Süßigkeiten unverpackt einkaufen Mehr Infos dazu: https://www.instagram.com/p/B3usXNnoNZc/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Gärtnerei Anja Rappelt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0943145,
+    "lng": 8.70093710000003,
+    "address": "Am Sandberg 78",
+    "city": "Frankfurt am Main",
+    "postal_code": "60599",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Scheck-In-Center Ostend",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1144059,
+    "lng": 8.71529940000005,
+    "address": "Ferdinand-Happ-Straße 59",
+    "city": "Frankfurt am Main",
+    "postal_code": "60314",
+    "description_de": "",
+    "phone": "+49 69 94947630",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Scheck-In Center Niederrad",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0817433,
+    "lng": 8.63402730000007,
+    "address": "Hahnstraße 37-41",
+    "city": "Frankfurt am Main",
+    "postal_code": "60528",
+    "description_de": "",
+    "phone": "+49 69 60608080",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "toilets": true,
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Scheck-In Center Sachsenhausen",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0973497,
+    "lng": 8.69336699999997,
+    "address": "Am Henninger Turm",
+    "city": "Frankfurt am Main",
+    "postal_code": "60599",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Sunflower Garten-Center",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.18915,
+    "lng": 8.65612999999996,
+    "address": "Am Martinszehnten 15",
+    "city": "Frankfurt am Main",
+    "postal_code": "60437",
+    "description_de": "Neben Obst und Gemüse gibt es im Frischemarkt einige Lebensmittel lose zu kaufen wie Hülsenfrüchte und Trockenobst. Außerdem natürlich ein riesiges Angebot an Blumen und Kräutern. Mehr Infos dazu: https://www.instagram.com/p/Bx0P3EhilVf/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Tegut Bahnhofsviertel",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.10832,
+    "lng": 8.66711,
+    "address": "Kaiserstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60329",
+    "description_de": "",
+    "phone": "+49 661 1042468",
+    "opening_hours_osm": "Mo-Sa 07:00-23:00",
+    "opening_hours_text": "Mo-Sa 07:00-23:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut Bockenheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1137417,
+    "lng": 8.62639999999999,
+    "address": "Leonardo-da-Vinci-Allee",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "",
+    "phone": "+49 69 24705878",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut Bornheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1397827,
+    "lng": 8.69908209999994,
+    "address": "Friedberger Landstraße 408",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "",
+    "phone": "+49 69 13021990",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-frankfurt-friedberger-landstr-408.html",
+    "opening_hours_osm": "Mo-Sa 07:00-23:00",
+    "opening_hours_text": "Mo-Sa 07:00-23:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut Innenstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.11407,
+    "lng": 8.68819,
+    "address": "Kurt-Schumacher-Straße 30-32",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-24:00",
+    "opening_hours_text": "Mo-Sa 07:00-24:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut Preungesheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.155924,
+    "lng": 8.69986159999996,
+    "address": "Gravensteiner-Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60435",
+    "description_de": "",
+    "phone": "+49 69 54000987",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut Sachsenhausen",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0916742,
+    "lng": 8.68839500000001,
+    "address": "Mailänder Straße 8",
+    "city": "Frankfurt am Main",
+    "postal_code": "60598",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura | Eschborn",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1420158,
+    "lng": 8.5813423,
+    "address": "Ginnheimer Straße",
+    "city": "Eschborn",
+    "postal_code": "65760",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "phone": "+49 6196 8827989",
+    "opening_hours_osm": "Mo-Sa 08:00-21:00",
+    "opening_hours_text": "Mo-Sa 08:00-21:00",
+    "facilities": {
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alnatura | Kriftel",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0822772,
+    "lng": 8.4562993,
+    "address": "Kapellenstraße 50c",
+    "city": "Kriftel",
+    "postal_code": "65830",
+    "description_de": "Bei Alnatura findest du * Obst, Gemüse und Eier unverpackt * viele trockene Produkte, Aufstriche und Kühlware in Pfandgläsern * nachhaltige Basics in der Hygieneabteilung wie Bambuszahnbürsten, Seifen etc.",
+    "phone": "+49 6192 2001441",
+    "website": "https://www.alnatura.de/",
+    "opening_hours_osm": "Mo-Sa 08:00-20:00",
+    "opening_hours_text": "Mo-Sa 08:00-20:00",
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Scheck-In Center | Mainz",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.9756918,
+    "lng": 8.288429,
+    "address": "Weberstraße 15",
+    "city": "Mainz",
+    "postal_code": "55130",
+    "description_de": "",
+    "phone": "+49 6131 6029260",
+    "website": "https://www.scheck-in-center.de/filialen/mainz-weisenau/",
+    "email": "kundenservice@edeka-suedwest.de",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00; Su,PH off",
+    "opening_hours_text": "Mo-Sa 07:00-22:00,  So,Feiertage geschlossen",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "maestro": true,
+      "visa": true,
+      "mastercard": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "wifi": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Scheck-In Center | Offenbach",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1060448,
+    "lng": 8.744287,
+    "address": "Goethering 1",
+    "city": "Offenbach am Main",
+    "postal_code": "63067",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Altenstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.289413,
+    "lng": 8.975788,
+    "address": "Die Weidenbach",
+    "city": "Lindheim",
+    "postal_code": "63674",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Th 07:00-21:00; Fr-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Do 07:00-21:00,  Fr-Sa 07:00-22:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Aschaffenburg",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.984456,
+    "lng": 9.132587,
+    "address": "Stollstraße",
+    "city": "Aschaffenburg",
+    "postal_code": "63741",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-20:00",
+    "opening_hours_text": "Mo-Sa 07:00-20:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bad Homburg vor der Höhe",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.2206706,
+    "lng": 8.611278,
+    "address": "Schaberweg",
+    "city": "Bad Homburg vor der Höhe",
+    "postal_code": "61348",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bad Nauheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.356952,
+    "lng": 8.7491751,
+    "address": "Schwalheimer Straße 79",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "",
+    "phone": "+49 6611042634",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bad Soden am Taunus",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.141018,
+    "lng": 8.50404320000007,
+    "address": "Königsteiner Straße 31-343",
+    "city": "Bad Soden am Taunus",
+    "postal_code": "65812",
+    "description_de": "",
+    "phone": "+49 6196 527084",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-bad-soden-am-taunus-koenigsteiner-str-31-33.html",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "contactless": true,
+      "visa": true,
+      "mastercard": true,
+      "american_express": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bad Vilbel",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1919735,
+    "lng": 8.74229300000002,
+    "address": "Friedberger Straße 89",
+    "city": "Bad Vilbel",
+    "postal_code": "61118",
+    "description_de": "",
+    "website": "https://www.tegut.com/",
+    "opening_hours_osm": "Mo-Sa 08:00-22:00",
+    "opening_hours_text": "Mo-Sa 08:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bensheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.669662,
+    "lng": 8.627636,
+    "address": "Heidelberger Straße 100",
+    "city": "Bensheim",
+    "postal_code": "64625",
+    "description_de": "",
+    "phone": "+4962511750390",
+    "website": "https://www.baeckerei-rauen.de/unsere-fachgeschaefte/tegut-bensheim/",
+    "opening_hours_osm": "Mo-Sa 07:00-20:00, Su 08:00-11:00",
+    "opening_hours_text": "Mo-Sa 07:00-20:00, So 08:00-11:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bischofsheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.9820809,
+    "lng": 8.3641431,
+    "address": "Hans-Dorr-Allee 1A",
+    "city": "Bischofsheim",
+    "postal_code": "65474",
+    "description_de": "",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-bischofsheim-hans-dorr-allee-1a.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true,
+      "contactless": true,
+      "maestro": true,
+      "visa": true,
+      "mastercard": true,
+      "american_express": true,
+      "mobile_payment": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bodenheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.9253294,
+    "lng": 8.3249747,
+    "address": "Lange Ruthe 3",
+    "city": "Bodenheim",
+    "postal_code": "55294",
+    "description_de": "",
+    "phone": "+49 6135 9409600",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Braunfels",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.519457,
+    "lng": 8.399105,
+    "address": "Wetzlarer Straße 18a",
+    "city": "Braunfels",
+    "postal_code": "35619",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Bruchköbel",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.177826,
+    "lng": 8.908918,
+    "address": "Keltenstraße 18-20",
+    "city": "Bruchköbel",
+    "postal_code": "63486",
+    "description_de": "",
+    "phone": "+49 6181 977730",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-bruchkoebel-keltenstr-18-20.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Darmstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.883202,
+    "lng": 8.647203,
+    "address": "Kasinostraße",
+    "city": "Darmstadt",
+    "postal_code": "64293",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Th 07:00-22:00; Fr,Sa 07:00-23:00",
+    "opening_hours_text": "Mo-Do 07:00-22:00,  Fr,Sa 07:00-23:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true,
+      "contactless": true,
+      "maestro": true,
+      "visa": true,
+      "mastercard": true,
+      "mobile_payment": true
+    },
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Dietzenbach",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0171589,
+    "lng": 8.78771129999996,
+    "address": "Vélizystraße",
+    "city": "Dietzenbach",
+    "postal_code": "63128",
+    "description_de": "",
+    "phone": "+49 6074 3047810",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-dietzenbach-massayaplatz-3.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Dreieich",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0236118,
+    "lng": 8.695127,
+    "address": "Frankfurter Straße 70-72",
+    "city": "Sprendlingen",
+    "postal_code": "63303",
+    "description_de": "",
+    "website": "https://www.tegut.com",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Freigericht",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.14696,
+    "lng": 9.10835,
+    "address": "Auf der Wehrweide",
+    "city": "Somborn",
+    "postal_code": "63579",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Friedberg",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.334119,
+    "lng": 8.7619257,
+    "address": "Fauerbacher Straße 9",
+    "city": "Friedberg",
+    "postal_code": "61169",
+    "description_de": "",
+    "phone": "+49 6031 1689770",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Friedberg",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.34414,
+    "lng": 8.74394,
+    "address": "Anna-Kloos-Straße 1",
+    "city": "Friedberg",
+    "postal_code": "61169",
+    "description_de": "",
+    "phone": "+49 6031 6843370",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Gelnhausen",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.205561,
+    "lng": 9.161396,
+    "address": "Leipziger Straße",
+    "city": "Gelnhausen",
+    "postal_code": "63571",
+    "description_de": "",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-gelnhausen-roth-leipziger-str-74.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Ginsheim-Gustavsburg",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.98799,
+    "lng": 8.3255199,
+    "address": "Adam-Opel-Straße 4-6",
+    "city": "Gustavsburg",
+    "postal_code": "65462",
+    "description_de": "",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-ginsheim-gustavsburg-adam-opel-str-4-6.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00; PH off",
+    "opening_hours_text": "Mo-Sa 07:00-21:00,  Feiertage geschlossen",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Griesheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.87045,
+    "lng": 8.55355,
+    "address": "Feldstraße 13",
+    "city": "Griesheim",
+    "postal_code": "64347",
+    "description_de": "",
+    "phone": "+49 6155 6074670",
+    "website": "https://tegut.com",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Groß-Zimmern",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.881392,
+    "lng": 8.820947,
+    "address": "Waldstraße 71b",
+    "city": "Groß-Zimmern",
+    "postal_code": "64846",
+    "description_de": "",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Hanau",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1487208,
+    "lng": 8.90804700000001,
+    "address": "Heldenbergener Straße 4",
+    "city": "Hanau",
+    "postal_code": "63452",
+    "description_de": "",
+    "phone": "+49 6181 5799690",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-hanau-heldenbergener-str-4.html",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Karben",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.2333701,
+    "lng": 8.75590050000005,
+    "address": "Bahnhofstraße 190-196",
+    "city": "Kloppenheim",
+    "postal_code": "61184",
+    "description_de": "",
+    "phone": "+49 6039 4861180",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-karben-bahnhofstr-190-196.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Kelsterbach",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0615898,
+    "lng": 8.53222559999995,
+    "address": "Mörfelder Straße 22",
+    "city": "Kelsterbach",
+    "postal_code": "65451",
+    "description_de": "",
+    "phone": "+49 6107 6392100",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true
+    },
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Kronberg im Taunus",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1741061,
+    "lng": 8.52308100000005,
+    "address": "Frankfurter Straße 50-52",
+    "city": "Kronberg im Taunus",
+    "postal_code": "61476",
+    "description_de": "",
+    "website": "https://www.tegut.com/",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Langenselbold",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.180064,
+    "lng": 9.027862,
+    "address": "Ringstraße 58",
+    "city": "Langenselbold",
+    "postal_code": "63505",
+    "description_de": "",
+    "phone": "+49 6184 92400",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-langenselbold-ringstr-58.html",
+    "opening_hours_osm": "Mo-Sa 7:00-21:00",
+    "opening_hours_text": "Mo-Sa 7:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Linsengericht",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.19542,
+    "lng": 9.1986,
+    "address": "Kleinbahnweg 3",
+    "city": "Altenhaßlau",
+    "postal_code": "63589",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Th 07:00-21:00; Fr,Sa 07:00-22:00; Su, PH off",
+    "opening_hours_text": "Mo-Do 07:00-21:00,  Fr,Sa 07:00-22:00,  So, Feiertage geschlossen",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Maintal",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1417102,
+    "lng": 8.83435320000001,
+    "address": "Braubachstraße 18",
+    "city": "Dörnigheim",
+    "postal_code": "63477",
+    "description_de": "",
+    "phone": "+49 6181 4236390",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Mainz Altstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.994677,
+    "lng": 8.276276,
+    "address": "Holzhofstraße 9",
+    "city": "Mainz",
+    "postal_code": "55116",
+    "description_de": "",
+    "phone": "+4961311449988",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-mainz-holzhofstr-9.html",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Mainz-Weisenau",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.9810495,
+    "lng": 8.2809911,
+    "address": "Hechtsheimer Straße 2",
+    "city": "Mainz",
+    "postal_code": "55130",
+    "description_de": "",
+    "phone": "+49 661 1042498",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-mainz-hechtsheimer-str-2.html",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "toilets": true,
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Mörfelden-Walldorf",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.9675,
+    "lng": 8.56027779999999,
+    "address": "Gerauer Straße 54a",
+    "city": "Mörfelden",
+    "postal_code": "64546",
+    "description_de": "",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-moerfelden-walldorf-gerauer-str-54-a.html",
+    "opening_hours_osm": "Mo-Th 07:00-21:00; Fr-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Do 07:00-21:00,  Fr-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Mühlheim am Main",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.1200514,
+    "lng": 8.84771049999995,
+    "address": "Schillerstraße 77-79",
+    "city": "Mühlheim am Main",
+    "postal_code": "63165",
+    "description_de": "",
+    "phone": "+49 6108 7938030",
+    "opening_hours_osm": "Mo-Th 07:00-21:00; Fr-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Do 07:00-21:00,  Fr-Sa 07:00-22:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Niederdorfelden",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.190134,
+    "lng": 8.802511,
+    "address": "Die Landwehr 1",
+    "city": "Niederdorfelden",
+    "postal_code": "61138",
+    "description_de": "",
+    "phone": "+49 6101 9979690",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Offenbach",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.10608,
+    "lng": 8.75449,
+    "address": "Berliner Straße 178",
+    "city": "Offenbach am Main",
+    "postal_code": "63067",
+    "description_de": "",
+    "phone": "+49 69 271474280",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true
+    },
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Riedstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.85482,
+    "lng": 8.48628,
+    "address": "Lise-Meitner-Straße 2",
+    "city": "Wolfskehlen",
+    "postal_code": "64560",
+    "description_de": "",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-riedstadt-wolfskehlen-lise-meitneroppenheimer-str.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Rodenbach",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.139558,
+    "lng": 9.023402,
+    "address": "Sonnenring",
+    "city": "Niederrodenbach",
+    "postal_code": "63517",
+    "description_de": "",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Seligenstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.04427,
+    "lng": 8.961919,
+    "address": "Frankfurter Straße 96",
+    "city": "Seligenstadt",
+    "postal_code": "63500",
+    "description_de": "",
+    "phone": "+49 6182 9938590",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-seligenstadt-frankfurter-str-96.html",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Weiterstadt",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 49.899569,
+    "lng": 8.593687,
+    "address": "Max-Planck-Straße 6",
+    "city": "Weiterstadt",
+    "postal_code": "64331",
+    "description_de": "",
+    "phone": "+49 6150 1818730",
+    "website": "https://www.tegut.com/",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Wiesbaden",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.076917,
+    "lng": 8.249917,
+    "address": "Frankfurter Straße 17b",
+    "city": "Wiesbaden",
+    "postal_code": "65189",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Tegut | Wiesbaden Naurod",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.139013,
+    "lng": 8.304048,
+    "address": "Fondetter Straße 26",
+    "city": "Wiesbaden",
+    "postal_code": "65207",
+    "description_de": "",
+    "phone": "+49 6127 967955",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Wiesbaden Nordost",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.094277,
+    "lng": 8.249913,
+    "address": "Richard-Wagner-Straße 86",
+    "city": "Wiesbaden",
+    "postal_code": "65193",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Wiesbaden-Schierstein",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.0445361,
+    "lng": 8.2052236,
+    "address": "Rheingaustraße 30",
+    "city": "Wiesbaden",
+    "postal_code": "65201",
+    "description_de": "",
+    "phone": "+49 611 2387990",
+    "website": "https://www.tegut.com/maerkte/markt/tegut-wiesbaden-schierstein-rheingaustr-30.html",
+    "opening_hours_osm": "Mo-Sa 07:00-22:00",
+    "opening_hours_text": "Mo-Sa 07:00-22:00",
+    "payment_methods": {
+      "credit_cards": true,
+      "contactless": true,
+      "visa": true,
+      "mastercard": true
+    },
+    "facilities": {
+      "wheelchair": true,
+      "organic": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Tegut | Wölfersheim",
+    "original_category": "Unverpacktes Zusatzangebot",
+    "mapped_categories": [
+      "bio-regional"
+    ],
+    "lat": 50.39659,
+    "lng": 8.816573,
+    "address": "Biedrichstraße 13",
+    "city": "Wölfersheim",
+    "postal_code": "61200",
+    "description_de": "",
+    "phone": "+49 6036 983080",
+    "opening_hours_osm": "Mo-Sa 07:00-21:00",
+    "opening_hours_text": "Mo-Sa 07:00-21:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bürstenhaus",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.113204,
+    "lng": 8.68303700000001,
+    "address": "Töngesgasse",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "Hier gibt es Bürsten aller Art aus verschienden Naturborsten, sowie diverse Zero Waste Basics wie Rasierhobel und Olivenölseife. Mehr Infos dazu: https://www.instagram.com/p/Bq73tXAHLJJ/",
+    "phone": "+49 69 283313",
+    "website": "https://buerstenhaus.de/",
+    "email": "buerstenhaus@t-online.de",
+    "opening_hours_osm": "Mo-Fr 10:00-18:00; Sa 11:00-17:00",
+    "opening_hours_text": "Mo-Fr 10:00-18:00,  Sa 11:00-17:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Hintz-Bürsten Bockenheim",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.119712,
+    "lng": 8.6480951,
+    "address": "Adalbertstraße 11",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Fr 10:30-18:00; Sa 10:30-16:00",
+    "opening_hours_text": "Mo-Fr 10:30-18:00,  Sa 10:30-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Langbrett",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.1121322,
+    "lng": 8.67892729999994,
+    "address": "Kleiner Hirschgraben 3",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Lush Cosmetics",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.1148648,
+    "lng": 8.68134090000001,
+    "address": "Zeil",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Manufactum",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.1160192,
+    "lng": 8.67055430000005,
+    "address": "Bockenheimer Anlage",
+    "city": "Frankfurt am Main",
+    "postal_code": "60322",
+    "description_de": "Hier gibt es Plastikfreies für Küche, Bad und Haushalt und vieles mehr. Mehr Infos dazu: https://www.instagram.com/p/B29wlScom04/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Meder",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.1258155,
+    "lng": 8.7074973,
+    "address": "Berger Straße 198",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Hintz-Bürsten | Neu-Anspach",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.2756814,
+    "lng": 8.53082810000001,
+    "address": "Laubweg 5",
+    "city": "Neu-Anspach",
+    "postal_code": "61267",
+    "description_de": "",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "LUSH Cosmetics | Wiesbaden",
+    "original_category": "Zero Waste Basics",
+    "mapped_categories": [
+      "haushalt-pflege"
+    ],
+    "lat": 50.082367,
+    "lng": 8.238932,
+    "address": "Kirchgasse 51",
+    "city": "Wiesbaden",
+    "postal_code": "65183",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bauernmarkt Konstablerwache",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.114476,
+    "lng": 8.68695619999994,
+    "address": "Konstablerwache",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "Markttage und -zeiten: Donnerstag: 10-20 Uhr Samstag: 8-17 Uhr Mehr Infos dazu: https://www.instagram.com/p/BuPF55MHjrY/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Blumenmarkt am Liebfrauenberg",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1129065,
+    "lng": 8.68165880000004,
+    "address": "Liebfrauenberg 54",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "Markttage und -zeiten: Freitag: 9-18 Uhr www.hfm-frankfurt.de/sondermaerkte",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Kleinmarkthalle",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1128317,
+    "lng": 8.68384990000004,
+    "address": "Hasengasse 5-7",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "website": "https://kleinmarkthalle.de/",
+    "opening_hours_osm": "Mo-Fr 08:00-18:00; Sa 08:00-16:00; PH off",
+    "opening_hours_text": "Mo-Fr 08:00-18:00,  Sa 08:00-16:00,  Feiertage geschlossen",
+    "facilities": {
+      "toilets": true,
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Markt am Osthafen",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1126548,
+    "lng": 8.7202227,
+    "address": "Hanauer Landstraße 208-216",
+    "city": "Frankfurt am Main",
+    "postal_code": "60314",
+    "description_de": "Markttage und -zeiten: Mittwoch: 11-14 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "phone": "+49 69 87 00 182-0",
+    "website": "https://www.me-ta.de/",
+    "opening_hours_osm": "Mo-Fr 08:00-18:30; Sa 08:00-16:00",
+    "opening_hours_text": "Mo-Fr 08:00-18:30,  Sa 08:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Schillermarkt",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1148806,
+    "lng": 8.6785539,
+    "address": "Schillerstraße 2",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "Markttage und -zeiten: Freitag: 9-18:30 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "website": "https://frankfurt.de/frankfurt-entdecken-und-erleben/einkaufen-in-frankfurt/maerkte-und-flohmaerkte/wochenmaerkte/schillermarkt",
+    "opening_hours_osm": "Fr 09:00-18:30; PH off",
+    "opening_hours_text": "Fr 09:00-18:30,  Feiertage geschlossen",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Bockenheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.120058,
+    "lng": 8.65137270000002,
+    "address": "Hannelore-Elsner-Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60325",
+    "description_de": "Markttage und -zeiten: Donnerstag: 8-18 Uhr",
+    "website": "https://frankfurt.de/frankfurt-entdecken-und-erleben/einkaufen-in-frankfurt/maerkte-und-flohmaerkte/wochenmaerkte/wochenmarkt-bockenheim",
+    "opening_hours_osm": "We 08:00-18:00 unknown \"moved to and open on Wednesday only when Thursday is a public holiday (it is closed on Thursday then)\", Th 08:00-18:00 open; PH closed",
+    "opening_hours_text": "Mi 08:00-18:00 unknown \"moved to and open on Midnesday only when Doursday is a public holiday (it is closed on Doursday then)\", Do 08:00-18:00 open,  Feiertage geschlossen",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Bonames",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1850941,
+    "lng": 8.66561879999995,
+    "address": "Am Wendelsgarten",
+    "city": "Frankfurt am Main",
+    "postal_code": "60437",
+    "description_de": "Markttage und -zeiten: Donnerstag: 13-20 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "opening_hours_osm": "Th 13:00-20:00",
+    "opening_hours_text": "Do 13:00-20:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Bornheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1257173,
+    "lng": 8.70718839999995,
+    "address": "Wochenmarkt Bornheim",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "Markttage und -zeiten: Mittwoch: 8-18:30 Uhr Samstag: 8-16 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "website": "https://frankfurt.de/frankfurt-entdecken-und-erleben/einkaufen-in-frankfurt/maerkte-und-flohmaerkte/wochenmaerkte/wochenmarkt-bornheim",
+    "opening_hours_osm": "We 08:00-18:30; Sa 08:00-16:00",
+    "opening_hours_text": "Mi 08:00-18:30,  Sa 08:00-16:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Campus Westend",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1269408,
+    "lng": 8.67100240000002,
+    "address": "Bremer Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60323",
+    "description_de": "Markttage und -zeiten: Donnerstag: 9-17 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt City-West",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1171741,
+    "lng": 8.63314509999998,
+    "address": "Celsiusplatz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "Markttage und -zeiten: Mittwoch: 10-20 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Dornbusch",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.140184,
+    "lng": 8.67121589999999,
+    "address": "Carl-Goerdeler-Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60320",
+    "description_de": "Markttage und -zeiten: Dienstag: 8-18 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Friedberger Warte",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1406285,
+    "lng": 8.69919909999999,
+    "address": "Friedberger Landstraße 414",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "Markttage und -zeiten: Dienstag: 8-18 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Gallus",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1041006,
+    "lng": 8.63524989999996,
+    "address": "Sulzbacher Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60326",
+    "description_de": "Markttage und -zeiten: Freitag: 8-18:30 Uhr",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Heddernheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.160314,
+    "lng": 8.64565600000003,
+    "address": "Karl-Perott-Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60439",
+    "description_de": "Markttage und -zeiten: Freitag: 9-18 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "website": "https://frankfurt.de/frankfurt-entdecken-und-erleben/einkaufen-in-frankfurt/maerkte-und-flohmaerkte/wochenmaerkte/wochenmarkt-heddernheim",
+    "opening_hours_osm": "Fr 09:00-18:00",
+    "opening_hours_text": "Fr 09:00-18:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Höchst & Markthalle",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.0995147,
+    "lng": 8.5460738,
+    "address": "Höchster Markt 4",
+    "city": "Frankfurt am Main",
+    "postal_code": "65929",
+    "description_de": "Markttage und -zeiten: Dienstag: 7-13 Uhr Freitag: 7-13 Uhr Samstag: 7-13 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Kaiserstraße",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.107464,
+    "lng": 8.66577840000002,
+    "address": "Kaiserstraße 79",
+    "city": "Frankfurt am Main",
+    "postal_code": "60329",
+    "description_de": "Markttage und -zeiten: Dienstag: 9-19 Uhr Donnerstag: 9-19 Uhr https://markthandel.de/maerkte_lms.htm",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Niederrad",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.0865818,
+    "lng": 8.64457449999998,
+    "address": "Bruchfeldstraße 51",
+    "city": "Frankfurt am Main",
+    "postal_code": "60528",
+    "description_de": "Markttage und -zeiten: Samstag: 8-16 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "website": "https://frankfurt.de/frankfurt-entdecken-und-erleben/einkaufen-in-frankfurt/maerkte-und-flohmaerkte/wochenmaerkte/wochenmarkt-niederrad",
+    "opening_hours_osm": "Sa 08:00-16:00",
+    "opening_hours_text": "Sa 08:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Nordend",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1235132,
+    "lng": 8.6922406,
+    "address": "Friedberger Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "Markttage und -zeiten: Freitag: 10-20 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Nordwestzentrum",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1579986,
+    "lng": 8.63292009999998,
+    "address": "Walter-Möller-Platz 1a",
+    "city": "Frankfurt am Main",
+    "postal_code": "60439",
+    "description_de": "Markttage und -zeiten: Mittwoch: 9-18 Uhr https://frankfurt.treffpunkt-wochenmarkt.de/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Oberrad",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.100715,
+    "lng": 8.7241789,
+    "address": "Oberräder Markt",
+    "city": "Frankfurt am Main",
+    "postal_code": "60599",
+    "description_de": "Markttage und -zeiten: Samstag: 9-16 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Wochenmarkt Preungesheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1556463,
+    "lng": 8.69821139999999,
+    "address": "Gravensteiner-Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60435",
+    "description_de": "Markttage und -zeiten: Freitag: 11-19 Uhr",
+    "opening_hours_osm": "Fr 11:00-19:00",
+    "opening_hours_text": "Fr 11:00-19:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Riedberg",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1767158,
+    "lng": 8.62939230000006,
+    "address": "Riedbergplatz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60438",
+    "description_de": "Markttage und -zeiten: Samstag: 9-16 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "opening_hours_osm": "Sa 09:00-16:00",
+    "opening_hours_text": "Sa 09:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Rödelheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.12392,
+    "lng": 8.6066634,
+    "address": "Arthur-Stern-Platz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60489",
+    "description_de": "Markttage und -zeiten: Mittwoch: 8-18 Uhr www.hfm-frankfurt.de/wochenmarkt",
+    "opening_hours_osm": "Mi 08:00-18:00",
+    "opening_hours_text": "Mi 08:00-18:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt Sachsenhausen",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1000202,
+    "lng": 8.68559089999997,
+    "address": "Diesterwegplatz",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "Markttage und -zeiten: Dienstag: 8-18 Uhr Freitag: 8-18 Uhr Mehr Infos dazu: https://www.instagram.com/p/BxkvNEiieop/",
+    "website": "https://frankfurt.de/frankfurt-entdecken-und-erleben/einkaufen-in-frankfurt/maerkte-und-flohmaerkte/wochenmaerkte/wochenmarkt-sachsenhausen",
+    "opening_hours_osm": "Tu,Fr 08:00-18:00",
+    "opening_hours_text": "Di,Fr 08:00-18:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt | Bad Nauheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.3651421,
+    "lng": 8.7381892,
+    "address": "Stresemannstraße",
+    "city": "Bad Nauheim",
+    "postal_code": "61231",
+    "description_de": "Markttage und -zeiten: Dienstag: 12-18 Uhr Freitag: 8:30-13 Uhr https://markthandel.de/maerkte_lms.htm",
+    "opening_hours_osm": "Tu 12:00-18:00; Fr 08:30-13:00",
+    "opening_hours_text": "Di 12:00-18:00,  Fr 08:30-13:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt | Langen",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 49.9885045,
+    "lng": 8.6714667,
+    "address": "Flachsbachstraße",
+    "city": "Langen",
+    "postal_code": "63225",
+    "description_de": "Markttage und -zeiten: Samstag: 8-14 Uhr https://markthandel.de/maerkte_lms.htm",
+    "website": "https://www.langen.de/de/feste-und-maerkte.html",
+    "opening_hours_osm": "Tu,Fr 08:00-13:00",
+    "opening_hours_text": "Di,Fr 08:00-13:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt | Maintal-Dörnigheim",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1366,
+    "lng": 8.84475999999995,
+    "address": "Berliner Straße 64-66",
+    "city": "Dörnigheim",
+    "postal_code": "63477",
+    "description_de": "Markttage und -zeiten: Dienstag: 7-13 Uhr www.maintal.de/seite/134460/wochenm%C3%A4rkte.html",
+    "opening_hours_osm": "Tu 07:00-13:00; PH off",
+    "opening_hours_text": "Di 07:00-13:00,  Feiertage geschlossen",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wochenmarkt | Offenbach",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "wochenmaerkte"
+    ],
+    "lat": 50.1039905,
+    "lng": 8.7659683,
+    "address": "Offenbacher Wochenmarkt",
+    "city": "Offenbach am Main",
+    "postal_code": "63065",
+    "description_de": "Markttage und -zeiten: Dienstag: 8-14 Uhr Freitag: 8-14 Uhr Samstag: 8-14 Uhr Vom 01.04.-30.09. schon ab 7 Uhr www.offenbach.de/gaeste/sehenswert/wilhelmsplatz/wochenmarkt.php",
+    "website": "https://www.offenbach.de/gaeste/sehenswert/wilhelmsplatz/wochenmarkt.php",
+    "opening_hours_osm": "Apr-Sep Tu,Fr,Sa 07:00-14:00; Oct-Mar Tu,Fr,Sa 08:00-14:00",
+    "opening_hours_text": "Apr-Sep Di,Fr,Sa 07:00-14:00,  Oct-Mar Di,Fr,Sa 08:00-14:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Flohmarkt Schaumainkai",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "flohmaerkte"
+    ],
+    "lat": 50.1043129,
+    "lng": 8.67501330000005,
+    "address": "Schaumainkai",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "Jeden zweiten Samstag von 9 bis 14 Uhr. Termine: www.hfm-frankfurt.de/flohmaerkte",
+    "opening_hours_osm": "week 1-53/2 Fr 08:00-14:00",
+    "opening_hours_text": "week 1-53/2 Fr 08:00-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Flohmarkt Lindleystraße",
+    "original_category": "Wochenmärkte & Flohmärkte",
+    "mapped_categories": [
+      "flohmaerkte"
+    ],
+    "lat": 50.1128286,
+    "lng": 8.72062900000003,
+    "address": "Lindleystraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60314",
+    "description_de": "Jeden zweiten Samstag von 9 bis 14 Uhr. Termine: www.hfm-frankfurt.de/flohmaerkte",
+    "opening_hours_osm": "week 2-52/2 Fr 08:00-14:00",
+    "opening_hours_text": "week 2-52/2 Fr 08:00-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Amanel - Natur für Baby und Kind",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.153316,
+    "lng": 8.68053199999997,
+    "address": "Sigmund-Freud-Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60435",
+    "description_de": "",
+    "website": "https://www.amanel.de/",
+    "opening_hours_osm": "Mo-Fr 09:00-14:00; Sa 09:00-14:00",
+    "opening_hours_text": "Mo-Fr 09:00-14:00,  Sa 09:00-14:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Anton Emma",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1249903,
+    "lng": 8.7082746,
+    "address": "Mainkurstraße 11",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Atdress",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1252285,
+    "lng": 8.7077472,
+    "address": "Mainkurstraße 3",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "BUNT",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1277601,
+    "lng": 8.709478,
+    "address": "Rendeler Straße 54",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Charlotte am Main",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1290726,
+    "lng": 8.700239,
+    "address": "Rohrbachstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 11:00-16:00",
+    "opening_hours_text": "Mo-Sa 11:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Early",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1252506,
+    "lng": 8.6999311,
+    "address": "Burgstraße 70",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "EKN Footwear",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1126897,
+    "lng": 8.70620229999997,
+    "address": "Danziger Platz 2",
+    "city": "Frankfurt am Main",
+    "postal_code": "60314",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "GEA Schuhe",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.115981,
+    "lng": 8.6960517,
+    "address": "Pfingstweidstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "Hier gibt es qualitativ hochwertige und nachhaltige Schuhe von Waldviertler aus Österreich. Für die Schuhe gibt es neue Einlagen, sie können neu besohlt werden. Kurz: alles, was repariert und ersetzt werden kann, wird auch gemacht. So können die Schuhe auch locker drei oder vier Kinder aushalten. Weiterhin werden nachhaltige Möbel und zum Beispiel auch Kinderwägen angeboten. Mehr Infos dazu: https://www.instagram.com/p/BzbP8p6i2mp/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Glore Frankfurt",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1217923,
+    "lng": 8.68025969999997,
+    "address": "Oeder Weg",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Ausgiebiges Sortiment an Damen- und Herrenmode von tollen nachhaltigen Labels. Mehr Infos dazu: https://www.instagram.com/p/B3jHkP0oWRC/",
+    "phone": "+49 69 79189935",
+    "website": "https://www.glore.de/Concept-Stores/Frankfurt/",
+    "email": "frankfurt@glore.de",
+    "opening_hours_osm": "Mo-Fr 11:00-19:00; Sa 11:00-18:00",
+    "opening_hours_text": "Mo-Fr 11:00-19:00,  Sa 11:00-18:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Grüne Erde Store",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.111453,
+    "lng": 8.67664579999996,
+    "address": "Kaiserstraße 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "Nachhaltige Mode für Damen und viele Zero Waste Basics. Auch Möbel aus Naturmaterialien und Schlafwelt zum Probeliegen. Mehr Infos dazu: https://www.instagram.com/p/BqIVMhUn6wp/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Gudrun Sjödén",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1113868,
+    "lng": 8.67658890000007,
+    "address": "Kaiserstraße 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Hessnatur Store",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1115073,
+    "lng": 8.67673190000005,
+    "address": "Kaiserstraße 3",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "Mehr Infos dazu: www.instagram.com/p/Bu_sidkH8cc/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "mi.na",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1223546,
+    "lng": 8.7003699,
+    "address": "Berger Straße 112",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "Mehr Infos dazu: www.instagram.com/p/CqrumssojbI",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Number Seven",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1222829,
+    "lng": 8.7002091,
+    "address": "Berger Straße 110",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "Mehr Infos dazu: www.instagram.com/p/CqrumssojbI",
+    "phone": "+49 69 436664",
+    "website": "http://number-seven.com",
+    "opening_hours_osm": "Su,PH off; Mo-Fr 11:00-18:00; Sa 11:00-18:00",
+    "opening_hours_text": "So,Feiertage geschlossen,  Mo-Fr 11:00-18:00,  Sa 11:00-18:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Quartier Frau",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1230108,
+    "lng": 8.6939226,
+    "address": "Bornheimer Landstraße 54",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "",
+    "opening_hours_osm": "We-Fr 14:00-19:00; Sa 11:00-17:00",
+    "opening_hours_text": "Mi-Fr 14:00-19:00,  Sa 11:00-17:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Sonnylemon",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1277505,
+    "lng": 8.7084266,
+    "address": "Heidestraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "phone": "+49 69 95638110",
+    "website": "https://www.sonnylemon.de/",
+    "email": "info@sonnylemon.de",
+    "opening_hours_osm": "Mo 14:00-18:00; Tu-Fr 10:30-18:00; Sa 11:00-18:00",
+    "opening_hours_text": "Mo 14:00-18:00,  Di-Fr 10:30-18:00,  Sa 11:00-18:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Weltladen Fair Fashion Bornheim",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.124036,
+    "lng": 8.7033847,
+    "address": "Berger Straße 133",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "phone": "+49 69 4930101",
+    "website": "https://www.weltladen-bornheim.de/",
+    "email": "info@weltladen-bornheim.de",
+    "opening_hours_osm": "Mo-Fr 10:00-19:00; Sa 10:00-18:00; PH off",
+    "opening_hours_text": "Mo-Fr 10:00-19:00,  Sa 10:00-18:00,  Feiertage geschlossen",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Wunderwerk",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1206279,
+    "lng": 8.69660640000006,
+    "address": "Berger Straße 54",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Hessnatur Outlet | Butzbach",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.4303628,
+    "lng": 8.6857869,
+    "address": "Otto-Hahn-Straße 23",
+    "city": "Butzbach",
+    "postal_code": "35510",
+    "description_de": "Mehr Infos dazu: www.instagram.com/p/B0mA8BSoMRV/",
+    "phone": "+49 6033 971466",
+    "website": "https://www.hessnatur.com/de/store/outlet-butzbach",
+    "email": "outlet.butzbach@hess-natur.de",
+    "opening_hours_osm": "Mo-Fr 10:00-18:00; Sa 10:00-17:00",
+    "opening_hours_text": "Mo-Fr 10:00-18:00,  Sa 10:00-17:00",
+    "payment_methods": {
+      "cash": true,
+      "credit_cards": true,
+      "debit_cards": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Hessnatur Store | Butzbach",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.4292185,
+    "lng": 8.69068459999994,
+    "address": "Marie-Curie-Straße 7",
+    "city": "Butzbach",
+    "postal_code": "35510",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Maas Naturwaren | Bad Homburg",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.226813,
+    "lng": 8.61838,
+    "address": "Ludwigstraße 10",
+    "city": "Bad Homburg vor der Höhe",
+    "postal_code": "61348",
+    "description_de": "",
+    "website": "https://maas-natur.de/laeden/laden-bad-homburg/",
+    "email": "badhomburg@maas-natur.de",
+    "opening_hours_osm": "Mo-Fr 10:00-18:00; Sa 10:00-16:00",
+    "opening_hours_text": "Mo-Fr 10:00-18:00,  Sa 10:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Passepartout | Offenbach",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0960034,
+    "lng": 8.762397,
+    "address": "Senefelderstraße 47",
+    "city": "Offenbach am Main",
+    "postal_code": "63069",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Aschenputtel Second Hand",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.112248,
+    "lng": 8.68224199999997,
+    "address": "An der Kleinmarkthalle 11",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "AURUM Second Hand Boutique",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1160537,
+    "lng": 8.6775768,
+    "address": "Taubenstraße 11",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Bonne Chance",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1160206,
+    "lng": 8.67897470000003,
+    "address": "Schillerstraße 28",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Fr 11:00-18:00; Sa 10:00-16:00",
+    "opening_hours_text": "Mo-Fr 11:00-18:00,  Sa 10:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Carpe Diem First & Second Hand'ler",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1126787,
+    "lng": 8.67741019999994,
+    "address": "Roßmarkt 12",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "DRK Kleideratelier mit Nähecke",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1202824,
+    "lng": 8.567144,
+    "address": "Alt-Sossenheim 42",
+    "city": "Frankfurt am Main",
+    "postal_code": "65936",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "DRK Kleiderladen Kreuz & Quer",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0925,
+    "lng": 8.60685999999998,
+    "address": "Linkstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "65933",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Edel Trödel",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1211097,
+    "lng": 8.69578409999997,
+    "address": "Luisenstraße 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "",
+    "website": "https://frankfurter-edeltroedel.de/",
+    "opening_hours_osm": "We-Fr 11:00-18:00; Sa 10:00-16:00",
+    "opening_hours_text": "Mi-Fr 11:00-18:00,  Sa 10:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "epiphany - Vintage & More",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1150062,
+    "lng": 8.69262639999999,
+    "address": "Zeil",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "phone": "+49 69 97769660",
+    "opening_hours_osm": "Mo-Sa 11:00-18:30",
+    "opening_hours_text": "Mo-Sa 11:00-18:30",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Kroetenkiste \"Alles rund ums Kind\"",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.14967,
+    "lng": 8.75370899999996,
+    "address": "Alt-Enkheim 6",
+    "city": "Frankfurt am Main",
+    "postal_code": "60388",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Matilda 2nd Hand Kinderwarenladen",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.10461,
+    "lng": 8.68476999999996,
+    "address": "Laubestraße 1",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Monsters Kindersecondhandladen",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.127091,
+    "lng": 8.70394340000007,
+    "address": "Wiesenstraße 46",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Neufundland Second-Hand-Warenhaus",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0962992,
+    "lng": 8.58853799999997,
+    "address": "Lärchenstraße 135",
+    "city": "Frankfurt am Main",
+    "postal_code": "65933",
+    "description_de": "Vom Unikat bis zur kompletten Einrichtung, von der Jeans bis zur Waschmaschine. Bei Neufundland findest du gute gebrauchte Stücke zu fairen Preisen. für alle. Kleinere Spenden kannst du über den Kofferraumservice abgeben. Für größere Spenden, wie z.B. Möbel, sollte ein Abholungstermin vereinbart werden.",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Ola Ware Second Hand & Vintage Mode",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1250893,
+    "lng": 8.6928956,
+    "address": "Vogelsbergstraße 33",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Outflip",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.124034,
+    "lng": 8.70062210000003,
+    "address": "Höhenstraße 30",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "Cooler Second Hand Laden in Bornheim. Die Klamotten, Schuhe, Taschen und Accessoires werden für etwa vier Wochen in Kommission angenommen. Das Angebot wechselt also ständig, es lohnt sich regelmäßig vorbeizuschauen. Mehr Infos dazu: https://www.instagram.com/p/CCNcXgdgyns/",
+    "phone": "+49 69 492222",
+    "website": "https://outflip.de/",
+    "email": "info@outflip.de",
+    "opening_hours_osm": "Mo-Fr 14:00-18:30; Sa 11:00-17:00",
+    "opening_hours_text": "Mo-Fr 14:00-18:30,  Sa 11:00-17:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Oxfam Buchshop Innenstadt",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1129994,
+    "lng": 8.68221249999999,
+    "address": "Töngesgasse 35",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Fashionshop Bockenheim",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1226438,
+    "lng": 8.64621220000004,
+    "address": "Leipziger Straße 54",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Fashionshop Sachsenhausen",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1014287,
+    "lng": 8.68124220000004,
+    "address": "Schweizer Straße 55",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Shop Bornheim",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1203827,
+    "lng": 8.69520769999997,
+    "address": "Merianplatz 9",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Shop Nordend",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1200448,
+    "lng": 8.6799031,
+    "address": "Oeder Weg 32",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Peggy Sue Vintage",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.10527,
+    "lng": 8.68821,
+    "address": "Wallstraße 20",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "\"raus aus dem keller\" Antiquitäten, Schmuck, Porzellan uvm.",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.123692,
+    "lng": 8.63661200000001,
+    "address": "Schloßstraße 7",
+    "city": "Frankfurt am Main",
+    "postal_code": "60486",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "ReSales",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1060193,
+    "lng": 8.68816870000001,
+    "address": "Elisabethenstraße 14-16",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Samt & Sonders XXL (ehem. Familien-Markt)",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1422515,
+    "lng": 8.7479218,
+    "address": "Röntgenstraße 10",
+    "city": "Frankfurt am Main",
+    "postal_code": "60388",
+    "description_de": "In diesem Second Hand Kaufhaus kann jede:r einkaufen. Gegen Vorlage eines Frankfurt-Passes oder weiteren Nachweisen (s. Website) erhältst du Rabatte. Gut erhaltene Sachspenden werden gerne entgegen genommen. - Mode für Damen, Herren und Kinder - Heimtextilien - Haushaltsartikel - Spielzeug - Möbel - Elektrogeräte",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Scarlett Second Hand Boutique",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1124584,
+    "lng": 8.68324059999998,
+    "address": "An der Kleinmarkthalle 5",
+    "city": "Frankfurt am Main",
+    "postal_code": "60311",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Stellas First- und Secondhand",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1175685,
+    "lng": 8.69652050000002,
+    "address": "Sandweg 24",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Style Definery Showroom",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1198773,
+    "lng": 8.6655241,
+    "address": "Liebigstraße 23",
+    "city": "Frankfurt am Main",
+    "postal_code": "60323",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Vintage Revivals Bornheim",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1239913,
+    "lng": 8.7032175,
+    "address": "Berger Straße 131",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "website": "https://www.vintagerevivals.de/de/",
+    "opening_hours_osm": "Mo-Sa 11:00-19:00",
+    "opening_hours_text": "Mo-Sa 11:00-19:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Vintage Revivals Sachsenhausen",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.10514,
+    "lng": 8.68754999999999,
+    "address": "Wallstraße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60594",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Yasmini - für Mutter und Kind",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1240136,
+    "lng": 8.64293069999997,
+    "address": "Marburger Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60487",
+    "description_de": "",
+    "phone": "+49 69 77039894",
+    "website": "https://www.yasmini.de/",
+    "email": "info@yasmini.de",
+    "opening_hours_osm": "Mo-Fr 10:00-18:00; Sa 10:00-16:00",
+    "opening_hours_text": "Mo-Fr 10:00-18:00,  Sa 10:00-16:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Königskinder | Neu-Isenburg",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0530758,
+    "lng": 8.69203970000001,
+    "address": "Waldstraße 98",
+    "city": "Neu-Isenburg",
+    "postal_code": "63263",
+    "description_de": "",
+    "opening_hours_osm": "Tu-Fr 11:00-18:00; Sa 10:00-13:00",
+    "opening_hours_text": "Di-Fr 11:00-18:00,  Sa 10:00-13:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "DRK Kleiderladen | Bad Vilbel",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1762731,
+    "lng": 8.7355577,
+    "address": "Landgrabenstraße 10",
+    "city": "Bad Vilbel",
+    "postal_code": "61118",
+    "description_de": "",
+    "website": "https://www.drk-friedberg.de/angebote/existenzsichernde-hilfe/kleiderlaeden/oeffnungszeiten.html",
+    "email": "info@drk-friedberg.de",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "DRK Kleiderladen | Langen",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 49.9901894,
+    "lng": 8.6745701,
+    "address": "Gartenstraße 1",
+    "city": "Langen",
+    "postal_code": "63225",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "DRK Kleiderladen | Mühlheim am Main",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.1235352,
+    "lng": 8.8277042,
+    "address": "Offenbacher Straße 39",
+    "city": "Mühlheim am Main",
+    "postal_code": "63165",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "DRK Kleiderladen | Neu-Isenburg",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0532722,
+    "lng": 8.6929416,
+    "address": "Bahnhofstraße 23",
+    "city": "Neu-Isenburg",
+    "postal_code": "63263",
+    "description_de": "",
+    "phone": "+49 6102 8827857",
+    "opening_hours_osm": "Mo-Fr 10:00-12:00,15:00-17:00; Sa 09:30-11:30",
+    "opening_hours_text": "Mo-Fr 10:00-12:00,15:00-17:00,  Sa 09:30-11:30",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "DRK Kleiderladen | Offenbach",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.104706,
+    "lng": 8.7634731,
+    "address": "Frankfurter Straße 10",
+    "city": "Offenbach am Main",
+    "postal_code": "63065",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Buchshop | Darmstadt",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 49.8706914,
+    "lng": 8.6562983,
+    "address": "Schulstraße 16",
+    "city": "Darmstadt",
+    "postal_code": "64283",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Shop | Darmstadt",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 49.8723745,
+    "lng": 8.6492698,
+    "address": "Rheinstraße 12b",
+    "city": "Darmstadt",
+    "postal_code": "64283",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Shop | Mainz",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 49.995726,
+    "lng": 8.276766,
+    "address": "Graben 2",
+    "city": "Mainz",
+    "postal_code": "55116",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Oxfam Shop | Wiesbaden",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0788282,
+    "lng": 8.2339284,
+    "address": "Dotzheimer Straße 19",
+    "city": "Wiesbaden",
+    "postal_code": "65185",
+    "description_de": "",
+    "website": "https://shops.oxfam.de/shops/wiesbaden",
+    "opening_hours_osm": "Mo-Fr 10:00-18:00, Sa 10:00-14:00",
+    "opening_hours_text": "Mo-Fr 10:00-18:00, Sa 10:00-14:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "ReSales | Darmstadt",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 49.871612,
+    "lng": 8.6549226,
+    "address": "Ludwigstraße 7",
+    "city": "Darmstadt",
+    "postal_code": "64283",
+    "description_de": "",
+    "website": "https://www.resales.de/secondhand-stores/hessen/darmstadt.html",
+    "opening_hours_osm": "Mo-Sa 10:00-19:00; Su,PH off",
+    "opening_hours_text": "Mo-Sa 10:00-19:00,  So,Feiertage geschlossen",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "ReSales | Offenbach",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.10269,
+    "lng": 8.75918999999999,
+    "address": "Kaiserstraße 22-24",
+    "city": "Offenbach am Main",
+    "postal_code": "63065",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 10:00-19:00",
+    "opening_hours_text": "Mo-Sa 10:00-19:00",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "ReSales | Wiesbaden",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.0815727,
+    "lng": 8.2407412,
+    "address": "Ellenbogengasse 6",
+    "city": "Wiesbaden",
+    "postal_code": "65183",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Vintage Factory1977 | Kelsterbach",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.048973,
+    "lng": 8.5332044,
+    "address": "Am Südpark 12",
+    "city": "Kelsterbach",
+    "postal_code": "65451",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Vintage Revivals | Wiesbaden",
+    "original_category": "Fair Fashion & Second Hand Läden",
+    "mapped_categories": [
+      "second-hand",
+      "nachhaltige-mode"
+    ],
+    "lat": 50.079249,
+    "lng": 8.24406,
+    "address": "Luisenstraße",
+    "city": "Wiesbaden",
+    "postal_code": "65185",
+    "description_de": "",
+    "opening_hours_osm": "Mo-Sa 11:00-19:00",
+    "opening_hours_text": "Mo-Sa 11:00-19:00",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Alter Flugplatz in Frankfurt-Bonames",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1773416,
+    "lng": 8.65711690000001,
+    "address": "",
+    "city": "Frankfurt am Main",
+    "postal_code": "60437",
+    "description_de": "Landschaftsschutzgebiet mit Feuerwehrmuseum, BIenenmuseum und Café. Im Juni findet der alljährliche Handmade Markt im Grünen statt.",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Bücherschrank",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1204683,
+    "lng": 8.696307,
+    "address": "Kantstraße 28",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "Am Merianplatz wurde 2009 der erste \"Offene Bücherschrank\" aufgestellt. Heute gibt es über 70 Bücherschränke im ganze Stadtgebiet. Eine Übersicht gibt es hier: https://frankfurt.de/themen/kultur/literatur/bibliotheken/buecherschraenke",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Come on Closet",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1272038,
+    "lng": 8.7003313,
+    "address": "Eichwaldstraße 77",
+    "city": "Frankfurt am Main",
+    "postal_code": "60389",
+    "description_de": "Nachhaltige Stilberatung in Frankfurt. Weitere Infos zum Angebot und zur Terminvereinbarung findest du unter www.comeoncloset.de",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Einzigware Frankfurt / Cariteam",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.09565,
+    "lng": 8.59726,
+    "address": "Eichenstraße 74",
+    "city": "Frankfurt am Main",
+    "postal_code": "65933",
+    "description_de": "Werksverkauf jeden 1. Donnerstag im Monat von 14-17 Uhr. EiNZIGWARE® ist die Upcycling-Marke von Beschäftigungsbetrieben der Caritas in ganz Deutschland. Aktuell gehören rund 25 Standorte zur Marke EiNZIGWARE® EiNZIGWARE macht aus entbehrlichen Klamotten unentbehrliche Lieblingskleidung, aus alten Möbeln neue Mitbewohner und aus einer ganzen Menge Sachen richtig tolle Dinge. EiNZIGWARE gibt Gegenständen neues Leben und Menschen neue Chancen. Von der Kleidersammlung über die Werkbank zur Webseite und auf den Laufsteg – EiNZIGWARE ist eine Bewegung. Die Richtung ist dabei immer klar und auch die Richtlinien: ökologisch,, kreativ, sozial. EiNZIGWARE ist aus wiederverwerteten Materialien, die Umweltbewusstsein haben. Aus Ideen, die robust sind. Und von Menschen gemacht, die erstklassige Arbeit leisten, dies aber nicht auf dem ersten Arbeitsmarkt tun können. Mehr Infos hier: http://www.einzigware.de/ https://www.zerowastefrankfurt.de/ulf-der-neue-unverpackt-laden-in-der-frankfurter-altstadt/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Fairteiler Bornheim",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.12422,
+    "lng": 8.70359,
+    "address": "Berger Straße 135",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "Dieser Fairteiler ist ein Umschlagplatz für noch genießbare Lebensmittel. Mehr Infos dazu: https://foodsharing.de/?page=fairteiler&bid=28&sub=ft&id=1879",
+    "opening_hours_osm": "Mo-Fr 10:30-18:30; Sa 10:30-17:30",
+    "opening_hours_text": "Mo-Fr 10:30-18:30,  Sa 10:30-17:30",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Fairteiler im IZ Frankfurt",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1067023,
+    "lng": 8.6472803,
+    "address": "Koblenzer Straße 17",
+    "city": "Frankfurt am Main",
+    "postal_code": "60327",
+    "description_de": "In diesem Fair-Teiler können Lebensmittel geteilt und auch kostenlos entnommen werden. Sie haben oft das Mindesthaltbarkeitsdatum überschritten, sind aber durchaus noch genießbar. Mehr Infos und aktuelle Öffnungszeiten hier: http://iz-ffm.de/?p=1868",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "FoodCoop KlaaKarott e.V.",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1606826,
+    "lng": 8.6474916,
+    "address": "Nassauer Straße 9",
+    "city": "Frankfurt am Main",
+    "postal_code": "60439",
+    "description_de": "Einkaufsgemeinschaft in Heddernheim, nur für Mitglieder. Hier werden regionale, umweltgerecht erzeugte Lebensmittel so verpackungsarm wie möglich direkt von den Produzent*innen gekauft und an die Vereinsmitglieder ohne Aufschlag weitergegeben. Mehr Infos dazu: https://klaakarott.jimdofree.com/",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Hotel Villa Orange",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1208991,
+    "lng": 8.68944759999999,
+    "address": "Hebelstraße 1",
+    "city": "Frankfurt am Main",
+    "postal_code": "60318",
+    "description_de": "Frankfurts erstes und einziges Bio-Hotel. Mehr Infos dazu: https://www.instagram.com/p/BwsB1L8ncea/",
+    "phone": "+49 69 405840",
+    "website": "https://www.villa-orange.de/",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Mainova Trinkbrunnen",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1136498,
+    "lng": 8.68049159999998,
+    "address": "Große Bockenheimer Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "opening_hours_osm": "24/7",
+    "opening_hours_text": "Täglich 24 Stunden",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Mainova Trinkbrunnen",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1147236,
+    "lng": 8.67364399999997,
+    "address": "Große Bockenheimer Straße",
+    "city": "Frankfurt am Main",
+    "postal_code": "60313",
+    "description_de": "",
+    "opening_hours_osm": "24/7",
+    "opening_hours_text": "Täglich 24 Stunden",
+    "facilities": {
+      "wheelchair": true
+    },
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Nachhaltig Guide",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.0975847,
+    "lng": 8.67394590000004,
+    "address": "Passavantstraße 35",
+    "city": "Frankfurt am Main",
+    "postal_code": "60596",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Neuer Frankfurter Garten",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1131578,
+    "lng": 8.70716149999998,
+    "address": "8",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "website": "https://www.neuerfrankfurtergarten.de/",
+    "osm_enriched": true,
+    "match_type": "name_search"
+  },
+  {
+    "name": "Sachen auf Rädern",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1259268,
+    "lng": 8.70877459999997,
+    "address": "Saalburgstraße 13",
+    "city": "Frankfurt am Main",
+    "postal_code": "60385",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Windelfrei Frankfurt",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.1237599,
+    "lng": 8.69392010000001,
+    "address": "Günthersburgallee 14",
+    "city": "Frankfurt am Main",
+    "postal_code": "60316",
+    "description_de": "Windelfrei Frankfurt bietet Kurse und regelmäßige Treffen zum Austausch über die Themen Windelfrei und sauber werden an. Nein, Windelfrei bedeutet nicht, dass das Baby zwangsläufig ohne Windel ist. Hier lernen Eltern, die Signale ihres Babys zu verstehen, damit sie es abhalten können, von Geburt an. Spannendes Thema... und es funktioniert tatsächlich! Das ist keine Geschäftsadresse, mehr Infos auf der Website.",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Die Windelzwerge",
+    "original_category": "Nachhaltige Orte & Unternehmen",
+    "mapped_categories": [
+      "andere"
+    ],
+    "lat": 50.2017259,
+    "lng": 8.5736476,
+    "address": "Altkönigstraße 10",
+    "city": "Oberursel (Taunus)",
+    "postal_code": "61440",
+    "description_de": "Die Windelzwerge bieten einen Leih-, Wasch- und Lieferservice für Stoffwindeln im Rhein-Main-Gebiet. Weitere Infos zum Angebot inklusive des Liefergebiets findest du unter www.diewindelzwerge.de",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Repair Café Bockenheim",
+    "original_category": "Repair Cafés",
+    "mapped_categories": [
+      "repair-cafes"
+    ],
+    "lat": 50.118603,
+    "lng": 8.65155100000004,
+    "address": "Mertonstraße 26-28",
+    "city": "Frankfurt am Main",
+    "postal_code": "60325",
+    "description_de": "",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  },
+  {
+    "name": "Repair Café Sachsenhausen",
+    "original_category": "Repair Cafés",
+    "mapped_categories": [
+      "repair-cafes"
+    ],
+    "lat": 50.092,
+    "lng": 8.69376,
+    "address": "Altes Schützenhüttengäßchen 4",
+    "city": "Frankfurt am Main",
+    "postal_code": "60599",
+    "description_de": "Jeden 1. Dienstag im Monat von 17:30 bis 20 Uhr im Gemeindehaus Sankt Wendel (Kellergeschoss). Reparaturanmeldungen sind bis 19 Uhr möglich. Repariert werden Elektrogeräte, Computer (Hardware, Software, Viren- und Trojaner-Infektionen), Fahrräder, Textilien sowie Holzobjekte, Metallobjekte, mechanische Geräte, Modeschmuck und Gitarren.",
+    "osm_enriched": false,
+    "match_type": "reverse_geocode"
+  }
+]
