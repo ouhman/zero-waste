@@ -6,20 +6,26 @@ const POPUP_ANCHOR: [number, number] = [0, -32] // Above marker
 
 const iconCache = new Map<string, L.Icon>()
 
-export function getCategoryIcon(categorySlug: string | null): L.Icon {
+export function getCategoryIcon(categorySlug: string | null, iconUrl?: string | null): L.Icon {
   const slug = categorySlug || 'andere'
 
-  if (iconCache.has(slug)) {
-    return iconCache.get(slug)!
+  // Use iconUrl as cache key if provided, otherwise use slug
+  const cacheKey = iconUrl || slug
+
+  if (iconCache.has(cacheKey)) {
+    return iconCache.get(cacheKey)!
   }
 
+  // Prefer icon_url from database, fallback to local file
+  const url = iconUrl || `/icons/categories/${slug}.png`
+
   const icon = L.icon({
-    iconUrl: `/icons/categories/${slug}.png`,
+    iconUrl: url,
     iconSize: ICON_SIZE,
     iconAnchor: ICON_ANCHOR,
     popupAnchor: POPUP_ANCHOR
   })
 
-  iconCache.set(slug, icon)
+  iconCache.set(cacheKey, icon)
   return icon
 }

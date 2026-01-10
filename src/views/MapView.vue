@@ -72,6 +72,13 @@
       :center-lat="mapCenter.lat"
       :center-lng="mapCenter.lng"
       class="flex-1"
+      @show-details="handleShowDetails"
+    />
+
+    <!-- Location Detail Panel -->
+    <LocationDetailPanel
+      :location="selectedLocation"
+      @close="handleClosePanel"
     />
   </div>
 </template>
@@ -84,12 +91,18 @@ import SearchBar from '@/components/SearchBar.vue'
 import CategoryFilter from '@/components/CategoryFilter.vue'
 import NearMeButton from '@/components/NearMeButton.vue'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import LocationDetailPanel from '@/components/LocationDetailPanel.vue'
 import { useLocations } from '@/composables/useLocations'
 import { useFilters } from '@/composables/useFilters'
 import { useSeo } from '@/composables/useSeo'
 import type { Database } from '@/types/database'
 
 type Location = Database['public']['Tables']['locations']['Row']
+type LocationWithCategories = Location & {
+  location_categories?: {
+    categories: Database['public']['Tables']['categories']['Row']
+  }[]
+}
 
 const { t } = useI18n()
 const { locations, fetchLocations } = useLocations()
@@ -104,6 +117,7 @@ useSeo({
 const selectedCategories = ref<string[]>([])
 const mapCenter = ref({ lat: 50.1109, lng: 8.6821 }) // Frankfurt center
 const mapRef = ref<InstanceType<typeof MapContainer> | null>(null)
+const selectedLocation = ref<LocationWithCategories | null>(null)
 
 // Panel collapse state - collapsed by default on mobile
 const isPanelCollapsed = ref(true)
@@ -121,16 +135,26 @@ onMounted(async () => {
 })
 
 function handleSearchSelect(location: Location) {
-  // Center map on selected location
-  mapCenter.value = {
-    lat: parseFloat(location.latitude),
-    lng: parseFloat(location.longitude)
-  }
+  // Focus on selected location (center, zoom, open popup)
+  mapRef.value?.focusLocation(location.id)
 }
 
 function handleNearbyLocations(_nearbyLocs: any[], userLat: number, userLng: number) {
   // Center map on user location
   mapRef.value?.centerOn(userLat, userLng)
   mapCenter.value = { lat: userLat, lng: userLng }
+}
+
+function handleShowDetails(locationId: string) {
+  const location = filteredLocations.value.find(l => l.id === locationId)
+  if (location) {
+    selectedLocation.value = location as LocationWithCategories
+    mapRef.value?.highlightMarker(locationId)
+  }
+}
+
+function handleClosePanel() {
+  mapRef.value?.highlightMarker(null)
+  selectedLocation.value = null
 }
 </script>

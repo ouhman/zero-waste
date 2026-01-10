@@ -29,11 +29,17 @@ const props = withDefaults(defineProps<Props>(), {
   centerLng: 8.6821
 })
 
+const emit = defineEmits<{
+  'show-details': [locationId: string]
+}>()
+
 const DEFAULT_ZOOM = 13
 
 const mapElement = ref<HTMLElement | null>(null)
 let map: L.Map | null = null
 const markers: L.Marker[] = []
+const markerMap = new Map<string, L.Marker>() // locationId -> marker
+let highlightedMarkerId: string | null = null
 
 function initializeMap() {
   if (!mapElement.value || map) return
@@ -47,8 +53,29 @@ function initializeMap() {
     maxZoom: 19
   }).addTo(map)
 
+  // Handle clicks on details buttons in popups
+  map.on('popupopen', () => {
+    // Wait for DOM to update, then attach click handlers
+    setTimeout(() => {
+      const buttons = document.querySelectorAll('.location-details-btn')
+      buttons.forEach(btn => {
+        btn.addEventListener('click', handleDetailsClick)
+      })
+    }, 0)
+  })
+
   // Add markers after map is ready
   addMarkers()
+}
+
+function handleDetailsClick(e: Event) {
+  const btn = e.currentTarget as HTMLElement
+  const locationId = btn.dataset.locationId
+  if (locationId) {
+    emit('show-details', locationId)
+    // Close the popup
+    map?.closePopup()
+  }
 }
 
 // Helper function to generate payment methods HTML for popup
@@ -93,6 +120,8 @@ function addMarkers() {
   // Clear existing markers
   markers.forEach(marker => marker.remove())
   markers.length = 0
+  markerMap.clear()
+  highlightedMarkerId = null
 
   // Add markers for each location
   props.locations.forEach(location => {
@@ -172,23 +201,25 @@ function addMarkers() {
         ` : ''}
 
         <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 10px;">
-          <a
-            href="/location/${location.slug}"
+          <button
+            class="location-details-btn"
+            data-location-id="${location.id}"
             style="
               flex: 1;
               display: inline-block;
               padding: 8px 12px;
               background: #10b981;
               color: white;
-              text-decoration: none;
+              border: none;
               font-size: 13px;
               font-weight: 500;
               border-radius: 6px;
               text-align: center;
+              cursor: pointer;
             "
           >
             Details →
-          </a>
+          </button>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=bicycling"
             target="_blank"
@@ -214,6 +245,7 @@ function addMarkers() {
 
     marker.bindPopup(popupContent, { maxWidth: 320 })
     markers.push(marker)
+    markerMap.set(location.id, marker)
   })
 }
 
@@ -223,9 +255,119 @@ watch(() => props.locations, () => {
 }, { deep: true })
 
 // Method to center map on a location (can be called externally)
-function centerOn(lat: number, lng: number) {
+function centerOn(lat: number, lng: number, zoom?: number) {
   if (map) {
-    map.setView([lat, lng], DEFAULT_ZOOM)
+    map.setView([lat, lng], zoom ?? DEFAULT_ZOOM)
+  }
+}
+
+// Method to focus on a location: center, zoom, and open popup
+function focusLocation(locationId: string, zoom: number = 17) {
+  const location = props.locations.find(l => l.id === locationId)
+  if (!location || !map) return
+
+  const lat = parseFloat(location.latitude)
+  const lng = parseFloat(location.longitude)
+  if (isNaN(lat) || isNaN(lng)) return
+
+  // Find the marker for this location
+  const markerIndex = props.locations.findIndex(l => l.id === locationId)
+  const marker = markers[markerIndex]
+
+  // Center and zoom
+  map.setView([lat, lng], zoom)
+
+  // Open popup after a short delay to let the map animate
+  if (marker) {
+    setTimeout(() => marker.openPopup(), 300)
+  }
+}
+
+// Highlight/unhighlight a marker
+let pulseElement: HTMLElement | null = null
+
+function highlightMarker(locationId: string | null) {
+  // Remove highlight from previous marker
+  if (highlightedMarkerId) {
+    const prevMarker = markerMap.get(highlightedMarkerId)
+    if (prevMarker) {
+      const el = prevMarker.getElement()
+      if (el) {
+        el.classList.remove('marker-highlighted')
+      }
+    }
+  }
+
+  // Remove previous pulse element
+  if (pulseElement) {
+    pulseElement.remove()
+    pulseElement = null
+  }
+
+  // Add highlight to new marker
+  if (locationId) {
+    const marker = markerMap.get(locationId)
+    if (marker) {
+      const el = marker.getElement()
+      if (el) {
+        el.classList.add('marker-highlighted')
+
+        // Add pulse ring element
+        const location = props.locations.find(l => l.id === locationId)
+        if (location && map) {
+          const lat = parseFloat(location.latitude)
+          const lng = parseFloat(location.longitude)
+          const point = map.latLngToContainerPoint([lat, lng])
+
+          pulseElement = document.createElement('div')
+          pulseElement.className = 'marker-pulse-ring'
+          pulseElement.style.cssText = `
+            position: absolute;
+            left: ${point.x}px;
+            top: ${point.y}px;
+            width: 24px;
+            height: 24px;
+            margin-left: -12px;
+            margin-top: -34px;
+            pointer-events: none;
+            z-index: 400;
+          `
+
+          const ring = document.createElement('div')
+          ring.style.cssText = `
+            width: 100%;
+            height: 100%;
+            background: rgba(16, 185, 129, 0.4);
+            border-radius: 50%;
+            animation: marker-pulse 1.5s ease-out infinite;
+          `
+          pulseElement.appendChild(ring)
+
+          mapElement.value?.appendChild(pulseElement)
+
+          // Update pulse position when map moves
+          map.on('move', updatePulsePosition)
+        }
+      }
+    }
+  } else {
+    // Remove move listener when unhighlighting
+    map?.off('move', updatePulsePosition)
+  }
+
+  highlightedMarkerId = locationId
+}
+
+function updatePulsePosition() {
+  if (!pulseElement || !highlightedMarkerId || !map) return
+
+  const location = props.locations.find(l => l.id === highlightedMarkerId)
+  if (location) {
+    const lat = parseFloat(location.latitude)
+    const lng = parseFloat(location.longitude)
+    const point = map.latLngToContainerPoint([lat, lng])
+    pulseElement.style.left = `${point.x}px`
+    pulseElement.style.top = `${point.y}px`
   }
 }
 
@@ -241,14 +383,19 @@ watch(
 )
 
 // Expose methods for parent components
-defineExpose({ centerOn })
+defineExpose({ centerOn, focusLocation, highlightMarker })
 
 onMounted(() => {
   initializeMap()
 })
 
 onUnmounted(() => {
+  if (pulseElement) {
+    pulseElement.remove()
+    pulseElement = null
+  }
   if (map) {
+    map.off('move', updatePulsePosition)
     map.remove()
     map = null
   }
@@ -260,5 +407,30 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   min-height: 400px;
+}
+</style>
+
+<style>
+/* Global styles for marker highlighting (Leaflet markers are outside Vue scope) */
+.leaflet-marker-icon.marker-highlighted {
+  z-index: 1000 !important;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.4));
+  /* Scale via width/height since transform is used by Leaflet for positioning */
+  width: 44px !important;
+  height: 44px !important;
+  margin-left: -22px !important;
+  margin-top: -44px !important;
+  transition: filter 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+}
+
+@keyframes marker-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
 }
 </style>
