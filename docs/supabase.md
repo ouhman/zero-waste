@@ -157,15 +157,44 @@ AND grantee = 'anon';
 
 ---
 
+## Supabase CLI
+
+The Supabase CLI is available via npx (no global install needed):
+
+```bash
+# Check migration status
+npx supabase migration list
+
+# Push pending migrations to remote
+npx supabase db push
+
+# Mark a migration as applied (if applied manually)
+npx supabase migration repair <version> --status applied
+
+# Mark a migration as reverted
+npx supabase migration repair <version> --status reverted
+
+# Generate TypeScript types
+npx supabase gen types typescript --project-id <project-id> > src/types/database.ts
+```
+
+**Migration naming convention:** Use `YYYYMMDDHHmmss_description.sql` format for unique timestamps.
+
+---
+
 ## Migration Files
 
 | File | Purpose |
 |------|---------|
-| `20260108_add_payment_and_hours.sql` | Adds payment_methods, opening_hours_osm, opening_hours_structured columns |
-| `20260108_allow_pending_submissions.sql` | Creates INSERT policies for anon/authenticated |
-| `20260108_grant_anon_insert.sql` | Grants INSERT permission to anon role |
-
----
+| `20260108180000_add_payment_and_hours.sql` | Adds payment_methods, opening_hours_osm, opening_hours_structured columns |
+| `20260108203600_grant_anon_insert.sql` | Grants INSERT permission to anon role |
+| `20260108204800_allow_pending_submissions.sql` | Creates INSERT policies for anon/authenticated |
+| `20260108210500_add_submission_data.sql` | Adds submission_data column to email_verifications |
+| `20260109215300_add_facilities.sql` | Adds facilities support |
+| `20260110113400_admin_auth.sql` | Admin authentication setup |
+| `20260110115800_category_icons.sql` | Category icon support |
+| `20260110154000_is_admin_email.sql` | Admin email check function |
+| `20260110163100_fix_search_prefix.sql` | Fixes search to support prefix/substring matching |
 
 ---
 
@@ -180,7 +209,7 @@ User Submits Form
        ↓
   Store in email_verifications (with submission_data)
        ↓
-  Send Email via AWS SES
+  Send Verification Email to User via AWS SES
        ↓
   User Clicks Link
        ↓
@@ -188,7 +217,11 @@ User Submits Form
        ↓
   Create Location (status: pending)
        ↓
-  Admin Reviews & Approves
+  Send Notification Email to Admin via AWS SES
+       ↓
+  Admin Reviews in Admin Panel
+       ↓
+  Admin Approves/Rejects Location
 ```
 
 ### Required Supabase Secrets
@@ -200,7 +233,14 @@ supabase secrets set AWS_ACCESS_KEY_ID=AKIA...
 supabase secrets set AWS_SECRET_ACCESS_KEY=...
 supabase secrets set AWS_REGION=eu-central-1
 supabase secrets set FRONTEND_URL=https://map.zerowastefrankfurt.de
+supabase secrets set ADMIN_EMAIL=admin@zerowastefrankfurt.de
+supabase secrets set SES_CONFIGURATION_SET=zerowaste-config-set
 ```
+
+**Note:**
+- `ADMIN_EMAIL` is used to notify the admin when new submissions are verified
+- If `ADMIN_EMAIL` is not set, admin notifications are skipped (useful for development)
+- `SES_CONFIGURATION_SET` is optional and used for bounce/complaint tracking
 
 ### Database Migration
 

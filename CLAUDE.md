@@ -81,6 +81,65 @@ The app enriches location data from OpenStreetMap via Nominatim:
 
 See `src/composables/useNominatim.ts` for extraction logic.
 
+## Admin Section
+
+The admin section provides a full-featured interface for managing location submissions and categories.
+
+### Routes
+
+- `/admin/login` - Magic link authentication
+- `/admin` - Dashboard with stats and recent submissions
+- `/admin/locations` - All locations with filtering by status (pending/approved/rejected)
+- `/admin/edit/:id` - Edit location with preview
+- `/admin/categories` - Category management (CRUD with icon upload)
+
+### Creating Admin Users
+
+Admin users must be created manually in Supabase:
+
+1. Create user via Supabase Dashboard → Authentication → Users → Add User
+2. Set admin role in SQL Editor:
+
+```sql
+UPDATE auth.users
+SET raw_user_meta_data = jsonb_set(
+  COALESCE(raw_user_meta_data, '{}'),
+  '{role}',
+  '"admin"'
+)
+WHERE email = 'admin@zerowastefrankfurt.de';
+```
+
+### Features
+
+- **Magic Link Auth** - Passwordless authentication with rate limiting (5 attempts per 15 minutes)
+- **Session Management** - 1-hour inactivity timeout with activity tracking
+- **Location Management** - Full CRUD operations, approve/reject workflow
+- **Category Management** - CRUD with icon upload to Supabase Storage
+- **Toast Notifications** - Success/error feedback for all actions
+- **Keyboard Shortcuts** - ESC to close modals
+- **Mobile Responsive** - All admin views work on mobile devices
+
+### Key Components
+
+- `src/components/admin/AdminLayout.vue` - Shared layout with sidebar
+- `src/components/admin/LocationEditForm.vue` - Full location editing
+- `src/components/admin/CategoryEditModal.vue` - Category CRUD modal
+- `src/components/common/ToastContainer.vue` - Toast notification system
+- `src/components/common/LoadingSpinner.vue` - Loading states
+- `src/components/common/EmptyState.vue` - Empty state placeholders
+- `src/components/common/ErrorBoundary.vue` - Error handling wrapper
+
+### Composables
+
+- `src/composables/useAuth.ts` - Session management and logout
+- `src/composables/useToast.ts` - Toast notifications
+
+### Stores
+
+- `src/stores/admin.ts` - Admin state management (locations CRUD)
+- `src/stores/categories.ts` - Categories with admin methods
+
 ## Infrastructure (AWS CDK)
 
 Located in `infra/` directory. Two stacks:
