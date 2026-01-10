@@ -111,7 +111,7 @@ describe('useSubmission', () => {
       latitude: '50.1109',
       longitude: '8.6821',
       email: 'test@example.com',
-      submission_type: 'new',
+      submission_type: 'new' as const,
       description_de: 'Test description',
       website: 'https://example.com',
       categories: ['cafe', 'shop']

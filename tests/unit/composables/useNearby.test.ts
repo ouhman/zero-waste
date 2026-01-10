@@ -57,7 +57,7 @@ describe('useNearby', () => {
   })
 
   it('handles geolocation error', async () => {
-    mockGeolocation.getCurrentPosition.mockImplementation((success, error) => {
+    mockGeolocation.getCurrentPosition.mockImplementation((_success, error) => {
       error({ code: 1, message: 'User denied geolocation', PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3 })
     })
 

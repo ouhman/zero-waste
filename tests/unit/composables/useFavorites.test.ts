@@ -82,7 +82,7 @@ describe('useFavorites', () => {
   })
 
   it('persists to localStorage', async () => {
-    const { addFavorite, favorites } = useFavorites()
+    const { addFavorite } = useFavorites()
 
     addFavorite('location-1')
     addFavorite('location-2')

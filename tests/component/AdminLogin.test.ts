@@ -25,8 +25,8 @@ const createMockRouter = () => {
   return createRouter({
     history: createMemoryHistory(),
     routes: [
-      { path: '/admin/login', component: { template: '<div>Login</div>' } },
-      { path: '/admin', component: { template: '<div>Dashboard</div>' } }
+      { path: '/bulk-station/login', component: { template: '<div>Login</div>' } },
+      { path: '/bulk-station', component: { template: '<div>Dashboard</div>' } }
     ]
   })
 }
@@ -126,7 +126,7 @@ describe('AdminLogin', () => {
     // Wait for async operations
     await new Promise(resolve => setTimeout(resolve, 100))
 
-    expect(pushSpy).toHaveBeenCalledWith('/admin')
+    expect(pushSpy).toHaveBeenCalledWith('/bulk-station')
   })
 
   it('shows error on invalid credentials', async () => {

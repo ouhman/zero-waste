@@ -55,7 +55,11 @@ describe('Database Types', () => {
       icon: 'package-open',
       color: '#10B981',
       sort_order: 1,
-      created_at: '2024-01-01T00:00:00Z'
+      created_at: '2024-01-01T00:00:00Z',
+      icon_url: null,
+      description_de: null,
+      description_en: null,
+      updated_at: null
     }
 
     // Verify required fields

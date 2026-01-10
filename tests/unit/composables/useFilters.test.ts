@@ -40,7 +40,7 @@ describe('useFilters', () => {
       created_at: '2024-01-01',
       updated_at: '2024-01-01',
       location_categories: [
-        { categories: { id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store', icon: null, color: null, sort_order: 1, created_at: '2024-01-01' } }
+        { categories: { id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store', icon: null, color: null, sort_order: 1, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } }
       ]
     },
     {
@@ -73,7 +73,7 @@ describe('useFilters', () => {
       created_at: '2024-01-01',
       updated_at: '2024-01-01',
       location_categories: [
-        { categories: { id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair', icon: null, color: null, sort_order: 2, created_at: '2024-01-01' } }
+        { categories: { id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair', icon: null, color: null, sort_order: 2, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } }
       ]
     },
     {
@@ -106,8 +106,8 @@ describe('useFilters', () => {
       created_at: '2024-01-01',
       updated_at: '2024-01-01',
       location_categories: [
-        { categories: { id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store', icon: null, color: null, sort_order: 1, created_at: '2024-01-01' } },
-        { categories: { id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair', icon: null, color: null, sort_order: 2, created_at: '2024-01-01' } }
+        { categories: { id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store', icon: null, color: null, sort_order: 1, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } },
+        { categories: { id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair', icon: null, color: null, sort_order: 2, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } }
       ]
     }
   ]
