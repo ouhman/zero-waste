@@ -1,0 +1,567 @@
+<template>
+  <form @submit.prevent="handleSubmit" class="space-y-6">
+    <!-- Basic Information -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.basicInfo') }}
+      </h3>
+
+      <div class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.name') }} *
+          </label>
+          <input
+            id="name"
+            v-model="formData.name"
+            type="text"
+            required
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            @input="handleNameChange"
+          />
+        </div>
+
+        <div>
+          <label for="slug" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.slug') }}
+          </label>
+          <input
+            id="slug"
+            v-model="formData.slug"
+            type="text"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+          />
+          <p class="mt-1 text-sm text-gray-500">{{ t('admin.form.slugHelp') }}</p>
+        </div>
+
+        <div>
+          <label for="description_de" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.descriptionDe') }}
+          </label>
+          <textarea
+            id="description_de"
+            v-model="formData.description_de"
+            rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          ></textarea>
+        </div>
+
+        <div>
+          <label for="description_en" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.descriptionEn') }}
+          </label>
+          <textarea
+            id="description_en"
+            v-model="formData.description_en"
+            rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          ></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Address & Coordinates -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.addressGeo') }}
+      </h3>
+
+      <div class="space-y-4">
+        <div>
+          <label for="address" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.address') }} *
+          </label>
+          <input
+            id="address"
+            v-model="formData.address"
+            type="text"
+            required
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="city" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ t('admin.form.city') }} *
+            </label>
+            <input
+              id="city"
+              v-model="formData.city"
+              type="text"
+              required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          <div>
+            <label for="postal_code" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ t('admin.form.postalCode') }}
+            </label>
+            <input
+              id="postal_code"
+              v-model="formData.postal_code"
+              type="text"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        <!-- Map for coordinate selection -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            {{ t('admin.form.clickMapToSet') }}
+          </label>
+          <div id="map" class="h-64 rounded-md border border-gray-300"></div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="latitude" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ t('admin.form.latitude') }} *
+            </label>
+            <input
+              id="latitude"
+              v-model="formData.latitude"
+              type="text"
+              required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+            />
+          </div>
+
+          <div>
+            <label for="longitude" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ t('admin.form.longitude') }} *
+            </label>
+            <input
+              id="longitude"
+              v-model="formData.longitude"
+              type="text"
+              required
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.contactInfo') }}
+      </h3>
+
+      <div class="space-y-4">
+        <div>
+          <label for="website" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.website') }}
+          </label>
+          <input
+            id="website"
+            v-model="formData.website"
+            type="url"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ t('admin.form.phone') }}
+            </label>
+            <input
+              id="phone"
+              v-model="formData.phone"
+              type="tel"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+              {{ t('admin.form.email') }}
+            </label>
+            <input
+              id="email"
+              v-model="formData.email"
+              type="email"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.instagram') }}
+          </label>
+          <input
+            id="instagram"
+            v-model="formData.instagram"
+            type="text"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.categories') }}
+      </h3>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <label
+          v-for="category in categories"
+          :key="category.id"
+          class="flex items-center gap-2 p-3 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer"
+        >
+          <input
+            type="checkbox"
+            :value="category.id"
+            :checked="selectedCategories.includes(category.id)"
+            @change="toggleCategory(category.id)"
+            class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <span class="text-sm">{{ category.name_de }}</span>
+        </label>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">{{ t('admin.form.selectCategories') }}</p>
+    </section>
+
+    <!-- Payment Methods -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.paymentMethods') }}
+      </h3>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="paymentMethods.cash"
+            class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <span class="text-sm">{{ t('admin.form.cash') }}</span>
+        </label>
+
+        <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="paymentMethods.credit_card"
+            class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <span class="text-sm">{{ t('admin.form.creditCard') }}</span>
+        </label>
+
+        <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="paymentMethods.debit_card"
+            class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <span class="text-sm">{{ t('admin.form.debitCard') }}</span>
+        </label>
+
+        <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="paymentMethods.contactless"
+            class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <span class="text-sm">{{ t('admin.form.contactless') }}</span>
+        </label>
+
+        <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="paymentMethods.mobile"
+            class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+          />
+          <span class="text-sm">{{ t('admin.form.mobilePayment') }}</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Opening Hours -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.openingHours') }}
+      </h3>
+
+      <div>
+        <label for="opening_hours_osm" class="block text-sm font-medium text-gray-700 mb-1">
+          {{ t('admin.form.osmFormat') }}
+        </label>
+        <input
+          id="opening_hours_osm"
+          v-model="formData.opening_hours_osm"
+          type="text"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+          placeholder="Mo-Fr 10:00-18:00; Sa 10:00-14:00"
+        />
+      </div>
+    </section>
+
+    <!-- Admin Fields -->
+    <section>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        {{ t('admin.form.adminFields') }}
+      </h3>
+
+      <div class="space-y-4">
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.status') }}
+          </label>
+          <select
+            id="status"
+            v-model="formData.status"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="pending">{{ t('admin.form.statusPending') }}</option>
+            <option value="approved">{{ t('admin.form.statusApproved') }}</option>
+            <option value="rejected">{{ t('admin.form.statusRejected') }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="admin_notes" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ t('admin.form.adminNotes') }}
+          </label>
+          <textarea
+            id="admin_notes"
+            v-model="formData.admin_notes"
+            rows="3"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          ></textarea>
+          <p class="mt-1 text-sm text-gray-500">{{ t('admin.form.adminNotesHelp') }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
+      <button
+        type="button"
+        @click="$emit('cancel')"
+        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      >
+        {{ t('common.cancel') }}
+      </button>
+      <button
+        type="submit"
+        :disabled="loading || !isDirty"
+        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {{ loading ? t('common.loading') : t('admin.edit.saveChanges') }}
+      </button>
+    </div>
+  </form>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+import type { Database } from '@/types/database'
+
+type Location = Database['public']['Tables']['locations']['Row']
+type Category = Database['public']['Tables']['categories']['Row']
+
+interface Props {
+  location: Location
+  categories: Category[]
+  loading?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  loading: false
+})
+
+const emit = defineEmits<{
+  save: [data: { location: Partial<Location>; categoryIds: string[] }]
+  cancel: []
+  'update:preview': [location: Partial<Location>]
+}>()
+
+const { t } = useI18n()
+
+// Form data
+const formData = ref<Partial<Location>>({})
+const selectedCategories = ref<string[]>([])
+const paymentMethods = ref({
+  cash: false,
+  credit_card: false,
+  debit_card: false,
+  contactless: false,
+  mobile: false
+})
+
+// Original data for dirty checking
+const originalData = ref<string>('')
+const isDirty = computed(() => {
+  const current = JSON.stringify({
+    ...formData.value,
+    payment_methods: paymentMethods.value,
+    categories: selectedCategories.value
+  })
+  return current !== originalData.value
+})
+
+// Map
+let map: L.Map | null = null
+let marker: L.Marker | null = null
+
+function initializeForm() {
+  // Exclude non-updatable fields from formData:
+  // - location_categories: joined relation, not a column
+  // - search_vector: generated column, can only be DEFAULT
+  const { location_categories, search_vector, ...locationData } = props.location as any
+  formData.value = { ...locationData }
+
+  // Initialize categories from the joined data
+  if (location_categories && Array.isArray(location_categories)) {
+    selectedCategories.value = location_categories.map(
+      (lc: any) => lc.category_id
+    )
+  }
+
+  // Initialize payment methods
+  if (props.location.payment_methods) {
+    const pm = props.location.payment_methods as any
+    paymentMethods.value = {
+      cash: pm.cash || false,
+      credit_card: pm.credit_card || false,
+      debit_card: pm.debit_card || false,
+      contactless: pm.contactless || false,
+      mobile: pm.mobile || false
+    }
+  }
+
+  // Store original state
+  originalData.value = JSON.stringify({
+    ...formData.value,
+    payment_methods: paymentMethods.value,
+    categories: selectedCategories.value
+  })
+}
+
+function handleNameChange() {
+  // Auto-generate slug from name if slug is empty or if it was auto-generated
+  if (!formData.value.slug || formData.value.slug === slugify(props.location.name || '')) {
+    formData.value.slug = slugify(formData.value.name || '')
+  }
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[äöüß]/g, (match) => {      // Handle German umlauts first
+      const umlautMap: Record<string, string> = { 'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss' }
+      return umlautMap[match] || match
+    })
+    .normalize('NFD')                      // Decompose accented characters (é → e + ́)
+    .replace(/[\u0300-\u036f]/g, '')       // Remove diacritical marks
+    .replace(/[^a-z0-9]+/g, '-')           // Replace non-alphanumeric with hyphens
+    .replace(/^-+|-+$/g, '')               // Remove leading/trailing hyphens
+    .replace(/-+/g, '-')                   // Collapse multiple hyphens
+}
+
+function toggleCategory(categoryId: string) {
+  const index = selectedCategories.value.indexOf(categoryId)
+  if (index > -1) {
+    selectedCategories.value.splice(index, 1)
+  } else {
+    selectedCategories.value.push(categoryId)
+  }
+}
+
+function handleSubmit() {
+  emit('save', {
+    location: {
+      ...formData.value,
+      payment_methods: paymentMethods.value
+    },
+    categoryIds: selectedCategories.value
+  })
+}
+
+function initMap() {
+  const lat = parseFloat(props.location.latitude) || 50.1109
+  const lng = parseFloat(props.location.longitude) || 8.6821
+
+  map = L.map('map').setView([lat, lng], 18)
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map)
+
+  marker = L.marker([lat, lng], {
+    draggable: true
+  }).addTo(map)
+
+  // Update coordinates when marker is dragged
+  marker.on('dragend', () => {
+    if (marker) {
+      const pos = marker.getLatLng()
+      formData.value.latitude = pos.lat.toString()
+      formData.value.longitude = pos.lng.toString()
+    }
+  })
+
+  // Update marker position when clicking on map
+  map.on('click', (e: L.LeafletMouseEvent) => {
+    const { lat, lng } = e.latlng
+    formData.value.latitude = lat.toString()
+    formData.value.longitude = lng.toString()
+
+    if (marker) {
+      marker.setLatLng([lat, lng])
+    }
+  })
+}
+
+// Watch coordinates and update marker
+watch(() => [formData.value.latitude, formData.value.longitude], ([lat, lng]) => {
+  if (lat && lng && marker) {
+    const latNum = parseFloat(lat as string)
+    const lngNum = parseFloat(lng as string)
+    if (!isNaN(latNum) && !isNaN(lngNum)) {
+      marker.setLatLng([latNum, lngNum])
+      map?.setView([latNum, lngNum])
+    }
+  }
+})
+
+// Emit preview updates
+watch(
+  () => ({ ...formData.value, payment_methods: paymentMethods.value }),
+  (data) => {
+    emit('update:preview', data)
+  },
+  { deep: true }
+)
+
+onMounted(() => {
+  initializeForm()
+  setTimeout(() => {
+    initMap()
+  }, 100)
+})
+
+onUnmounted(() => {
+  if (map) {
+    map.remove()
+    map = null
+  }
+})
+
+// Warn about unsaved changes
+onUnmounted(() => {
+  if (isDirty.value) {
+    // This will be caught by the view's beforeRouteLeave
+  }
+})
+</script>

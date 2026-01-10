@@ -38,7 +38,12 @@
     "openingHours": "Opening Hours",
     "categories": "Categories",
     "directions": "Get Directions",
-    "distance": "Distance"
+    "distance": "Distance",
+    "paymentMethods": "Payment Methods",
+    "contact": "Contact",
+    "getDirections": "Get Directions",
+    "share": "Share",
+    "linkCopied": "Link copied to clipboard"
   },
   "language": {
     "de": "Deutsch",
@@ -141,29 +146,155 @@
       "title": "Admin Login",
       "email": "Email",
       "password": "Password",
-      "submit": "Sign in"
+      "submit": "Sign in",
+      "magicLinkDescription": "Enter your email to receive a login link",
+      "sendLink": "Send Login Link",
+      "checkEmail": "Check your email ({email}) for the login link",
+      "checkEmailGeneric": "If this email is registered as an admin, you will receive a login link shortly.",
+      "rateLimited": "Too many attempts. Please try again in 15 minutes.",
+      "genericError": "Something went wrong. Please try again later."
     },
     "dashboard": {
       "title": "Admin Dashboard",
+      "subtitle": "Overview of location submissions and quick actions",
       "pendingLocations": "Pending Locations",
       "approvedLocations": "Approved Locations",
       "rejectedLocations": "Rejected Locations",
-      "viewAll": "View all"
+      "viewAll": "View all",
+      "recentSubmissions": "Recent Submissions",
+      "viewAllPending": "View all pending locations",
+      "noPending": "No pending submissions",
+      "noPendingDescription": "All submissions have been reviewed. Great job!",
+      "approveSuccess": "Location approved successfully",
+      "approveFailed": "Failed to approve location",
+      "manageLocations": "View and manage all locations",
+      "manageCategories": "Manage location categories"
     },
     "pending": {
       "title": "Pending Locations",
       "noLocations": "No pending locations"
     },
     "edit": {
-      "title": "Edit Location"
+      "title": "Edit Location",
+      "form": "Edit Form",
+      "preview": "Preview",
+      "saveChanges": "Save Changes",
+      "unsavedChanges": "You have unsaved changes"
+    },
+    "locations": {
+      "title": "All Locations",
+      "tabs": {
+        "all": "All",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "table": {
+        "name": "Name",
+        "category": "Category",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions"
+      },
+      "search": "Search locations...",
+      "noResults": "No locations found",
+      "viewOnMap": "View on Map"
+    },
+    "form": {
+      "basicInfo": "Basic Information",
+      "contactInfo": "Contact Information",
+      "addressGeo": "Address & Coordinates",
+      "categories": "Categories",
+      "paymentMethods": "Payment Methods",
+      "openingHours": "Opening Hours",
+      "adminFields": "Admin Fields",
+      "name": "Name",
+      "slug": "Slug",
+      "slugHelp": "URL-friendly identifier (auto-generated from name)",
+      "descriptionDe": "Description (German)",
+      "descriptionEn": "Description (English)",
+      "website": "Website",
+      "phone": "Phone",
+      "email": "Email",
+      "instagram": "Instagram",
+      "address": "Street Address",
+      "city": "City",
+      "postalCode": "ZIP Code",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "clickMapToSet": "Click on the map to set coordinates",
+      "selectCategories": "Select one or more categories",
+      "cash": "Cash",
+      "creditCard": "Credit Card",
+      "debitCard": "Debit Card",
+      "contactless": "Contactless",
+      "mobilePayment": "Mobile Payment (Apple/Google Pay)",
+      "osmFormat": "OSM Format (e.g., Mo-Fr 10:00-18:00)",
+      "status": "Status",
+      "statusPending": "Pending",
+      "statusApproved": "Approved",
+      "statusRejected": "Rejected",
+      "adminNotes": "Admin Notes",
+      "adminNotesHelp": "Internal notes (not visible to public)"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "locations": "Locations",
+      "categories": "Categories"
     },
     "approve": "Approve",
     "reject": "Reject",
-    "edit": "Edit",
+    "editButton": "Edit",
     "logout": "Logout",
     "rejectModal": {
       "title": "Reject Location",
       "placeholder": "Reason for rejection..."
+    },
+    "categories": {
+      "title": "Categories",
+      "addCategory": "Add Category",
+      "editCategory": "Edit Category",
+      "deleteCategory": "Delete Category",
+      "delete": "Delete",
+      "table": {
+        "icon": "Icon",
+        "name": "Name",
+        "slug": "Slug",
+        "locations": "Locations",
+        "sortOrder": "Sort Order"
+      },
+      "form": {
+        "nameDe": "Name (German)",
+        "nameEn": "Name (English)",
+        "descriptionDe": "Description (German)",
+        "descriptionEn": "Description (English)",
+        "color": "Color",
+        "sortOrder": "Sort Order",
+        "sortOrderHelp": "Lower numbers appear first",
+        "icon": "Icon",
+        "currentIcon": "Current icon",
+        "iconHelp": "PNG file only, recommended size: 56x56px"
+      },
+      "deleteConfirmation": "Are you sure you want to delete the category \"{name}\"?",
+      "affectedLocations": "{count} location(s) will be reassigned to another category",
+      "reassignTo": "Reassign locations to",
+      "selectCategory": "Select a category...",
+      "reassignHelp": "All locations in this category will be moved to the selected category",
+      "confirmReassign": "I understand this will reassign {count} location(s)",
+      "noLocations": "This category has no locations and can be safely deleted",
+      "errors": {
+        "nameDeRequired": "German name is required",
+        "nameEnRequired": "English name is required",
+        "slugRequired": "Slug is required",
+        "slugInvalid": "Slug can only contain lowercase letters, numbers, and hyphens",
+        "invalidFileType": "Only PNG files are allowed",
+        "fileTooLarge": "File must be smaller than 1MB",
+        "saveFailed": "Failed to save category",
+        "deleteFailed": "Failed to delete category",
+        "cannotDeleteOther": "Cannot delete \"Other\" category",
+        "cannotDeleteOtherDescription": "The \"Other\" category is used as a default and cannot be deleted",
+        "selectReassignCategory": "Please select a category to reassign locations to"
+      }
     }
   },
   "notFound": {

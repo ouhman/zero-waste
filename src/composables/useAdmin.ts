@@ -40,8 +40,8 @@ export function useAdmin() {
     try {
       const { data: userData } = await supabase.auth.getUser()
 
-      const { error: updateError } = await supabase
-        .from('locations')
+      const { error: updateError } = await (supabase
+        .from('locations') as any)
         .update({
           status: 'approved',
           approved_by: userData?.user?.id || null,
@@ -70,8 +70,8 @@ export function useAdmin() {
     error.value = null
 
     try {
-      const { error: updateError } = await supabase
-        .from('locations')
+      const { error: updateError } = await (supabase
+        .from('locations') as any)
         .update({
           status: 'rejected',
           rejection_reason: reason,
@@ -100,8 +100,8 @@ export function useAdmin() {
     error.value = null
 
     try {
-      const { error: updateError } = await supabase
-        .from('locations')
+      const { error: updateError } = await (supabase
+        .from('locations') as any)
         .update({
           ...updates,
           updated_at: new Date().toISOString()

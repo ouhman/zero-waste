@@ -1,10 +1,25 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { SESClient, SendEmailCommand } from 'npm:@aws-sdk/client-ses'
+import { getAdminNotificationTemplate } from '../_shared/email-templates.ts'
+import { generateSlug } from '../_shared/slug.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
+
+// Initialize SES client
+const sesClient = new SESClient({
+  region: Deno.env.get('AWS_REGION') || 'eu-central-1',
+  credentials: {
+    accessKeyId: Deno.env.get('AWS_ACCESS_KEY_ID') || '',
+    secretAccessKey: Deno.env.get('AWS_SECRET_ACCESS_KEY') || '',
+  },
+})
+
+const FROM_EMAIL = 'noreply@zerowastefrankfurt.de'
+const FRONTEND_URL = Deno.env.get('FRONTEND_URL') || 'https://map.zerowastefrankfurt.de'
 
 interface SubmissionData {
   name: string
@@ -29,19 +44,55 @@ interface SubmissionData {
 }
 
 /**
- * Generate a URL-safe slug from text
+ * Notify admin of new verified submission via AWS SES
+ * This should not block the main submission flow - errors are logged but not thrown
  */
-function generateSlug(name: string, city: string): string {
-  const base = `${name}-${city}`
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
+async function notifyAdminNewSubmission(
+  locationName: string,
+  submitterEmail: string,
+  submittedAt: string
+): Promise<void> {
+  const adminEmail = Deno.env.get('ADMIN_EMAIL')
 
-  // Add random suffix to avoid collisions
-  const suffix = Math.random().toString(36).substring(2, 8)
-  return `${base}-${suffix}`
+  // If no admin email is configured, skip notification (development mode)
+  if (!adminEmail) {
+    console.warn('ADMIN_EMAIL not configured - skipping admin notification')
+    return
+  }
+
+  const adminPanelUrl = `${FRONTEND_URL}/bulk-station/pending`
+  const template = getAdminNotificationTemplate(
+    locationName,
+    submitterEmail,
+    submittedAt,
+    adminPanelUrl
+  )
+
+  const command = new SendEmailCommand({
+    Source: FROM_EMAIL,
+    Destination: {
+      ToAddresses: [adminEmail],
+    },
+    Message: {
+      Subject: {
+        Data: template.subject,
+        Charset: 'UTF-8',
+      },
+      Body: {
+        Html: {
+          Data: template.html,
+          Charset: 'UTF-8',
+        },
+        Text: {
+          Data: template.text,
+          Charset: 'UTF-8',
+        },
+      },
+    },
+    ConfigurationSetName: Deno.env.get('SES_CONFIGURATION_SET') || 'zerowaste-config-set',
+  })
+
+  await sesClient.send(command)
 }
 
 serve(async (req) => {
@@ -161,14 +212,27 @@ serve(async (req) => {
     }
 
     // Mark verification as complete
+    const verifiedAt = new Date().toISOString()
     const { error: updateError } = await supabaseClient
       .from('email_verifications')
-      .update({ verified_at: new Date().toISOString() })
+      .update({ verified_at: verifiedAt })
       .eq('id', verification.id)
 
     if (updateError) {
       console.error('Error updating verification:', updateError)
       // Location was already created, so don't fail
+    }
+
+    // Notify admin of new submission (non-blocking)
+    try {
+      await notifyAdminNewSubmission(
+        submissionData.name,
+        submissionData.email,
+        verifiedAt
+      )
+    } catch (emailError) {
+      // Log error but don't fail the request
+      console.error('Error sending admin notification:', emailError)
     }
 
     return new Response(

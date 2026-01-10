@@ -38,7 +38,12 @@
     "openingHours": "Öffnungszeiten",
     "categories": "Kategorien",
     "directions": "Route planen",
-    "distance": "Entfernung"
+    "distance": "Entfernung",
+    "paymentMethods": "Zahlungsmethoden",
+    "contact": "Kontakt",
+    "getDirections": "Route planen",
+    "share": "Teilen",
+    "linkCopied": "Link in Zwischenablage kopiert"
   },
   "language": {
     "de": "Deutsch",
@@ -141,29 +146,155 @@
       "title": "Admin Login",
       "email": "E-Mail",
       "password": "Passwort",
-      "submit": "Anmelden"
+      "submit": "Anmelden",
+      "magicLinkDescription": "Geben Sie Ihre E-Mail ein, um einen Login-Link zu erhalten",
+      "sendLink": "Login-Link senden",
+      "checkEmail": "Prüfen Sie Ihre E-Mails ({email}) für den Login-Link",
+      "checkEmailGeneric": "Wenn diese E-Mail als Admin registriert ist, erhalten Sie in Kürze einen Login-Link.",
+      "rateLimited": "Zu viele Versuche. Bitte versuchen Sie es in 15 Minuten erneut.",
+      "genericError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut."
     },
     "dashboard": {
       "title": "Admin Dashboard",
+      "subtitle": "Übersicht der Standorteinreichungen und Schnellaktionen",
       "pendingLocations": "Ausstehende Orte",
       "approvedLocations": "Genehmigte Orte",
       "rejectedLocations": "Abgelehnte Orte",
-      "viewAll": "Alle anzeigen"
+      "viewAll": "Alle anzeigen",
+      "recentSubmissions": "Neueste Einreichungen",
+      "viewAllPending": "Alle ausstehenden Orte anzeigen",
+      "noPending": "Keine ausstehenden Einreichungen",
+      "noPendingDescription": "Alle Einreichungen wurden überprüft. Gute Arbeit!",
+      "approveSuccess": "Ort erfolgreich genehmigt",
+      "approveFailed": "Genehmigung fehlgeschlagen",
+      "manageLocations": "Alle Orte anzeigen und verwalten",
+      "manageCategories": "Kategorien verwalten"
     },
     "pending": {
       "title": "Ausstehende Orte",
       "noLocations": "Keine ausstehenden Orte"
     },
     "edit": {
-      "title": "Ort bearbeiten"
+      "title": "Ort bearbeiten",
+      "form": "Bearbeitungsformular",
+      "preview": "Vorschau",
+      "saveChanges": "Änderungen speichern",
+      "unsavedChanges": "Sie haben ungespeicherte Änderungen"
+    },
+    "locations": {
+      "title": "Alle Orte",
+      "tabs": {
+        "all": "Alle",
+        "pending": "Ausstehend",
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt"
+      },
+      "table": {
+        "name": "Name",
+        "category": "Kategorie",
+        "status": "Status",
+        "created": "Erstellt",
+        "actions": "Aktionen"
+      },
+      "search": "Orte suchen...",
+      "noResults": "Keine Orte gefunden",
+      "viewOnMap": "Auf Karte anzeigen"
+    },
+    "form": {
+      "basicInfo": "Grundinformationen",
+      "contactInfo": "Kontaktinformationen",
+      "addressGeo": "Adresse & Koordinaten",
+      "categories": "Kategorien",
+      "paymentMethods": "Zahlungsmethoden",
+      "openingHours": "Öffnungszeiten",
+      "adminFields": "Admin-Felder",
+      "name": "Name",
+      "slug": "Slug",
+      "slugHelp": "URL-freundliche Kennung (automatisch aus Name generiert)",
+      "descriptionDe": "Beschreibung (Deutsch)",
+      "descriptionEn": "Beschreibung (Englisch)",
+      "website": "Webseite",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "instagram": "Instagram",
+      "address": "Straße",
+      "city": "Stadt",
+      "postalCode": "PLZ",
+      "latitude": "Breitengrad",
+      "longitude": "Längengrad",
+      "clickMapToSet": "Klicken Sie auf die Karte, um Koordinaten zu setzen",
+      "selectCategories": "Wählen Sie eine oder mehrere Kategorien",
+      "cash": "Bargeld",
+      "creditCard": "Kreditkarte",
+      "debitCard": "EC-Karte",
+      "contactless": "Kontaktlos",
+      "mobilePayment": "Mobile Zahlung (Apple/Google Pay)",
+      "osmFormat": "OSM-Format (z.B. Mo-Fr 10:00-18:00)",
+      "status": "Status",
+      "statusPending": "Ausstehend",
+      "statusApproved": "Genehmigt",
+      "statusRejected": "Abgelehnt",
+      "adminNotes": "Admin-Notizen",
+      "adminNotesHelp": "Interne Notizen (nicht öffentlich sichtbar)"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "locations": "Orte",
+      "categories": "Kategorien"
     },
     "approve": "Genehmigen",
     "reject": "Ablehnen",
-    "edit": "Bearbeiten",
+    "editButton": "Bearbeiten",
     "logout": "Abmelden",
     "rejectModal": {
       "title": "Ort ablehnen",
       "placeholder": "Grund für Ablehnung..."
+    },
+    "categories": {
+      "title": "Kategorien",
+      "addCategory": "Kategorie hinzufügen",
+      "editCategory": "Kategorie bearbeiten",
+      "deleteCategory": "Kategorie löschen",
+      "delete": "Löschen",
+      "table": {
+        "icon": "Icon",
+        "name": "Name",
+        "slug": "Slug",
+        "locations": "Orte",
+        "sortOrder": "Sortierung"
+      },
+      "form": {
+        "nameDe": "Name (Deutsch)",
+        "nameEn": "Name (Englisch)",
+        "descriptionDe": "Beschreibung (Deutsch)",
+        "descriptionEn": "Beschreibung (Englisch)",
+        "color": "Farbe",
+        "sortOrder": "Sortierreihenfolge",
+        "sortOrderHelp": "Kleinere Zahlen erscheinen zuerst",
+        "icon": "Icon",
+        "currentIcon": "Aktuelles Icon",
+        "iconHelp": "Nur PNG-Dateien, empfohlene Größe: 56x56px"
+      },
+      "deleteConfirmation": "Sind Sie sicher, dass Sie die Kategorie \"{name}\" löschen möchten?",
+      "affectedLocations": "{count} Ort(e) werden einer anderen Kategorie zugewiesen",
+      "reassignTo": "Orte zuweisen zu",
+      "selectCategory": "Kategorie auswählen...",
+      "reassignHelp": "Alle Orte in dieser Kategorie werden zur ausgewählten Kategorie verschoben",
+      "confirmReassign": "Ich verstehe, dass dadurch {count} Ort(e) neu zugewiesen werden",
+      "noLocations": "Diese Kategorie hat keine Orte und kann sicher gelöscht werden",
+      "errors": {
+        "nameDeRequired": "Deutscher Name ist erforderlich",
+        "nameEnRequired": "Englischer Name ist erforderlich",
+        "slugRequired": "Slug ist erforderlich",
+        "slugInvalid": "Slug darf nur Kleinbuchstaben, Zahlen und Bindestriche enthalten",
+        "invalidFileType": "Nur PNG-Dateien sind erlaubt",
+        "fileTooLarge": "Datei muss kleiner als 1MB sein",
+        "saveFailed": "Kategorie konnte nicht gespeichert werden",
+        "deleteFailed": "Kategorie konnte nicht gelöscht werden",
+        "cannotDeleteOther": "Kategorie \"Sonstiges\" kann nicht gelöscht werden",
+        "cannotDeleteOtherDescription": "Die Kategorie \"Sonstiges\" wird als Standard verwendet und kann nicht gelöscht werden",
+        "selectReassignCategory": "Bitte wählen Sie eine Kategorie für die Neuzuweisung aus"
+      }
     }
   },
   "notFound": {

@@ -14,6 +14,8 @@ const LoginView = () => import('@/views/admin/LoginView.vue')
 const DashboardView = () => import('@/views/admin/DashboardView.vue')
 const PendingView = () => import('@/views/admin/PendingView.vue')
 const EditView = () => import('@/views/admin/EditView.vue')
+const LocationsListView = () => import('@/views/admin/LocationsListView.vue')
+const CategoriesListView = () => import('@/views/admin/CategoriesListView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,7 +46,7 @@ const router = createRouter({
       component: FavoritesView
     },
     {
-      path: '/admin',
+      path: '/bulk-station',
       children: [
         {
           path: 'login',
@@ -64,9 +66,21 @@ const router = createRouter({
           meta: { requiresAdmin: true }
         },
         {
+          path: 'locations',
+          name: 'admin-locations',
+          component: LocationsListView,
+          meta: { requiresAdmin: true }
+        },
+        {
           path: 'edit/:id',
           name: 'admin-edit',
           component: EditView,
+          meta: { requiresAdmin: true }
+        },
+        {
+          path: 'categories',
+          name: 'admin-categories',
+          component: CategoriesListView,
           meta: { requiresAdmin: true }
         }
       ]

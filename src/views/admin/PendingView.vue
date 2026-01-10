@@ -4,7 +4,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <router-link to="/admin" class="text-gray-600 hover:text-gray-900">
+            <router-link to="/bulk-station" class="text-gray-600 hover:text-gray-900">
               <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
@@ -64,10 +64,10 @@
                 {{ t('admin.reject') }}
               </button>
               <router-link
-                :to="`/admin/edit/${location.id}`"
+                :to="`/bulk-station/edit/${location.id}`"
                 class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-center"
               >
-                {{ t('admin.edit') }}
+                {{ t('admin.editButton') }}
               </router-link>
             </div>
           </div>

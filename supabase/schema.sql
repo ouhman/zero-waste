@@ -176,16 +176,31 @@ CREATE TRIGGER locations_generate_slug
 -- 5. FUNCTIONS
 -- ================================================================
 
--- Full-text search function
+-- Full-text search function with prefix matching support
 CREATE OR REPLACE FUNCTION search_locations(search_term text)
 RETURNS SETOF locations AS $$
   SELECT *
   FROM locations
-  WHERE search_vector @@ plainto_tsquery('german', search_term)
+  WHERE (
+    -- Full-text search for complete words/stems
+    search_vector @@ plainto_tsquery('german', search_term)
+    OR
+    -- Prefix/substring matching on name (case-insensitive)
+    name ILIKE '%' || search_term || '%'
+    OR
+    -- Prefix/substring matching on address
+    address ILIKE '%' || search_term || '%'
+  )
     AND status = 'approved'
     AND deleted_at IS NULL
-  ORDER BY ts_rank(search_vector, plainto_tsquery('german', search_term)) DESC
+  ORDER BY
+    -- Prioritize exact name matches, then full-text rank
+    CASE WHEN name ILIKE search_term || '%' THEN 0 ELSE 1 END,
+    ts_rank(search_vector, plainto_tsquery('german', search_term)) DESC
 $$ LANGUAGE sql STABLE;
+
+COMMENT ON FUNCTION search_locations(text) IS
+  'Search locations by name/address using full-text search and prefix matching. Only returns approved locations.';
 
 -- Find locations within radius
 CREATE OR REPLACE FUNCTION locations_nearby(

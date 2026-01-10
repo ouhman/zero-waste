@@ -1,64 +1,86 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <nav class="bg-white shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <router-link to="/admin/pending" class="text-gray-600 hover:text-gray-900">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-              </svg>
-            </router-link>
-            <h1 class="ml-4 text-xl font-bold">{{ t('admin.edit.title') }}</h1>
-          </div>
-        </div>
-      </div>
-    </nav>
+  <AdminLayout>
+    <div class="mb-6">
+      <router-link
+        to="/bulk-station/locations"
+        class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
+      >
+        <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        {{ t('common.back') }}
+      </router-link>
+      <h1 class="mt-2 text-2xl font-bold text-gray-900">{{ t('admin.edit.title') }}</h1>
+    </div>
 
-    <div class="max-w-3xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div v-if="loading && !location" class="text-center py-12">
+      <p>{{ t('common.loading') }}...</p>
+    </div>
+
+    <div v-else-if="error" class="bg-red-50 border border-red-200 text-red-800 p-4 rounded-md" role="alert">
+      <p>{{ error }}</p>
+    </div>
+
+    <div v-else-if="location" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Edit Form -->
       <div class="bg-white shadow rounded-lg p-6">
-        <div v-if="loading && !location" class="text-center py-12">
-          <p>{{ t('common.loading') }}...</p>
-        </div>
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">{{ t('admin.edit.form') }}</h2>
+        <LocationEditForm
+          :location="location"
+          :categories="categories"
+          :loading="saving"
+          @save="handleSave"
+          @cancel="handleCancel"
+          @update:preview="handlePreviewUpdate"
+        />
+      </div>
 
-        <div v-else-if="error" class="bg-red-50 p-4 rounded-md" role="alert">
-          <p class="text-red-800">{{ error }}</p>
-        </div>
-
-        <div v-else-if="location">
-          <LocationForm
-            mode="edit"
-            :existing-location="location"
-            :loading="saving"
-            @submit="handleSave"
-          />
-        </div>
+      <!-- Preview -->
+      <div class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">{{ t('admin.edit.preview') }}</h2>
+        <LocationPreview :location="previewData" :categories="selectedCategoriesForPreview" />
       </div>
     </div>
-  </div>
+  </AdminLayout>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { supabase } from '@/lib/supabase'
-import { useAdmin } from '@/composables/useAdmin'
-import LocationForm from '@/components/LocationForm.vue'
+import { useAdminStore } from '@/stores/admin'
+import { useCategoriesStore } from '@/stores/categories'
+import AdminLayout from '@/components/admin/AdminLayout.vue'
+import LocationEditForm from '@/components/admin/LocationEditForm.vue'
+import LocationPreview from '@/components/admin/LocationPreview.vue'
+import type { Database } from '@/types/database'
+
+type Location = Database['public']['Tables']['locations']['Row']
 
 const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
-const { updateLocation } = useAdmin()
+const adminStore = useAdminStore()
+const categoriesStore = useCategoriesStore()
 
 const location = ref<any>(null)
 const loading = ref(false)
 const saving = ref(false)
 const error = ref<string | null>(null)
+const previewData = ref<Partial<Location>>({})
 
 const locationId = route.params.id as string
 
+const categories = computed(() => categoriesStore.categories)
+
+const selectedCategoriesForPreview = computed(() => {
+  // This would be passed from the form component when categories are selected
+  return []
+})
+
 onMounted(async () => {
+  await categoriesStore.fetchCategories()
   await fetchLocation()
 })
 
@@ -69,7 +91,10 @@ async function fetchLocation() {
   try {
     const { data, error: fetchError } = await supabase
       .from('locations')
-      .select('*')
+      .select(`
+        *,
+        location_categories(category_id)
+      `)
       .eq('id', locationId)
       .single()
 
@@ -79,6 +104,7 @@ async function fetchLocation() {
     }
 
     location.value = data
+    previewData.value = data
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Failed to fetch location'
   } finally {
@@ -86,17 +112,25 @@ async function fetchLocation() {
   }
 }
 
-async function handleSave(formData: any) {
+async function handleSave(payload: { location: Partial<Location>; categoryIds: string[] }) {
   saving.value = true
+  error.value = null
 
   try {
-    await updateLocation(locationId, formData)
-    // Navigate back to pending list
-    await router.push('/admin/pending')
+    await adminStore.updateLocation(locationId, payload.location, payload.categoryIds)
+    await router.push('/bulk-station/locations')
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Failed to save location'
   } finally {
     saving.value = false
   }
+}
+
+function handleCancel() {
+  router.push('/bulk-station/locations')
+}
+
+function handlePreviewUpdate(data: Partial<Location>) {
+  previewData.value = data
 }
 </script>
