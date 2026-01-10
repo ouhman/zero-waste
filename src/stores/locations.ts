@@ -1,11 +1,53 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { supabase } from '@/lib/supabase'
-import type { Database } from '@/types/database'
 
-type Location = Database['public']['Tables']['locations']['Row'] & {
+// Simplified Location type to avoid deep type instantiation issues
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface Location {
+  id: string
+  name: string
+  slug: string | null
+  description_de: string | null
+  description_en: string | null
+  address: string
+  city: string
+  postal_code: string | null
+  latitude: string
+  longitude: string
+  website: string | null
+  phone: string | null
+  email: string | null
+  instagram: string | null
+  opening_hours_text: string | null
+  payment_methods: any
+  opening_hours_osm: string | null
+  opening_hours_structured: any
+  submission_type: string | null
+  submitted_by_email: string | null
+  related_location_id: string | null
+  status: string | null
+  approved_by: string | null
+  rejection_reason: string | null
+  admin_notes: string | null
+  deleted_at: string | null
+  created_at: string
+  updated_at: string
   location_categories?: {
-    categories: Database['public']['Tables']['categories']['Row']
+    categories: {
+      id: string
+      name_de: string
+      name_en: string
+      slug: string
+      icon: string | null
+      color: string | null
+      sort_order: number | null
+      icon_url: string | null
+      description_de: string | null
+      description_en: string | null
+      created_at: string
+      updated_at: string | null
+    }
   }[]
 }
 

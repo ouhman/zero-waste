@@ -25,7 +25,7 @@ export function useSearch() {
     error.value = null
 
     try {
-      const { data, error: searchError } = await supabase.rpc('search_locations', {
+      const { data, error: searchError } = await (supabase as any).rpc('search_locations', {
         search_term: searchTerm.trim()
       })
 

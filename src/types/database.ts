@@ -19,6 +19,10 @@ export interface Database {
           color: string | null
           sort_order: number | null
           created_at: string
+          icon_url: string | null
+          description_de: string | null
+          description_en: string | null
+          updated_at: string | null
         }
         Insert: {
           id?: string
@@ -29,6 +33,10 @@ export interface Database {
           color?: string | null
           sort_order?: number | null
           created_at?: string
+          icon_url?: string | null
+          description_de?: string | null
+          description_en?: string | null
+          updated_at?: string | null
         }
         Update: {
           id?: string
@@ -39,6 +47,10 @@ export interface Database {
           color?: string | null
           sort_order?: number | null
           created_at?: string
+          icon_url?: string | null
+          description_de?: string | null
+          description_en?: string | null
+          updated_at?: string | null
         }
       }
       locations: {
@@ -200,9 +212,47 @@ export interface Database {
           distance_meters: number
         }[]
       }
+      check_rate_limit: {
+        Args: {
+          check_email: string
+        }
+        Returns: boolean
+      }
+      is_admin_email: {
+        Args: {
+          check_email: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
     }
   }
+}
+
+// Re-export types from osm.ts for convenience
+export type { PaymentMethods, StructuredOpeningHours } from './osm'
+
+// Type for submission data
+export interface SubmissionData {
+  name: string
+  address: string
+  city: string
+  postal_code: string
+  latitude: string
+  longitude: string
+  email: string
+  submission_type: 'new' | 'update'
+  description_de?: string
+  description_en?: string
+  website?: string
+  phone?: string
+  instagram?: string
+  opening_hours_text?: string
+  payment_methods?: Record<string, boolean>
+  opening_hours_osm?: string
+  opening_hours_structured?: Record<string, unknown>
+  categories?: string[]
+  related_location_id?: string
 }

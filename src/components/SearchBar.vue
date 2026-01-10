@@ -10,6 +10,7 @@
         :placeholder="t('map.searchPlaceholder')"
         class="search-input"
         @input="handleSearch"
+        @keydown.enter="handleEnter"
       />
       <div v-if="loading" class="spinner" />
     </div>
@@ -36,13 +37,9 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useSearch } from '@/composables/useSearch'
-import type { Database } from '@/types/database'
 
-type Location = Database['public']['Tables']['locations']['Row']
-
-const emit = defineEmits<{
-  select: [location: Location]
-}>()
+// Use runtime emit definition to avoid deep type instantiation
+const emit = defineEmits(['select'])
 
 const { t } = useI18n()
 const { results, loading, debouncedSearch } = useSearch()
@@ -53,7 +50,15 @@ function handleSearch() {
   debouncedSearch(searchQuery.value)
 }
 
-function selectLocation(location: Location) {
+function handleEnter() {
+  // If there's exactly one result, select it
+  // If there are multiple results, select the first one
+  if (results.value.length > 0) {
+    selectLocation(results.value[0])
+  }
+}
+
+function selectLocation(location: (typeof results.value)[number]) {
   emit('select', location)
   searchQuery.value = ''
   results.value = []
