@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { parseOsmOpeningHours } from '@/lib/openingHoursParser'
+import { useDebounce } from './useDebounce'
 import type { PaymentMethods, StructuredOpeningHours } from '@/types/osm'
 
 export interface GeocodingResult {
@@ -257,8 +258,6 @@ export function useNominatim() {
   const loading = ref(false)
   const error = ref<string | null>(null)
 
-  let debounceTimer: ReturnType<typeof setTimeout> | null = null
-
   async function geocode(address: string): Promise<void> {
     if (!address || address.trim() === '') {
       return
@@ -308,15 +307,8 @@ export function useNominatim() {
     }
   }
 
-  function debouncedGeocode(address: string): void {
-    if (debounceTimer) {
-      clearTimeout(debounceTimer)
-    }
-
-    debounceTimer = setTimeout(() => {
-      geocode(address)
-    }, 1000) // 1 second debounce (Nominatim rate limit)
-  }
+  // Use debounce composable with 1 second delay (Nominatim rate limit)
+  const { debounced: debouncedGeocode } = useDebounce(geocode, 1000)
 
   /**
    * Simplify a business name by removing suffixes after common separators

@@ -163,11 +163,26 @@ describe('useNominatim', () => {
         address: 'Berger Straße 168',
         city: 'Frankfurt am Main',
         postalCode: '60385',
+        suburb: undefined,
         phone: '+49 69 12345678',
         website: 'https://www.aufuellerei.de',
         email: 'info@aufuellerei.de',
+        instagram: undefined,
         openingHours: 'Mo-Fr 10:00-18:00; Sa 10:00-14:00',
-        openingHoursFormatted: 'Mo-Fr: 10:00-18:00, Sa: 10:00-14:00'
+        openingHoursFormatted: 'Mo-Fr: 10:00-18:00, Sa: 10:00-14:00',
+        openingHoursOsm: 'Mo-Fr 10:00-18:00; Sa 10:00-14:00',
+        openingHoursStructured: {
+          entries: [
+            { day: 'monday', opens: '10:00', closes: '18:00' },
+            { day: 'tuesday', opens: '10:00', closes: '18:00' },
+            { day: 'wednesday', opens: '10:00', closes: '18:00' },
+            { day: 'thursday', opens: '10:00', closes: '18:00' },
+            { day: 'friday', opens: '10:00', closes: '18:00' },
+            { day: 'saturday', opens: '10:00', closes: '14:00' }
+          ],
+          special: null
+        },
+        paymentMethods: undefined
       })
 
       // Verify API call includes extratags
