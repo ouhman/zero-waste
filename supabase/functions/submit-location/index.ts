@@ -2,9 +2,21 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { SESClient, SendEmailCommand } from 'npm:@aws-sdk/client-ses'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  'https://map.zerowastefrankfurt.de',
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:4173', // Vite preview
+]
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Credentials': 'true',
+  }
 }
 
 interface SubmissionData {
@@ -123,7 +135,32 @@ https://zerowastefrankfurt.de
   await sesClient.send(command)
 }
 
+/**
+ * Validate coordinates are within valid ranges
+ */
+function validateCoordinates(lat: string, lon: string): { valid: boolean; error?: string } {
+  const latitude = parseFloat(lat)
+  const longitude = parseFloat(lon)
+
+  if (isNaN(latitude) || isNaN(longitude)) {
+    return { valid: false, error: 'Coordinates must be valid numbers' }
+  }
+
+  if (latitude < -90 || latitude > 90) {
+    return { valid: false, error: 'Latitude must be between -90 and 90' }
+  }
+
+  if (longitude < -180 || longitude > 180) {
+    return { valid: false, error: 'Longitude must be between -180 and 180' }
+  }
+
+  return { valid: true }
+}
+
 serve(async (req) => {
+  const origin = req.headers.get('origin')
+  const corsHeaders = getCorsHeaders(origin)
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -151,6 +188,15 @@ serve(async (req) => {
     if (!emailRegex.test(submissionData.email)) {
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // Validate coordinates
+    const coordValidation = validateCoordinates(submissionData.latitude, submissionData.longitude)
+    if (!coordValidation.valid) {
+      return new Response(
+        JSON.stringify({ error: coordValidation.error }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }

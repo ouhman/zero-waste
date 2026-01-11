@@ -3,9 +3,21 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { SESClient, SendEmailCommand } from 'npm:@aws-sdk/client-ses'
 import { getAdminNotificationTemplate } from '../_shared/email-templates.ts'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  'https://map.zerowastefrankfurt.de',
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:4173', // Vite preview
+]
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]
+
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+    'Access-Control-Allow-Credentials': 'true',
+  }
 }
 
 // Initialize SES client
@@ -95,7 +107,82 @@ async function notifyAdminNewSubmission(
   await sesClient.send(command)
 }
 
+/**
+ * Validate coordinates are within valid ranges
+ */
+function validateCoordinates(lat: string, lon: string): { valid: boolean; error?: string } {
+  const latitude = parseFloat(lat)
+  const longitude = parseFloat(lon)
+
+  if (isNaN(latitude) || isNaN(longitude)) {
+    return { valid: false, error: 'Coordinates must be valid numbers' }
+  }
+
+  if (latitude < -90 || latitude > 90) {
+    return { valid: false, error: 'Latitude must be between -90 and 90' }
+  }
+
+  if (longitude < -180 || longitude > 180) {
+    return { valid: false, error: 'Longitude must be between -180 and 180' }
+  }
+
+  return { valid: true }
+}
+
+/**
+ * Validate UUID v4 format
+ */
+function isValidUUID(uuid: string): boolean {
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+  return uuidRegex.test(uuid)
+}
+
+/**
+ * Validate category UUIDs and check if they exist in the database
+ */
+async function validateCategories(
+  categoryIds: string[],
+  supabaseClient: any
+): Promise<{ valid: boolean; error?: string; invalidIds?: string[] }> {
+  // First check UUID format
+  const invalidUUIDs = categoryIds.filter(id => !isValidUUID(id))
+  if (invalidUUIDs.length > 0) {
+    return {
+      valid: false,
+      error: 'Invalid category UUID format',
+      invalidIds: invalidUUIDs
+    }
+  }
+
+  // Then check if categories exist in database
+  const { data: existingCategories, error } = await supabaseClient
+    .from('categories')
+    .select('id')
+    .in('id', categoryIds)
+
+  if (error) {
+    console.error('Error checking categories:', error)
+    return { valid: false, error: 'Failed to validate categories' }
+  }
+
+  const existingIds = new Set(existingCategories?.map((c: any) => c.id) || [])
+  const nonExistentIds = categoryIds.filter(id => !existingIds.has(id))
+
+  if (nonExistentIds.length > 0) {
+    return {
+      valid: false,
+      error: 'Some categories do not exist',
+      invalidIds: nonExistentIds
+    }
+  }
+
+  return { valid: true }
+}
+
 serve(async (req) => {
+  const origin = req.headers.get('origin')
+  const corsHeaders = getCorsHeaders(origin)
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -153,6 +240,29 @@ serve(async (req) => {
         JSON.stringify({ error: 'No submission data found for this token' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
+    }
+
+    // Validate coordinates
+    const coordValidation = validateCoordinates(submissionData.latitude, submissionData.longitude)
+    if (!coordValidation.valid) {
+      return new Response(
+        JSON.stringify({ error: coordValidation.error }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // Validate categories if provided
+    if (submissionData.categories && submissionData.categories.length > 0) {
+      const categoryValidation = await validateCategories(submissionData.categories, supabaseClient)
+      if (!categoryValidation.valid) {
+        return new Response(
+          JSON.stringify({
+            error: categoryValidation.error,
+            invalidIds: categoryValidation.invalidIds
+          }),
+          { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        )
+      }
     }
 
     // Generate unique slug using PostgreSQL function
