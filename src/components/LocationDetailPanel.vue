@@ -90,50 +90,17 @@
             </div>
 
             <!-- Contact Section -->
-            <div v-if="hasContactInfo" class="space-y-3">
-              <h3 class="text-sm font-semibold text-gray-900">{{ t('location.contact') }}</h3>
-
-              <a
-                v-if="location.website"
-                :href="location.website"
-                target="_blank"
-                rel="noopener"
-                class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors group"
-              >
-                <span class="text-lg">🌐</span>
-                <span class="text-sm text-blue-600 group-hover:underline truncate">
-                  {{ formatUrl(location.website) }}
-                </span>
-              </a>
-
-              <a
-                v-if="location.phone"
-                :href="`tel:${location.phone}`"
-                class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <span class="text-lg">📞</span>
-                <span class="text-sm text-gray-700">{{ location.phone }}</span>
-              </a>
-
-              <a
-                v-if="location.email"
-                :href="`mailto:${location.email}`"
-                class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <span class="text-lg">✉️</span>
-                <span class="text-sm text-gray-700">{{ location.email }}</span>
-              </a>
-
-              <a
-                v-if="location.instagram"
-                :href="`https://instagram.com/${location.instagram.replace('@', '')}`"
-                target="_blank"
-                rel="noopener"
-                class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <span class="text-lg">📸</span>
-                <span class="text-sm text-gray-700">{{ location.instagram }}</span>
-              </a>
+            <div v-if="hasContactInfo">
+              <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ t('location.contact') }}</h3>
+              <ContactInfo
+                :website="location.website"
+                :phone="location.phone"
+                :email="location.email"
+                :instagram="location.instagram"
+                size="full"
+                icon-style="emoji"
+                text-class="text-sm"
+              />
             </div>
           </div>
         </div>
@@ -170,6 +137,7 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import PaymentMethods from '@/components/PaymentMethods.vue'
+import ContactInfo from '@/components/common/ContactInfo.vue'
 import { useToast } from '@/composables/useToast'
 import type { Database } from '@/types/database'
 import type { PaymentMethods as PaymentMethodsType } from '@/types/osm'
@@ -262,11 +230,6 @@ const directionsUrl = computed(() => {
   if (!props.location) return '#'
   return `https://www.google.com/maps/dir/?api=1&destination=${props.location.latitude},${props.location.longitude}&travelmode=bicycling`
 })
-
-// Format URL for display
-function formatUrl(url: string): string {
-  return url.replace(/^https?:\/\//, '').replace(/\/$/, '')
-}
 
 // Share location
 async function shareLocation() {
