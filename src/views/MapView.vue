@@ -73,6 +73,7 @@
       :center-lng="mapCenter.lng"
       class="flex-1"
       @show-details="handleShowDetails"
+      @share-location="handleShareLocation"
     />
 
     <!-- Location Detail Panel -->
@@ -80,18 +81,54 @@
       :location="selectedLocation"
       @close="handleClosePanel"
     />
+
+    <!-- Share Modal -->
+    <ShareModal
+      :location="shareModalLocation"
+      @close="shareModalLocation = null"
+    />
+
+    <!-- 404 Modal for non-existent locations -->
+    <Teleport to="body">
+      <Transition name="fade">
+        <div
+          v-if="showNotFound"
+          class="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/50"
+          @click.self="handleCloseNotFound"
+        >
+          <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <svg class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h2 class="text-xl font-bold text-gray-900 mb-2">{{ t('notFound.title') }}</h2>
+            <p class="text-gray-600 mb-6">{{ t('notFound.locationMessage') }}</p>
+            <button
+              @click="handleCloseNotFound"
+              class="w-full px-4 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors cursor-pointer"
+            >
+              {{ t('notFound.backToMap') }}
+            </button>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
 import MapContainer from '@/components/map/MapContainer.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import CategoryFilter from '@/components/CategoryFilter.vue'
 import NearMeButton from '@/components/NearMeButton.vue'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import LocationDetailPanel from '@/components/LocationDetailPanel.vue'
+import ShareModal from '@/components/ShareModal.vue'
 import { useLocations } from '@/composables/useLocations'
 import { useFilters } from '@/composables/useFilters'
 import { useSeo } from '@/composables/useSeo'
@@ -105,7 +142,9 @@ type LocationWithCategories = Location & {
 }
 
 const { t } = useI18n()
-const { locations, fetchLocations } = useLocations()
+const route = useRoute()
+const router = useRouter()
+const { locations, fetchLocations, getLocationBySlug } = useLocations()
 const { filterByCategories } = useFilters()
 
 // SEO
@@ -118,6 +157,12 @@ const selectedCategories = ref<string[]>([])
 const mapCenter = ref({ lat: 50.1109, lng: 8.6821 }) // Frankfurt center
 const mapRef = ref<InstanceType<typeof MapContainer> | null>(null)
 const selectedLocation = ref<LocationWithCategories | null>(null)
+const shareModalLocation = ref<LocationWithCategories | null>(null)
+const showNotFound = ref(false)
+const notFoundSlug = ref('')
+
+// Track if this is the initial page load (for direct URL access)
+const isInitialLoad = ref(true)
 
 // Panel collapse state - collapsed by default on mobile
 const isPanelCollapsed = ref(true)
@@ -130,8 +175,67 @@ const filteredLocations = computed(() => {
   return filterByCategories(locations.value, selectedCategories.value)
 })
 
+// Handle opening location by slug
+// centerMode: 'center' = center + zoom, 'ensure' = only pan if not visible, 'none' = don't move
+async function openLocationBySlug(slug: string, centerMode: 'center' | 'ensure' | 'none' = 'center') {
+  const location = getLocationBySlug(slug)
+  if (location) {
+    selectedLocation.value = location as LocationWithCategories
+    await nextTick()
+    const lat = parseFloat(location.latitude)
+    const lng = parseFloat(location.longitude)
+    if (!isNaN(lat) && !isNaN(lng)) {
+      if (centerMode === 'center') {
+        mapRef.value?.centerOn(lat, lng, 17)
+      } else if (centerMode === 'ensure') {
+        mapRef.value?.ensureVisible(lat, lng)
+      }
+      // 'none' = don't move the map
+    }
+    mapRef.value?.highlightMarker(location.id)
+  } else {
+    // Location not found - show 404 modal
+    notFoundSlug.value = slug
+    showNotFound.value = true
+  }
+}
+
+// Watch for route changes (handles back/forward navigation)
+watch(
+  () => route.params.slug,
+  async (newSlug) => {
+    if (newSlug && typeof newSlug === 'string') {
+      // Skip if this location is already selected (from marker click)
+      if (selectedLocation.value?.slug === newSlug) {
+        return
+      }
+      // Wait for locations to be loaded if needed
+      if (locations.value.length === 0) {
+        await fetchLocations()
+      }
+      // Back/forward navigation: only pan if marker is not visible
+      openLocationBySlug(newSlug, 'ensure')
+    } else {
+      // No slug - close the panel
+      selectedLocation.value = null
+      mapRef.value?.highlightMarker(null)
+      showNotFound.value = false
+    }
+  }
+)
+
 onMounted(async () => {
   await fetchLocations()
+
+  // Check if we have a slug in the URL (direct landing)
+  const slug = route.params.slug
+  if (slug && typeof slug === 'string') {
+    // Initial load: center + zoom on the location
+    openLocationBySlug(slug, 'center')
+  }
+
+  // Mark initial load as complete
+  isInitialLoad.value = false
 })
 
 function handleSearchSelect(location: Location) {
@@ -150,11 +254,44 @@ function handleShowDetails(locationId: string) {
   if (location) {
     selectedLocation.value = location as LocationWithCategories
     mapRef.value?.highlightMarker(locationId)
+    // Update URL to include the slug
+    if (location.slug) {
+      router.push({ name: 'location-detail', params: { slug: location.slug } })
+    }
+  }
+}
+
+function handleShareLocation(locationId: string) {
+  const location = filteredLocations.value.find(l => l.id === locationId)
+  if (location) {
+    shareModalLocation.value = location as LocationWithCategories
   }
 }
 
 function handleClosePanel() {
   mapRef.value?.highlightMarker(null)
   selectedLocation.value = null
+  // Navigate to map route (removes slug from URL)
+  if (route.name === 'location-detail') {
+    router.push({ name: 'map' })
+  }
+}
+
+function handleCloseNotFound() {
+  showNotFound.value = false
+  notFoundSlug.value = ''
+  router.push({ name: 'map' })
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
