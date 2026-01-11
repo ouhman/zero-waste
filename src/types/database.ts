@@ -62,6 +62,7 @@ export interface Database {
           description_en: string | null
           address: string
           city: string
+          suburb: string | null
           postal_code: string | null
           latitude: string
           longitude: string
@@ -92,6 +93,7 @@ export interface Database {
           description_en?: string | null
           address: string
           city: string
+          suburb?: string | null
           postal_code?: string | null
           latitude: string
           longitude: string
@@ -122,6 +124,7 @@ export interface Database {
           description_en?: string | null
           address?: string
           city?: string
+          suburb?: string | null
           postal_code?: string | null
           latitude?: string
           longitude?: string
