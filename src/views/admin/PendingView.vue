@@ -102,7 +102,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useAdmin } from '@/composables/useAdmin'
+import { useAdminStore } from '@/stores/admin'
 import PendingLocationPreviewPanel from '@/components/admin/PendingLocationPreviewPanel.vue'
 import type { Database } from '@/types/database'
 
@@ -113,7 +113,8 @@ type Location = Database['public']['Tables']['locations']['Row'] & {
 }
 
 const { t } = useI18n()
-const { pendingLocations, loading, error, fetchPendingLocations, approveLocation, rejectLocation } = useAdmin()
+const adminStore = useAdminStore()
+const { pendingLocations, loading, error } = adminStore
 
 const showRejectModal = ref(false)
 const rejectReason = ref('')
@@ -121,7 +122,7 @@ const locationToReject = ref<string | null>(null)
 const selectedLocation = ref<Location | null>(null)
 
 onMounted(async () => {
-  await fetchPendingLocations()
+  await adminStore.fetchLocations('pending')
 })
 
 function selectLocation(location: Location) {
@@ -129,7 +130,7 @@ function selectLocation(location: Location) {
 }
 
 async function handleApproveFromPanel(locationId: string) {
-  await approveLocation(locationId)
+  await adminStore.approveLocation(locationId)
   selectedLocation.value = null
 }
 
@@ -140,7 +141,7 @@ function handleRejectFromPanel(locationId: string) {
 
 async function confirmReject() {
   if (locationToReject.value) {
-    await rejectLocation(locationToReject.value, rejectReason.value)
+    await adminStore.rejectLocation(locationToReject.value, rejectReason.value)
     showRejectModal.value = false
     rejectReason.value = ''
     locationToReject.value = null
