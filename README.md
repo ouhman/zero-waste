@@ -4,22 +4,16 @@ Interactive map for sustainable shopping and zero-waste locations in Frankfurt.
 
 ## Project Status
 
-**Current Phase:** Production Ready ✅ **COMPLETE**
+**Status:** Production Ready ✅
 
-### Recent Features
-
-**Google Maps Data Migration** ✅ - Migrated 270 locations from Google My Maps with OSM enrichment:
-- ✅ Extracted locations from KML export
-- ✅ Enriched 160 locations (59%) with full OSM data (phone, website, hours, facilities)
-- ✅ Reverse geocoded remaining 110 locations for addresses
-- ✅ Added facilities column (toilets, wheelchair, wifi, organic, outdoor_seating, takeaway)
-
-**Location Enrichment (Phases 1-5)** - Automatically enriches location data when users paste a Google Maps URL:
-- ✅ Phase 1: Enhanced Nominatim Integration - Fetches phone, website, email, opening hours from OpenStreetMap
-- ✅ Phase 2: Opening Hours Parser - Converts OSM format to German readable text
-- ✅ Phase 3: Website Schema.org Enrichment - Extracts Instagram from business websites
-- ✅ Phase 4: UI Polish & Error Handling - Progressive loading, field badges, accessibility
-- ✅ Phase 5: Testing & Documentation - Comprehensive test coverage and documentation
+The Zero Waste Frankfurt map is a fully-featured production application with:
+- 270+ sustainable locations in Frankfurt and surrounding area
+- Comprehensive admin panel for location management
+- Automatic data enrichment from OpenStreetMap
+- Full internationalization (German/English)
+- Responsive design for mobile and desktop
+- 300+ unit and component tests
+- E2E testing coverage
 
 ## Quick Start
 
@@ -74,11 +68,16 @@ npm run preview
 
 ## Tech Stack
 
-- **Frontend:** Vue 3 + TypeScript + Vite
+- **Frontend:** Vue 3 (Composition API) + TypeScript + Vite
+- **State Management:** Pinia
+- **Routing:** Vue Router
+- **Internationalization:** Vue I18n (German/English)
+- **Styling:** Tailwind CSS
+- **Map:** Leaflet.js with clustering
 - **Backend:** Supabase (PostgreSQL + PostGIS)
-- **Map:** Leaflet.js
-- **Testing:** Vitest + Vue Test Utils + Playwright (E2E)
-- **Data Sources:** OpenStreetMap Nominatim API, Schema.org extraction
+- **Testing:** Vitest (unit/component) + Playwright (E2E)
+- **Infrastructure:** AWS CDK (S3, CloudFront, SES)
+- **Data Sources:** OpenStreetMap Nominatim API
 
 ## Project Structure
 
@@ -88,22 +87,57 @@ npm run preview
 │   ├── main.ts              # App entry point
 │   ├── App.vue              # Root component
 │   ├── router/
-│   │   └── index.ts         # Vue Router setup
+│   │   └── index.ts         # Vue Router with navigation guards
 │   ├── lib/
-│   │   └── supabase.ts      # Supabase client
+│   │   ├── supabase.ts      # Supabase client
+│   │   └── openingHoursParser.ts  # OSM hours parser
 │   ├── types/
-│   │   └── database.ts      # TypeScript types from schema
-│   ├── views/
-│   │   └── HomeView.vue     # Home page
-│   └── components/          # Vue components
+│   │   ├── database.ts      # TypeScript types from schema
+│   │   └── osm.ts           # OpenStreetMap data types
+│   ├── views/               # Page components
+│   │   ├── MapView.vue      # Main map interface
+│   │   ├── SubmitView.vue   # Location submission form
+│   │   ├── AdminLogin.vue   # Admin authentication
+│   │   └── admin/           # Admin section views
+│   ├── components/
+│   │   ├── common/          # Shared UI components
+│   │   ├── map/             # Map-specific components
+│   │   └── admin/           # Admin panel components
+│   ├── composables/         # Vue composables
+│   │   ├── useAuth.ts       # Authentication
+│   │   ├── useDebounce.ts   # Debounce utility
+│   │   ├── useFavorites.ts  # Favorites management
+│   │   ├── useNominatim.ts  # OSM data enrichment
+│   │   ├── useSearch.ts     # Location search
+│   │   └── useToast.ts      # Toast notifications
+│   ├── stores/              # Pinia stores
+│   │   ├── admin.ts         # Admin state
+│   │   ├── categories.ts    # Categories management
+│   │   └── locations.ts     # Locations state
+│   └── locales/             # i18n translation files
+│       ├── de.json
+│       └── en.json
 ├── tests/
-│   └── unit/                # Unit tests
+│   ├── component/           # Component tests (300+ tests)
+│   └── e2e/                 # Playwright E2E tests
 ├── supabase/
+│   ├── migrations/          # SQL migrations
+│   ├── functions/           # Edge Functions
 │   └── schema.sql           # Database schema
-├── package.json
-├── vite.config.ts
-├── vitest.config.ts
-└── tsconfig.json
+├── infra/                   # AWS CDK infrastructure
+│   ├── lib/
+│   │   ├── frontend-stack.ts
+│   │   └── email-stack.ts
+│   └── bin/
+│       └── infra.ts
+├── docs/                    # Documentation
+│   ├── supabase.md
+│   ├── aws-ses.md
+│   ├── navigation.md
+│   ├── testing-strategy.md
+│   └── components.md
+└── scripts/                 # Build/deployment scripts
+    └── deploy-frontend.sh
 ```
 
 ## Database Schema
@@ -121,28 +155,9 @@ The database includes:
 ### Location Data
 
 The database includes:
-- 17 categories (all confirmed categories)
-- 270 locations in Frankfurt and surrounding area (migrated from Google My Maps)
-
-## Phase 1 Deliverables
-
-✅ Vue 3 project structure with TypeScript
-✅ Supabase client configuration
-✅ Database schema SQL file
-✅ TypeScript types matching schema
-✅ Unit tests for types and Supabase client
-✅ All tests passing
-✅ Development server working
-✅ Build process working
-
-## Next Steps (Phase 2)
-
-Phase 2 will add:
-- Leaflet map integration
-- Display locations on map with markers
-- Marker clustering
-- Location detail view
-- Pinia store for state management
+- 17 categories (Unverpackt-Läden, Second-Hand, Repair-Cafés, etc.)
+- 270+ approved locations in Frankfurt and surrounding area
+- Automatic data enrichment from OpenStreetMap Nominatim API
 
 ## Location Enrichment Feature
 
@@ -178,42 +193,33 @@ The app automatically enriches location data to reduce the complexity barrier fo
 - **Graceful degradation** - Form works even if enrichment fails
 - **Accessibility** - ARIA labels, keyboard navigation, screen reader support
 
-### Implementation Files
+## Testing
 
-**Composables:**
-- `/src/composables/useNominatim.ts` - Nominatim API integration with `searchWithExtras()` method
-- `/src/composables/useEnrichment.ts` - Website schema.org extraction via Supabase Edge Function
+The project has comprehensive test coverage with 300+ tests:
 
-**Utilities:**
-- `/src/lib/openingHoursParser.ts` - Converts OSM hours format to German readable text
+### Test Structure
 
-**UI Components:**
-- `/src/components/ui/EnrichmentStatus.vue` - Loading/success/error states with field discovery
-- `/src/components/ui/FieldBadge.vue` - Source attribution badges
-- `/src/components/ui/LoadingSpinner.vue` - Animated loading indicator
+```
+tests/
+├── component/           # Component tests (~300 tests)
+│   ├── admin/          # Admin components (94 tests)
+│   ├── common/         # Shared components (30 tests)
+│   ├── map/            # Map components (55 tests)
+│   └── views/          # View components (122 tests)
+└── e2e/                # End-to-end tests
+    ├── admin.spec.ts
+    ├── filter.spec.ts
+    ├── map.spec.ts
+    └── submit.spec.ts
+```
 
-**Backend:**
-- `/supabase/functions/enrich-location/index.ts` - Edge function for schema.org extraction
-
-### Testing
-
-**Unit Tests (115 tests):**
-- Opening hours parser edge cases (16 tests)
-- Nominatim extratags parsing (15 tests)
-- Schema.org extraction (13 tests)
-- UI component behavior (34 tests)
-
-**E2E Tests (13 tests):**
-- Full enrichment flow with Google Maps URL
-- Loading states and error handling
-- Field auto-fill and manual override
-- Form submission with enriched data
+### Running Tests
 
 ```bash
-# Run all unit tests
+# Run all unit/component tests
 npm test
 
-# Watch mode
+# Watch mode for development
 npm run test:watch
 
 # E2E tests
@@ -221,37 +227,69 @@ npm run test:e2e
 
 # E2E tests with UI
 npm run test:e2e:ui
+
+# Type checking
+npm run type-check
 ```
 
-All tests use Vitest with jsdom environment for Vue component testing, and Playwright for E2E tests.
+**Test Framework:** Vitest with jsdom for component tests, Playwright for E2E tests.
 
-### Troubleshooting
+See [docs/testing-strategy.md](docs/testing-strategy.md) for detailed testing guidelines.
 
-**Enrichment not working:**
-- Check Nominatim rate limit (1 req/sec) - debouncing is automatic
-- Verify location exists in OpenStreetMap database
-- Check browser console for API errors
+## Admin Panel
 
-**No data found:**
-- OSM may not have extratags for this location
-- Try searching the location on openstreetmap.org to verify data exists
-- Manual entry is always available as fallback
+Comprehensive admin interface for managing locations and categories.
 
-**Opening hours format issues:**
-- OSM uses specific format: `Mo-Fr 09:00-18:00`
-- Parser handles most common formats automatically
-- Complex seasonal hours may need manual adjustment
+### Access
 
-**Website enrichment fails:**
-- Website may block crawlers (robots.txt)
-- Schema.org data may not be present
-- 5-second timeout prevents long waits
-- Instagram enrichment is optional - form works without it
+1. Admin users must be created manually in Supabase Dashboard
+2. Login via magic link at `/admin/login`
+3. Session timeout: 1 hour of inactivity
 
-**CORS errors:**
-- Website enrichment uses Supabase Edge Function (server-side)
-- If you see CORS errors, check Edge Function deployment
-- Nominatim API has CORS enabled by default
+### Features
+
+- Location approval workflow (pending/approved/rejected)
+- Full location editing with map preview
+- Category management with icon upload
+- Toast notifications for all actions
+- Mobile responsive design
+
+See [CLAUDE.md](CLAUDE.md) for detailed admin documentation.
+
+## Deployment
+
+### Frontend Deployment
+
+The frontend is hosted on AWS (S3 + CloudFront):
+
+```bash
+# Set AWS profile
+export AWS_PROFILE=zerowaste-map-deployer
+
+# Deploy frontend
+npm run deploy:frontend
+```
+
+**Live URL:** https://map.zerowastefrankfurt.de
+
+### Infrastructure
+
+AWS CDK stacks in `infra/` directory:
+
+1. **Frontend Stack** - S3 bucket + CloudFront distribution
+2. **Email Stack** - SES domain identity + IAM credentials
+
+See [docs/aws-ses.md](docs/aws-ses.md) for detailed infrastructure documentation.
+
+### Supabase Edge Functions
+
+```bash
+# Deploy all Edge Functions
+supabase functions deploy
+
+# Deploy specific function
+supabase functions deploy submit-location
+```
 
 ## Environment Variables
 
@@ -264,15 +302,21 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
 
 ## Contributing
 
-This project follows strict TDD (Test-Driven Development):
-1. Write tests FIRST
-2. Then implement features
-3. Refactor while keeping tests green
+See [CONTRIBUTING.md](CONTRIBUTING.md) for:
+- Code style guidelines
+- Testing requirements
+- Pull request process
+- Commit message conventions
+
+## Documentation
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contributing guidelines
+- **[docs/supabase.md](docs/supabase.md)** - Supabase setup and RLS policies
+- **[docs/aws-ses.md](docs/aws-ses.md)** - AWS infrastructure and deployment
+- **[docs/navigation.md](docs/navigation.md)** - Map navigation and routing
+- **[docs/testing-strategy.md](docs/testing-strategy.md)** - Testing guidelines
+- **[docs/components.md](docs/components.md)** - Shared component documentation
 
 ## License
 
 ISC
-
-## Support
-
-For issues or questions about this phase, see the implementation plan in `mvp-implementation.md`.

@@ -28,29 +28,60 @@ npm run deploy:frontend # Deploy frontend to S3/CloudFront
 
 ```
 src/
-  components/       # Vue components
-    map/           # Map-related components
-  composables/     # Vue composables (useSubmission, useNominatim, etc.)
-  lib/             # Library setup (supabase client)
-  types/           # TypeScript type definitions
-  views/           # Page components
-  stores/          # Pinia stores
+  components/
+    common/          # Shared components (ContactInfo, PaymentMethodsBadges, etc.)
+    map/             # Map-related components
+    admin/           # Admin panel components
+  composables/
+    useAuth.ts       # Authentication & session management
+    useDebounce.ts   # Debounce utility (created in Phase 5)
+    useFavorites.ts  # Favorites management (memory leak fixed in Phase 1)
+    useNominatim.ts  # OSM data enrichment
+    useSearch.ts     # Location search (memory leak fixed in Phase 1)
+    useToast.ts      # Toast notifications
+    useSubmission.ts # Location submission
+  lib/
+    supabase.ts            # Supabase client
+    openingHoursParser.ts  # OSM hours parser
+  types/
+    database.ts      # Database types (generated from Supabase)
+    osm.ts           # OpenStreetMap data types
+  views/             # Page components
+  stores/
+    admin.ts         # Admin state management
+    categories.ts    # Categories with admin methods
+    locations.ts     # Locations state
 
 supabase/
-  migrations/      # SQL migrations
-  functions/       # Edge Functions
-  schema.sql       # Base database schema
+  migrations/        # SQL migrations
+  functions/         # Edge Functions
+    submit-location/ # Submission with SES email
+    verify-submission/  # Email verification
+  schema.sql         # Base database schema
 
 tests/
-  unit/           # Vitest unit tests
-  e2e/            # Playwright e2e tests
+  component/         # Component tests (300+ tests)
+    admin/          # Admin components (94 tests)
+    common/         # Shared components (30 tests)
+    map/            # Map components (55 tests)
+    views/          # View components (122 tests)
+  e2e/              # Playwright e2e tests
+
+infra/              # AWS CDK infrastructure
+  lib/
+    frontend-stack.ts  # S3 + CloudFront
+    email-stack.ts     # SES email
 ```
 
 ## Key Documentation
 
+- **[README.md](README.md)** - Project overview and quick start
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contributing guidelines and code style
 - **[docs/supabase.md](docs/supabase.md)** - Supabase configuration, RLS policies, and troubleshooting guide
 - **[docs/aws-ses.md](docs/aws-ses.md)** - AWS SES email setup and CDK infrastructure
 - **[docs/navigation.md](docs/navigation.md)** - Map navigation and slug URL behavior
+- **[docs/testing-strategy.md](docs/testing-strategy.md)** - Testing organization and guidelines
+- **[docs/components.md](docs/components.md)** - Shared component documentation
 
 ## Database
 
@@ -121,25 +152,37 @@ WHERE email = 'admin@zerowastefrankfurt.de';
 - **Keyboard Shortcuts** - ESC to close modals
 - **Mobile Responsive** - All admin views work on mobile devices
 
-### Key Components
+### Key Admin Components
 
 - `src/components/admin/AdminLayout.vue` - Shared layout with sidebar
 - `src/components/admin/LocationEditForm.vue` - Full location editing
 - `src/components/admin/CategoryEditModal.vue` - Category CRUD modal
+
+### Shared Components (Created in Phase 6)
+
+- `src/components/common/ContactInfo.vue` - Display contact information with icons
+- `src/components/common/PaymentMethodsBadges.vue` - Payment method badges
 - `src/components/common/ToastContainer.vue` - Toast notification system
 - `src/components/common/LoadingSpinner.vue` - Loading states
 - `src/components/common/EmptyState.vue` - Empty state placeholders
 - `src/components/common/ErrorBoundary.vue` - Error handling wrapper
 
+See [docs/components.md](docs/components.md) for detailed component documentation.
+
 ### Composables
 
 - `src/composables/useAuth.ts` - Session management and logout
+- `src/composables/useDebounce.ts` - Debounce utility (created in Phase 5)
+- `src/composables/useFavorites.ts` - Favorites management (memory leak fixed in Phase 1)
+- `src/composables/useNominatim.ts` - OSM data enrichment
+- `src/composables/useSearch.ts` - Location search (memory leak fixed in Phase 1)
 - `src/composables/useToast.ts` - Toast notifications
 
 ### Stores
 
 - `src/stores/admin.ts` - Admin state management (locations CRUD)
 - `src/stores/categories.ts` - Categories with admin methods
+- `src/stores/locations.ts` - Locations state
 
 ## Infrastructure (AWS CDK)
 
@@ -208,9 +251,39 @@ Deploy with:
 supabase functions deploy
 ```
 
-## Frontend Rules
+## Code Conventions
+
+### General Rules
+
+- **Use TypeScript strictly** - Avoid `any` types, prefer proper type definitions
+- **Memory management** - Always clean up subscriptions, timers, and event listeners in `onUnmounted`
+- **Prefer composables over duplication** - Reuse logic via composables (e.g., `useDebounce`)
+- **Component reuse** - Use shared components from `components/common/` before creating new ones
+- **Test coverage** - Write tests for all new components and composables
+
+### UI/UX Rules
 
 - **Clickable elements must have pointer cursor** - All links, buttons, and interactive elements must have `cursor: pointer` to indicate they are clickable. Use `class="cursor-pointer"` (Tailwind) or inline style.
+- **Accessibility** - All interactive elements need ARIA labels and keyboard navigation support
+- **Loading states** - Use `LoadingSpinner` component for async operations
+- **Error handling** - Wrap components in `ErrorBoundary` and show user-friendly error messages
+- **Toast notifications** - Use `useToast` composable for user feedback
+
+### Performance
+
+- **Debounce user input** - Use `useDebounce` for search, filters, and API calls
+- **AbortController for async operations** - Cancel pending requests on component unmount
+- **Caching** - Cache expensive operations (geospatial queries, search results)
+- **Optimistic updates** - Update UI immediately, rollback on error
+
+### Testing
+
+- **Test organization** - Follow the structure in `tests/component/` and `tests/e2e/`
+- **Component tests** - Test props, events, slots, and user interactions
+- **Mock external dependencies** - Mock Supabase, Nominatim API, and router
+- **E2E tests** - Test critical user flows (submit, search, admin workflow)
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/testing-strategy.md](docs/testing-strategy.md) for detailed guidelines.
 
 ## Pending Work
 
