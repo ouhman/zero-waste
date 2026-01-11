@@ -301,13 +301,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useNominatim } from '@/composables/useNominatim'
 import { useEnrichment } from '@/composables/useEnrichment'
 import { parseGoogleMapsUrl, isGoogleMapsUrl } from '@/lib/googleMapsUrlParser'
 import EnrichmentStatus from '@/components/ui/EnrichmentStatus.vue'
 import FieldBadge from '@/components/ui/FieldBadge.vue'
+import type { PaymentMethods, StructuredOpeningHours } from '@/types/osm'
 
 interface Props {
   mode: 'submit' | 'edit'
@@ -346,7 +347,26 @@ const {
 const currentStep = ref(1)
 const totalSteps = 4
 
-const formData = ref({
+const formData = ref<{
+  submission_type: 'new' | 'update'
+  name: string
+  address: string
+  city: string
+  postal_code: string
+  suburb: string
+  latitude: string
+  longitude: string
+  description_de: string
+  description_en: string
+  website: string
+  phone: string
+  email: string
+  instagram: string
+  opening_hours_text: string
+  payment_methods: PaymentMethods | null
+  opening_hours_osm: string | null
+  opening_hours_structured: StructuredOpeningHours | null
+}>({
   submission_type: 'new',
   name: '',
   address: '',
@@ -362,9 +382,9 @@ const formData = ref({
   email: '',
   instagram: '',
   opening_hours_text: '',
-  payment_methods: null as any,
-  opening_hours_osm: null as string | null,
-  opening_hours_structured: null as any
+  payment_methods: null,
+  opening_hours_osm: null,
+  opening_hours_structured: null
 })
 
 const validationErrors = ref<Record<string, string>>({})
@@ -389,6 +409,9 @@ const foundEmail = ref(false)
 const foundHours = ref(false)
 const foundInstagram = ref(false)
 
+// AbortController for canceling pending enrichment requests
+let enrichmentAbortController: AbortController | null = null
+
 const progressPercent = computed(() => (currentStep.value / totalSteps) * 100)
 
 // Helper functions for auto-filled field management
@@ -398,7 +421,10 @@ function markAsAutoFilled(fieldName: string, source: 'osm' | 'website') {
 
 function clearAutoFilled(fieldName: keyof typeof formData.value) {
   delete autoFilledFields.value[fieldName]
-  formData.value[fieldName] = ''
+  // Only clear string fields, not null-able fields
+  if (fieldName !== 'payment_methods' && fieldName !== 'opening_hours_structured' && fieldName !== 'opening_hours_osm') {
+    formData.value[fieldName] = '' as any
+  }
 }
 
 function isAutoFilled(fieldName: string): boolean {
@@ -407,6 +433,14 @@ function isAutoFilled(fieldName: string): boolean {
 
 function getAutoFillSource(fieldName: string): 'osm' | 'website' | undefined {
   return autoFilledFields.value[fieldName]
+}
+
+// Cancel any pending enrichment requests
+function cancelPendingEnrichment() {
+  if (enrichmentAbortController) {
+    enrichmentAbortController.abort()
+    enrichmentAbortController = null
+  }
 }
 
 // Reset enrichment status indicators
@@ -466,6 +500,11 @@ onMounted(async () => {
     await nextTick()
     googleMapsInput.value?.focus()
   }
+})
+
+// Cleanup on component unmount
+onUnmounted(() => {
+  cancelPendingEnrichment()
 })
 
 // Auto-focus when changing steps
@@ -694,12 +733,16 @@ watch(enrichedResult, async (result) => {
 watch(googleMapsUrl, async (url) => {
   if (!url || url.trim() === '') {
     googleMapsError.value = ''
+    // Cancel any pending enrichment
+    cancelPendingEnrichment()
     return
   }
 
   // Check if it looks like a Google Maps URL
   if (!isGoogleMapsUrl(url)) {
     googleMapsError.value = t('submit.googleMapsUrlError')
+    // Cancel any pending enrichment
+    cancelPendingEnrichment()
     return
   }
 
@@ -708,8 +751,16 @@ watch(googleMapsUrl, async (url) => {
 
   if (!coords) {
     googleMapsError.value = t('submit.googleMapsUrlError')
+    // Cancel any pending enrichment
+    cancelPendingEnrichment()
     return
   }
+
+  // Cancel any previous enrichment requests before starting a new one
+  cancelPendingEnrichment()
+
+  // Create a new AbortController for this enrichment request
+  enrichmentAbortController = new AbortController()
 
   // Clear error and set loading
   googleMapsError.value = ''
@@ -749,6 +800,12 @@ watch(googleMapsUrl, async (url) => {
       enrichmentSummary.value = t('submit.noAdditionalDetails')
     }
   } catch (e) {
+    // Check if the error was due to an abort (user changed URL)
+    if (e instanceof Error && e.name === 'AbortError') {
+      console.debug('Enrichment aborted (URL changed)')
+      return
+    }
+
     // On error, still try basic reverse geocode
     console.error('Enrichment error:', e)
     enrichmentError.value = t('submit.couldNotFetchDetails')

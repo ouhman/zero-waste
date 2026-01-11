@@ -68,7 +68,7 @@ async function handleLogin() {
   try {
     // Check rate limit first (prevents brute force guessing of admin emails)
     const { data: allowed, error: rateError } = await supabase
-      .rpc('check_rate_limit', { check_email: email.value } as any)
+      .rpc('check_rate_limit', { check_email: email.value } as never)
 
     if (rateError || !allowed) {
       errorMessage.value = t('admin.login.rateLimited')
@@ -78,7 +78,7 @@ async function handleLogin() {
     // Check if email belongs to an admin user
     // We don't reveal the result to the user for security
     const { data: isAdmin } = await supabase
-      .rpc('is_admin_email', { check_email: email.value } as any)
+      .rpc('is_admin_email', { check_email: email.value } as never)
 
     // Only send magic link if email is actually an admin
     // But always show success message to prevent email enumeration

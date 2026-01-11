@@ -22,11 +22,11 @@ export function useNearby() {
     error.value = null
 
     try {
-      const { data, error: searchError } = await (supabase as any).rpc('locations_nearby', {
+      const { data, error: searchError } = await supabase.rpc('locations_nearby', {
         lat,
         lng,
         radius_meters: radiusMeters
-      })
+      } as never)
 
       if (searchError) {
         error.value = searchError.message

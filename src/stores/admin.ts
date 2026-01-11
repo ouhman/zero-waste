@@ -4,6 +4,9 @@ import { supabase } from '@/lib/supabase'
 import type { Database } from '@/types/database'
 
 type Location = Database['public']['Tables']['locations']['Row']
+type LocationUpdate = Database['public']['Tables']['locations']['Update']
+type LocationCategoryInsert = Database['public']['Tables']['location_categories']['Insert']
+
 type LocationWithCategories = Location & {
   location_categories?: { category_id: string }[]
 }
@@ -12,6 +15,8 @@ export const useAdminStore = defineStore('admin', () => {
   const locations = ref<LocationWithCategories[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const hasFetched = ref(false)
+  const lastFetchedStatus = ref<string | undefined>(undefined)
 
   const pendingLocations = computed(() =>
     locations.value.filter(l => l.status === 'pending')
@@ -32,7 +37,12 @@ export const useAdminStore = defineStore('admin', () => {
     total: locations.value.length
   }))
 
-  async function fetchLocations(status?: string) {
+  async function fetchLocations(status?: string, force = false) {
+    // Cache: Don't fetch if already loaded with same status (unless forced)
+    if (!force && hasFetched.value && lastFetchedStatus.value === status) {
+      return
+    }
+
     loading.value = true
     error.value = null
 
@@ -54,6 +64,8 @@ export const useAdminStore = defineStore('admin', () => {
 
       if (fetchError) throw fetchError
       locations.value = data || []
+      hasFetched.value = true
+      lastFetchedStatus.value = status
     } catch (e) {
       error.value = e instanceof Error ? e.message : 'Failed to fetch locations'
     } finally {
@@ -71,9 +83,10 @@ export const useAdminStore = defineStore('admin', () => {
 
     try {
       // Update location
-      const { error: updateError } = await (supabase
-        .from('locations') as any)
-        .update({ ...updates, updated_at: new Date().toISOString() })
+      const updateData: LocationUpdate = { ...updates, updated_at: new Date().toISOString() }
+      const { error: updateError } = await supabase
+        .from('locations')
+        .update(updateData as never)
         .eq('id', id)
 
       if (updateError) throw updateError
@@ -88,17 +101,18 @@ export const useAdminStore = defineStore('admin', () => {
 
         // Insert new
         if (categoryIds.length > 0) {
-          await (supabase
-            .from('location_categories') as any)
-            .insert(categoryIds.map(cid => ({
-              location_id: id,
-              category_id: cid
-            })))
+          const insertData: LocationCategoryInsert[] = categoryIds.map(cid => ({
+            location_id: id,
+            category_id: cid
+          }))
+          await supabase
+            .from('location_categories')
+            .insert(insertData as never)
         }
       }
 
-      // Refresh local state
-      await fetchLocations()
+      // Refresh local state - force refetch to ensure fresh data
+      await fetchLocations(lastFetchedStatus.value, true)
     } catch (e) {
       error.value = e instanceof Error ? e.message : 'Failed to update'
       throw e
@@ -108,18 +122,68 @@ export const useAdminStore = defineStore('admin', () => {
   }
 
   async function approveLocation(id: string) {
+    // Store original location for rollback on optimistic update
+    const originalLocation = locations.value.find(l => l.id === id)
+    if (!originalLocation) return
+
     const { data: userData } = await supabase.auth.getUser()
-    await updateLocation(id, {
-      status: 'approved',
-      approved_by: userData?.user?.id || null
-    })
+    const userId = userData?.user?.id || null
+
+    // Optimistic update: Update local state immediately
+    const index = locations.value.findIndex(l => l.id === id)
+    if (index !== -1) {
+      locations.value[index] = {
+        ...locations.value[index],
+        status: 'approved',
+        approved_by: userId,
+        updated_at: new Date().toISOString()
+      }
+    }
+
+    try {
+      // Call updateLocation to perform the server update
+      await updateLocation(id, {
+        status: 'approved',
+        approved_by: userId
+      })
+    } catch (e) {
+      // Rollback optimistic update on error
+      if (index !== -1 && originalLocation) {
+        locations.value[index] = originalLocation
+      }
+      throw e
+    }
   }
 
   async function rejectLocation(id: string, reason: string) {
-    await updateLocation(id, {
-      status: 'rejected',
-      rejection_reason: reason
-    })
+    // Store original location for rollback on optimistic update
+    const originalLocation = locations.value.find(l => l.id === id)
+    if (!originalLocation) return
+
+    // Optimistic update: Update local state immediately
+    const index = locations.value.findIndex(l => l.id === id)
+    if (index !== -1) {
+      locations.value[index] = {
+        ...locations.value[index],
+        status: 'rejected',
+        rejection_reason: reason,
+        updated_at: new Date().toISOString()
+      }
+    }
+
+    try {
+      // Call updateLocation to perform the server update
+      await updateLocation(id, {
+        status: 'rejected',
+        rejection_reason: reason
+      })
+    } catch (e) {
+      // Rollback optimistic update on error
+      if (index !== -1 && originalLocation) {
+        locations.value[index] = originalLocation
+      }
+      throw e
+    }
   }
 
   return {

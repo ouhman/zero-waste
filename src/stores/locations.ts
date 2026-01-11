@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { supabase } from '@/lib/supabase'
+import type { PaymentMethods, StructuredOpeningHours } from '@/types/osm'
 
 // Simplified Location type to avoid deep type instantiation issues
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Location {
   id: string
   name: string
@@ -20,9 +20,9 @@ interface Location {
   email: string | null
   instagram: string | null
   opening_hours_text: string | null
-  payment_methods: any
+  payment_methods: PaymentMethods | null
   opening_hours_osm: string | null
-  opening_hours_structured: any
+  opening_hours_structured: StructuredOpeningHours | null
   submission_type: string | null
   submitted_by_email: string | null
   related_location_id: string | null

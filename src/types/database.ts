@@ -234,7 +234,8 @@ export interface Database {
   }
 }
 
-// Re-export types from osm.ts for convenience
+// Import and re-export types from osm.ts for convenience
+import type { PaymentMethods, StructuredOpeningHours } from './osm'
 export type { PaymentMethods, StructuredOpeningHours } from './osm'
 
 // Type for submission data
@@ -253,9 +254,9 @@ export interface SubmissionData {
   phone?: string
   instagram?: string
   opening_hours_text?: string
-  payment_methods?: Record<string, boolean>
+  payment_methods?: PaymentMethods
   opening_hours_osm?: string
-  opening_hours_structured?: Record<string, unknown>
+  opening_hours_structured?: StructuredOpeningHours
   categories?: string[]
   related_location_id?: string
 }

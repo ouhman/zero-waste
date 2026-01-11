@@ -6,6 +6,7 @@ import type { Database } from '@/types/database'
 type Category = Database['public']['Tables']['categories']['Row']
 type CategoryInsert = Database['public']['Tables']['categories']['Insert']
 type CategoryUpdate = Database['public']['Tables']['categories']['Update']
+type LocationCategoryUpdate = Database['public']['Tables']['location_categories']['Update']
 
 export const useCategoriesStore = defineStore('categories', () => {
   const categories = ref<Category[]>([])
@@ -106,13 +107,14 @@ export const useCategoriesStore = defineStore('categories', () => {
       }
 
       // Insert category
-      const { data, error: insertError } = await (supabase
-        .from('categories') as any)
-        .insert({
-          ...category,
-          icon_url: iconUrl,
-          updated_at: new Date().toISOString()
-        })
+      const insertData: CategoryInsert = {
+        ...category,
+        icon_url: iconUrl,
+        updated_at: new Date().toISOString()
+      }
+      const { data, error: insertError } = await supabase
+        .from('categories')
+        .insert(insertData as never)
         .select()
         .single()
 
@@ -157,12 +159,13 @@ export const useCategoriesStore = defineStore('categories', () => {
       }
 
       // Update category
-      const { data, error: updateError } = await (supabase
-        .from('categories') as any)
-        .update({
-          ...updates,
-          updated_at: new Date().toISOString()
-        })
+      const updateData: CategoryUpdate = {
+        ...updates,
+        updated_at: new Date().toISOString()
+      }
+      const { data, error: updateError } = await supabase
+        .from('categories')
+        .update(updateData as never)
         .eq('id', id)
         .select()
         .single()
@@ -196,9 +199,10 @@ export const useCategoriesStore = defineStore('categories', () => {
       }
 
       // Reassign all locations to the new category
-      const { error: reassignError } = await (supabase
-        .from('location_categories') as any)
-        .update({ category_id: reassignTo })
+      const updateData: LocationCategoryUpdate = { category_id: reassignTo }
+      const { error: reassignError } = await supabase
+        .from('location_categories')
+        .update(updateData as never)
         .eq('category_id', id)
 
       if (reassignError) throw reassignError

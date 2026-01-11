@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import type { PaymentMethods, StructuredOpeningHours } from '@/types/osm'
 
 export interface SubmissionData {
   name: string
@@ -16,9 +17,9 @@ export interface SubmissionData {
   phone?: string
   instagram?: string
   opening_hours_text?: string
-  payment_methods?: any
+  payment_methods?: PaymentMethods
   opening_hours_osm?: string
-  opening_hours_structured?: any
+  opening_hours_structured?: StructuredOpeningHours
   categories?: string[]
   related_location_id?: string
 }

@@ -410,6 +410,7 @@ import { useI18n } from 'vue-i18n'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Database } from '@/types/database'
+import type { PaymentMethods } from '@/types/osm'
 
 type Location = Database['public']['Tables']['locations']['Row']
 type Category = Database['public']['Tables']['categories']['Row']
@@ -463,25 +464,29 @@ function initializeForm() {
   // Exclude non-updatable fields from formData:
   // - location_categories: joined relation, not a column
   // - search_vector: generated column, can only be DEFAULT
-  const { location_categories, search_vector, ...locationData } = props.location as any
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { location_categories, search_vector, ...locationData } = props.location as Location & {
+    location_categories?: unknown
+    search_vector?: unknown
+  }
   formData.value = { ...locationData }
 
   // Initialize categories from the joined data
   if (location_categories && Array.isArray(location_categories)) {
     selectedCategories.value = location_categories.map(
-      (lc: any) => lc.category_id
+      (lc: { category_id: string }) => lc.category_id
     )
   }
 
   // Initialize payment methods
   if (props.location.payment_methods) {
-    const pm = props.location.payment_methods as any
+    const pm = props.location.payment_methods as PaymentMethods
     paymentMethods.value = {
       cash: pm.cash || false,
-      credit_card: pm.credit_card || false,
-      debit_card: pm.debit_card || false,
+      credit_card: pm.credit_cards || false,
+      debit_card: pm.debit_cards || false,
       contactless: pm.contactless || false,
-      mobile: pm.mobile || false
+      mobile: pm.mobile_payment || false
     }
   }
 
