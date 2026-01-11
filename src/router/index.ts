@@ -3,7 +3,6 @@ import MapView from '@/views/MapView.vue'
 import { adminGuard } from './guards/adminGuard'
 
 // Lazy load non-critical routes for better performance
-const LocationDetailView = () => import('@/views/LocationDetailView.vue')
 const SubmitView = () => import('@/views/SubmitView.vue')
 const VerifyView = () => import('@/views/VerifyView.vue')
 const FavoritesView = () => import('@/views/FavoritesView.vue')
@@ -28,7 +27,7 @@ const router = createRouter({
     {
       path: '/location/:slug',
       name: 'location-detail',
-      component: LocationDetailView
+      component: MapView
     },
     {
       path: '/submit',
