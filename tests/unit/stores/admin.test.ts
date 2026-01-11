@@ -223,6 +223,11 @@ describe('useAdminStore', () => {
         .mockReturnValueOnce(mockFetch as any)
 
       const store = useAdminStore()
+      // Set up initial location for optimistic update
+      store.locations = [
+        { id: '123', status: 'pending', name: 'Test Location' } as any
+      ]
+
       await store.approveLocation('123')
 
       expect(mockUpdate.update).toHaveBeenCalledWith({
@@ -251,6 +256,11 @@ describe('useAdminStore', () => {
         .mockReturnValueOnce(mockFetch as any)
 
       const store = useAdminStore()
+      // Set up initial location for optimistic update
+      store.locations = [
+        { id: '123', status: 'pending', name: 'Test Location' } as any
+      ]
+
       await store.rejectLocation('123', 'Invalid data')
 
       expect(mockUpdate.update).toHaveBeenCalledWith({

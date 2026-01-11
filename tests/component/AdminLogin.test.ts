@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { createRouter, createMemoryHistory } from 'vue-router'
+import { mount, flushPromises } from '@vue/test-utils'
 import AdminLogin from '@/views/admin/LoginView.vue'
 import { supabase } from '@/lib/supabase'
 
@@ -8,8 +7,9 @@ import { supabase } from '@/lib/supabase'
 vi.mock('@/lib/supabase', () => ({
   supabase: {
     auth: {
-      signInWithPassword: vi.fn()
-    }
+      signInWithOtp: vi.fn()
+    },
+    rpc: vi.fn()
   }
 }))
 
@@ -21,22 +21,12 @@ vi.mock('vue-i18n', () => ({
   })
 }))
 
-const createMockRouter = () => {
-  return createRouter({
-    history: createMemoryHistory(),
-    routes: [
-      { path: '/bulk-station/login', component: { template: '<div>Login</div>' } },
-      { path: '/bulk-station', component: { template: '<div>Dashboard</div>' } }
-    ]
-  })
-}
-
 describe('AdminLogin', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
 
-  it('shows login form', () => {
+  it('shows login form with email input only', () => {
     const wrapper = mount(AdminLogin, {
       global: {
         stubs: {
@@ -45,12 +35,18 @@ describe('AdminLogin', () => {
       }
     })
 
+    // Should have email input
     expect(wrapper.find('input[type="email"]').exists()).toBe(true)
-    expect(wrapper.find('input[type="password"]').exists()).toBe(true)
+    expect(wrapper.find('#email').exists()).toBe(true)
+
+    // Should NOT have password input (magic link auth)
+    expect(wrapper.find('input[type="password"]').exists()).toBe(false)
+
+    // Should have submit button
     expect(wrapper.find('button[type="submit"]').exists()).toBe(true)
   })
 
-  it('requires email and password', async () => {
+  it('requires email to enable submit button', async () => {
     const wrapper = mount(AdminLogin, {
       global: {
         stubs: {
@@ -61,58 +57,71 @@ describe('AdminLogin', () => {
 
     const submitButton = wrapper.find('button[type="submit"]')
 
-    // Initially, form should not allow submission with empty fields
+    // Initially disabled with empty email
     expect(submitButton.attributes('disabled')).toBeDefined()
+
+    // Fill email
+    await wrapper.find('input[type="email"]').setValue('admin@test.com')
+
+    // Should now be enabled
+    expect(submitButton.attributes('disabled')).toBeUndefined()
   })
 
-  it('authenticates with Supabase', async () => {
-    vi.mocked(supabase.auth.signInWithPassword).mockResolvedValue({
-      data: {
-        user: { id: 'user-1', email: 'admin@test.com' },
-        session: { access_token: 'token' }
-      },
+  it('sends magic link via Supabase on successful admin check', async () => {
+    // Mock rate limit check (allowed)
+    vi.mocked(supabase.rpc)
+      .mockResolvedValueOnce({ data: true, error: null }) // check_rate_limit
+      .mockResolvedValueOnce({ data: true, error: null }) // is_admin_email
+
+    // Mock magic link send
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({
+      data: {},
       error: null
     } as any)
 
-    const router = createMockRouter()
     const wrapper = mount(AdminLogin, {
       global: {
-        plugins: [router],
         stubs: {
           teleport: true
         }
       }
     })
 
-    // Fill in the form
+    // Fill in the email
     await wrapper.find('input[type="email"]').setValue('admin@test.com')
-    await wrapper.find('input[type="password"]').setValue('password123')
 
     // Submit form
     await wrapper.find('form').trigger('submit')
+    await flushPromises()
 
-    // Should call Supabase auth
-    expect(supabase.auth.signInWithPassword).toHaveBeenCalledWith({
+    // Should check rate limit
+    expect(supabase.rpc).toHaveBeenCalledWith('check_rate_limit', { check_email: 'admin@test.com' })
+
+    // Should check if admin
+    expect(supabase.rpc).toHaveBeenCalledWith('is_admin_email', { check_email: 'admin@test.com' })
+
+    // Should send magic link
+    expect(supabase.auth.signInWithOtp).toHaveBeenCalledWith({
       email: 'admin@test.com',
-      password: 'password123'
+      options: {
+        emailRedirectTo: expect.stringContaining('/bulk-station')
+      }
     })
   })
 
-  it('redirects to admin dashboard on success', async () => {
-    vi.mocked(supabase.auth.signInWithPassword).mockResolvedValue({
-      data: {
-        user: { id: 'user-1', email: 'admin@test.com' },
-        session: { access_token: 'token' }
-      },
+  it('shows success message after sending magic link', async () => {
+    // Mock successful flow
+    vi.mocked(supabase.rpc)
+      .mockResolvedValueOnce({ data: true, error: null }) // check_rate_limit
+      .mockResolvedValueOnce({ data: true, error: null }) // is_admin_email
+
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({
+      data: {},
       error: null
     } as any)
 
-    const router = createMockRouter()
-    const pushSpy = vi.spyOn(router, 'push')
-
     const wrapper = mount(AdminLogin, {
       global: {
-        plugins: [router],
         stubs: {
           teleport: true
         }
@@ -120,20 +129,45 @@ describe('AdminLogin', () => {
     })
 
     await wrapper.find('input[type="email"]').setValue('admin@test.com')
-    await wrapper.find('input[type="password"]').setValue('password123')
     await wrapper.find('form').trigger('submit')
+    await flushPromises()
 
-    // Wait for async operations
-    await new Promise(resolve => setTimeout(resolve, 100))
+    // Should show success message
+    expect(wrapper.find('.bg-green-50').exists()).toBe(true)
+    expect(wrapper.text()).toContain('admin.login.checkEmailGeneric')
 
-    expect(pushSpy).toHaveBeenCalledWith('/bulk-station')
+    // Form should be hidden
+    expect(wrapper.find('form').exists()).toBe(false)
   })
 
-  it('shows error on invalid credentials', async () => {
-    vi.mocked(supabase.auth.signInWithPassword).mockResolvedValue({
-      data: { user: null, session: null },
-      error: { message: 'Invalid credentials' }
-    } as any)
+  it('shows generic success message even for non-admin emails (security)', async () => {
+    // Mock rate limit OK but non-admin email
+    vi.mocked(supabase.rpc)
+      .mockResolvedValueOnce({ data: true, error: null }) // check_rate_limit
+      .mockResolvedValueOnce({ data: false, error: null }) // is_admin_email (NOT admin)
+
+    const wrapper = mount(AdminLogin, {
+      global: {
+        stubs: {
+          teleport: true
+        }
+      }
+    })
+
+    await wrapper.find('input[type="email"]').setValue('regular@test.com')
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    // Should still show success message (don't reveal non-admin)
+    expect(wrapper.find('.bg-green-50').exists()).toBe(true)
+
+    // Should NOT have called signInWithOtp (security)
+    expect(supabase.auth.signInWithOtp).not.toHaveBeenCalled()
+  })
+
+  it('shows error when rate limited', async () => {
+    // Mock rate limit exceeded
+    vi.mocked(supabase.rpc).mockResolvedValueOnce({ data: false, error: null })
 
     const wrapper = mount(AdminLogin, {
       global: {
@@ -144,19 +178,21 @@ describe('AdminLogin', () => {
     })
 
     await wrapper.find('input[type="email"]').setValue('admin@test.com')
-    await wrapper.find('input[type="password"]').setValue('wrong-password')
     await wrapper.find('form').trigger('submit')
+    await flushPromises()
 
-    // Wait for async operations
-    await new Promise(resolve => setTimeout(resolve, 100))
+    // Should show rate limit error
+    expect(wrapper.find('.bg-red-50').exists()).toBe(true)
+    expect(wrapper.text()).toContain('admin.login.rateLimited')
 
-    // Should display error message
-    expect(wrapper.text()).toContain('Invalid credentials')
+    // Should NOT proceed to send magic link
+    expect(supabase.auth.signInWithOtp).not.toHaveBeenCalled()
   })
 
   it('shows loading state during authentication', async () => {
-    vi.mocked(supabase.auth.signInWithPassword).mockImplementation(
-      () => new Promise(resolve => setTimeout(resolve, 100))
+    // Mock slow rate limit check
+    vi.mocked(supabase.rpc).mockImplementation(
+      () => new Promise(resolve => setTimeout(() => resolve({ data: true, error: null }), 100))
     )
 
     const wrapper = mount(AdminLogin, {
@@ -168,12 +204,40 @@ describe('AdminLogin', () => {
     })
 
     await wrapper.find('input[type="email"]').setValue('admin@test.com')
-    await wrapper.find('input[type="password"]').setValue('password123')
 
-    const form = wrapper.find('form')
-    await form.trigger('submit')
+    const submitButton = wrapper.find('button[type="submit"]')
 
-    // Check for loading state immediately
-    expect(wrapper.find('button[type="submit"]').attributes('disabled')).toBeDefined()
+    // Submit form
+    await wrapper.find('form').trigger('submit')
+
+    // Button should be disabled during loading
+    expect(submitButton.attributes('disabled')).toBeDefined()
+
+    // Button text should show loading state
+    expect(submitButton.text()).toBe('common.loading')
+  })
+
+  it('handles RPC errors gracefully', async () => {
+    // Mock RPC error
+    vi.mocked(supabase.rpc).mockResolvedValueOnce({
+      data: null,
+      error: { message: 'Database error' } as any
+    })
+
+    const wrapper = mount(AdminLogin, {
+      global: {
+        stubs: {
+          teleport: true
+        }
+      }
+    })
+
+    await wrapper.find('input[type="email"]').setValue('admin@test.com')
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    // Should show generic error (don't expose internals)
+    expect(wrapper.find('.bg-red-50').exists()).toBe(true)
+    expect(wrapper.text()).toContain('admin.login.rateLimited')
   })
 })

@@ -7,7 +7,7 @@
       </div>
 
       <!-- Loading State -->
-      <LoadingSpinner v-if="loading" centered text="Loading dashboard..." />
+      <LoadingSpinner v-if="loading" :centered="true" text="Loading dashboard..." />
 
       <!-- Error State -->
       <div v-else-if="error" class="bg-red-50 border border-red-200 rounded-lg p-4">
