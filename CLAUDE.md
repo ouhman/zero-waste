@@ -50,6 +50,7 @@ tests/
 
 - **[docs/supabase.md](docs/supabase.md)** - Supabase configuration, RLS policies, and troubleshooting guide
 - **[docs/aws-ses.md](docs/aws-ses.md)** - AWS SES email setup and CDK infrastructure
+- **[docs/navigation.md](docs/navigation.md)** - Map navigation and slug URL behavior
 
 ## Database
 
@@ -206,3 +207,27 @@ Deploy with:
 ```bash
 supabase functions deploy
 ```
+
+## Frontend Rules
+
+- **Clickable elements must have pointer cursor** - All links, buttons, and interactive elements must have `cursor: pointer` to indicate they are clickable. Use `class="cursor-pointer"` (Tailwind) or inline style.
+
+## Pending Work
+
+### Slug Generation V2 (Not Executed)
+
+**Status:** Plan created, not yet implemented
+
+**Problem:** Current slugs are broken (missing first letters, random suffixes hurt SEO)
+
+**Plan:** `docs/plans/slug-generation-v2.md`
+
+**New pattern:** `{name}-{city}-{suburb}-{increment?}` (e.g., `repair-cafe-frankfurt-am-main-bockenheim`)
+
+**Key changes:**
+- PostgreSQL functions for atomic slug generation
+- Add `suburb` column (from Nominatim)
+- Integer increment on collision (no random suffix)
+- Backfill all existing locations
+
+**Execute with:** `/execute-plan docs/plans/slug-generation-v2.md`

@@ -90,21 +90,21 @@ RLS is enabled on all tables. Anonymous users can:
 {"code":"23505","message":"duplicate key value violates unique constraint \"locations_slug_key\""}
 ```
 
-**Cause:** The slug auto-generation trigger creates duplicates when submitting locations with similar names.
+**Cause:** Two locations with similar names in the same area.
 
-**Solution:** Generate slug client-side with unique suffix for pending submissions:
+**Solution:** Slugs are now generated atomically by the database using `generate_unique_slug()`. This function:
+- Creates SEO-friendly slugs: `{name}-{city}-{suburb}`
+- Handles German characters: ä→ae, ö→oe, ü→ue, ß→ss
+- Auto-increments on collision: `cafe-frankfurt-bockenheim-2`
+- Deduplicates if name already contains city/suburb
+
+The Edge Function `verify-submission` calls this via RPC:
 ```typescript
-function generateSlug(name: string, city: string): string {
-  const base = `${name}-${city}`
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-
-  const suffix = Math.random().toString(36).substring(2, 8)
-  return `${base}-pending-${suffix}`
-}
+const { data: slug } = await supabase.rpc('generate_unique_slug', {
+  name: locationName,
+  suburb: suburb || '',
+  city: city
+})
 ```
 
 ---
@@ -195,6 +195,11 @@ npx supabase gen types typescript --project-id <project-id> > src/types/database
 | `20260110115800_category_icons.sql` | Category icon support |
 | `20260110154000_is_admin_email.sql` | Admin email check function |
 | `20260110163100_fix_search_prefix.sql` | Fixes search to support prefix/substring matching |
+| `20260110170000_add_suburb_column.sql` | Adds suburb column to locations |
+| `20260110170100_slugify_function.sql` | German-aware slugify() function |
+| `20260110170200_generate_unique_slug.sql` | Atomic slug generation with collision handling |
+| `20260110170300_update_slug_trigger.sql` | Auto-generate slugs on INSERT/UPDATE |
+| `20260110180000_slug_unique_constraint.sql` | Adds UNIQUE constraint to slug column |
 
 ---
 
