@@ -2,7 +2,6 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { SESClient, SendEmailCommand } from 'npm:@aws-sdk/client-ses'
 import { getAdminNotificationTemplate } from '../_shared/email-templates.ts'
-import { generateSlug } from '../_shared/slug.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -26,6 +25,7 @@ interface SubmissionData {
   address: string
   city?: string
   postal_code?: string
+  suburb?: string
   latitude: string
   longitude: string
   email: string
@@ -155,15 +155,34 @@ serve(async (req) => {
       )
     }
 
-    // Create location record
+    // Generate unique slug using PostgreSQL function
     const city = submissionData.city || 'Frankfurt'
+    const suburb = submissionData.suburb || null
+
+    const { data: slugData, error: slugError } = await supabaseClient
+      .rpc('generate_unique_slug', {
+        name: submissionData.name,
+        suburb: suburb,
+        city: city
+      })
+
+    if (slugError) {
+      console.error('Error generating slug:', slugError)
+      return new Response(
+        JSON.stringify({ error: 'Failed to generate slug' }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // Create location record
     const locationData = {
       id: crypto.randomUUID(),
-      slug: generateSlug(submissionData.name, city),
+      slug: slugData,
       name: submissionData.name,
       address: submissionData.address,
       city: city,
       postal_code: submissionData.postal_code,
+      suburb: suburb,
       latitude: submissionData.latitude,
       longitude: submissionData.longitude,
       description_de: submissionData.description_de,
