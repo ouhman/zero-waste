@@ -12,10 +12,15 @@ export function useLocations() {
     await store.fetchLocations()
   }
 
+  function getLocationBySlug(slug: string) {
+    return store.getLocationBySlug(slug)
+  }
+
   return {
     locations,
     loading,
     error,
-    fetchLocations
+    fetchLocations,
+    getLocationBySlug
   }
 }

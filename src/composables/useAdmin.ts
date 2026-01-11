@@ -3,9 +3,14 @@ import { supabase } from '@/lib/supabase'
 import type { Database } from '@/types/database'
 
 type Location = Database['public']['Tables']['locations']['Row']
+type LocationWithCategories = Location & {
+  location_categories?: {
+    categories: Database['public']['Tables']['categories']['Row']
+  }[]
+}
 
 export function useAdmin() {
-  const pendingLocations = ref<Location[]>([])
+  const pendingLocations = ref<LocationWithCategories[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
@@ -16,7 +21,12 @@ export function useAdmin() {
     try {
       const { data, error: fetchError } = await supabase
         .from('locations')
-        .select('*')
+        .select(`
+          *,
+          location_categories(
+            categories(*)
+          )
+        `)
         .eq('status', 'pending')
         .order('created_at', { ascending: false })
 
@@ -25,7 +35,7 @@ export function useAdmin() {
         return
       }
 
-      pendingLocations.value = data || []
+      pendingLocations.value = (data || []) as LocationWithCategories[]
     } catch (e) {
       error.value = e instanceof Error ? e.message : 'Unknown error'
     } finally {

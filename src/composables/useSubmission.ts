@@ -5,6 +5,7 @@ export interface SubmissionData {
   address: string
   city?: string
   postal_code?: string
+  suburb?: string
   latitude: string
   longitude: string
   email: string

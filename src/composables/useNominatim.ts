@@ -12,6 +12,7 @@ export interface ReverseGeocodingResult {
   address: string
   city: string
   postalCode: string
+  suburb?: string
   displayName: string
 }
 
@@ -21,6 +22,7 @@ export interface EnrichedResult {
   address: string
   city: string
   postalCode: string
+  suburb?: string
   phone?: string
   website?: string
   email?: string
@@ -429,6 +431,9 @@ export function useNominatim() {
       // Get city from various possible fields
       const city = addr.city || addr.town || addr.village || addr.municipality || ''
 
+      // Get suburb if available
+      const suburb = addr.suburb || undefined
+
       // Extract contact fields with preference for contact:* namespace
       const phone = extractContactField(extras, 'phone')
       const website = extractContactField(extras, 'website')
@@ -458,6 +463,7 @@ export function useNominatim() {
         address: streetAddress,
         city: city,
         postalCode: addr.postcode || '',
+        suburb,
         phone,
         website,
         email,
@@ -526,10 +532,14 @@ export function useNominatim() {
       // Get city from various possible fields
       const city = addr.city || addr.town || addr.village || addr.municipality || ''
 
+      // Get suburb if available
+      const suburb = addr.suburb || undefined
+
       reverseResult.value = {
         address: streetAddress,
         city: city,
         postalCode: addr.postcode || '',
+        suburb,
         displayName: data.display_name || ''
       }
     } catch (e) {
