@@ -108,13 +108,13 @@
               <button
                 v-if="location.status === 'pending'"
                 @click="handleApprove(location.id)"
-                class="text-green-600 hover:text-green-900"
+                class="px-3 py-1 text-sm bg-green-100 text-green-700 rounded hover:bg-green-200 cursor-pointer"
               >
                 {{ t('admin.approve') }}
               </button>
               <router-link
                 :to="`/bulk-station/edit/${location.id}`"
-                class="text-blue-600 hover:text-blue-900"
+                class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 cursor-pointer inline-block"
               >
                 {{ t('admin.editButton') }}
               </router-link>
@@ -122,7 +122,7 @@
                 v-if="location.slug"
                 :href="`/location/${location.slug}`"
                 target="_blank"
-                class="text-gray-600 hover:text-gray-900"
+                class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded hover:bg-gray-200 cursor-pointer inline-block"
               >
                 {{ t('admin.locations.viewOnMap') }}
               </a>

@@ -352,6 +352,7 @@ const formData = ref({
   address: '',
   city: 'Frankfurt',
   postal_code: '',
+  suburb: '',
   latitude: '',
   longitude: '',
   description_de: '',
@@ -498,6 +499,9 @@ watch(reverseResult, (result) => {
     if (!formData.value.postal_code && result.postalCode) {
       formData.value.postal_code = result.postalCode
     }
+    if (!formData.value.suburb && result.suburb) {
+      formData.value.suburb = result.suburb
+    }
     parsingMapsUrl.value = false
   }
 })
@@ -535,7 +539,7 @@ watch(enrichedResult, async (result) => {
     resetEnrichmentStatus()
     let autoFilledCount = 0
 
-    // Fill address/city/postal if empty
+    // Fill address/city/postal/suburb if empty
     if (!formData.value.address && result.address) {
       formData.value.address = result.address
       markAsAutoFilled('address', 'osm')
@@ -548,6 +552,10 @@ watch(enrichedResult, async (result) => {
     if (!formData.value.postal_code && result.postalCode) {
       formData.value.postal_code = result.postalCode
       markAsAutoFilled('postal_code', 'osm')
+    }
+    if (!formData.value.suburb && result.suburb) {
+      formData.value.suburb = result.suburb
+      markAsAutoFilled('suburb', 'osm')
     }
 
     // Fill business metadata with progressive status updates

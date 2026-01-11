@@ -73,15 +73,15 @@
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
                 <button
                   @click="openEditModal(category)"
-                  class="text-blue-600 hover:text-blue-900"
+                  class="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 cursor-pointer"
                 >
                   {{ t('admin.editButton') }}
                 </button>
                 <button
                   @click="openDeleteModal(category)"
-                  class="text-red-600 hover:text-red-900"
+                  class="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200 cursor-pointer"
                   :disabled="category.slug === 'andere'"
-                  :class="{ 'opacity-50 cursor-not-allowed': category.slug === 'andere' }"
+                  :class="{ 'opacity-50 !cursor-not-allowed': category.slug === 'andere' }"
                 >
                   {{ t('admin.categories.delete') }}
                 </button>
