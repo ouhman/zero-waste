@@ -138,7 +138,6 @@ import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import PaymentMethods from '@/components/PaymentMethods.vue'
 import ContactInfo from '@/components/common/ContactInfo.vue'
-import { useToast } from '@/composables/useToast'
 import type { Database } from '@/types/database'
 import type { PaymentMethods as PaymentMethodsType } from '@/types/osm'
 
@@ -155,10 +154,10 @@ interface Props {
 const props = defineProps<Props>()
 const emit = defineEmits<{
   close: []
+  share: [location: Location]
 }>()
 
 const { t } = useI18n()
-const toast = useToast()
 const panelRef = ref<HTMLElement | null>(null)
 const isMobile = ref(false)
 
@@ -231,44 +230,10 @@ const directionsUrl = computed(() => {
   return `https://www.google.com/maps/dir/?api=1&destination=${props.location.latitude},${props.location.longitude}&travelmode=bicycling`
 })
 
-// Share location
-async function shareLocation() {
+// Share location - emit to parent to show ShareModal
+function shareLocation() {
   if (!props.location) return
-
-  const shareData = {
-    title: props.location.name,
-    text: `${props.location.name} - ${props.location.address}, ${props.location.city}`,
-    url: `${window.location.origin}/location/${props.location.slug}`
-  }
-
-  if (navigator.share) {
-    try {
-      await navigator.share(shareData)
-    } catch {
-      // User cancelled - fall back to clipboard
-      await copyToClipboard(shareData.url)
-    }
-  } else {
-    await copyToClipboard(shareData.url)
-  }
-}
-
-async function copyToClipboard(text: string) {
-  try {
-    await navigator.clipboard.writeText(text)
-    toast.success(t('location.linkCopied'), 3000)
-  } catch {
-    // Fallback for older browsers
-    const textarea = document.createElement('textarea')
-    textarea.value = text
-    textarea.style.position = 'fixed'
-    textarea.style.opacity = '0'
-    document.body.appendChild(textarea)
-    textarea.select()
-    document.execCommand('copy')
-    document.body.removeChild(textarea)
-    toast.success(t('location.linkCopied'), 3000)
-  }
+  emit('share', props.location)
 }
 
 // Drag to dismiss (mobile)

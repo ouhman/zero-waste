@@ -61,6 +61,12 @@
   "submit": {
     "title": "Ort vorschlagen",
     "subtitle": "Teilen Sie einen nachhaltigen Ort mit der Community",
+    "howToAdd": "Wie möchtest du den Standort hinzufügen?",
+    "methodGoogleMaps": "Ich habe einen Google Maps Link",
+    "methodGoogleMapsDesc": "Am besten am Desktop - URL aus Browser kopieren",
+    "methodPinMap": "Ich pinne ihn auf der Karte",
+    "methodPinMapDesc": "Empfohlen auf dem Handy",
+    "methodPinMapDescFull": "Am besten, wenn du in der Nähe bist oder den genauen Standort kennst",
     "submissionType": "Was möchten Sie tun?",
     "newLocation": "Neuen Ort vorschlagen",
     "updateLocation": "Bestehenden Ort aktualisieren",
@@ -133,7 +139,33 @@
     "foundInstagram": "Instagram",
     "clearAutoFilled": "Automatisch ausgefüllten Wert löschen",
     "replaceAutoFilled": "Dieses Feld wurde automatisch ausgefüllt. Löschen Sie es, um manuell einzugeben.",
-    "verifyAutoFilled": "Bitte überprüfen Sie die automatisch ausgefüllten Informationen"
+    "verifyAutoFilled": "Bitte überprüfen Sie die automatisch ausgefüllten Informationen",
+    "tutorialIntro": "Folge diesen einfachen Schritten",
+    "tutorialStep1": "Finde den Standort auf Google Maps",
+    "tutorialStep1Desc": "Suche oder navigiere zu dem Ort, den du hinzufügen möchtest",
+    "tutorialStep2": "Kopiere die URL aus der Adressleiste deines Browsers",
+    "tutorialStep2Desc": "Alles auswählen und kopieren (Strg+C / Cmd+C)",
+    "tutorialStep3": "Füge die URL unten ein",
+    "letsDoThis": "Los geht's!",
+    "mobileHint": "Am Handy? Nutze stattdessen 'Auf der Karte pinnen' für bessere Ergebnisse.",
+    "openGoogleMaps": "Google Maps öffnen",
+    "pasteLink": "Füge deinen Google Maps Link hier ein",
+    "searchAddress": "Nach einer Adresse suchen...",
+    "iAmNearby": "Ich bin in der Nähe",
+    "tapToPlace": "Tippe auf die Karte, um eine Nadel zu setzen",
+    "dragToAdjust": "Ziehe die Nadel, um den genauen Standort anzupassen",
+    "confirmLocation": "Diesen Standort bestätigen",
+    "locatingYou": "Ermittle deinen Standort...",
+    "accuracyInfo": "Genauigkeit: ~{meters}m",
+    "selectedAddress": "Ausgewählt: {address}",
+    "findingNearby": "Suche nach Geschäften in der Nähe...",
+    "foundNearby": "{count} Geschäft gefunden | {count} Geschäfte gefunden",
+    "noPOIsFound": "Keine Geschäfte an diesem Standort gefunden",
+    "selectBusiness": "Ist es einer dieser Orte?",
+    "enterManually": "Keines davon - Ich gebe den Namen ein",
+    "tapAgainToConfirm": "Nochmal tippen zum Bestätigen",
+    "businessSelected": "Ausgewählt: {name}",
+    "helpFindInstagram": "Hilf mir, es zu finden"
   },
   "verify": {
     "title": "E-Mail bestätigen",
@@ -322,5 +354,11 @@
     "backHome": "Zurück zur Karte",
     "backToMap": "Zurück zur Karte",
     "submitLocation": "Ort vorschlagen"
+  },
+  "videoPlayer": {
+    "play": "Abspielen",
+    "pause": "Pause",
+    "quality": "Qualität",
+    "fullscreen": "Vollbild"
   }
 }

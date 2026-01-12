@@ -61,6 +61,12 @@
   "submit": {
     "title": "Suggest Location",
     "subtitle": "Share a sustainable location with the community",
+    "howToAdd": "How do you want to add a location?",
+    "methodGoogleMaps": "I have a Google Maps link",
+    "methodGoogleMapsDesc": "Best on desktop - copy URL from browser",
+    "methodPinMap": "I'll pin it on the map",
+    "methodPinMapDesc": "Recommended on mobile",
+    "methodPinMapDescFull": "Best if you're nearby or know the exact spot",
     "submissionType": "What would you like to do?",
     "newLocation": "Suggest new location",
     "updateLocation": "Update existing location",
@@ -133,7 +139,33 @@
     "foundInstagram": "Instagram",
     "clearAutoFilled": "Clear auto-filled value",
     "replaceAutoFilled": "This field was auto-filled. Clear it to enter manually.",
-    "verifyAutoFilled": "Please verify auto-filled information"
+    "verifyAutoFilled": "Please verify auto-filled information",
+    "tutorialIntro": "Follow these easy steps",
+    "tutorialStep1": "Find the location on Google Maps",
+    "tutorialStep1Desc": "Search or navigate to the place you want to add",
+    "tutorialStep2": "Copy the URL from your browser's address bar",
+    "tutorialStep2Desc": "Select all and copy (Ctrl+C / Cmd+C)",
+    "tutorialStep3": "Paste the URL below",
+    "letsDoThis": "Let's do this!",
+    "mobileHint": "On mobile? Use 'Pin on Map' instead for better results.",
+    "openGoogleMaps": "Open Google Maps",
+    "pasteLink": "Paste your Google Maps link here",
+    "searchAddress": "Search for an address...",
+    "iAmNearby": "I'm nearby",
+    "tapToPlace": "Tap on the map to place a pin",
+    "dragToAdjust": "Drag the pin to adjust the exact location",
+    "confirmLocation": "Confirm this location",
+    "locatingYou": "Getting your location...",
+    "accuracyInfo": "Accuracy: ~{meters}m",
+    "selectedAddress": "Selected: {address}",
+    "findingNearby": "Looking for businesses nearby...",
+    "foundNearby": "Found {count} business nearby | Found {count} businesses nearby",
+    "noPOIsFound": "No businesses found at this location",
+    "selectBusiness": "Is this one of these locations?",
+    "enterManually": "None of these - I'll enter the name",
+    "tapAgainToConfirm": "Tap again to confirm",
+    "businessSelected": "Selected: {name}",
+    "helpFindInstagram": "Help me find it"
   },
   "verify": {
     "title": "Verify Email",
@@ -322,5 +354,11 @@
     "backHome": "Back to Map",
     "backToMap": "Back to Map",
     "submitLocation": "Submit Location"
+  },
+  "videoPlayer": {
+    "play": "Play",
+    "pause": "Pause",
+    "quality": "Quality",
+    "fullscreen": "Fullscreen"
   }
 }

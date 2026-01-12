@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { supabase } from '@/lib/supabase'
+import { useGeolocation } from '@/composables/useGeolocation'
 import type { Database } from '@/types/database'
 
 type NearbyLocation = Database['public']['Functions']['locations_nearby']['Returns'][number]
@@ -10,6 +11,9 @@ export function useNearby() {
   const error = ref<string | null>(null)
   const userLat = ref<number | null>(null)
   const userLng = ref<number | null>(null)
+
+  // Use the extracted geolocation composable
+  const geolocation = useGeolocation()
 
   /**
    * Find nearby locations using PostGIS
@@ -44,48 +48,22 @@ export function useNearby() {
 
   /**
    * Get user's current location from browser
+   * Now delegates to useGeolocation composable
    */
   async function getUserLocation(): Promise<{ lat: number; lng: number } | null> {
-    loading.value = true
-    error.value = null
+    const result = await geolocation.getUserLocation()
 
-    return new Promise((resolve) => {
-      if (!navigator.geolocation) {
-        error.value = 'Geolocation is not supported by your browser'
-        loading.value = false
-        resolve(null)
-        return
-      }
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          userLat.value = position.coords.latitude
-          userLng.value = position.coords.longitude
-          error.value = null
-          resolve({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          })
-        },
-        (err) => {
-          switch (err.code) {
-            case err.PERMISSION_DENIED:
-              error.value = 'Location access denied'
-              break
-            case err.POSITION_UNAVAILABLE:
-              error.value = 'Location information unavailable'
-              break
-            case err.TIMEOUT:
-              error.value = 'Location request timed out'
-              break
-            default:
-              error.value = 'Unknown geolocation error'
-          }
-          loading.value = false
-          resolve(null)
-        }
-      )
-    })
+    if (result) {
+      // Update local refs for backward compatibility
+      userLat.value = result.lat
+      userLng.value = result.lng
+      error.value = null
+      return { lat: result.lat, lng: result.lng }
+    } else {
+      // Copy error from geolocation composable
+      error.value = geolocation.error.value
+      return null
+    }
   }
 
   return {

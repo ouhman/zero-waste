@@ -80,6 +80,7 @@
     <LocationDetailPanel
       :location="selectedLocation"
       @close="handleClosePanel"
+      @share="handleShareFromPanel"
     />
 
     <!-- Share Modal -->
@@ -266,6 +267,10 @@ function handleShareLocation(locationId: string) {
   if (location) {
     shareModalLocation.value = location as LocationWithCategories
   }
+}
+
+function handleShareFromPanel(location: LocationWithCategories) {
+  shareModalLocation.value = location
 }
 
 function handleClosePanel() {

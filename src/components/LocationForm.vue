@@ -15,47 +15,79 @@
     <!-- Steps -->
     <form @submit.prevent="handleSubmit" class="steps-container">
 
-      <!-- Step 1: Quick Start with Google Maps -->
+      <!-- Step 1: Submission Method Selection -->
       <div v-show="currentStep === 1" class="step">
-        <div class="step-header">
-          <span class="step-number">1</span>
-          <h2 class="step-title">{{ t('submit.quickStartTitle') }}</h2>
-          <p class="step-description">{{ t('submit.quickStartDescription') }}</p>
+        <!-- Method selector (shown when no method selected) -->
+        <SubmissionMethodSelector
+          v-if="submissionMethod === null"
+          @select="handleMethodSelect"
+        />
+
+        <!-- Google Maps Tutorial (shown when google-maps method selected) -->
+        <div v-else-if="submissionMethod === 'google-maps'">
+          <div class="section-header">
+            <h2 class="section-title">{{ t('submit.quickStartTitle') }}</h2>
+            <p class="section-description">{{ t('submit.quickStartDescription') }}</p>
+          </div>
+
+          <div class="step-content">
+            <GoogleMapsTutorial
+              @back="submissionMethod = null"
+              @url-submitted="handleGoogleMapsUrlSubmitted"
+            />
+
+            <!-- Show parsing/enrichment status below tutorial -->
+            <div v-if="googleMapsUrl" class="status-section">
+              <p v-if="googleMapsError" class="status-text error" role="alert">{{ googleMapsError }}</p>
+
+              <!-- Enhanced enrichment status component -->
+              <EnrichmentStatus
+                v-if="enrichingLocation || enrichmentSummary || enrichmentError"
+                :loading="enrichingLocation"
+                :found-phone="foundPhone"
+                :found-website="foundWebsite"
+                :found-email="foundEmail"
+                :found-hours="foundHours"
+                :found-instagram="foundInstagram"
+                :success="!!enrichmentSummary && !enrichmentError"
+                :summary="enrichmentSummary"
+                :error="enrichmentError"
+              />
+
+              <p v-else-if="parsingMapsUrl" class="status-text">🔍 {{ t('submit.googleMapsUrlParsing') }}</p>
+              <p v-else-if="formData.name" class="status-text success">✓ {{ t('submit.found') }}: {{ formData.name }}</p>
+
+              <!-- Continue button -->
+              <div class="continue-section">
+                <button type="button" class="btn btn-secondary" @click="currentStep = 2">
+                  {{ googleMapsUrl ? t('submit.continue') : t('submit.skipManual') }} →
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="step-content">
-          <input
-            ref="googleMapsInput"
-            v-model="googleMapsUrl"
-            type="url"
-            class="input input-large"
-            :class="{ error: googleMapsError }"
-            :placeholder="t('submit.googleMapsUrlPlaceholder')"
-            :aria-describedby="googleMapsError ? 'google-maps-error' : undefined"
-          />
-          <p v-if="googleMapsError" id="google-maps-error" class="status-text error" role="alert">{{ googleMapsError }}</p>
-
-          <!-- Enhanced enrichment status component -->
-          <EnrichmentStatus
-            v-if="enrichingLocation || enrichmentSummary || enrichmentError"
-            :loading="enrichingLocation"
-            :found-phone="foundPhone"
-            :found-website="foundWebsite"
-            :found-email="foundEmail"
-            :found-hours="foundHours"
-            :found-instagram="foundInstagram"
-            :success="!!enrichmentSummary && !enrichmentError"
-            :summary="enrichmentSummary"
-            :error="enrichmentError"
+        <!-- Pin on Map -->
+        <div v-else-if="submissionMethod === 'pin-map'">
+          <!-- Step 1a: Show map for pinning location -->
+          <LocationPinMap
+            v-if="pinMapStep === 'map'"
+            :initial-location="pinnedLocation"
+            @back="submissionMethod = null"
+            @location-confirmed="handleLocationPinConfirmed"
           />
 
-          <p v-else-if="parsingMapsUrl" class="status-text">🔍 {{ t('submit.googleMapsUrlParsing') }}</p>
-          <p v-else-if="formData.name" class="status-text success">✓ {{ t('submit.found') }}: {{ formData.name }}</p>
+          <!-- Step 1b: Show nearby POI selector after pin confirmation -->
+          <NearbyPOISelector
+            v-else-if="pinMapStep === 'poi-selection' && pinnedLocation"
+            :lat="pinnedLocation.lat"
+            :lng="pinnedLocation.lng"
+            :address="pinnedLocation.address"
+            @poi-selected="handlePOISelected"
+            @enter-manually="handleEnterManually"
+            @back="pinMapStep = 'map'"
+          />
         </div>
-
-        <button type="button" class="btn btn-secondary" @click="currentStep = 2">
-          {{ googleMapsUrl ? t('submit.continue') : t('submit.skipManual') }} →
-        </button>
       </div>
 
       <!-- Step 2: Basic Info -->
@@ -199,6 +231,11 @@
                 :source="getAutoFillSource('instagram')"
                 @clear="clearAutoFilled('instagram')"
               />
+              <!-- Instagram Search Helper -->
+              <InstagramSearchHelper
+                v-if="!formData.instagram && formData.name"
+                :business-name="formData.name"
+              />
             </div>
           </div>
 
@@ -308,7 +345,15 @@ import { useEnrichment } from '@/composables/useEnrichment'
 import { parseGoogleMapsUrl, isGoogleMapsUrl } from '@/lib/googleMapsUrlParser'
 import EnrichmentStatus from '@/components/ui/EnrichmentStatus.vue'
 import FieldBadge from '@/components/ui/FieldBadge.vue'
+import SubmissionMethodSelector from '@/components/submission/SubmissionMethodSelector.vue'
+import GoogleMapsTutorial from '@/components/submission/GoogleMapsTutorial.vue'
+import LocationPinMap from '@/components/submission/LocationPinMap.vue'
+import NearbyPOISelector from '@/components/submission/NearbyPOISelector.vue'
+import InstagramSearchHelper from '@/components/submission/InstagramSearchHelper.vue'
 import type { PaymentMethods, StructuredOpeningHours } from '@/types/osm'
+
+type SubmissionMethod = 'google-maps' | 'pin-map' | null
+type PinMapStep = 'map' | 'poi-selection'
 
 interface Props {
   mode: 'submit' | 'edit'
@@ -344,6 +389,9 @@ const {
   enrichFromWebsite
 } = useEnrichment()
 
+const submissionMethod = ref<SubmissionMethod>(null)
+const pinMapStep = ref<PinMapStep>('map')
+const pinnedLocation = ref<{ lat: number; lng: number; address: string } | null>(null)
 const currentStep = ref(1)
 const totalSteps = 4
 
@@ -491,15 +539,13 @@ onMounted(async () => {
       ...formData.value,
       ...props.existingLocation
     }
-    // Skip to step 2 in edit mode
+    // In edit mode, skip method selector and go to step 2
+    submissionMethod.value = 'google-maps'
     currentStep.value = 2
     await nextTick()
     nameInput.value?.focus()
-  } else {
-    // Focus on Google Maps input for new submissions
-    await nextTick()
-    googleMapsInput.value?.focus()
   }
+  // For new submissions, user will select method first (submissionMethod starts as null)
 })
 
 // Cleanup on component unmount
@@ -507,13 +553,140 @@ onUnmounted(() => {
   cancelPendingEnrichment()
 })
 
+// Handle submission method selection
+function handleMethodSelect(method: SubmissionMethod) {
+  submissionMethod.value = method
+  // Auto-focus on Google Maps input if that method was selected
+  if (method === 'google-maps') {
+    nextTick(() => {
+      googleMapsInput.value?.focus()
+    })
+  }
+}
+
+// Handle Google Maps URL submitted from tutorial
+function handleGoogleMapsUrlSubmitted(url: string) {
+  googleMapsUrl.value = url
+}
+
+// Handle location pin confirmed from map
+async function handleLocationPinConfirmed(data: { lat: number; lng: number; address: string }) {
+  // Store pinned location
+  pinnedLocation.value = data
+
+  // Fill coordinates
+  formData.value.latitude = data.lat.toString()
+  formData.value.longitude = data.lng.toString()
+
+  // Parse address from display name
+  const addressParts = data.address.split(',').map(part => part.trim())
+  if (addressParts.length > 0) {
+    formData.value.address = addressParts[0] // First part is usually street
+  }
+  if (addressParts.length > 1) {
+    formData.value.city = addressParts[addressParts.length - 2] || 'Frankfurt' // Second to last is usually city
+  }
+
+  // Trigger reverse geocode for more details
+  await reverseGeocode(data.lat, data.lng)
+
+  // Move to POI selection step
+  pinMapStep.value = 'poi-selection'
+}
+
+// Handle POI selected from NearbyPOISelector
+async function handlePOISelected(data: {
+  name: string
+  lat: number
+  lng: number
+  address?: string
+  phone?: string
+  website?: string
+  type: string
+}) {
+  // Fill form data with POI info
+  formData.value.name = data.name
+  formData.value.latitude = data.lat.toString()
+  formData.value.longitude = data.lng.toString()
+
+  if (data.address) {
+    // Parse address
+    const addressParts = data.address.split(',').map(part => part.trim())
+    if (addressParts.length > 0) {
+      formData.value.address = addressParts[0]
+    }
+    if (addressParts.length > 1) {
+      formData.value.city = addressParts[addressParts.length - 1] || 'Frankfurt'
+    }
+  }
+
+  // Fill optional fields if available
+  if (data.phone) {
+    formData.value.phone = data.phone
+    markAsAutoFilled('phone', 'osm')
+  }
+  if (data.website) {
+    formData.value.website = data.website
+    markAsAutoFilled('website', 'osm')
+  }
+
+  // Use searchWithExtras to enrich with additional data from Nominatim
+  if (formData.value.name) {
+    enrichingLocation.value = true
+    resetEnrichmentStatus()
+
+    try {
+      enrichmentAbortController = new AbortController()
+      await searchWithExtras(
+        formData.value.name,
+        data.lat,
+        data.lng,
+        enrichmentAbortController.signal
+      )
+    } catch (e) {
+      console.error('Failed to enrich POI:', e)
+    } finally {
+      enrichingLocation.value = false
+    }
+  }
+
+  // Reset pin map flow
+  pinMapStep.value = 'map'
+  pinnedLocation.value = null
+
+  // Proceed to step 2
+  currentStep.value = 2
+}
+
+// Handle manual entry (no POI selected)
+function handleEnterManually() {
+  // Keep coordinates and address from pinned location
+  // Name field will be empty for manual entry
+  formData.value.name = ''
+
+  // Reset pin map flow
+  pinMapStep.value = 'map'
+  pinnedLocation.value = null
+
+  // Proceed to step 2
+  currentStep.value = 2
+}
+
 // Auto-focus when changing steps
 watch(currentStep, async (step) => {
   await nextTick()
-  if (step === 1) {
+  if (step === 1 && submissionMethod.value === 'google-maps') {
     googleMapsInput.value?.focus()
   } else if (step === 2) {
     nameInput.value?.focus()
+  }
+})
+
+// Reset pin map step when method changes
+watch(submissionMethod, (newMethod) => {
+  if (newMethod !== 'pin-map') {
+    pinMapStep.value = 'map'
+    pinnedLocation.value = null
   }
 })
 
@@ -964,6 +1137,24 @@ function handleSubmit() {
   margin: 0;
 }
 
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.section-description {
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0;
+}
+
 .step-content {
   margin-bottom: 32px;
 }
@@ -1223,5 +1414,13 @@ function handleSubmit() {
 .info-icon {
   flex-shrink: 0;
   font-size: 16px;
+}
+
+.status-section {
+  margin-top: 24px;
+}
+
+.continue-section {
+  margin-top: 20px;
 }
 </style>
