@@ -32,14 +32,17 @@ src/
     common/          # Shared components (ContactInfo, PaymentMethodsBadges, etc.)
     map/             # Map-related components
     admin/           # Admin panel components
+    submission/      # Location submission flow components
   composables/
-    useAuth.ts       # Authentication & session management
-    useDebounce.ts   # Debounce utility (created in Phase 5)
-    useFavorites.ts  # Favorites management (memory leak fixed in Phase 1)
-    useNominatim.ts  # OSM data enrichment
-    useSearch.ts     # Location search (memory leak fixed in Phase 1)
-    useToast.ts      # Toast notifications
-    useSubmission.ts # Location submission
+    useAuth.ts        # Authentication & session management
+    useDebounce.ts    # Debounce utility
+    useFavorites.ts   # Favorites management
+    useGeolocation.ts # Browser geolocation API
+    useNominatim.ts   # OSM data enrichment
+    useOverpass.ts    # Overpass API for POI search
+    useSearch.ts      # Location search
+    useToast.ts       # Toast notifications
+    useSubmission.ts  # Location submission
   lib/
     supabase.ts            # Supabase client
     openingHoursParser.ts  # OSM hours parser
@@ -60,10 +63,11 @@ supabase/
   schema.sql         # Base database schema
 
 tests/
-  component/         # Component tests (300+ tests)
+  component/         # Component tests (639+ tests)
     admin/          # Admin components (94 tests)
     common/         # Shared components (30 tests)
     map/            # Map components (55 tests)
+    submission/     # Submission flow components (45 tests)
     views/          # View components (122 tests)
   e2e/              # Playwright e2e tests
 
@@ -103,6 +107,48 @@ Create `.env` with:
 VITE_SUPABASE_URL=https://xxx.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJ...
 ```
+
+## Location Submission Flow
+
+The app offers two methods for submitting new locations:
+
+### Method 1: Google Maps Link
+- Paste a Google Maps link (with or without place name)
+- Tutorial guides users through copying link from mobile/desktop
+- Auto-fills coordinates, address, and name
+- Enriches with OSM data (phone, website, hours, Instagram)
+
+### Method 2: Pin on Map
+- Interactive Leaflet map for direct location pinning
+- Search by address or "I'm nearby" button for geolocation
+- Draggable marker for precise positioning
+- Queries Overpass API for nearby POIs (50m radius)
+- Auto-fills business details when POI selected
+- Manual entry fallback if no POIs found
+
+### Instagram Discovery
+- Small helper link appears below Instagram field when empty
+- Opens Google search for "{business name} instagram"
+- Non-intrusive design
+
+### Auto-Enrichment Chain
+1. OSM data from Nominatim (primary source)
+2. Website scraping (fallback for Instagram/hours/email)
+3. Progressive status indicators during enrichment
+
+**Key Components:**
+- `SubmissionMethodSelector.vue` - Two-card method selection
+- `GoogleMapsTutorial.vue` - 4-step tutorial with deep links
+- `LocationPinMap.vue` - Interactive map with search/geolocation
+- `NearbyPOISelector.vue` - POI selection from Overpass results
+- `InstagramSearchHelper.vue` - Instagram discovery helper
+
+**Composables:**
+- `useGeolocation.ts` - Browser geolocation API
+- `useOverpass.ts` - Overpass API for POI search
+- `useNominatim.ts` - OSM data enrichment
+
+See `ai/2026-01-11-enhanced-location-submission.md` for implementation plan.
 
 ## OSM Data Enrichment
 

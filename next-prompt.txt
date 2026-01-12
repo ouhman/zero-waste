@@ -162,3 +162,9 @@ before going to bed:
   2. Deploy Edge Functions
   3. Deploy FrontendStack
   4. Something else
+
+
+
+
+--------------------------------------------------
+  docs/plans/buecherschraenke-import.md
