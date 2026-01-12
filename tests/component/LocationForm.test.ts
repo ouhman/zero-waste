@@ -346,7 +346,13 @@ describe('LocationForm', () => {
         }
       })
 
-      // Find Google Maps URL input (in step 1)
+      // Step 1: Select Google Maps method
+      const googleMapsMethod = wrapper.find('[data-testid="method-google-maps"]')
+      expect(googleMapsMethod.exists()).toBe(true)
+      await googleMapsMethod.trigger('click')
+      await wrapper.vm.$nextTick()
+
+      // Step 2: Find Google Maps URL input (now shown after method selection)
       const urlInput = wrapper.find('input[type="url"]')
       expect(urlInput.exists()).toBe(true)
 
@@ -368,8 +374,9 @@ describe('LocationForm', () => {
         }
       })
 
-      // Simulate enrichment by directly setting the summary
-      // (In real usage, this would be set by the watcher)
+      // Select Google Maps method first
+      const googleMapsMethod = wrapper.find('[data-testid="method-google-maps"]')
+      await googleMapsMethod.trigger('click')
       await wrapper.vm.$nextTick()
 
       // The component should handle enriched results through watchers

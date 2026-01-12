@@ -9,19 +9,24 @@ vi.mock('@/lib/supabase', () => ({
   }
 }))
 
-// Mock geolocation
-const mockGeolocation = {
-  getCurrentPosition: vi.fn()
-}
+// Mock useGeolocation composable
+vi.mock('@/composables/useGeolocation', () => ({
+  useGeolocation: vi.fn()
+}))
 
-Object.defineProperty(global.navigator, 'geolocation', {
-  value: mockGeolocation,
-  writable: true
-})
+import { useGeolocation } from '@/composables/useGeolocation'
 
 describe('useNearby', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+
+    // Default mock for useGeolocation
+    vi.mocked(useGeolocation).mockReturnValue({
+      getUserLocation: vi.fn().mockResolvedValue(null),
+      loading: { value: false },
+      error: { value: null },
+      location: { value: null }
+    } as any)
   })
 
   it('calls Supabase locations_nearby function', async () => {
@@ -57,9 +62,13 @@ describe('useNearby', () => {
   })
 
   it('handles geolocation error', async () => {
-    mockGeolocation.getCurrentPosition.mockImplementation((_success, error) => {
-      error({ code: 1, message: 'User denied geolocation', PERMISSION_DENIED: 1, POSITION_UNAVAILABLE: 2, TIMEOUT: 3 })
-    })
+    const mockGeolocationError = vi.fn().mockResolvedValue(null)
+    vi.mocked(useGeolocation).mockReturnValue({
+      getUserLocation: mockGeolocationError,
+      loading: { value: false },
+      error: { value: 'Location access denied' },
+      location: { value: null }
+    } as any)
 
     const { getUserLocation, error } = useNearby()
     await getUserLocation()
@@ -68,15 +77,17 @@ describe('useNearby', () => {
   })
 
   it('gets user location successfully', async () => {
-    mockGeolocation.getCurrentPosition.mockImplementation((success) => {
-      success({
-        coords: {
-          latitude: 50.1109,
-          longitude: 8.6821,
-          accuracy: 10
-        }
-      })
+    const mockGeolocationSuccess = vi.fn().mockResolvedValue({
+      lat: 50.1109,
+      lng: 8.6821,
+      accuracy: 10
     })
+    vi.mocked(useGeolocation).mockReturnValue({
+      getUserLocation: mockGeolocationSuccess,
+      loading: { value: false },
+      error: { value: null },
+      location: { value: { lat: 50.1109, lng: 8.6821, accuracy: 10 } }
+    } as any)
 
     const { getUserLocation, userLat, userLng } = useNearby()
     await getUserLocation()
