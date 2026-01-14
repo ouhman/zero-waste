@@ -24,8 +24,8 @@ export interface PaymentMethods {
  */
 export interface OpeningHoursEntry {
   day: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday'
-  opens: string   // Format: "HH:MM" (24-hour)
-  closes: string  // Format: "HH:MM" (24-hour)
+  opens: string | null   // Format: "HH:MM" (24-hour), null = closed
+  closes: string | null  // Format: "HH:MM" (24-hour), null = closed
 }
 
 /**

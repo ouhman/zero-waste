@@ -23,6 +23,7 @@ export interface Database {
           description_de: string | null
           description_en: string | null
           updated_at: string | null
+          always_open: boolean | null
         }
         Insert: {
           id?: string
@@ -37,6 +38,7 @@ export interface Database {
           description_de?: string | null
           description_en?: string | null
           updated_at?: string | null
+          always_open?: boolean | null
         }
         Update: {
           id?: string
@@ -51,6 +53,7 @@ export interface Database {
           description_de?: string | null
           description_en?: string | null
           updated_at?: string | null
+          always_open?: boolean | null
         }
       }
       locations: {
