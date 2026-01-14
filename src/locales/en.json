@@ -435,7 +435,7 @@
   },
   "consent": {
     "title": "Help us improve this map",
-    "description": "We use cookies to understand how the map is used — like which features are popular. We never track personal information or your location. Your data stays anonymous.",
+    "description": "We use cookies to understand how the map is used - like which features are popular. We never track personal information or your location. Your data stays anonymous.",
     "accept": "Sure, that's fine",
     "decline": "No thanks"
   }
