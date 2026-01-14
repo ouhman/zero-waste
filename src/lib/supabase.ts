@@ -11,3 +11,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey)
+
+// Environment detection based on URL
+export const isProduction = supabaseUrl.includes('rivleprddnvqgigxjyuc')
+export const isDevelopment = !isProduction
+
+// Log environment in development (for debugging)
+if (isDevelopment && import.meta.env.DEV) {
+  console.log('[Supabase] Connected to DEVELOPMENT environment')
+}
