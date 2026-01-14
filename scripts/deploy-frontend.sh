@@ -9,8 +9,40 @@ NC='\033[0m' # No Color
 
 echo -e "${YELLOW}🚀 Deploying Zero Waste Frankfurt frontend...${NC}"
 
-# Check AWS profile
+# Source .env.production if it exists
+if [ -f ".env.production" ]; then
+  echo -e "${GREEN}📄 Loading .env.production${NC}"
+  set -a
+  source .env.production
+  set +a
+fi
+
+# Validate required environment variables
+if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_ANON_KEY" ]; then
+  echo -e "${RED}❌ Error: Missing required environment variables${NC}"
+  echo ""
+  echo "Either create .env.production or export these variables:"
+  echo "  - VITE_SUPABASE_URL"
+  echo "  - VITE_SUPABASE_ANON_KEY"
+  echo ""
+  exit 1
+fi
+
+# Show which environment is being deployed
+echo -e "${GREEN}📍 Environment Configuration:${NC}"
+echo -e "   Supabase URL: ${VITE_SUPABASE_URL}"
+if [[ "$VITE_SUPABASE_URL" == *"rivleprddnvqgigxjyuc"* ]]; then
+  echo -e "   ${GREEN}✅ Deploying to PRODUCTION${NC}"
+elif [[ "$VITE_SUPABASE_URL" == *"lccpndhssuemudzpfvvg"* ]]; then
+  echo -e "   ${YELLOW}⚠️  Deploying to DEVELOPMENT${NC}"
+else
+  echo -e "   ${YELLOW}⚠️  Unknown environment${NC}"
+fi
+echo ""
+
+# AWS configuration
 export AWS_PROFILE=zerowaste-map-deployer
+export AWS_PAGER=""  # Disable pagination (no need to press 'q')
 
 # Get S3 bucket and CloudFront distribution from CDK outputs
 BUCKET_NAME=$(aws cloudformation describe-stacks \
