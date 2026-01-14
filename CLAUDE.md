@@ -81,6 +81,7 @@ infra/              # AWS CDK infrastructure
 
 - **[README.md](README.md)** - Project overview and quick start
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Contributing guidelines and code style
+- **[docs/design-system.md](docs/design-system.md)** - Visual design specs (icons, map controls, colors)
 - **[docs/supabase.md](docs/supabase.md)** - Supabase configuration, RLS policies, and troubleshooting guide
 - **[docs/aws-ses.md](docs/aws-ses.md)** - AWS SES email setup and CDK infrastructure
 - **[docs/navigation.md](docs/navigation.md)** - Map navigation and slug URL behavior
