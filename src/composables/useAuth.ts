@@ -1,7 +1,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { supabase } from '@/lib/supabase'
-import { updateActivity } from '@/router/guards/adminGuard'
+import { updateActivity, clearActivity } from '@/router/guards/adminGuard'
 import type { User, Session } from '@supabase/supabase-js'
 
 const ACTIVITY_EVENTS = ['mousedown', 'keydown', 'scroll', 'touchstart']
@@ -12,11 +12,15 @@ export function useAuth() {
   const session = ref<Session | null>(null)
   const loading = ref(true)
   const router = useRouter()
+  const route = useRoute()
 
   let checkInterval: ReturnType<typeof setInterval> | null = null
 
   function handleActivity() {
-    updateActivity()
+    // Only track activity in admin section
+    if (route.path.startsWith('/bulk-station') && !route.path.includes('/login')) {
+      updateActivity()
+    }
   }
 
   async function checkSession() {
@@ -27,6 +31,7 @@ export function useAuth() {
   }
 
   async function logout() {
+    clearActivity()
     await supabase.auth.signOut()
     user.value = null
     session.value = null

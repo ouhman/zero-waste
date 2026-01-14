@@ -198,7 +198,7 @@ function parseHoursSegment(segment: string): StructuredOpeningHours['entries'] {
  * @param osmHours - OSM opening_hours string (e.g., "Mo-Fr 09:00-18:00; Sa 10:00-16:00")
  * @returns Structured opening hours object or undefined if parsing fails
  */
-function parseStructuredHours(osmHours: string | undefined): StructuredOpeningHours | undefined {
+export function parseStructuredHours(osmHours: string | undefined): StructuredOpeningHours | undefined {
   if (!osmHours || osmHours.trim() === '') {
     return undefined
   }
@@ -227,8 +227,16 @@ function parseStructuredHours(osmHours: string | undefined): StructuredOpeningHo
     const allEntries: StructuredOpeningHours['entries'] = []
 
     for (const segment of segments) {
-      // Skip "off" segments (closed days)
+      // Handle "off" segments (closed days) by parsing days and setting times to null
       if (segment.includes('off')) {
+        // Extract day part before "off"
+        const dayPart = segment.replace(/\s*off\s*$/i, '').trim()
+        if (dayPart) {
+          const days = parseDayRange(dayPart)
+          for (const day of days) {
+            allEntries.push({ day, opens: null, closes: null })
+          }
+        }
         continue
       }
 
@@ -236,8 +244,15 @@ function parseStructuredHours(osmHours: string | undefined): StructuredOpeningHo
       allEntries.push(...entries)
     }
 
-    if (allEntries.length === 0) {
-      return undefined
+    // Ensure all 7 days are represented (fill missing days with closed status)
+    const ALL_DAYS: OpeningHoursEntry['day'][] = [
+      'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+    ]
+
+    for (const day of ALL_DAYS) {
+      if (!allEntries.find(e => e.day === day)) {
+        allEntries.push({ day, opens: null, closes: null })
+      }
     }
 
     return {

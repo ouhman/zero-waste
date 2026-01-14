@@ -11,9 +11,26 @@ export function useNearby() {
   const error = ref<string | null>(null)
   const userLat = ref<number | null>(null)
   const userLng = ref<number | null>(null)
+  let errorTimeout: ReturnType<typeof setTimeout> | null = null
 
   // Use the extracted geolocation composable
   const geolocation = useGeolocation()
+
+  /**
+   * Set error with auto-clear after 5 seconds
+   */
+  function setError(message: string | null) {
+    if (errorTimeout) {
+      clearTimeout(errorTimeout)
+      errorTimeout = null
+    }
+    error.value = message
+    if (message) {
+      errorTimeout = setTimeout(() => {
+        error.value = null
+      }, 5000)
+    }
+  }
 
   /**
    * Find nearby locations using PostGIS
@@ -23,7 +40,7 @@ export function useNearby() {
    */
   async function findNearby(lat: number, lng: number, radiusMeters: number = 5000) {
     loading.value = true
-    error.value = null
+    setError(null)
 
     try {
       const { data, error: searchError } = await supabase.rpc('locations_nearby', {
@@ -33,13 +50,13 @@ export function useNearby() {
       } as never)
 
       if (searchError) {
-        error.value = searchError.message
+        setError(searchError.message)
         results.value = []
       } else {
         results.value = (data || []) as NearbyLocation[]
       }
     } catch (e) {
-      error.value = e instanceof Error ? e.message : 'Nearby search error occurred'
+      setError(e instanceof Error ? e.message : 'Nearby search error occurred')
       results.value = []
     } finally {
       loading.value = false
@@ -51,17 +68,20 @@ export function useNearby() {
    * Now delegates to useGeolocation composable
    */
   async function getUserLocation(): Promise<{ lat: number; lng: number } | null> {
+    loading.value = true
+    setError(null)
+
     const result = await geolocation.getUserLocation()
 
     if (result) {
       // Update local refs for backward compatibility
       userLat.value = result.lat
       userLng.value = result.lng
-      error.value = null
       return { lat: result.lat, lng: result.lng }
     } else {
-      // Copy error from geolocation composable
-      error.value = geolocation.error.value
+      // Copy error from geolocation composable (auto-clears after 5s)
+      setError(geolocation.error.value)
+      loading.value = false
       return null
     }
   }
