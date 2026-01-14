@@ -2,6 +2,45 @@
 
 This document covers Supabase-specific configuration, common issues, and their solutions for the Zero Waste Frankfurt project.
 
+## Environment Setup
+
+This project uses **two separate Supabase projects** for safe development and deployment:
+
+| Environment | Project ID | Region | Purpose |
+|-------------|------------|--------|---------|
+| **Development** | `lccpndhssuemudzpfvvg` | Frankfurt (eu-central-1) | Local development, testing migrations |
+| **Production** | `rivleprddnvqgigxjyuc` | Frankfurt (eu-central-1) | Live site (map.zerowastefrankfurt.de) |
+
+### Why Two Projects?
+
+- **Safe migration testing** - Test database changes in DEV before applying to PROD
+- **Edge Function testing** - Deploy and debug functions without affecting users
+- **RLS policy validation** - Verify security policies work correctly
+- **No risk of data loss** - Mistakes in DEV don't affect real data
+
+### Switching Between Environments
+
+```bash
+# Link to DEV (for local development)
+npx supabase link --project-ref lccpndhssuemudzpfvvg
+
+# Link to PROD (for production deployment)
+npx supabase link --project-ref rivleprddnvqgigxjyuc
+
+# Check which project is currently linked
+cat supabase/.temp/project-ref
+```
+
+### Environment Files
+
+The frontend uses separate environment files:
+- `.env.development` → DEV project (loaded by `npm run dev`)
+- `.env.production` → PROD project (loaded by `npm run build`)
+
+See [dev-environment.md](dev-environment.md) for complete setup guide.
+
+---
+
 ## Row Level Security (RLS)
 
 ### Overview
@@ -159,14 +198,31 @@ AND grantee = 'anon';
 
 ## Supabase CLI
 
-The Supabase CLI is available via npx (no global install needed):
+The Supabase CLI is available via npx (no global install needed).
+
+### Link to Project First
+
+Always link to the correct project before running commands:
+
+```bash
+# For development work
+npx supabase link --project-ref lccpndhssuemudzpfvvg
+
+# For production deployment
+npx supabase link --project-ref rivleprddnvqgigxjyuc
+```
+
+### Common Commands
 
 ```bash
 # Check migration status
 npx supabase migration list
 
-# Push pending migrations to remote
+# Push pending migrations to linked project
 npx supabase db push
+
+# Create new migration
+npx supabase migration new description_here
 
 # Mark a migration as applied (if applied manually)
 npx supabase migration repair <version> --status applied
@@ -175,10 +231,19 @@ npx supabase migration repair <version> --status applied
 npx supabase migration repair <version> --status reverted
 
 # Generate TypeScript types
-npx supabase gen types typescript --project-id <project-id> > src/types/database.ts
+npx supabase gen types typescript --project-id lccpndhssuemudzpfvvg > src/types/database.ts
 ```
 
 **Migration naming convention:** Use `YYYYMMDDHHmmss_description.sql` format for unique timestamps.
+
+### Deployment Workflow
+
+1. Create and test migrations in **DEV** first
+2. Commit migrations to git
+3. Create PR to `main` branch
+4. GitHub Actions auto-deploys to **PROD** on merge
+
+See [dev-environment.md](dev-environment.md) for detailed workflow.
 
 ---
 
@@ -231,21 +296,26 @@ User Submits Form
 
 ### Required Supabase Secrets
 
-Set these via `supabase secrets set`:
+Secrets must be set on **both DEV and PROD** projects. Link to the project first, then set secrets:
 
 ```bash
-supabase secrets set AWS_ACCESS_KEY_ID=AKIA...
-supabase secrets set AWS_SECRET_ACCESS_KEY=...
-supabase secrets set AWS_REGION=eu-central-1
-supabase secrets set FRONTEND_URL=https://map.zerowastefrankfurt.de
-supabase secrets set ADMIN_EMAIL=admin@zerowastefrankfurt.de
-supabase secrets set SES_CONFIGURATION_SET=zerowaste-config-set
+# Link to project (DEV or PROD)
+npx supabase link --project-ref <project-id>
+
+# Set secrets
+npx supabase secrets set AWS_ACCESS_KEY_ID=AKIA...
+npx supabase secrets set AWS_SECRET_ACCESS_KEY=...
+npx supabase secrets set AWS_REGION=eu-central-1
+npx supabase secrets set FROM_EMAIL=noreply@zerowastefrankfurt.de
+
+# Verify secrets are set
+npx supabase secrets list
 ```
 
 **Note:**
-- `ADMIN_EMAIL` is used to notify the admin when new submissions are verified
-- If `ADMIN_EMAIL` is not set, admin notifications are skipped (useful for development)
-- `SES_CONFIGURATION_SET` is optional and used for bounce/complaint tracking
+- Secrets are project-specific - set them on both DEV and PROD
+- `FROM_EMAIL` is used as the sender address for verification emails
+- AWS credentials are stored in SSM Parameter Store (see [aws-ses.md](aws-ses.md))
 
 ### Database Migration
 

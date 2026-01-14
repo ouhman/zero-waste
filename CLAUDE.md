@@ -103,10 +103,18 @@ Uses Supabase with PostGIS for geospatial queries. Key tables:
 
 ## Environment Variables
 
-Create `.env` with:
+This project uses separate environment files for DEV and PROD:
+
 ```
-VITE_SUPABASE_URL=https://xxx.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJ...
+.env.development  → Loaded by `npm run dev`
+.env.production   → Loaded by `npm run build`
+```
+
+Setup:
+```bash
+cp .env.development.example .env.development
+cp .env.production.example .env.production
+# Fill in ANON_KEY values from Supabase Dashboard → Settings → API
 ```
 
 ## Location Submission Flow
@@ -315,7 +323,7 @@ Uses Google Analytics 4 with GDPR-compliant implementation:
 
 ### Configuration
 Single GA4 property with environment dimension for dev/prod filtering:
-- Set `VITE_GA_MEASUREMENT_ID` in `.env`
+- Set `VITE_GA_MEASUREMENT_ID` in `.env.development` and `.env.production`
 - Code automatically tags events with `environment: development` or `environment: production`
 - Filter in GA4 reports by Environment dimension
 
@@ -372,3 +380,57 @@ SEO-friendly slugs with pattern: `{name}-{city}-{suburb}` or `{name}-{city}-{sub
 - Automatic trigger on INSERT/UPDATE of name, city, or suburb
 
 **Migrations:** `supabase/migrations/20260110170*`
+
+## Development Environment
+
+This project uses separate Supabase projects for development and production to ensure safe testing of database migrations and Edge Functions.
+
+### Environments
+
+| Environment | Project ID | Region | Usage |
+|-------------|------------|--------|-------|
+| Development | lccpndhssuemudzpfvvg | Frankfurt (eu-central-1) | Local development, testing migrations |
+| Production | rivleprddnvqgigxjyuc | Frankfurt (eu-central-1) | Live site at map.zerowastefrankfurt.de |
+
+### Local Development Setup
+
+1. Copy `.env.development.example` to `.env.development`
+2. Fill in **DEV** anon key from Supabase Dashboard
+3. Run `npm run dev`
+4. Look for "DEV" badge in bottom-left corner
+
+### Database Migrations
+
+```bash
+# Create new migration
+npx supabase migration new migration_name
+
+# Test against DEV project
+npx supabase link --project-ref lccpndhssuemudzpfvvg
+npx supabase db push
+
+# Production deployment happens automatically via GitHub Actions on merge to main
+```
+
+**Important:** Always test migrations in DEV before merging to main. See [docs/dev-environment.md](docs/dev-environment.md) for detailed workflow.
+
+### Edge Functions
+
+```bash
+# Deploy to DEV for testing
+npx supabase link --project-ref lccpndhssuemudzpfvvg
+npx supabase functions deploy function-name
+
+# Deploy to PROD (via GitHub Actions on merge to main)
+# Or manually:
+npx supabase link --project-ref rivleprddnvqgigxjyuc
+npx supabase functions deploy function-name
+```
+
+### CI/CD Pipeline
+
+- **Pull Requests:** Validates migration file naming, checks for dangerous operations
+- **Merge to main:** Automatically deploys migrations and Edge Functions to production
+- **Frontend deployment:** Manual via `npm run deploy:frontend` or GitHub Actions
+
+See [docs/dev-environment.md](docs/dev-environment.md) for complete guide.
