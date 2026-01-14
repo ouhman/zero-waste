@@ -3,6 +3,7 @@
     <RouterView />
     <ToastContainer />
     <CookieConsentBanner />
+    <EnvironmentBadge />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import ToastContainer from '@/components/common/ToastContainer.vue'
 import CookieConsentBanner from '@/components/common/CookieConsentBanner.vue'
+import EnvironmentBadge from '@/components/common/EnvironmentBadge.vue'
 import { useConsent } from '@/composables/useConsent'
 import { initAnalytics } from '@/composables/useAnalytics'
 
