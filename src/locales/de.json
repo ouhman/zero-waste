@@ -432,5 +432,11 @@
     "checkWebsite": "Auf Website prüfen",
     "checkGoogleMaps": "Auf Google Maps prüfen",
     "timeValidationError": "Öffnungszeit muss vor Schließzeit liegen"
+  },
+  "consent": {
+    "title": "Hilf uns, die Karte zu verbessern",
+    "description": "Wir nutzen Cookies, um zu verstehen, wie die Karte genutzt wird — z.B. welche Funktionen beliebt sind. Wir erfassen niemals persönliche Daten oder deinen Standort. Deine Daten bleiben anonym.",
+    "accept": "Ja, kein Problem",
+    "decline": "Nein danke"
   }
 }

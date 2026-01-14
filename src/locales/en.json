@@ -432,5 +432,11 @@
     "checkWebsite": "Check website",
     "checkGoogleMaps": "Check on Google Maps",
     "timeValidationError": "Opening time must be before closing time"
+  },
+  "consent": {
+    "title": "Help us improve this map",
+    "description": "We use cookies to understand how the map is used — like which features are popular. We never track personal information or your location. Your data stays anonymous.",
+    "accept": "Sure, that's fine",
+    "decline": "No thanks"
   }
 }
