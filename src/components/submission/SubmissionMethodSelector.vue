@@ -75,6 +75,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { useAnalytics } from '@/composables/useAnalytics'
 
 type SubmissionMethod = 'google-maps' | 'pin-map'
 
@@ -83,8 +84,13 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const { trackSubmissionStarted } = useAnalytics()
 
 function selectMethod(method: SubmissionMethod) {
+  // Track submission started with the selected method
+  const trackingMethod = method === 'google-maps' ? 'google_maps' : 'pin_on_map'
+  trackSubmissionStarted(trackingMethod)
+
   emit('select', method)
 }
 </script>

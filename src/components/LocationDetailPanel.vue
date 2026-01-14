@@ -133,8 +133,9 @@
 
     <!-- Hours Suggestion Modal -->
     <HoursSuggestionModal
-      v-if="showSuggestionModal && location"
+      v-if="showSuggestionModal && location && location.slug"
       :location-id="location.id"
+      :location-slug="location.slug"
       :location-name="location.name"
       :current-hours="location.opening_hours_structured as StructuredOpeningHours | null"
       :osm-format="location.opening_hours_osm"
@@ -148,13 +149,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import PaymentMethods from '@/components/PaymentMethods.vue'
 import ContactInfo from '@/components/common/ContactInfo.vue'
 import OpeningHoursDisplay from '@/components/common/OpeningHoursDisplay.vue'
 import HoursSuggestionModal from '@/components/common/HoursSuggestionModal.vue'
 import { useToast } from '@/composables/useToast'
+import { useAnalytics } from '@/composables/useAnalytics'
 import type { Database } from '@/types/database'
 import type { PaymentMethods as PaymentMethodsType, StructuredOpeningHours } from '@/types/osm'
 
@@ -176,6 +178,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const { success } = useToast()
+const { trackLocationDetailView } = useAnalytics()
 const panelRef = ref<HTMLElement | null>(null)
 const isMobile = ref(false)
 const showSuggestionModal = ref(false)
@@ -195,6 +198,18 @@ onUnmounted(() => {
   window.removeEventListener('resize', checkMobile)
   document.removeEventListener('keydown', handleEscape)
 })
+
+// Track location detail view when location changes
+watch(
+  () => props.location,
+  (newLocation) => {
+    if (newLocation?.slug) {
+      const primaryCategory = categories.value[0]?.slug
+      trackLocationDetailView(newLocation.slug, primaryCategory)
+    }
+  },
+  { immediate: true }
+)
 
 function handleEscape(e: KeyboardEvent) {
   if (e.key === 'Escape' && props.location) {

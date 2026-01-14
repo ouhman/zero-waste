@@ -162,11 +162,13 @@
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useHoursSuggestion } from '@/composables/useHoursSuggestion'
+import { useAnalytics } from '@/composables/useAnalytics'
 import { parseStructuredHours } from '@/composables/useNominatim'
 import type { StructuredOpeningHours } from '@/types/osm'
 
 const props = defineProps<{
   locationId: string
+  locationSlug: string
   locationName: string
   currentHours: StructuredOpeningHours | null
   osmFormat?: string | null
@@ -182,6 +184,7 @@ const emit = defineEmits<{
 
 const { t, locale } = useI18n()
 const { submitSuggestion, isSubmitting, error, rateLimitExceeded } = useHoursSuggestion()
+const { trackEditSuggestionSubmitted } = useAnalytics()
 
 const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as const
 
@@ -325,6 +328,7 @@ async function submit() {
   const result = await submitSuggestion(props.locationId, suggestedHours, note.value)
 
   if (result.success) {
+    trackEditSuggestionSubmitted(props.locationSlug)
     emit('submitted')
     emit('close')
   }

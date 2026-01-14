@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css'
 import type { Database } from '@/types/database'
 import { getCategoryIcon } from '@/lib/markerIcons'
 import { generatePopupHTML } from './PopupCard'
+import { useAnalytics } from '@/composables/useAnalytics'
 
 type Location = Database['public']['Tables']['locations']['Row'] & {
   location_categories?: {
@@ -40,6 +41,8 @@ let map: L.Map | null = null
 const markers: L.Marker[] = []
 const markerMap = new Map<string, L.Marker>() // locationId -> marker
 let highlightedMarkerId: string | null = null
+const { trackMapRendered } = useAnalytics()
+let mapTracked = false
 
 function initializeMap() {
   if (!mapElement.value || map) return
@@ -75,6 +78,12 @@ function initializeMap() {
 
   // Add markers after map is ready
   addMarkers()
+
+  // Track map rendered (only once)
+  if (!mapTracked) {
+    trackMapRendered()
+    mapTracked = true
+  }
 }
 
 function handleDetailsClick(e: Event) {

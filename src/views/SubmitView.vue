@@ -48,17 +48,26 @@ import { useI18n } from 'vue-i18n'
 import LocationForm from '@/components/LocationForm.vue'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import { useSubmission } from '@/composables/useSubmission'
+import { useAnalytics } from '@/composables/useAnalytics'
 
 const { t } = useI18n()
 const { submit, loading: submitting, error: submissionError, success } = useSubmission()
+const { trackSubmissionCompleted } = useAnalytics()
 
 const submitted = ref(false)
 
 async function handleSubmit(data: any) {
+  // Extract the submission method before submitting
+  const submissionMethod = data._submissionMethod as 'google_maps' | 'pin_on_map' | undefined
+
   await submit(data)
 
   if (success.value) {
     submitted.value = true
+    // Track submission completion
+    if (submissionMethod) {
+      trackSubmissionCompleted(submissionMethod)
+    }
   }
 }
 </script>

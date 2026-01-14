@@ -171,6 +171,7 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '@/composables/useToast'
+import { useAnalytics } from '@/composables/useAnalytics'
 import type { Database } from '@/types/database'
 
 type Location = Database['public']['Tables']['locations']['Row']
@@ -186,6 +187,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const toast = useToast()
+const { trackShareClick } = useAnalytics()
 const copied = ref(false)
 
 // Check if native share is available
@@ -272,7 +274,7 @@ const emailUrl = computed(() => {
 
 // Native share
 async function nativeShare() {
-  if (!props.location) return
+  if (!props.location?.slug) return
 
   try {
     await navigator.share({
@@ -280,6 +282,7 @@ async function nativeShare() {
       text: shareText.value,
       url: shareUrl.value
     })
+    trackShareClick('native', props.location.slug)
     emit('close')
   } catch {
     // User cancelled - do nothing
@@ -288,9 +291,12 @@ async function nativeShare() {
 
 // Copy link
 async function copyLink() {
+  if (!props.location?.slug) return
+
   try {
     await navigator.clipboard.writeText(shareUrl.value)
     copied.value = true
+    trackShareClick('clipboard', props.location.slug)
     toast.success(t('location.linkCopied'), 3000)
     setTimeout(() => {
       copied.value = false
@@ -306,6 +312,7 @@ async function copyLink() {
     document.execCommand('copy')
     document.body.removeChild(textarea)
     copied.value = true
+    trackShareClick('clipboard', props.location.slug)
     toast.success(t('location.linkCopied'), 3000)
     setTimeout(() => {
       copied.value = false

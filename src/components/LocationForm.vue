@@ -1059,8 +1059,12 @@ function handleSubmit() {
     return
   }
 
-  // Emit submit event
-  emit('submit', formData.value)
+  // Emit submit event with submission method
+  const dataWithMethod = {
+    ...formData.value,
+    _submissionMethod: submissionMethod.value === 'google-maps' ? 'google_maps' : 'pin_on_map'
+  }
+  emit('submit', dataWithMethod)
 }
 </script>
 
