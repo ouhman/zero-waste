@@ -298,6 +298,34 @@ Deploy with:
 supabase functions deploy
 ```
 
+## Analytics
+
+Uses Google Analytics 4 with GDPR-compliant implementation:
+- Cookie consent required before tracking (Consent Mode v2)
+- IP anonymization enabled
+- No personal data tracked
+
+### Events Tracked
+- `map_rendered` - Main map loaded
+- `location_detail_view` - Location details opened
+- `share_click` - Share button used
+- `submission_started` - User begins adding location
+- `submission_completed` - Location successfully submitted
+- `edit_suggestion_submitted` - Edit suggestion sent
+
+### Configuration
+Two separate GA4 properties are used:
+- `.env.development` → Development property (localhost traffic)
+- `.env.production` → Production property (live site traffic)
+
+Set `VITE_GA_MEASUREMENT_ID` in each file with the respective measurement ID.
+
+### Switching Providers
+Analytics uses a provider abstraction (`src/types/analytics.ts`).
+To switch to Plausible/Matomo, implement `AnalyticsProvider` interface.
+
+See [docs/analytics.md](docs/analytics.md) for detailed analytics documentation.
+
 ## Code Conventions
 
 ### General Rules

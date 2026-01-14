@@ -298,7 +298,10 @@ Required environment variables (see `.env.example`):
 ```env
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX  # Optional: Get from GA4 dashboard
 ```
+
+**Note:** For analytics, create separate `.env.development` and `.env.production` files with different GA4 measurement IDs to keep dev and production traffic separate.
 
 ## Contributing
 
@@ -316,6 +319,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for:
 - **[docs/navigation.md](docs/navigation.md)** - Map navigation and routing
 - **[docs/testing-strategy.md](docs/testing-strategy.md)** - Testing guidelines
 - **[docs/components.md](docs/components.md)** - Shared component documentation
+- **[docs/analytics.md](docs/analytics.md)** - Google Analytics 4 integration and GDPR compliance
 
 ## License
 
