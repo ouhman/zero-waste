@@ -245,6 +245,45 @@ export const useCategoriesStore = defineStore('categories', () => {
     return count || 0
   }
 
+  async function updateSortOrder(orderedIds: string[]): Promise<void> {
+    loading.value = true
+    error.value = null
+
+    try {
+      // Update each category's sort_order based on its position in the array
+      const updates = orderedIds.map((id, index) => ({
+        id,
+        sort_order: index + 1,
+        updated_at: new Date().toISOString()
+      }))
+
+      // Update all categories in parallel
+      await Promise.all(
+        updates.map(({ id, sort_order, updated_at }) =>
+          supabase
+            .from('categories')
+            .update({ sort_order, updated_at } as never)
+            .eq('id', id)
+        )
+      )
+
+      // Update local state immediately for responsiveness
+      categories.value = categories.value
+        .map(cat => ({
+          ...cat,
+          sort_order: orderedIds.indexOf(cat.id) + 1
+        }))
+        .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : 'Failed to update sort order'
+      // Refresh to get correct state on error
+      await fetchCategories(true)
+      throw e
+    } finally {
+      loading.value = false
+    }
+  }
+
   return {
     categories,
     loading,
@@ -256,6 +295,7 @@ export const useCategoriesStore = defineStore('categories', () => {
     createCategory,
     updateCategory,
     deleteCategory,
-    getLocationCountForCategory
+    getLocationCountForCategory,
+    updateSortOrder
   }
 })

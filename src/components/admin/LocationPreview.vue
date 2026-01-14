@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onMounted, onUnmounted } from 'vue'
+import { computed, watch, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -94,6 +94,7 @@ const { t } = useI18n()
 
 let previewMap: L.Map | null = null
 let previewMarker: L.Marker | null = null
+const isGeocoding = ref(false)
 
 const hasPaymentMethods = computed(() => {
   const pm = props.location.payment_methods as PaymentMethodsType | null | undefined
@@ -106,9 +107,50 @@ const displayCategories = computed(() => {
   return props.categories
 })
 
-function initPreviewMap() {
-  const lat = parseFloat(props.location.latitude as string) || 50.1109
-  const lng = parseFloat(props.location.longitude as string) || 8.6821
+async function geocodeAddress(): Promise<{ lat: number; lng: number } | null> {
+  const address = props.location.address
+  const postalCode = props.location.postal_code
+  const city = props.location.city
+
+  if (!address || !city) return null
+
+  try {
+    const fullAddress = `${address}, ${postalCode || ''} ${city}`.trim()
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullAddress)}&limit=1`,
+      {
+        headers: {
+          'User-Agent': 'ZeroWasteFrankfurt/1.0'
+        }
+      }
+    )
+    const data = await response.json()
+    if (data && data.length > 0) {
+      return {
+        lat: parseFloat(data[0].lat),
+        lng: parseFloat(data[0].lon)
+      }
+    }
+  } catch (e) {
+    console.warn('Geocoding failed:', e)
+  }
+  return null
+}
+
+async function initPreviewMap() {
+  // Default to stored coordinates as fallback
+  let lat = parseFloat(props.location.latitude as string) || 50.1109
+  let lng = parseFloat(props.location.longitude as string) || 8.6821
+
+  // Try to geocode from address for more accurate location
+  isGeocoding.value = true
+  const geocoded = await geocodeAddress()
+  isGeocoding.value = false
+
+  if (geocoded) {
+    lat = geocoded.lat
+    lng = geocoded.lng
+  }
 
   previewMap = L.map('preview-map', {
     dragging: false,
@@ -118,7 +160,7 @@ function initPreviewMap() {
     boxZoom: false,
     keyboard: false,
     zoomControl: false
-  }).setView([lat, lng], 15)
+  }).setView([lat, lng], 17)
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
@@ -127,20 +169,26 @@ function initPreviewMap() {
   previewMarker = L.marker([lat, lng]).addTo(previewMap)
 }
 
-watch(() => [props.location.latitude, props.location.longitude], ([lat, lng]) => {
-  if (lat && lng && previewMarker && previewMap) {
-    const latNum = parseFloat(lat as string)
-    const lngNum = parseFloat(lng as string)
-    if (!isNaN(latNum) && !isNaN(lngNum)) {
-      previewMarker.setLatLng([latNum, lngNum])
-      previewMap.setView([latNum, lngNum])
+// Watch for address changes and re-geocode
+watch(
+  () => [props.location.address, props.location.postal_code, props.location.city],
+  async () => {
+    if (previewMarker && previewMap) {
+      const geocoded = await geocodeAddress()
+      if (geocoded) {
+        previewMarker.setLatLng([geocoded.lat, geocoded.lng])
+        previewMap.setView([geocoded.lat, geocoded.lng], 17)
+      }
     }
   }
-})
+)
 
 onMounted(() => {
   setTimeout(() => {
-    if (props.location.latitude && props.location.longitude) {
+    if (props.location.address && props.location.city) {
+      initPreviewMap()
+    } else if (props.location.latitude && props.location.longitude) {
+      // Fallback to coordinates if no address
       initPreviewMap()
     }
   }, 100)

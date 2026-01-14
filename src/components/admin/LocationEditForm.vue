@@ -38,7 +38,7 @@
               v-if="isSlugManuallyEdited"
               type="button"
               @click="regenerateSlug"
-              class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+              class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer"
               title="Regenerate slug from name/city/suburb"
             >
               <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@
               v-else
               type="button"
               @click="enableManualSlugEdit"
-              class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+              class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer"
               title="Edit slug manually"
             >
               <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,9 +153,23 @@
 
         <!-- Map for coordinate selection -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
-            {{ t('admin.form.clickMapToSet') }}
-          </label>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-sm font-medium text-gray-700">
+              {{ t('admin.form.clickMapToSet') }}
+            </label>
+            <button
+              type="button"
+              @click="syncCoordinatesFromAddress"
+              :disabled="isGeocoding"
+              class="text-sm text-blue-600 hover:text-blue-800 underline cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+            >
+              <svg v-if="isGeocoding" class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              {{ t('admin.form.syncFromAddress') }}
+            </button>
+          </div>
           <div id="map" class="h-64 rounded-md border border-gray-300"></div>
         </div>
 
@@ -389,14 +403,14 @@
       <button
         type="button"
         @click="$emit('cancel')"
-        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
       >
         {{ t('common.cancel') }}
       </button>
       <button
         type="submit"
         :disabled="loading || !isDirty"
-        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {{ loading ? t('common.loading') : t('admin.edit.saveChanges') }}
       </button>
@@ -444,6 +458,7 @@ const paymentMethods = ref({
   mobile: false
 })
 const isSlugManuallyEdited = ref(false)
+const isGeocoding = ref(false)
 
 // Original data for dirty checking
 const originalData = ref<string>('')
@@ -520,6 +535,45 @@ function toggleCategory(categoryId: string) {
     selectedCategories.value.splice(index, 1)
   } else {
     selectedCategories.value.push(categoryId)
+  }
+}
+
+async function syncCoordinatesFromAddress() {
+  const address = formData.value.address
+  const postalCode = formData.value.postal_code
+  const city = formData.value.city
+
+  if (!address || !city) {
+    return
+  }
+
+  isGeocoding.value = true
+
+  try {
+    const fullAddress = `${address}, ${postalCode || ''} ${city}`.trim()
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(fullAddress)}&limit=1`,
+      { headers: { 'User-Agent': 'ZeroWasteFrankfurt/1.0' } }
+    )
+    const data = await response.json()
+
+    if (data && data.length > 0) {
+      const lat = parseFloat(data[0].lat)
+      const lng = parseFloat(data[0].lon)
+
+      formData.value.latitude = lat.toString()
+      formData.value.longitude = lng.toString()
+
+      // Update map marker
+      if (marker && map) {
+        marker.setLatLng([lat, lng])
+        map.setView([lat, lng], 17)
+      }
+    }
+  } catch (e) {
+    console.error('Geocoding failed:', e)
+  } finally {
+    isGeocoding.value = false
   }
 }
 

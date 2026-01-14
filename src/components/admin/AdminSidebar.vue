@@ -17,7 +17,7 @@
       <!-- Close button (mobile only) -->
       <button
         @click="$emit('close')"
-        class="lg:hidden self-end p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 mb-4"
+        class="lg:hidden self-end p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 mb-4 cursor-pointer"
         aria-label="Close sidebar"
       >
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,13 +63,33 @@
           </svg>
           {{ t('admin.nav.categories') }}
         </router-link>
+
+        <router-link
+          to="/bulk-station/hours-suggestions"
+          class="nav-link"
+          :class="{ 'nav-link-active': $route.path.startsWith('/bulk-station/hours-suggestions') }"
+          @click="$emit('close')"
+        >
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {{ t('admin.nav.hoursSuggestions') }}
+          <span
+            v-if="pendingSuggestionsCount > 0"
+            class="ml-auto px-2 py-0.5 text-xs bg-red-100 text-red-700 rounded-full"
+          >
+            {{ pendingSuggestionsCount }}
+          </span>
+        </router-link>
       </div>
     </nav>
   </aside>
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useAdminStore } from '@/stores/admin'
 
 defineProps<{
   open: boolean
@@ -80,13 +100,20 @@ defineEmits<{
 }>()
 
 const { t } = useI18n()
+const adminStore = useAdminStore()
+
+const pendingSuggestionsCount = computed(() => adminStore.pendingSuggestionsCount)
+
+onMounted(async () => {
+  await adminStore.fetchPendingSuggestionsCount()
+})
 </script>
 
 <style scoped>
 @reference "@/index.css";
 
 .nav-link {
-  @apply flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors;
+  @apply flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors cursor-pointer;
 }
 
 .nav-link-active {

@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-bold text-gray-900">{{ t('admin.categories.title') }}</h1>
         <button
           @click="openCreateModal"
-          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
         >
           {{ t('admin.categories.addCategory') }}
         </button>
@@ -27,6 +27,9 @@
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
             <tr>
+              <th scope="col" class="w-10 px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <!-- Drag handle column -->
+              </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 {{ t('admin.categories.table.icon') }}
               </th>
@@ -48,7 +51,28 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="category in categoriesWithCounts" :key="category.id" class="hover:bg-gray-50">
+            <tr
+              v-for="(category, index) in categoriesWithCounts"
+              :key="category.id"
+              :class="[
+                'hover:bg-gray-50 transition-colors',
+                draggedIndex === index ? 'opacity-50 bg-blue-50' : '',
+                dragOverIndex === index ? 'border-t-2 border-blue-500' : ''
+              ]"
+              draggable="true"
+              @dragstart="handleDragStart($event, index)"
+              @dragend="handleDragEnd"
+              @dragover="handleDragOver($event, index)"
+              @dragleave="handleDragLeave"
+              @drop="handleDrop($event, index)"
+            >
+              <td class="w-10 px-3 py-4 whitespace-nowrap">
+                <div class="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                  </svg>
+                </div>
+              </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <img
                   :src="category.icon_url || `/icons/categories/${category.slug}.png`"
@@ -65,7 +89,14 @@
                 <code class="text-sm text-gray-600">{{ category.slug }}</code>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <span class="text-sm text-gray-900">{{ category.locationCount }}</span>
+                <router-link
+                  v-if="category.locationCount > 0"
+                  :to="{ path: '/bulk-station/locations', query: { category: category.id } }"
+                  class="text-sm text-blue-600 hover:text-blue-800 hover:underline cursor-pointer"
+                >
+                  {{ category.locationCount }}
+                </router-link>
+                <span v-else class="text-sm text-gray-400">0</span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <span class="text-sm text-gray-900">{{ category.sort_order ?? '-' }}</span>
@@ -129,6 +160,10 @@ const showDeleteModal = ref(false)
 const selectedCategory = ref<Category | null>(null)
 const locationCounts = ref<Map<string, number>>(new Map())
 
+// Drag and drop state
+const draggedIndex = ref<number | null>(null)
+const dragOverIndex = ref<number | null>(null)
+
 const categoriesWithCounts = computed(() => {
   return categoriesStore.categories.map(category => ({
     ...category,
@@ -183,6 +218,59 @@ async function handleDeleteCategory() {
 function handleImageError(e: Event) {
   const img = e.target as HTMLImageElement
   img.src = '/icons/categories/andere.png' // Fallback icon
+}
+
+// Drag and drop handlers
+function handleDragStart(e: DragEvent, index: number) {
+  draggedIndex.value = index
+  if (e.dataTransfer) {
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text/plain', index.toString())
+  }
+}
+
+function handleDragEnd() {
+  draggedIndex.value = null
+  dragOverIndex.value = null
+}
+
+function handleDragOver(e: DragEvent, index: number) {
+  e.preventDefault()
+  if (e.dataTransfer) {
+    e.dataTransfer.dropEffect = 'move'
+  }
+  if (draggedIndex.value !== index) {
+    dragOverIndex.value = index
+  }
+}
+
+function handleDragLeave() {
+  dragOverIndex.value = null
+}
+
+async function handleDrop(e: DragEvent, dropIndex: number) {
+  e.preventDefault()
+
+  if (draggedIndex.value === null || draggedIndex.value === dropIndex) {
+    handleDragEnd()
+    return
+  }
+
+  // Create new order by moving the dragged item
+  const categories = [...categoriesStore.categories]
+  const [draggedItem] = categories.splice(draggedIndex.value, 1)
+  categories.splice(dropIndex, 0, draggedItem)
+
+  // Get ordered IDs and update
+  const orderedIds = categories.map(c => c.id)
+
+  handleDragEnd()
+
+  try {
+    await categoriesStore.updateSortOrder(orderedIds)
+  } catch (error) {
+    console.error('Failed to update sort order:', error)
+  }
 }
 
 onMounted(async () => {

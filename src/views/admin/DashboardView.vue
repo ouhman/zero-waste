@@ -14,7 +14,7 @@
         <p class="text-red-800">{{ error }}</p>
         <button
           type="button"
-          class="mt-2 text-sm text-red-600 hover:text-red-800 underline"
+          class="mt-2 text-sm text-red-600 hover:text-red-800 underline cursor-pointer"
           @click="fetchData"
         >
           Try again
@@ -23,7 +23,7 @@
 
       <!-- Dashboard Content -->
       <div v-else>
-        <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <!-- Pending Locations Card -->
           <div class="bg-white overflow-hidden shadow rounded-lg">
             <div class="p-5">
@@ -48,7 +48,7 @@
             <div class="bg-gray-50 px-5 py-3">
               <router-link
                 to="/bulk-station/pending"
-                class="text-sm font-medium text-blue-700 hover:text-blue-900"
+                class="text-sm font-medium text-blue-700 hover:text-blue-900 cursor-pointer"
               >
                 {{ t('admin.dashboard.viewAll') }}
               </router-link>
@@ -100,6 +100,37 @@
               </div>
             </div>
           </div>
+
+          <!-- Pending Hours Suggestions Card -->
+          <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-5 w-0 flex-1">
+                  <dl>
+                    <dt class="text-sm font-medium text-gray-500 truncate">
+                      {{ t('admin.dashboard.pendingHoursSuggestions') }}
+                    </dt>
+                    <dd class="text-3xl font-semibold text-gray-900">
+                      {{ pendingSuggestionsCount }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-5 py-3">
+              <router-link
+                to="/bulk-station/hours-suggestions"
+                class="text-sm font-medium text-blue-700 hover:text-blue-900 cursor-pointer"
+              >
+                {{ t('admin.dashboard.viewAll') }}
+              </router-link>
+            </div>
+          </div>
         </div>
 
         <!-- Recent Submissions -->
@@ -127,7 +158,7 @@
                   <div class="flex items-center gap-2 ml-4">
                     <button
                       type="button"
-                      class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                      class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 cursor-pointer disabled:cursor-not-allowed"
                       :disabled="approving === location.id"
                       @click="handleQuickApprove(location.id)"
                     >
@@ -139,7 +170,7 @@
                     </button>
                     <router-link
                       :to="`/bulk-station/edit/${location.id}`"
-                      class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
                     >
                       {{ t('admin.editButton') }}
                     </router-link>
@@ -150,7 +181,7 @@
             <div class="bg-gray-50 px-4 py-3">
               <router-link
                 to="/bulk-station/locations?status=pending"
-                class="text-sm font-medium text-blue-600 hover:text-blue-800"
+                class="text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer"
               >
                 {{ t('admin.dashboard.viewAllPending') }} →
               </router-link>
@@ -170,7 +201,7 @@
         <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <router-link
             to="/bulk-station/locations"
-            class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
           >
             <div class="flex items-center">
               <div class="flex-shrink-0">
@@ -188,7 +219,7 @@
 
           <router-link
             to="/bulk-station/categories"
-            class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            class="block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
           >
             <div class="flex items-center">
               <div class="flex-shrink-0">
@@ -227,9 +258,11 @@ const approving = ref<string | null>(null)
 
 const stats = computed(() => adminStore.stats)
 const recentSubmissions = computed(() => adminStore.pendingLocations.slice(0, 5))
+const pendingSuggestionsCount = computed(() => adminStore.pendingSuggestionsCount)
 
 onMounted(async () => {
   await fetchData()
+  await adminStore.fetchPendingSuggestionsCount()
 })
 
 async function fetchData() {

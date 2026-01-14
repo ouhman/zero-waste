@@ -2,11 +2,21 @@ import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { supabase } from '@/lib/supabase'
 
 const SESSION_TIMEOUT_MS = 60 * 60 * 1000 // 1 hour
-let lastActivityTime = Date.now()
+const STORAGE_KEY = 'admin_last_activity'
 
-// Update activity timestamp on any navigation
+function getLastActivity(): number {
+  const stored = localStorage.getItem(STORAGE_KEY)
+  return stored ? parseInt(stored, 10) : 0
+}
+
+// Update activity timestamp (only called from admin pages)
 export function updateActivity() {
-  lastActivityTime = Date.now()
+  localStorage.setItem(STORAGE_KEY, Date.now().toString())
+}
+
+// Clear activity on logout
+export function clearActivity() {
+  localStorage.removeItem(STORAGE_KEY)
 }
 
 export async function adminGuard(
@@ -29,7 +39,9 @@ export async function adminGuard(
     }
 
     // Check if session has timed out due to inactivity
-    if (Date.now() - lastActivityTime > SESSION_TIMEOUT_MS) {
+    const lastActivity = getLastActivity()
+    if (lastActivity > 0 && Date.now() - lastActivity > SESSION_TIMEOUT_MS) {
+      clearActivity()
       await supabase.auth.signOut()
       next('/bulk-station/login')
       return

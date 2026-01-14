@@ -15,6 +15,7 @@ const PendingView = () => import('@/views/admin/PendingView.vue')
 const EditView = () => import('@/views/admin/EditView.vue')
 const LocationsListView = () => import('@/views/admin/LocationsListView.vue')
 const CategoriesListView = () => import('@/views/admin/CategoriesListView.vue')
+const HoursSuggestionsView = () => import('@/views/admin/HoursSuggestionsView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -80,6 +81,12 @@ const router = createRouter({
           path: 'categories',
           name: 'admin-categories',
           component: CategoriesListView,
+          meta: { requiresAdmin: true }
+        },
+        {
+          path: 'hours-suggestions',
+          name: 'admin-hours-suggestions',
+          component: HoursSuggestionsView,
           meta: { requiresAdmin: true }
         }
       ]
