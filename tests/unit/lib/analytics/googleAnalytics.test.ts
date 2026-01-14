@@ -99,7 +99,7 @@ describe('GoogleAnalyticsProvider', () => {
 
     expect(window.dataLayer).toHaveLength(1)
     const call = Array.from(window.dataLayer[0] as ArrayLike<unknown>)
-    expect(call).toEqual(['event', 'map_rendered', { foo: 'bar' }])
+    expect(call).toEqual(['event', 'map_rendered', { foo: 'bar', environment: 'development' }])
   })
 
   test('tracks page views', async () => {
@@ -116,6 +116,7 @@ describe('GoogleAnalyticsProvider', () => {
     expect(call).toEqual(['event', 'page_view', {
       page_path: '/test-path',
       page_title: 'Test Title',
+      environment: 'development',
     }])
   })
 
@@ -132,6 +133,7 @@ describe('GoogleAnalyticsProvider', () => {
     const call = Array.from(window.dataLayer[0] as ArrayLike<unknown>)
     expect(call).toEqual(['event', 'page_view', {
       page_path: '/test-path',
+      environment: 'development',
     }])
   })
 
