@@ -1,8 +1,14 @@
 # Supabase Development Environment Setup
 
 **Created:** 2026-01-13
-**Status:** Ready for execution
+**Status:** ⚠️ SUPERSEDED
 **Approach:** Separate Free Supabase Project for Development
+
+> **Note:** This plan was superseded on 2026-01-14 by `supabase-prod-environment.md`.
+>
+> **Reason:** The original approach created a new DEV project while keeping the current project as PROD. The revised approach flips this: create a new PRODUCTION project (in Frankfurt) and keep the current project as DEV. This better aligns with the goal of having a fresh, properly configured production environment.
+>
+> See: [supabase-prod-environment.md](./supabase-prod-environment.md)
 
 ## Problem Statement
 
