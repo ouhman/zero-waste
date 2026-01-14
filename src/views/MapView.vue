@@ -7,7 +7,7 @@
         <div class="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
           <router-link
             to="/submit"
-            class="px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 bg-green-500 text-white rounded-lg font-semibold text-xs sm:text-sm hover:bg-green-600 transition-colors whitespace-nowrap"
+            class="px-2.5 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-2 bg-green-500 text-white rounded-lg font-semibold text-xs sm:text-sm hover:bg-green-600 transition-colors whitespace-nowrap cursor-pointer"
           >
             <span class="hidden sm:inline">+ {{ t('map.submitLocation') }}</span>
             <span class="sm:hidden">+ {{ t('map.submitLocationShort') }}</span>
@@ -18,18 +18,17 @@
     </div>
 
     <!-- Desktop Controls Panel (top-left) -->
-    <div class="hidden md:flex absolute top-24 lg:top-28 left-4 lg:left-8 w-64 lg:w-80 max-h-[calc(100vh-8rem)] overflow-y-auto z-[1000] flex-col gap-3 lg:gap-4">
+    <div class="hidden md:flex absolute top-24 lg:top-28 left-4 lg:left-8 w-64 lg:w-80 z-[1000] flex-col gap-3 lg:gap-4">
       <SearchBar @select="handleSearchSelect" />
       <CategoryFilter v-model:selectedCategories="selectedCategories" />
-      <NearMeButton @locations-found="handleNearbyLocations" />
     </div>
 
     <!-- Mobile Controls Panel (bottom) -->
-    <div class="md:hidden absolute bottom-3 left-3 right-3 z-[1000] bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col-reverse">
+    <div class="md:hidden absolute bottom-8 left-4 right-20 z-[1000] bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col-reverse">
       <!-- Toggle Button -->
       <button
         @click="togglePanel"
-        class="flex items-center gap-2.5 w-full px-4 py-3.5 text-sm font-semibold text-gray-800"
+        class="flex items-center gap-2.5 w-full px-4 py-3.5 text-sm font-semibold text-gray-800 cursor-pointer"
       >
         <svg class="w-5 h-5 text-gray-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"/>
@@ -60,8 +59,10 @@
       </div>
     </div>
 
-    <!-- Mobile Floating NearMe Button (top-right on map) -->
-    <div class="md:hidden absolute top-16 right-3 z-[1000]">
+    <!-- NearMe Button (bottom-right, above zoom controls - Google Maps style) -->
+    <!-- Desktop: 24px margin + 61px zoom height + 16px gap = 101px → bottom-[6.5rem] (104px) -->
+    <!-- Mobile: above zoom controls with 20px gap, horizontally centered with +/- -->
+    <div class="absolute bottom-28 md:bottom-[6.5rem] right-4 md:right-12 z-[1000]">
       <NearMeButton compact @locations-found="handleNearbyLocations" />
     </div>
 

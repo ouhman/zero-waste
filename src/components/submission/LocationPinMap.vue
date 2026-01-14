@@ -157,9 +157,9 @@ let accuracyCircle: L.Circle | null = null
 
 // Frankfurt default center
 const FRANKFURT_CENTER: [number, number] = [50.1109, 8.6821]
-const DEFAULT_ZOOM = 12
-const SEARCH_ZOOM = 15
-const GEOLOCATION_ZOOM = 17
+const DEFAULT_ZOOM = 13
+const SEARCH_ZOOM = 16
+const GEOLOCATION_ZOOM = 18
 
 /**
  * Initialize Leaflet map
@@ -181,7 +181,7 @@ function initializeMap() {
 }
 
 // Minimum zoom level to see street names
-const MIN_STREET_ZOOM = 15
+const MIN_STREET_ZOOM = 16
 
 /**
  * Handle click on map to place marker

@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="relative">
     <button
       :class="[
-        'flex items-center justify-center gap-2 font-semibold transition-all disabled:opacity-60 disabled:cursor-not-allowed',
+        'flex items-center justify-center gap-2 font-semibold transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed',
         compact
-          ? 'w-12 h-12 rounded-full bg-white text-green-600 shadow-lg border border-gray-200 hover:bg-gray-50 hover:shadow-xl'
+          ? 'w-12 h-12 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 hover:shadow-xl'
           : 'px-4 py-3 rounded-lg bg-green-500 text-white shadow-md hover:bg-green-600 hover:shadow-lg'
       ]"
       :disabled="loading"
@@ -37,7 +37,7 @@
         :class="[
           'border-2 rounded-full animate-spin',
           compact
-            ? 'w-6 h-6 border-green-200 border-t-green-600'
+            ? 'w-6 h-6 border-white/30 border-t-white'
             : 'w-5 h-5 border-white/30 border-t-white'
         ]"
       />
@@ -47,8 +47,8 @@
     <div
       v-if="error"
       :class="[
-        'mt-2 px-3 py-2 bg-red-100 border border-red-300 rounded-lg text-red-700 text-sm',
-        compact ? 'absolute right-0 top-full w-48' : ''
+        'px-3 py-2 bg-red-100 border border-red-300 rounded-lg text-red-700 text-sm shadow-lg',
+        compact ? 'absolute right-0 bottom-full mb-2 w-56' : 'mt-2'
       ]"
     >
       {{ error }}

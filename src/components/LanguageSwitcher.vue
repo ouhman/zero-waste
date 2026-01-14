@@ -2,7 +2,7 @@
   <div class="relative">
     <button
       @click="isOpen = !isOpen"
-      class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 bg-white rounded-lg shadow-sm border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+      class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 bg-white rounded-lg shadow-sm border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
     >
       <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="10"/>
@@ -25,7 +25,7 @@
       <button
         @click="switchLanguage('de')"
         :class="[
-          'w-full px-3 py-2 text-left text-sm font-medium transition-colors',
+          'w-full px-3 py-2 text-left text-sm font-medium transition-colors cursor-pointer',
           currentLocale === 'de'
             ? 'bg-green-50 text-green-700'
             : 'text-gray-700 hover:bg-gray-50'
@@ -36,7 +36,7 @@
       <button
         @click="switchLanguage('en')"
         :class="[
-          'w-full px-3 py-2 text-left text-sm font-medium transition-colors',
+          'w-full px-3 py-2 text-left text-sm font-medium transition-colors cursor-pointer',
           currentLocale === 'en'
             ? 'bg-green-50 text-green-700'
             : 'text-gray-700 hover:bg-gray-50'

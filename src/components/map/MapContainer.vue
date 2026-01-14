@@ -44,8 +44,13 @@ let highlightedMarkerId: string | null = null
 function initializeMap() {
   if (!mapElement.value || map) return
 
-  // Create map
-  map = L.map(mapElement.value).setView([props.centerLat, props.centerLng], DEFAULT_ZOOM)
+  // Create map with zoom control in bottom right (Google Maps style)
+  map = L.map(mapElement.value, {
+    zoomControl: false
+  }).setView([props.centerLat, props.centerLng], DEFAULT_ZOOM)
+
+  // Add zoom control to bottom right
+  L.control.zoom({ position: 'bottomright' }).addTo(map)
 
   // Add tile layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -238,6 +243,36 @@ onUnmounted(() => {
 </style>
 
 <style>
+/* Zoom control positioning (Google Maps style - bottom right with padding) */
+/* Move attribution to bottom-left to not interfere with zoom controls */
+.leaflet-control-attribution {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  margin: 0 !important;
+}
+
+/* Position zoom controls precisely in bottom-right */
+.leaflet-bottom.leaflet-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  bottom: 1.625rem !important;  /* 26px on mobile - aligned with filter bar center */
+  right: 1.25rem !important;   /* 20px on mobile - equal spacing with filter bar gap */
+}
+
+.leaflet-control-zoom {
+  margin: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .leaflet-bottom.leaflet-right {
+    bottom: 1.5rem !important;  /* 24px on desktop */
+    right: 3.5rem !important;   /* 56px on desktop */
+  }
+}
+
 /* Global styles for marker highlighting (Leaflet markers are outside Vue scope) */
 .leaflet-marker-icon.marker-highlighted {
   z-index: 1000 !important;

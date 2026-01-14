@@ -11,11 +11,26 @@
         class="search-input"
         @input="handleSearch"
         @keydown.enter="handleEnter"
+        @keydown.escape="clearSearch"
       />
+      <button
+        v-if="searchQuery && !loading"
+        @click="clearSearch"
+        class="clear-button"
+        type="button"
+        :aria-label="t('map.clearSearch')"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
       <div v-if="loading" class="spinner" />
     </div>
 
     <div v-if="results.length > 0" class="search-results">
+      <div class="results-header">
+        {{ t('map.resultsFound', results.length, { count: results.length }) }}
+      </div>
       <div
         v-for="location in results"
         :key="location.id"
@@ -60,6 +75,11 @@ function handleEnter() {
 
 function selectLocation(location: (typeof results.value)[number]) {
   emit('select', location)
+  searchQuery.value = ''
+  results.value = []
+}
+
+function clearSearch() {
   searchQuery.value = ''
   results.value = []
 }
@@ -109,6 +129,34 @@ function selectLocation(location: (typeof results.value)[number]) {
   pointer-events: none;
 }
 
+.clear-button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: #e5e7eb;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.clear-button:hover {
+  background: #d1d5db;
+}
+
+.clear-button svg {
+  width: 12px;
+  height: 12px;
+  color: #6b7280;
+}
+
 .spinner {
   position: absolute;
   right: 14px;
@@ -136,10 +184,29 @@ function selectLocation(location: (typeof results.value)[number]) {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  max-height: 280px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-height: min(500px, 60vh);
   overflow-y: auto;
-  z-index: 50;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results::after {
+  content: '';
+  flex-shrink: 0;
+  min-height: 300px;
+}
+
+.results-header {
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
 }
 
 .result-item {
@@ -182,5 +249,6 @@ function selectLocation(location: (typeof results.value)[number]) {
   color: #6b7280;
   font-size: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 </style>

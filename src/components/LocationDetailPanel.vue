@@ -35,7 +35,7 @@
           </div>
           <button
             @click="emit('close')"
-            class="p-2 -mr-2 -mt-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+            class="p-2 -mr-2 -mt-1 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
             :aria-label="t('common.close')"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,13 +67,13 @@
             </div>
 
             <!-- Opening Hours -->
-            <div v-if="location.opening_hours_text" class="flex gap-3">
-              <span class="text-lg">🕐</span>
-              <div>
-                <h3 class="text-sm font-semibold text-gray-900 mb-1">{{ t('location.openingHours') }}</h3>
-                <p class="text-gray-600 text-sm whitespace-pre-line">{{ location.opening_hours_text }}</p>
-              </div>
-            </div>
+            <OpeningHoursDisplay
+              :hours="location.opening_hours_structured as StructuredOpeningHours | null"
+              :osm-format="location.opening_hours_osm"
+              :fallback-text="location.opening_hours_text"
+              :always-open="isAlwaysOpen"
+              @suggest-edit="openSuggestionModal"
+            />
 
             <!-- Payment Methods -->
             <div v-if="hasPaymentMethods" class="flex gap-3">
@@ -119,7 +119,7 @@
             </a>
             <button
               @click="shareLocation"
-              class="px-4 py-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+              class="px-4 py-3 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors cursor-pointer"
               :aria-label="t('location.share')"
             >
               <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,6 +130,20 @@
         </div>
       </div>
     </Transition>
+
+    <!-- Hours Suggestion Modal -->
+    <HoursSuggestionModal
+      v-if="showSuggestionModal && location"
+      :location-id="location.id"
+      :location-name="location.name"
+      :current-hours="location.opening_hours_structured as StructuredOpeningHours | null"
+      :osm-format="location.opening_hours_osm"
+      :website="location.website"
+      :city="location.city"
+      :suburb="location.suburb"
+      @close="showSuggestionModal = false"
+      @submitted="onSuggestionSubmitted"
+    />
   </Teleport>
 </template>
 
@@ -138,8 +152,11 @@ import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import PaymentMethods from '@/components/PaymentMethods.vue'
 import ContactInfo from '@/components/common/ContactInfo.vue'
+import OpeningHoursDisplay from '@/components/common/OpeningHoursDisplay.vue'
+import HoursSuggestionModal from '@/components/common/HoursSuggestionModal.vue'
+import { useToast } from '@/composables/useToast'
 import type { Database } from '@/types/database'
-import type { PaymentMethods as PaymentMethodsType } from '@/types/osm'
+import type { PaymentMethods as PaymentMethodsType, StructuredOpeningHours } from '@/types/osm'
 
 type Location = Database['public']['Tables']['locations']['Row'] & {
   location_categories?: {
@@ -158,8 +175,10 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const { success } = useToast()
 const panelRef = ref<HTMLElement | null>(null)
 const isMobile = ref(false)
+const showSuggestionModal = ref(false)
 
 // Check if mobile
 function checkMobile() {
@@ -189,6 +208,11 @@ const categories = computed(() => {
   return props.location.location_categories
     .map(lc => lc.categories)
     .filter(Boolean)
+})
+
+// Check if location belongs to an "always open" category (e.g., Bücherschrank, Trinkbrunnen)
+const isAlwaysOpen = computed(() => {
+  return categories.value.some(cat => cat.always_open === true)
 })
 
 // Check if payment methods exist
@@ -234,6 +258,16 @@ const directionsUrl = computed(() => {
 function shareLocation() {
   if (!props.location) return
   emit('share', props.location)
+}
+
+// Open hours suggestion modal
+function openSuggestionModal() {
+  showSuggestionModal.value = true
+}
+
+// Handle successful suggestion submission
+function onSuggestionSubmitted() {
+  success(t('hoursSuggestion.successMessage'))
 }
 
 // Drag to dismiss (mobile)

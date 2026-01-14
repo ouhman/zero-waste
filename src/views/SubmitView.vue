@@ -1,5 +1,10 @@
 <template>
   <div class="submit-page">
+    <!-- Language Switcher -->
+    <div class="language-switcher-container">
+      <LanguageSwitcher />
+    </div>
+
     <div class="submit-container">
       <header class="submit-header">
         <router-link to="/" class="back-link">
@@ -41,6 +46,7 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LocationForm from '@/components/LocationForm.vue'
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import { useSubmission } from '@/composables/useSubmission'
 
 const { t } = useI18n()
@@ -62,6 +68,14 @@ async function handleSubmit(data: any) {
   min-height: 100vh;
   background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdfa 100%);
   padding: 2rem 1rem;
+  position: relative;
+}
+
+.language-switcher-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
 }
 
 .submit-container {
