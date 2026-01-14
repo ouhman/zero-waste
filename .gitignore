@@ -14,12 +14,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Environment variables
+# Environment variables (contain API keys)
 .env
 .env.local
 .env.*.local
+.env.development
 .env.production
+
+# Keep example templates
 !.env.example
+!.env.development.example
 !.env.production.example
 
 # Editor directories and files
@@ -41,6 +45,7 @@ infra/node_modules
 
 # Supabase
 supabase/.temp
+migration-export/
 
 # Testing
 .playwright-mcp
@@ -48,6 +53,5 @@ test-results/
 playwright-report/
 coverage/
 
-# Claude working files (keep settings)
+# Claude working files
 .claude/*
-!.claude/settings.local.json
