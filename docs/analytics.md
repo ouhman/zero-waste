@@ -125,23 +125,18 @@ Individual event parameters:
 
 ## Environment Setup
 
-Two separate GA4 properties keep dev traffic separate from production:
+Single GA4 property with environment dimension for filtering dev/prod traffic:
 
-| Environment | File | GA4 Property | Used For |
-|-------------|------|--------------|----------|
-| Development | `.env.development` | Zero Waste Frankfurt - Development | Local dev testing |
-| Production | `.env.production` | Zero Waste Frankfurt - Production | Live site traffic |
+| Environment | Value Sent | Filtered In GA4 |
+|-------------|------------|-----------------|
+| `npm run dev` | `environment: "development"` | Filter by Environment = development |
+| `npm run build` | `environment: "production"` | Filter by Environment = production |
 
-Vite automatically loads the correct file:
-- `npm run dev` → `.env.development`
-- `npm run build` → `.env.production`
+### Creating GA4 Property
 
-### Creating GA4 Properties
-
-**Production Property:**
 1. Go to [Google Analytics](https://analytics.google.com/)
 2. Admin → Create → Property
-3. Property name: `Zero Waste Frankfurt - Production`
+3. Property name: `Zero Waste Frankfurt`
 4. Timezone: `Germany`, Currency: `Euro`
 5. Create **Web** data stream with URL: `https://map.zerowastefrankfurt.de`
 6. Copy Measurement ID (starts with `G-`)
@@ -149,33 +144,37 @@ Vite automatically loads the correct file:
    - Disable Google Signals
    - Data retention: 14 months
 
-**Development Property:**
-1. Same steps as above
-2. Property name: `Zero Waste Frankfurt - Development`
-3. Data stream URL: `http://localhost:5173`
-4. Copy Measurement ID
+### Create Custom Dimension
 
-### Environment Files
+1. Admin → Custom definitions → Create custom dimension
+2. **Dimension name:** `Environment`
+3. **Scope:** `Event`
+4. **Event parameter:** `environment`
+5. Save
 
-**`.env.development`:**
+### Environment File
+
+**`.env`:**
 ```env
 VITE_SUPABASE_URL=https://xxx.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJ...
-VITE_GA_MEASUREMENT_ID=G-DEV1234567
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-**`.env.production`:**
-```env
-VITE_SUPABASE_URL=https://xxx.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJ...
-VITE_GA_MEASUREMENT_ID=G-PROD7654321
-```
+### Filtering Reports by Environment
 
-**Important:** Add both files to `.gitignore`:
-```
-.env.development
-.env.production
-```
+**In any GA4 report:**
+1. Click **Add filter +**
+2. Select **Environment** dimension
+3. Choose: `exactly matches` → `production` or `development`
+4. Click **Apply**
+
+**Create Comparisons (for quick switching):**
+1. Admin → Comparisons → Create comparison
+2. Name: `Production`, Environment = `production`
+3. Name: `Development`, Environment = `development`
+
+**Note:** Real-time reports don't support custom dimension filters. Check individual event parameters instead.
 
 ## Testing
 
@@ -195,11 +194,11 @@ npm test
 ### Manual Testing
 
 **Test locally without sending data to GA:**
-1. Don't set `VITE_GA_MEASUREMENT_ID` in `.env.development`
+1. Don't set `VITE_GA_MEASUREMENT_ID` in `.env`
 2. NullProvider will be used (no-op, console warnings only)
 
-**Test with Development GA4 property:**
-1. Set `VITE_GA_MEASUREMENT_ID` in `.env.development` to dev measurement ID
+**Test with GA4:**
+1. Set `VITE_GA_MEASUREMENT_ID` in `.env`
 2. Run `npm run dev`
 3. Open browser DevTools → Network tab → Filter by "google"
 4. With consent denied:
@@ -207,7 +206,7 @@ npm test
    - No `collect` requests with full data
 5. Accept consent banner:
    - `collect` requests appear with `gcs=G111` (consent granted)
-6. Check Real-time reports in Development GA4 property
+6. Check Real-time reports in GA4 (events will have `environment: development`)
 
 **Test events:**
 1. Open map → see `map_rendered` in GA4 Real-time → Events
@@ -294,10 +293,11 @@ Debug logs appear in console:
 3. **Check GA4 property**: Make sure you're in the correct property (dev vs prod)
 4. **Real-time reports delay**: Events can take 10-30 seconds to appear
 
-### Development events in Production property
+### Development events mixed with Production
 
-1. **Check environment file**: Make sure you're using `.env.development` with dev measurement ID
-2. **Clear build cache**: `rm -rf dist && npm run build`
+Dev and prod events share the same GA4 property but are tagged with `environment` dimension:
+1. **Filter reports**: Add filter for Environment = `production` to see only prod data
+2. **Check event parameters**: In Real-time, click events to see `environment` parameter
 
 ### Consent banner not appearing
 

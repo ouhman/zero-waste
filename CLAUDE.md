@@ -314,11 +314,10 @@ Uses Google Analytics 4 with GDPR-compliant implementation:
 - `edit_suggestion_submitted` - Edit suggestion sent
 
 ### Configuration
-Two separate GA4 properties are used:
-- `.env.development` → Development property (localhost traffic)
-- `.env.production` → Production property (live site traffic)
-
-Set `VITE_GA_MEASUREMENT_ID` in each file with the respective measurement ID.
+Single GA4 property with environment dimension for dev/prod filtering:
+- Set `VITE_GA_MEASUREMENT_ID` in `.env`
+- Code automatically tags events with `environment: development` or `environment: production`
+- Filter in GA4 reports by Environment dimension
 
 ### Switching Providers
 Analytics uses a provider abstraction (`src/types/analytics.ts`).
@@ -360,22 +359,16 @@ See [docs/analytics.md](docs/analytics.md) for detailed analytics documentation.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/testing-strategy.md](docs/testing-strategy.md) for detailed guidelines.
 
-## Pending Work
+## Slug Generation
 
-### Slug Generation V2 (Not Executed)
+SEO-friendly slugs with pattern: `{name}-{city}-{suburb}` or `{name}-{city}-{suburb}-{n}` on collision.
 
-**Status:** Plan created, not yet implemented
+**Example:** `repair-cafe-frankfurt-am-main-bockenheim`
 
-**Problem:** Current slugs are broken (missing first letters, random suffixes hurt SEO)
-
-**Plan:** `docs/plans/slug-generation-v2.md`
-
-**New pattern:** `{name}-{city}-{suburb}-{increment?}` (e.g., `repair-cafe-frankfurt-am-main-bockenheim`)
-
-**Key changes:**
-- PostgreSQL functions for atomic slug generation
-- Add `suburb` column (from Nominatim)
+**Implementation:**
+- PostgreSQL functions for atomic slug generation (`generate_unique_slug`)
+- `suburb` column populated from Nominatim data
 - Integer increment on collision (no random suffix)
-- Backfill all existing locations
+- Automatic trigger on INSERT/UPDATE of name, city, or suburb
 
-**Execute with:** `/execute-plan docs/plans/slug-generation-v2.md`
+**Migrations:** `supabase/migrations/20260110170*`
