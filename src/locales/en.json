@@ -15,13 +15,15 @@
   "map": {
     "title": "Zero Waste Frankfurt",
     "searchPlaceholder": "Search for locations...",
+    "clearSearch": "Clear search",
     "nearMe": "Near Me",
     "noResults": "No locations found",
     "viewDetails": "View Details",
     "geolocationError": "Could not determine location",
     "geolocationDenied": "Location access denied",
     "submitLocation": "Submit Location",
-    "submitLocationShort": "Location"
+    "submitLocationShort": "Location",
+    "resultsFound": "{count} result found | {count} results found"
   },
   "filters": {
     "title": "Filter & Search",
@@ -201,6 +203,7 @@
       "pendingLocations": "Pending Locations",
       "approvedLocations": "Approved Locations",
       "rejectedLocations": "Rejected Locations",
+      "pendingHoursSuggestions": "Pending Hours Suggestions",
       "viewAll": "View all",
       "recentSubmissions": "Recent Submissions",
       "viewAllPending": "View all pending locations",
@@ -244,7 +247,17 @@
       },
       "search": "Search locations...",
       "noResults": "No locations found",
-      "viewOnMap": "View on Map"
+      "viewOnMap": "View on Map",
+      "filteringByCategory": "Filtering by category",
+      "clearFilter": "Clear filter",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Delete Location",
+        "addedOn": "Added",
+        "rejectionReason": "Rejection reason",
+        "warning": "This action cannot be undone. The location will be permanently removed from the map.",
+        "confirm": "Delete"
+      }
     },
     "form": {
       "basicInfo": "Basic Information",
@@ -273,6 +286,7 @@
       "latitude": "Latitude",
       "longitude": "Longitude",
       "clickMapToSet": "Click on the map to set coordinates",
+      "syncFromAddress": "Sync from address",
       "selectCategories": "Select one or more categories",
       "cash": "Cash",
       "creditCard": "Credit Card",
@@ -290,7 +304,8 @@
     "nav": {
       "dashboard": "Dashboard",
       "locations": "Locations",
-      "categories": "Categories"
+      "categories": "Categories",
+      "hoursSuggestions": "Hours Suggestions"
     },
     "approve": "Approve",
     "reject": "Reject",
@@ -345,6 +360,36 @@
         "cannotDeleteOtherDescription": "The \"Other\" category is used as a default and cannot be deleted",
         "selectReassignCategory": "Please select a category to reassign locations to"
       }
+    },
+    "hoursSuggestions": {
+      "title": "Hours Suggestions",
+      "subtitle": "Review user-submitted opening hours corrections",
+      "noSuggestions": "No suggestions found",
+      "noPendingDescription": "All suggestions have been reviewed",
+      "noApprovedDescription": "No approved suggestions yet",
+      "noRejectedDescription": "No rejected suggestions yet",
+      "tabs": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "currentHours": "Current Hours",
+      "suggestedHours": "Suggested Hours",
+      "userNote": "User Note",
+      "adminNote": "Admin Note",
+      "submittedAt": "Submitted",
+      "reviewedAt": "Reviewed",
+      "approve": "Approve",
+      "reject": "Reject",
+      "approveSuccess": "Hours suggestion approved and location updated",
+      "approveFailed": "Failed to approve suggestion",
+      "rejectSuccess": "Hours suggestion rejected",
+      "rejectFailed": "Failed to reject suggestion"
     }
   },
   "notFound": {
@@ -360,5 +405,32 @@
     "pause": "Pause",
     "quality": "Quality",
     "fullscreen": "Fullscreen"
+  },
+  "openingHours": {
+    "notAvailable": "Opening hours not available",
+    "disclaimer": "Hours may be inaccurate. Please verify before visiting.",
+    "suggestEdit": "Suggest an edit",
+    "iKnowTheHours": "I know the opening hours!",
+    "today": "Today",
+    "24_7": "Open 24 hours",
+    "byAppointment": "By appointment",
+    "closed": "Closed"
+  },
+  "hoursSuggestion": {
+    "title": "Suggest opening hours",
+    "day": "Day",
+    "hours": "Hours",
+    "today": "Today",
+    "closed": "Closed",
+    "markedClosed": "Marked as closed",
+    "noteLabel": "Note",
+    "optional": "optional",
+    "notePlaceholder": "e.g., I visited today and the hours were different...",
+    "submit": "Submit suggestion",
+    "rateLimitError": "Too many suggestions. Please try again later.",
+    "successMessage": "Thank you! Your suggestion will be reviewed.",
+    "checkWebsite": "Check website",
+    "checkGoogleMaps": "Check on Google Maps",
+    "timeValidationError": "Opening time must be before closing time"
   }
 }

@@ -15,13 +15,15 @@
   "map": {
     "title": "Zero Waste Frankfurt",
     "searchPlaceholder": "Suche nach Orten...",
+    "clearSearch": "Suche löschen",
     "nearMe": "In meiner Nähe",
     "noResults": "Keine Orte gefunden",
     "viewDetails": "Details anzeigen",
     "geolocationError": "Standort konnte nicht ermittelt werden",
     "geolocationDenied": "Standortzugriff wurde verweigert",
     "submitLocation": "Ort vorschlagen",
-    "submitLocationShort": "Ort"
+    "submitLocationShort": "Ort",
+    "resultsFound": "{count} Ergebnis gefunden | {count} Ergebnisse gefunden"
   },
   "filters": {
     "title": "Filter & Suche",
@@ -201,6 +203,7 @@
       "pendingLocations": "Ausstehende Orte",
       "approvedLocations": "Genehmigte Orte",
       "rejectedLocations": "Abgelehnte Orte",
+      "pendingHoursSuggestions": "Ausstehende Öffnungszeiten-Vorschläge",
       "viewAll": "Alle anzeigen",
       "recentSubmissions": "Neueste Einreichungen",
       "viewAllPending": "Alle ausstehenden Orte anzeigen",
@@ -244,7 +247,17 @@
       },
       "search": "Orte suchen...",
       "noResults": "Keine Orte gefunden",
-      "viewOnMap": "Auf Karte anzeigen"
+      "viewOnMap": "Auf Karte anzeigen",
+      "filteringByCategory": "Filterung nach Kategorie",
+      "clearFilter": "Filter löschen",
+      "delete": "Löschen",
+      "deleteConfirm": {
+        "title": "Ort löschen",
+        "addedOn": "Hinzugefügt",
+        "rejectionReason": "Ablehnungsgrund",
+        "warning": "Diese Aktion kann nicht rückgängig gemacht werden. Der Ort wird dauerhaft von der Karte entfernt.",
+        "confirm": "Löschen"
+      }
     },
     "form": {
       "basicInfo": "Grundinformationen",
@@ -273,6 +286,7 @@
       "latitude": "Breitengrad",
       "longitude": "Längengrad",
       "clickMapToSet": "Klicken Sie auf die Karte, um Koordinaten zu setzen",
+      "syncFromAddress": "Von Adresse übernehmen",
       "selectCategories": "Wählen Sie eine oder mehrere Kategorien",
       "cash": "Bargeld",
       "creditCard": "Kreditkarte",
@@ -290,7 +304,8 @@
     "nav": {
       "dashboard": "Dashboard",
       "locations": "Orte",
-      "categories": "Kategorien"
+      "categories": "Kategorien",
+      "hoursSuggestions": "Öffnungszeiten-Vorschläge"
     },
     "approve": "Genehmigen",
     "reject": "Ablehnen",
@@ -345,6 +360,36 @@
         "cannotDeleteOtherDescription": "Die Kategorie \"Sonstiges\" wird als Standard verwendet und kann nicht gelöscht werden",
         "selectReassignCategory": "Bitte wählen Sie eine Kategorie für die Neuzuweisung aus"
       }
+    },
+    "hoursSuggestions": {
+      "title": "Öffnungszeiten-Vorschläge",
+      "subtitle": "Von Nutzern eingereichte Korrekturen zu Öffnungszeiten überprüfen",
+      "noSuggestions": "Keine Vorschläge vorhanden",
+      "noPendingDescription": "Alle Vorschläge wurden überprüft",
+      "noApprovedDescription": "Noch keine genehmigten Vorschläge",
+      "noRejectedDescription": "Noch keine abgelehnten Vorschläge",
+      "tabs": {
+        "pending": "Ausstehend",
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt"
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt"
+      },
+      "currentHours": "Aktuelle Zeiten",
+      "suggestedHours": "Vorgeschlagene Zeiten",
+      "userNote": "Nutzernotiz",
+      "adminNote": "Admin-Notiz",
+      "submittedAt": "Eingereicht",
+      "reviewedAt": "Überprüft",
+      "approve": "Genehmigen",
+      "reject": "Ablehnen",
+      "approveSuccess": "Öffnungszeiten-Vorschlag genehmigt und Ort aktualisiert",
+      "approveFailed": "Genehmigung des Vorschlags fehlgeschlagen",
+      "rejectSuccess": "Öffnungszeiten-Vorschlag abgelehnt",
+      "rejectFailed": "Ablehnung des Vorschlags fehlgeschlagen"
     }
   },
   "notFound": {
@@ -360,5 +405,32 @@
     "pause": "Pause",
     "quality": "Qualität",
     "fullscreen": "Vollbild"
+  },
+  "openingHours": {
+    "notAvailable": "Öffnungszeiten nicht verfügbar",
+    "disclaimer": "Angaben ohne Gewähr. Bitte überprüfen Sie die Zeiten vor Ihrem Besuch.",
+    "suggestEdit": "Änderung vorschlagen",
+    "iKnowTheHours": "Ich kenne die Öffnungszeiten!",
+    "today": "Heute",
+    "24_7": "24 Stunden geöffnet",
+    "byAppointment": "Nach Vereinbarung",
+    "closed": "Geschlossen"
+  },
+  "hoursSuggestion": {
+    "title": "Öffnungszeiten vorschlagen",
+    "day": "Tag",
+    "hours": "Zeiten",
+    "today": "Heute",
+    "closed": "Geschlossen",
+    "markedClosed": "Als geschlossen markiert",
+    "noteLabel": "Anmerkung",
+    "optional": "optional",
+    "notePlaceholder": "z.B. Ich war heute dort und die Zeiten stimmen nicht...",
+    "submit": "Vorschlag senden",
+    "rateLimitError": "Zu viele Vorschläge. Bitte versuchen Sie es später erneut.",
+    "successMessage": "Vielen Dank! Ihr Vorschlag wird geprüft.",
+    "checkWebsite": "Auf Website prüfen",
+    "checkGoogleMaps": "Auf Google Maps prüfen",
+    "timeValidationError": "Öffnungszeit muss vor Schließzeit liegen"
   }
 }
