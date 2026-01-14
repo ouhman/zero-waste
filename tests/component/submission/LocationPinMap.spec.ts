@@ -176,7 +176,7 @@ describe('LocationPinMap', () => {
       await nextTick()
 
       expect(L.map).toHaveBeenCalled()
-      expect(mockMap.setView).toHaveBeenCalledWith([50.1109, 8.6821], 12)
+      expect(mockMap.setView).toHaveBeenCalledWith([50.1109, 8.6821], 13)
       expect(L.tileLayer).toHaveBeenCalledWith(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         expect.objectContaining({
@@ -392,7 +392,7 @@ describe('LocationPinMap', () => {
       await nextTick() // Wait for async operation
 
       expect(L.marker).toHaveBeenCalled()
-      expect(mockMap.setView).toHaveBeenCalledWith([50.1234, 8.6789], 17)
+      expect(mockMap.setView).toHaveBeenCalledWith([50.1234, 8.6789], 18)
     })
 
     test('displays accuracy info when available', async () => {

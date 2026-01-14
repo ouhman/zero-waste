@@ -49,7 +49,10 @@ vi.mock('leaflet', () => ({
     tileLayer: vi.fn(() => mockTileLayer),
     marker: vi.fn(() => mockMarker),
     icon: vi.fn(() => ({})),
-    latLng: vi.fn((lat: number, lng: number) => ({ lat, lng }))
+    latLng: vi.fn((lat: number, lng: number) => ({ lat, lng })),
+    control: {
+      zoom: vi.fn(() => ({ addTo: vi.fn().mockReturnThis() }))
+    }
   }
 }))
 

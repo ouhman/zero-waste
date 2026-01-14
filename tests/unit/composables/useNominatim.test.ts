@@ -178,7 +178,8 @@ describe('useNominatim', () => {
             { day: 'wednesday', opens: '10:00', closes: '18:00' },
             { day: 'thursday', opens: '10:00', closes: '18:00' },
             { day: 'friday', opens: '10:00', closes: '18:00' },
-            { day: 'saturday', opens: '10:00', closes: '14:00' }
+            { day: 'saturday', opens: '10:00', closes: '14:00' },
+            { day: 'sunday', opens: null, closes: null }
           ],
           special: null
         },

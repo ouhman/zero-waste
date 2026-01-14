@@ -6,10 +6,12 @@ import { createApp } from 'vue'
 
 // Mock vue-router
 const mockPush = vi.fn()
+const mockRoute = { path: '/bulk-station' }
 vi.mock('vue-router', () => ({
   useRouter: () => ({
     push: mockPush
-  })
+  }),
+  useRoute: () => mockRoute
 }))
 
 // Mock supabase
@@ -25,7 +27,8 @@ vi.mock('@/lib/supabase', () => ({
 
 // Mock adminGuard
 vi.mock('@/router/guards/adminGuard', () => ({
-  updateActivity: vi.fn()
+  updateActivity: vi.fn(),
+  clearActivity: vi.fn()
 }))
 
 // Helper to setup composable with Vue instance context

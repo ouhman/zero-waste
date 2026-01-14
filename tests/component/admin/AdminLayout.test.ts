@@ -2,7 +2,7 @@ import { describe, test, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import AdminLayout from '@/components/admin/AdminLayout.vue'
 import AdminSidebar from '@/components/admin/AdminSidebar.vue'
-import { createTestRouter, createTestI18n } from '../../utils/test-helpers'
+import { createTestRouter, createTestI18n, createTestPinia } from '../../utils/test-helpers'
 
 // Mock useAuth composable
 const mockLogout = vi.fn()
@@ -15,20 +15,30 @@ vi.mock('@/composables/useAuth', () => ({
   })
 }))
 
+// Mock useAdminStore to avoid Supabase calls (used by AdminSidebar)
+vi.mock('@/stores/admin', () => ({
+  useAdminStore: () => ({
+    pendingSuggestionsCount: 0,
+    fetchPendingSuggestionsCount: vi.fn()
+  })
+}))
+
 describe('AdminLayout', () => {
   let router: ReturnType<typeof createTestRouter>
   let i18n: ReturnType<typeof createTestI18n>
+  let pinia: ReturnType<typeof createTestPinia>
 
   beforeEach(() => {
     router = createTestRouter('/bulk-station')
     i18n = createTestI18n()
+    pinia = createTestPinia()
     vi.clearAllMocks()
   })
 
   test('renders header with title', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -38,7 +48,7 @@ describe('AdminLayout', () => {
   test('displays logged-in user email', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -48,7 +58,7 @@ describe('AdminLayout', () => {
   test('renders logout button', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -60,7 +70,7 @@ describe('AdminLayout', () => {
   test('calls logout when logout button is clicked', async () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -76,7 +86,7 @@ describe('AdminLayout', () => {
   test('renders AdminSidebar component', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -86,7 +96,7 @@ describe('AdminLayout', () => {
   test('renders slot content', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       },
       slots: {
         default: '<div class="test-content">Test Content</div>'
@@ -100,7 +110,7 @@ describe('AdminLayout', () => {
   test('sidebar is initially closed on mobile', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -111,7 +121,7 @@ describe('AdminLayout', () => {
   test('toggles sidebar when hamburger button is clicked', async () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -132,7 +142,7 @@ describe('AdminLayout', () => {
   test('closes sidebar when close event is emitted', async () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -152,7 +162,7 @@ describe('AdminLayout', () => {
   test('has mobile-responsive hamburger menu button', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -166,7 +176,7 @@ describe('AdminLayout', () => {
   test('renders SVG icon in hamburger button', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -181,7 +191,7 @@ describe('AdminLayout', () => {
   test('main content area has proper styling', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -193,7 +203,7 @@ describe('AdminLayout', () => {
   test('header has proper styling and structure', () => {
     const wrapper = mount(AdminLayout, {
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 

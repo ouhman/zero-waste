@@ -1,22 +1,32 @@
-import { describe, test, expect, beforeEach } from 'vitest'
+import { describe, test, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import AdminSidebar from '@/components/admin/AdminSidebar.vue'
-import { createTestRouter, createTestI18n } from '../../utils/test-helpers'
+import { createTestRouter, createTestI18n, createTestPinia } from '../../utils/test-helpers'
+
+// Mock useAdminStore to avoid Supabase calls
+vi.mock('@/stores/admin', () => ({
+  useAdminStore: () => ({
+    pendingSuggestionsCount: 3,
+    fetchPendingSuggestionsCount: vi.fn()
+  })
+}))
 
 describe('AdminSidebar', () => {
   let router: ReturnType<typeof createTestRouter>
   let i18n: ReturnType<typeof createTestI18n>
+  let pinia: ReturnType<typeof createTestPinia>
 
   beforeEach(() => {
     router = createTestRouter('/bulk-station')
     i18n = createTestI18n()
+    pinia = createTestPinia()
   })
 
   test('renders navigation links', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -29,19 +39,19 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
     const links = wrapper.findAllComponents({ name: 'RouterLink' })
-    expect(links.length).toBe(3) // Dashboard, Locations, Categories
+    expect(links.length).toBe(4) // Dashboard, Locations, Categories, Hours Suggestions
   })
 
   test('dashboard link points to correct route', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -53,7 +63,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -65,7 +75,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -77,7 +87,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -94,7 +104,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -108,7 +118,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -120,7 +130,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: false },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -132,7 +142,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -144,7 +154,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: false },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -156,7 +166,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -170,7 +180,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -182,7 +192,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -196,7 +206,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -211,7 +221,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -226,7 +236,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -241,7 +251,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -255,7 +265,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
@@ -268,7 +278,7 @@ describe('AdminSidebar', () => {
     const wrapper = mount(AdminSidebar, {
       props: { open: true },
       global: {
-        plugins: [router, i18n]
+        plugins: [pinia, router, i18n]
       }
     })
 
