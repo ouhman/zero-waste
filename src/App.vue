@@ -2,12 +2,24 @@
   <div id="app">
     <RouterView />
     <ToastContainer />
+    <CookieConsentBanner />
   </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import ToastContainer from '@/components/common/ToastContainer.vue'
+import CookieConsentBanner from '@/components/common/CookieConsentBanner.vue'
+import { useConsent } from '@/composables/useConsent'
+import { initAnalytics } from '@/composables/useAnalytics'
+
+const { loadConsent } = useConsent()
+
+onMounted(async () => {
+  loadConsent()
+  await initAnalytics()
+})
 </script>
 
 <style>

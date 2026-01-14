@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MapView from '@/views/MapView.vue'
 import { adminGuard } from './guards/adminGuard'
+import { useAnalytics } from '@/composables/useAnalytics'
 
 // Lazy load non-critical routes for better performance
 const SubmitView = () => import('@/views/SubmitView.vue')
@@ -101,5 +102,12 @@ const router = createRouter({
 
 // Apply admin guard to protected routes
 router.beforeEach(adminGuard)
+
+// Track page views after navigation
+router.afterEach((to) => {
+  const { trackPageView } = useAnalytics()
+  const title = typeof to.name === 'string' ? to.name : to.path
+  trackPageView(to.path, title)
+})
 
 export default router
