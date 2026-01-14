@@ -27,6 +27,13 @@ vi.mock('vue-i18n', () => ({
   })
 }))
 
+// Mock analytics
+vi.mock('@/composables/useAnalytics', () => ({
+  useAnalytics: () => ({
+    trackEditSuggestionSubmitted: vi.fn()
+  })
+}))
+
 // Mock useNominatim's parseStructuredHours
 vi.mock('@/composables/useNominatim', () => ({
   parseStructuredHours: vi.fn((osm: string) => {
@@ -60,6 +67,7 @@ describe('HoursSuggestionModal', () => {
 
   const defaultProps = {
     locationId: 'test-location-id',
+    locationSlug: 'test-location',
     locationName: 'Test Location',
     currentHours,
     website: 'https://example.com',
