@@ -1,0 +1,134 @@
+name: Validate Migrations
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'supabase/migrations/**'
+      - 'supabase/config.toml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate migration file naming
+        run: |
+          echo "### Migration Validation Results :mag:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if any migration files were added/modified
+          MIGRATIONS=$(find supabase/migrations -name "*.sql" -type f 2>/dev/null || echo "")
+
+          if [ -z "$MIGRATIONS" ]; then
+            echo "No migration files found to validate." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          # Validate naming convention: YYYYMMDDHHMMSS_description.sql
+          INVALID_FILES=""
+          VALID_COUNT=0
+
+          for file in $MIGRATIONS; do
+            filename=$(basename "$file")
+
+            # Check if filename matches pattern: 14 digits + underscore + text + .sql
+            if [[ ! "$filename" =~ ^[0-9]{14}_[a-z0-9_]+\.sql$ ]]; then
+              INVALID_FILES="${INVALID_FILES}\n- ${filename}"
+              echo ":x: Invalid naming: \`${filename}\`" >> $GITHUB_STEP_SUMMARY
+            else
+              # Extract timestamp
+              timestamp="${filename:0:14}"
+              year="${timestamp:0:4}"
+              month="${timestamp:4:2}"
+              day="${timestamp:6:2}"
+              hour="${timestamp:8:2}"
+              minute="${timestamp:10:2}"
+              second="${timestamp:12:2}"
+
+              # Basic validation of date/time values
+              if [ "$year" -lt 2020 ] || [ "$year" -gt 2100 ] || \
+                 [ "$month" -lt 1 ] || [ "$month" -gt 12 ] || \
+                 [ "$day" -lt 1 ] || [ "$day" -gt 31 ] || \
+                 [ "$hour" -gt 23 ] || [ "$minute" -gt 59 ] || [ "$second" -gt 59 ]; then
+                INVALID_FILES="${INVALID_FILES}\n- ${filename} (invalid timestamp)"
+                echo ":x: Invalid timestamp: \`${filename}\`" >> $GITHUB_STEP_SUMMARY
+              else
+                VALID_COUNT=$((VALID_COUNT + 1))
+                echo ":white_check_mark: Valid: \`${filename}\`" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Valid migrations:** $VALID_COUNT" >> $GITHUB_STEP_SUMMARY
+
+          if [ -n "$INVALID_FILES" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### :warning: Invalid Migration Files" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Migration files must follow the naming convention: \`YYYYMMDDHHMMSS_description.sql\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Example: \`20260114120000_add_users_table.sql\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Invalid files:**" >> $GITHUB_STEP_SUMMARY
+            echo -e "$INVALID_FILES" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Check for dangerous operations
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Security Checks :shield:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          DANGEROUS_FOUND=0
+
+          # Check for dangerous operations in migration files
+          MIGRATIONS=$(find supabase/migrations -name "*.sql" -type f 2>/dev/null || echo "")
+
+          for file in $MIGRATIONS; do
+            filename=$(basename "$file")
+
+            # Check for DROP DATABASE
+            if grep -qi "DROP DATABASE" "$file"; then
+              echo ":no_entry: \`${filename}\` contains \`DROP DATABASE\` - BLOCKED" >> $GITHUB_STEP_SUMMARY
+              DANGEROUS_FOUND=1
+            fi
+
+            # Check for DROP SCHEMA public
+            if grep -qi "DROP SCHEMA.*public" "$file"; then
+              echo ":no_entry: \`${filename}\` contains \`DROP SCHEMA public\` - BLOCKED" >> $GITHUB_STEP_SUMMARY
+              DANGEROUS_FOUND=1
+            fi
+
+            # Check for TRUNCATE (warn but don't block)
+            if grep -qi "TRUNCATE" "$file"; then
+              echo ":warning: \`${filename}\` contains \`TRUNCATE\` - Review carefully" >> $GITHUB_STEP_SUMMARY
+            fi
+
+            # Check for DROP TABLE (warn but don't block)
+            if grep -qi "DROP TABLE" "$file"; then
+              echo ":warning: \`${filename}\` contains \`DROP TABLE\` - Review carefully" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          if [ $DANGEROUS_FOUND -eq 0 ]; then
+            echo ":white_check_mark: No dangerous operations detected" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Migration validation failed due to dangerous operations.**" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Validation summary
+        if: success()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo ":white_check_mark: **All migration validations passed!**" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,147 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'index.html'
+      - 'vite.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: false
+        default: 'production'
+        type: choice
+        options:
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run type check
+        run: npm run type-check
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build application
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
+
+      - name: Verify build output
+        run: |
+          echo "### Build Output :package:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Build directory size:** $(du -sh dist | cut -f1)" >> $GITHUB_STEP_SUMMARY
+          echo "**Files generated:** $(find dist -type f | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for critical files
+          if [ ! -f "dist/index.html" ]; then
+            echo ":x: **Error:** index.html not found in build output" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          echo ":white_check_mark: index.html found" >> $GITHUB_STEP_SUMMARY
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - name: Deploy to S3
+        run: |
+          echo "### S3 Deployment :cloud:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Bucket:** ${{ secrets.S3_BUCKET_NAME }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Sync all files except index.html with immutable cache
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+            --delete \
+            --cache-control "public,max-age=31536000,immutable" \
+            --exclude "index.html"
+
+          # Upload index.html with no-cache to ensure SPA routing works
+          aws s3 cp dist/index.html s3://${{ secrets.S3_BUCKET_NAME }}/index.html \
+            --cache-control "public,max-age=0,must-revalidate"
+
+          echo ":white_check_mark: S3 sync completed" >> $GITHUB_STEP_SUMMARY
+
+      - name: Invalidate CloudFront cache
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### CloudFront Invalidation :arrows_counterclockwise:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Distribution:** ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/index.html" "/" \
+            --query 'Invalidation.Id' \
+            --output text)
+
+          echo ":white_check_mark: Invalidation created: \`$INVALIDATION_ID\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Deployment summary
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Deployment Complete! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment:** Production" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** https://map.zerowastefrankfurt.de" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Configuration:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Supabase URL: \`${{ secrets.VITE_SUPABASE_URL }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- S3 Bucket: \`${{ secrets.S3_BUCKET_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- CloudFront: \`${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Wait 1-2 minutes for CloudFront invalidation" >> $GITHUB_STEP_SUMMARY
+          echo "2. Verify site loads: https://map.zerowastefrankfurt.de" >> $GITHUB_STEP_SUMMARY
+          echo "3. Test critical user flows" >> $GITHUB_STEP_SUMMARY
+          echo "4. Monitor logs for errors" >> $GITHUB_STEP_SUMMARY
+
+      - name: Deployment failed
+        if: failure()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo ":x: **Frontend deployment failed!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Troubleshooting:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Check the error logs above" >> $GITHUB_STEP_SUMMARY
+          echo "2. Verify GitHub secrets are configured correctly" >> $GITHUB_STEP_SUMMARY
+          echo "3. Check AWS credentials and permissions" >> $GITHUB_STEP_SUMMARY
+          echo "4. Test build locally: \`npm run build\`" >> $GITHUB_STEP_SUMMARY
+          echo "5. Review deployment checklist: \`docs/plans/production-deployment-checklist.md\`" >> $GITHUB_STEP_SUMMARY

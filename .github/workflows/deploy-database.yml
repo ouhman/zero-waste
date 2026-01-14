@@ -1,0 +1,168 @@
+name: Deploy Database
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'supabase/migrations/**'
+      - 'supabase/functions/**'
+  workflow_dispatch:
+    inputs:
+      skip_migrations:
+        description: 'Skip migration deployment'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+      skip_functions:
+        description: 'Skip functions deployment'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Link to production project
+        run: |
+          echo "### Database Deployment :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment:** Production" >> $GITHUB_STEP_SUMMARY
+          echo "**Project ID:** ${{ secrets.PROD_SUPABASE_PROJECT_ID }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          supabase link \
+            --project-ref ${{ secrets.PROD_SUPABASE_PROJECT_ID }} \
+            --password ${{ secrets.PROD_DB_PASSWORD }}
+
+          echo ":white_check_mark: Linked to production project" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check migration status
+        if: inputs.skip_migrations != 'true'
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Migration Status :clipboard:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Get list of pending migrations
+          PENDING=$(supabase db diff --linked 2>&1 || echo "")
+
+          if echo "$PENDING" | grep -q "No schema changes detected"; then
+            echo ":white_check_mark: No pending migrations" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Pending migrations detected:**" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$PENDING" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Push migrations
+        if: inputs.skip_migrations != 'true'
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Deploying Migrations :outbox_tray:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Push migrations
+          OUTPUT=$(supabase db push --linked 2>&1 || echo "FAILED")
+
+          if echo "$OUTPUT" | grep -q "FAILED"; then
+            echo ":x: Migration deployment failed" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$OUTPUT" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          echo ":white_check_mark: Migrations deployed successfully" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$OUTPUT" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Deploy Edge Functions
+        if: inputs.skip_functions != 'true'
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Deploying Edge Functions :zap:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if functions directory exists
+          if [ ! -d "supabase/functions" ]; then
+            echo ":information_source: No Edge Functions found to deploy" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          # Get list of functions
+          FUNCTIONS=$(ls -d supabase/functions/*/ 2>/dev/null | xargs -n 1 basename)
+
+          if [ -z "$FUNCTIONS" ]; then
+            echo ":information_source: No Edge Functions found to deploy" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          echo "**Functions to deploy:**" >> $GITHUB_STEP_SUMMARY
+
+          # Deploy each function
+          for func in $FUNCTIONS; do
+            echo "- Deploying \`$func\`..." >> $GITHUB_STEP_SUMMARY
+
+            OUTPUT=$(supabase functions deploy $func --project-ref ${{ secrets.PROD_SUPABASE_PROJECT_ID }} 2>&1 || echo "FAILED")
+
+            if echo "$OUTPUT" | grep -q "FAILED"; then
+              echo "  :x: Failed to deploy \`$func\`" >> $GITHUB_STEP_SUMMARY
+              echo '  ```' >> $GITHUB_STEP_SUMMARY
+              echo "  $OUTPUT" >> $GITHUB_STEP_SUMMARY
+              echo '  ```' >> $GITHUB_STEP_SUMMARY
+              exit 1
+            fi
+
+            echo "  :white_check_mark: \`$func\` deployed" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Deployment summary
+        if: success()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo ":white_check_mark: **Database deployment completed successfully!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Next steps:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Verify migrations in Supabase Dashboard" >> $GITHUB_STEP_SUMMARY
+          echo "2. Test Edge Functions if deployed" >> $GITHUB_STEP_SUMMARY
+          echo "3. Monitor application for any issues" >> $GITHUB_STEP_SUMMARY
+
+      - name: Deployment failed
+        if: failure()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo ":x: **Database deployment failed!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Troubleshooting:**" >> $GITHUB_STEP_SUMMARY
+          echo "1. Check the error logs above" >> $GITHUB_STEP_SUMMARY
+          echo "2. Verify GitHub secrets are configured correctly" >> $GITHUB_STEP_SUMMARY
+          echo "3. Test migrations locally with \`supabase db push --linked\`" >> $GITHUB_STEP_SUMMARY
+          echo "4. Contact team if issue persists" >> $GITHUB_STEP_SUMMARY

@@ -1,9 +1,10 @@
-name: Deploy
+name: Deploy (Legacy)
 
+# This workflow is deprecated in favor of deploy-frontend.yml
+# Kept for backward compatibility, will be removed in future
 on:
-  push:
-    branches:
-      - main
+  # Disabled - use deploy-frontend.yml instead
+  workflow_dispatch:
 
 jobs:
   deploy:

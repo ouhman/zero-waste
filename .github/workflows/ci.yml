@@ -41,3 +41,69 @@ jobs:
           name: dist
           path: dist/
           retention-days: 7
+
+  validate-migrations:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.changed_files, 'supabase/')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for migration changes
+        id: check-migrations
+        run: |
+          # Check if any Supabase files were modified
+          if git diff --name-only origin/main...HEAD | grep -q "^supabase/"; then
+            echo "migrations_changed=true" >> $GITHUB_OUTPUT
+            echo "Supabase files have been modified"
+          else
+            echo "migrations_changed=false" >> $GITHUB_OUTPUT
+            echo "No Supabase files modified"
+          fi
+
+      - name: Validate migration files
+        if: steps.check-migrations.outputs.migrations_changed == 'true'
+        run: |
+          echo "### Migration Validation :mag:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if migration files exist
+          MIGRATIONS=$(find supabase/migrations -name "*.sql" -type f 2>/dev/null || echo "")
+
+          if [ -z "$MIGRATIONS" ]; then
+            echo "No migration files found" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          # Get only changed migration files
+          CHANGED_MIGRATIONS=$(git diff --name-only origin/main...HEAD | grep "^supabase/migrations/.*\.sql$" || echo "")
+
+          if [ -z "$CHANGED_MIGRATIONS" ]; then
+            echo ":white_check_mark: No new or modified migration files" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          echo "**Changed migration files:**" >> $GITHUB_STEP_SUMMARY
+          for file in $CHANGED_MIGRATIONS; do
+            echo "- \`$file\`" >> $GITHUB_STEP_SUMMARY
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Validate naming convention
+          INVALID_COUNT=0
+          for file in $CHANGED_MIGRATIONS; do
+            filename=$(basename "$file")
+            if [[ ! "$filename" =~ ^[0-9]{14}_[a-z0-9_]+\.sql$ ]]; then
+              echo ":x: Invalid naming: \`$filename\`" >> $GITHUB_STEP_SUMMARY
+              INVALID_COUNT=$((INVALID_COUNT + 1))
+            fi
+          done
+
+          if [ $INVALID_COUNT -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo ":warning: Migration files must follow naming convention: \`YYYYMMDDHHMMSS_description.sql\`" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          echo ":white_check_mark: All migration files follow naming convention" >> $GITHUB_STEP_SUMMARY
