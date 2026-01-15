@@ -1,21 +1,46 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { generateMarkerSvg, getMarkerDataUrl, iconCache } from '@/lib/dynamicMarkerUtils'
+import { generateMarkerSvg, getMarkerDataUrl, clearIconSvgCache } from '@/lib/dynamicMarkerUtils'
 
 // Mock fetch globally
 global.fetch = vi.fn()
 
+// Mock Iconify API JSON response
+const mockIconifyResponse = (iconName: string) => {
+  const [prefix, name] = iconName.split(':')
+  return {
+    prefix,
+    icons: {
+      [name]: {
+        body: '<path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>',
+        width: 24,
+        height: 24
+      }
+    },
+    width: 24,
+    height: 24
+  }
+}
+
 describe('dynamicMarkerUtils', () => {
   beforeEach(() => {
     // Clear icon cache before each test
-    iconCache.clear()
+    clearIconSvgCache()
 
     // Reset fetch mock
     vi.clearAllMocks()
 
-    // Default mock: return a simple SVG
-    ;(global.fetch as any).mockResolvedValue({
-      ok: true,
-      text: async () => '<svg viewBox="0 0 24 24"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>'
+    // Default mock: return Iconify JSON API response
+    ;(global.fetch as any).mockImplementation(async (url: string) => {
+      // Extract icon info from URL (e.g., https://api.iconify.design/mdi.json?icons=recycle)
+      const urlMatch = url.match(/api\.iconify\.design\/([^.]+)\.json\?icons=(.+)/)
+      if (urlMatch) {
+        const [, prefix, name] = urlMatch
+        return {
+          ok: true,
+          json: async () => mockIconifyResponse(`${prefix}:${name}`)
+        }
+      }
+      return { ok: false }
     })
   })
 
@@ -113,31 +138,39 @@ describe('dynamicMarkerUtils', () => {
     })
 
     it('returns fallback SVG for unknown icon', async () => {
+      // Mock failed fetch for unknown icon
+      ;(global.fetch as any).mockResolvedValueOnce({
+        ok: false,
+        status: 404
+      })
+
       const svg = await generateMarkerSvg({
         iconName: 'unknown:invalid-icon',
         color: '#10B981'
       })
 
-      // Should still generate valid SVG with circle
+      // Should still generate valid SVG with circle (just no icon inside)
       expect(svg).toContain('<svg')
       expect(svg).toContain('fill="#10B981"')
+      expect(svg).toContain('<circle')
     })
 
     it('caches icon data for performance', async () => {
-      // First call should populate cache
+      // First call should fetch from API
       await generateMarkerSvg({
         iconName: 'mdi:recycle',
         color: '#10B981'
       })
 
-      expect(iconCache.size).toBeGreaterThan(0)
+      expect(global.fetch).toHaveBeenCalledTimes(1)
 
-      // Second call should use cached data
+      // Second call should use cached data (no additional fetch)
       const svg = await generateMarkerSvg({
         iconName: 'mdi:recycle',
         color: '#EF4444' // Different color, same icon
       })
 
+      expect(global.fetch).toHaveBeenCalledTimes(1) // Still only 1 call
       expect(svg).toContain('fill="#EF4444"')
     })
 
@@ -209,21 +242,34 @@ describe('dynamicMarkerUtils', () => {
     })
   })
 
-  describe('iconCache', () => {
-    it('starts empty', () => {
-      expect(iconCache.size).toBe(0)
-    })
-
-    it('can be cleared', async () => {
+  describe('clearIconSvgCache', () => {
+    it('clears cached icon data', async () => {
+      // First call should fetch from API
       await generateMarkerSvg({
         iconName: 'mdi:recycle',
         color: '#10B981'
       })
 
-      expect(iconCache.size).toBeGreaterThan(0)
+      expect(global.fetch).toHaveBeenCalledTimes(1)
 
-      iconCache.clear()
-      expect(iconCache.size).toBe(0)
+      // Second call uses cache
+      await generateMarkerSvg({
+        iconName: 'mdi:recycle',
+        color: '#10B981'
+      })
+
+      expect(global.fetch).toHaveBeenCalledTimes(1)
+
+      // Clear cache
+      clearIconSvgCache()
+
+      // Third call should fetch again since cache was cleared
+      await generateMarkerSvg({
+        iconName: 'mdi:recycle',
+        color: '#10B981'
+      })
+
+      expect(global.fetch).toHaveBeenCalledTimes(2)
     })
   })
 })
