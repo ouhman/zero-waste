@@ -14,7 +14,11 @@ export default defineConfig({
       '**/e2e/**',
       '**/.{idea,git,cache,output,temp}/**',
       '**/supabase/functions/**' // Deno tests - run with `deno test` instead
-    ]
+    ],
+    env: {
+      VITE_SUPABASE_URL: 'https://test-project.supabase.co',
+      VITE_SUPABASE_ANON_KEY: 'test-anon-key-for-vitest'
+    }
   },
   resolve: {
     alias: {

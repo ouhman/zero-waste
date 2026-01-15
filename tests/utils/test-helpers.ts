@@ -254,6 +254,9 @@ export function createMockCategory(overrides: Partial<Category> = {}): Category 
     description_en: null,
     created_at: '2024-01-01T00:00:00Z',
     updated_at: null,
+    always_open: null,
+    icon_name: null,
+    marker_size: null,
     ...overrides
   }
 }

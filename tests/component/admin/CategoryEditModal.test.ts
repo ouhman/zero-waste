@@ -1,6 +1,8 @@
 import { describe, test, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import CategoryEditModal from '@/components/admin/CategoryEditModal.vue'
+import IconSelector from '@/components/admin/IconSelector.vue'
+import MarkerPreview from '@/components/admin/MarkerPreview.vue'
 import { createTestI18n, createMockCategory, createMockFile, createTestPinia } from '../../utils/test-helpers'
 import { useCategoriesStore } from '@/stores/categories'
 
@@ -354,11 +356,16 @@ describe('CategoryEditModal', () => {
     })
   })
 
-  describe('Icon Upload', () => {
-    test('accepts PNG file upload', async () => {
+  describe('Icon Upload (Legacy)', () => {
+    test('accepts PNG file upload for legacy categories', async () => {
+      const category = createMockCategory({
+        icon_url: 'https://example.com/icon.png',
+        icon_name: null
+      })
+
       const wrapper = mount(CategoryEditModal, {
         props: {
-          category: null
+          category
         },
         global: {
           plugins: [i18n],
@@ -383,10 +390,15 @@ describe('CategoryEditModal', () => {
       expect(wrapper.text()).not.toContain('Only PNG files are allowed')
     })
 
-    test('rejects non-PNG files', async () => {
+    test('rejects non-PNG files for legacy categories', async () => {
+      const category = createMockCategory({
+        icon_url: 'https://example.com/icon.png',
+        icon_name: null
+      })
+
       const wrapper = mount(CategoryEditModal, {
         props: {
-          category: null
+          category
         },
         global: {
           plugins: [i18n],
@@ -410,10 +422,15 @@ describe('CategoryEditModal', () => {
       expect(wrapper.text()).toContain('Only PNG files are allowed')
     })
 
-    test('rejects files larger than 1MB', async () => {
+    test('rejects files larger than 1MB for legacy categories', async () => {
+      const category = createMockCategory({
+        icon_url: 'https://example.com/icon.png',
+        icon_name: null
+      })
+
       const wrapper = mount(CategoryEditModal, {
         props: {
-          category: null
+          category
         },
         global: {
           plugins: [i18n],
@@ -437,10 +454,16 @@ describe('CategoryEditModal', () => {
       expect(wrapper.text()).toContain('File is too large (max 1MB)')
     })
 
-    test('passes icon file to createCategory', async () => {
+    test('passes icon file to updateCategory for legacy categories', async () => {
+      const category = createMockCategory({
+        id: 'cat-123',
+        icon_url: 'https://example.com/icon.png',
+        icon_name: null
+      })
+
       const wrapper = mount(CategoryEditModal, {
         props: {
-          category: null
+          category
         },
         global: {
           plugins: [i18n],
@@ -459,12 +482,10 @@ describe('CategoryEditModal', () => {
       })
 
       await fileInput.trigger('change')
-      await wrapper.find('#name_de').setValue('Test')
-      await wrapper.find('#name_en').setValue('Test')
-      await wrapper.find('#slug').setValue('test')
       await wrapper.find('form').trigger('submit')
 
-      expect(mockStore.createCategory).toHaveBeenCalledWith(
+      expect(mockStore.updateCategory).toHaveBeenCalledWith(
+        'cat-123',
         expect.anything(),
         file
       )
@@ -565,8 +586,8 @@ describe('CategoryEditModal', () => {
     })
   })
 
-  describe('Color Picker', () => {
-    test('renders color input', () => {
+  describe('Color Picker (moved to Marker Settings)', () => {
+    test('renders color input in marker settings', () => {
       const wrapper = mount(CategoryEditModal, {
         props: {
           category: null
@@ -579,11 +600,12 @@ describe('CategoryEditModal', () => {
         }
       })
 
-      const colorInput = wrapper.find('input[type="color"]')
+      const colorInput = wrapper.find('#marker_color')
       expect(colorInput.exists()).toBe(true)
+      expect(colorInput.attributes('type')).toBe('color')
     })
 
-    test('syncs color input with text input', async () => {
+    test('syncs marker color input with text input', async () => {
       const wrapper = mount(CategoryEditModal, {
         props: {
           category: null
@@ -596,17 +618,17 @@ describe('CategoryEditModal', () => {
         }
       })
 
-      const colorInput = wrapper.find('input[type="color"]')
+      const colorInput = wrapper.find('#marker_color')
       await colorInput.setValue('#FF0000')
 
       const textInputs = wrapper.findAll('input[type="text"]')
-      const colorTextInput = textInputs.find(input => (input.element as HTMLInputElement).placeholder === '#3B82F6')
+      const colorTextInput = textInputs.find(input => (input.element as HTMLInputElement).placeholder === '#10B981')
 
       // Color inputs normalize to lowercase
       expect((colorTextInput?.element as HTMLInputElement)?.value).toBe('#ff0000')
     })
 
-    test('sets default color for new category', () => {
+    test('sets default marker color to #10B981 for new category', () => {
       const wrapper = mount(CategoryEditModal, {
         props: {
           category: null
@@ -619,9 +641,9 @@ describe('CategoryEditModal', () => {
         }
       })
 
-      const colorInput = wrapper.find('input[type="color"]').element as HTMLInputElement
+      const colorInput = wrapper.find('#marker_color').element as HTMLInputElement
       // Color inputs normalize to lowercase
-      expect(colorInput.value).toBe('#3b82f6')
+      expect(colorInput.value.toLowerCase()).toBe('#10b981')
     })
   })
 
@@ -687,6 +709,369 @@ describe('CategoryEditModal', () => {
       await wrapper.vm.$nextTick()
 
       expect(wrapper.text()).toContain('Save failed')
+    })
+  })
+
+  describe('Marker Settings', () => {
+    test('renders IconSelector component', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      expect(wrapper.findComponent(IconSelector).exists()).toBe(true)
+    })
+
+    test('renders MarkerPreview component', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      expect(wrapper.findComponent(MarkerPreview).exists()).toBe(true)
+    })
+
+    test('renders marker color picker', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const colorInput = wrapper.find('#marker_color')
+      expect(colorInput.exists()).toBe(true)
+      expect(colorInput.attributes('type')).toBe('color')
+    })
+
+    test('renders marker size selector', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const sizeSelect = wrapper.find('#marker_size')
+      expect(sizeSelect.exists()).toBe(true)
+      expect(sizeSelect.element.tagName).toBe('SELECT')
+    })
+
+    test('marker size selector has correct options', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const sizeSelect = wrapper.find('#marker_size')
+      const options = sizeSelect.findAll('option')
+
+      expect(options).toHaveLength(3)
+      expect(options[0].element.value).toBe('24')
+      expect(options[1].element.value).toBe('32')
+      expect(options[2].element.value).toBe('40')
+    })
+
+    test('sets default marker size to 32', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const sizeSelect = wrapper.find('#marker_size').element as HTMLSelectElement
+      expect(sizeSelect.value).toBe('32')
+    })
+
+    test('sets default color to #10B981', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const colorInput = wrapper.find('#marker_color').element as HTMLInputElement
+      expect(colorInput.value.toLowerCase()).toBe('#10b981')
+    })
+
+    test('updates MarkerPreview when icon is selected', async () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const iconSelector = wrapper.findComponent(IconSelector)
+      await iconSelector.vm.$emit('update:modelValue', 'mdi:recycle')
+      await wrapper.vm.$nextTick()
+
+      const markerPreview = wrapper.findComponent(MarkerPreview)
+      expect(markerPreview.props('iconName')).toBe('mdi:recycle')
+    })
+
+    test('updates MarkerPreview when color changes', async () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const colorInput = wrapper.find('#marker_color')
+      await colorInput.setValue('#FF0000')
+      await wrapper.vm.$nextTick()
+
+      const markerPreview = wrapper.findComponent(MarkerPreview)
+      expect(markerPreview.props('color').toLowerCase()).toBe('#ff0000')
+    })
+
+    test('updates MarkerPreview when size changes', async () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const sizeSelect = wrapper.find('#marker_size')
+      await sizeSelect.setValue('40')
+      await wrapper.vm.$nextTick()
+
+      const markerPreview = wrapper.findComponent(MarkerPreview)
+      expect(markerPreview.props('size')).toBe(40)
+    })
+
+    test('submits icon_name and marker_size on create', async () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      await wrapper.find('#name_de').setValue('New Category')
+      await wrapper.find('#name_en').setValue('New Category EN')
+      await wrapper.find('#slug').setValue('new-category')
+
+      const iconSelector = wrapper.findComponent(IconSelector)
+      await iconSelector.vm.$emit('update:modelValue', 'mdi:recycle')
+      await wrapper.vm.$nextTick()
+
+      await wrapper.find('#marker_size').setValue('40')
+      await wrapper.find('#marker_color').setValue('#ff0000')
+
+      await wrapper.find('form').trigger('submit')
+
+      expect(mockStore.createCategory).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name_de: 'New Category',
+          name_en: 'New Category EN',
+          slug: 'new-category',
+          icon_name: 'mdi:recycle',
+          marker_size: 40
+        }),
+        undefined
+      )
+    })
+
+    test('submits icon_name and marker_size on update', async () => {
+      const category = createMockCategory({
+        id: 'cat-123',
+        name_de: 'Existing Category'
+      })
+
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const iconSelector = wrapper.findComponent(IconSelector)
+      await iconSelector.vm.$emit('update:modelValue', 'lucide:store')
+
+      await wrapper.find('#marker_size').setValue('24')
+      await wrapper.find('form').trigger('submit')
+
+      expect(mockStore.updateCategory).toHaveBeenCalledWith(
+        'cat-123',
+        expect.objectContaining({
+          icon_name: 'lucide:store',
+          marker_size: 24
+        }),
+        undefined
+      )
+    })
+
+    test('populates marker fields in edit mode', async () => {
+      const category = createMockCategory({
+        icon_name: 'mdi:recycle',
+        marker_size: 40,
+        color: '#FF0000'
+      })
+
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      await wrapper.vm.$nextTick()
+
+      const iconSelector = wrapper.findComponent(IconSelector)
+      expect(iconSelector.props('modelValue')).toBe('mdi:recycle')
+
+      const sizeSelect = wrapper.find('#marker_size').element as HTMLSelectElement
+      expect(sizeSelect.value).toBe('40')
+
+      const colorInput = wrapper.find('#marker_color').element as HTMLInputElement
+      expect(colorInput.value.toLowerCase()).toBe('#ff0000')
+    })
+
+    test('shows legacy icon section when category has icon_url but no icon_name', () => {
+      const category = createMockCategory({
+        icon_url: 'https://example.com/icon.png',
+        icon_name: null
+      })
+
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      // Check for file input which only appears in legacy section
+      expect(wrapper.find('input[type="file"]').exists()).toBe(true)
+      // Check that the image preview exists (shows old icon)
+      expect(wrapper.find('img[alt="Icon preview"]').exists()).toBe(true)
+    })
+
+    test('hides legacy icon section when icon_name is set', async () => {
+      const category = createMockCategory({
+        icon_url: 'https://example.com/icon.png',
+        icon_name: null
+      })
+
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      // Initially shows legacy icon (file input exists)
+      expect(wrapper.find('input[type="file"]').exists()).toBe(true)
+
+      // Select an icon
+      const iconSelector = wrapper.findComponent(IconSelector)
+      await iconSelector.vm.$emit('update:modelValue', 'mdi:recycle')
+      await wrapper.vm.$nextTick()
+
+      // Legacy section should be hidden now (no file input when icon_name is set)
+      expect(wrapper.find('input[type="file"]').exists()).toBe(false)
+    })
+
+    test('marker settings section has correct styling', () => {
+      const wrapper = mount(CategoryEditModal, {
+        props: {
+          category: null
+        },
+        global: {
+          plugins: [i18n],
+          stubs: {
+            Teleport: true
+          }
+        }
+      })
+
+      const markerSettings = wrapper.find('.border.border-gray-200.rounded-lg.p-4.bg-gray-50')
+      expect(markerSettings.exists()).toBe(true)
     })
   })
 })
