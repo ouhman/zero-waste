@@ -317,10 +317,10 @@ onUnmounted(() => {
   transition: filter 0.2s ease, transform 0.2s ease;
 }
 
-/* Scale the SVG inside the dynamic marker */
-.leaflet-marker-icon.dynamic-marker.marker-highlighted svg {
+/* Scale the SVG inside the dynamic marker (direct child only to avoid nested SVG double-scaling) */
+.leaflet-marker-icon.dynamic-marker.marker-highlighted > svg {
   transform: scale(1.4);
-  transform-origin: center bottom;
+  transform-origin: center center;
   transition: transform 0.2s ease;
 }
 </style>

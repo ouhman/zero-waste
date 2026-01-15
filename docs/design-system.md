@@ -105,6 +105,42 @@ When a category's icon is updated in admin:
 
 See `src/stores/categories.ts` → `updateCategory()`.
 
+### CSS Styling Caveat: Nested SVGs
+
+**Important**: The generated marker HTML contains **nested SVGs** (outer container + inner icon). When writing CSS selectors, use direct child selectors to avoid double-applying styles.
+
+```html
+<!-- Generated structure -->
+<div class="dynamic-marker">
+  <svg>              <!-- outer SVG -->
+    <circle/>
+    <g>
+      <svg>          <!-- inner SVG (icon) -->
+        ...
+      </svg>
+    </g>
+  </svg>
+</div>
+```
+
+#### ✅ Correct
+
+```css
+/* Direct child selector - only targets outer SVG */
+.dynamic-marker.marker-highlighted > svg {
+  transform: scale(1.4);
+}
+```
+
+#### ❌ Wrong
+
+```css
+/* Descendant selector - targets BOTH SVGs, causing double-scaling */
+.dynamic-marker.marker-highlighted svg {
+  transform: scale(1.4);
+}
+```
+
 ---
 
 ## Map Controls (Google Maps Style)
