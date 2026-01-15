@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { supabase } from '@/lib/supabase'
 import type { Database } from '@/types/database'
+import { clearMarkerIconCaches } from '@/lib/markerIcons'
+import { clearIconSvgCache } from '@/lib/dynamicMarkerUtils'
+import { useLocationsStore } from './locations'
 
 type Category = Database['public']['Tables']['categories']['Row']
 type CategoryInsert = Database['public']['Tables']['categories']['Insert']
@@ -121,6 +124,10 @@ export const useCategoriesStore = defineStore('categories', () => {
       if (insertError) throw insertError
       if (!data) throw new Error('Failed to create category')
 
+      // Clear marker icon caches for consistency
+      clearMarkerIconCaches()
+      clearIconSvgCache()
+
       // Refresh categories
       await fetchCategories(true)
 
@@ -173,8 +180,16 @@ export const useCategoriesStore = defineStore('categories', () => {
       if (updateError) throw updateError
       if (!data) throw new Error('Failed to update category')
 
+      // Clear marker icon caches to force fresh icons on map
+      clearMarkerIconCaches()
+      clearIconSvgCache()
+
       // Refresh categories
       await fetchCategories(true)
+
+      // Force refresh locations to pick up updated category data
+      const locationsStore = useLocationsStore()
+      await locationsStore.fetchLocations(true)
 
       return data
     } catch (e) {

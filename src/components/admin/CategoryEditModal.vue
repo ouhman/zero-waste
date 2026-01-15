@@ -88,28 +88,6 @@
             ></textarea>
           </div>
 
-          <!-- Color -->
-          <div>
-            <label for="color" class="block text-sm font-medium text-gray-700">
-              {{ t('admin.categories.form.color') }}
-            </label>
-            <div class="mt-1 flex items-center gap-2">
-              <input
-                id="color"
-                v-model="formData.color"
-                type="color"
-                class="h-10 w-20 rounded border border-gray-300"
-              />
-              <input
-                v-model="formData.color"
-                type="text"
-                pattern="#[0-9a-fA-F]{6}"
-                placeholder="#3B82F6"
-                class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm font-mono"
-              />
-            </div>
-          </div>
-
           <!-- Sort Order -->
           <div>
             <label for="sort_order" class="block text-sm font-medium text-gray-700">
@@ -125,28 +103,96 @@
             <p class="mt-1 text-sm text-gray-500">{{ t('admin.categories.form.sortOrderHelp') }}</p>
           </div>
 
-          <!-- Icon Upload -->
-          <div>
+          <!-- Marker Settings -->
+          <div class="border border-gray-200 rounded-lg p-4 bg-gray-50">
+            <h4 class="text-sm font-medium text-gray-900 mb-4">
+              {{ t('admin.categories.form.markerSettings') || 'Marker Settings' }}
+            </h4>
+
+            <!-- Icon Selector -->
+            <div class="mb-4">
+              <IconSelector
+                v-model="formData.icon_name"
+                :placeholder="t('admin.categories.form.searchIcons') || 'Search icons...'"
+              />
+              <p v-if="errors.icon_name" class="mt-1 text-sm text-red-600">{{ errors.icon_name }}</p>
+            </div>
+
+            <!-- Color Picker (Enhanced) -->
+            <div class="mb-4">
+              <label for="marker_color" class="block text-sm font-medium text-gray-700 mb-2">
+                {{ t('admin.categories.form.markerColor') || 'Marker Color' }}
+              </label>
+              <div class="flex items-center gap-2">
+                <input
+                  id="marker_color"
+                  v-model="formData.color"
+                  type="color"
+                  class="h-10 w-20 rounded border border-gray-300 cursor-pointer"
+                />
+                <input
+                  v-model="formData.color"
+                  type="text"
+                  pattern="#[0-9a-fA-F]{6}"
+                  placeholder="#10B981"
+                  class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm font-mono"
+                />
+              </div>
+            </div>
+
+            <!-- Marker Size Selector -->
+            <div class="mb-4">
+              <label for="marker_size" class="block text-sm font-medium text-gray-700 mb-2">
+                {{ t('admin.categories.form.markerSize') || 'Marker Size' }}
+              </label>
+              <select
+                id="marker_size"
+                v-model.number="formData.marker_size"
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm cursor-pointer"
+              >
+                <option
+                  v-for="option in markerSizeOptions"
+                  :key="option.value"
+                  :value="option.value"
+                >
+                  {{ option.label }} ({{ option.value }}px)
+                </option>
+              </select>
+            </div>
+
+            <!-- Live Marker Preview -->
+            <MarkerPreview
+              :icon-name="formData.icon_name"
+              :color="formData.color"
+              :size="formData.marker_size"
+            />
+          </div>
+
+          <!-- Legacy Icon Upload (for backward compatibility) -->
+          <div v-if="isEdit && category?.icon_url && !formData.icon_name">
             <label class="block text-sm font-medium text-gray-700">
-              {{ t('admin.categories.form.icon') }}
+              {{ t('admin.categories.form.legacyIcon') || 'Legacy Icon (Upload)' }}
             </label>
 
             <!-- Current icon preview -->
-            <div v-if="iconPreview || (isEdit && category?.icon_url)" class="mt-2 mb-4">
+            <div class="mt-2 mb-4">
               <p class="text-sm text-gray-500 mb-2">{{ t('admin.categories.form.currentIcon') }}</p>
               <img
-                :src="iconPreview || category?.icon_url || `/icons/categories/${formData.slug}.png`"
+                :src="iconPreview || category?.icon_url"
                 alt="Icon preview"
                 class="h-16 w-16 border border-gray-300 rounded"
                 @error="handleImageError"
               />
+              <p class="mt-2 text-sm text-amber-600">
+                {{ t('admin.categories.form.legacyIconWarning') || 'This category uses an uploaded icon. Select an icon above to use dynamic markers instead.' }}
+              </p>
             </div>
 
             <!-- File input -->
             <input
               type="file"
               accept="image/png"
-              class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
               @change="handleFileChange"
             />
             <p class="mt-1 text-sm text-gray-500">{{ t('admin.categories.form.iconHelp') }}</p>
@@ -187,6 +233,10 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useCategoriesStore } from '@/stores/categories'
 import type { Database } from '@/types/database'
+import type { MarkerSize } from '@/types/marker'
+import { MARKER_SIZE_LABELS } from '@/types/marker'
+import IconSelector from '@/components/admin/IconSelector.vue'
+import MarkerPreview from '@/components/admin/MarkerPreview.vue'
 
 type Category = Database['public']['Tables']['categories']['Row']
 
@@ -204,14 +254,22 @@ const categoriesStore = useCategoriesStore()
 
 const isEdit = computed(() => !!props.category)
 
+const markerSizeOptions = computed(() => [
+  { value: 24, label: MARKER_SIZE_LABELS[24] },
+  { value: 32, label: MARKER_SIZE_LABELS[32] },
+  { value: 40, label: MARKER_SIZE_LABELS[40] }
+])
+
 const formData = ref({
   name_de: '',
   name_en: '',
   slug: '',
   description_de: '',
   description_en: '',
-  color: '#3B82F6',
-  sort_order: 0
+  color: '#10B981',
+  sort_order: 0,
+  icon_name: '',
+  marker_size: 32 as MarkerSize
 })
 
 const errors = ref<Record<string, string>>({})
@@ -319,7 +377,9 @@ async function handleSubmit() {
           description_de: formData.value.description_de || null,
           description_en: formData.value.description_en || null,
           color: formData.value.color || null,
-          sort_order: formData.value.sort_order
+          sort_order: formData.value.sort_order,
+          icon_name: formData.value.icon_name || null,
+          marker_size: formData.value.marker_size || null
         },
         iconFile.value || undefined
       )
@@ -333,7 +393,9 @@ async function handleSubmit() {
           description_de: formData.value.description_de || null,
           description_en: formData.value.description_en || null,
           color: formData.value.color || null,
-          sort_order: formData.value.sort_order
+          sort_order: formData.value.sort_order,
+          icon_name: formData.value.icon_name || null,
+          marker_size: formData.value.marker_size || null
         },
         iconFile.value || undefined
       )
@@ -361,8 +423,10 @@ onMounted(() => {
       slug: props.category.slug,
       description_de: props.category.description_de || '',
       description_en: props.category.description_en || '',
-      color: props.category.color || '#3B82F6',
-      sort_order: props.category.sort_order ?? 0
+      color: props.category.color || '#10B981',
+      sort_order: props.category.sort_order ?? 0,
+      icon_name: props.category.icon_name || '',
+      marker_size: (props.category.marker_size as MarkerSize) || 32
     }
   }
 

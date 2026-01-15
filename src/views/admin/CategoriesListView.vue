@@ -74,7 +74,16 @@
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
+                <!-- Dynamic marker (new system) -->
+                <DynamicMarker
+                  v-if="category.icon_name"
+                  :icon-name="category.icon_name"
+                  :color="category.color || '#10B981'"
+                  :size="32"
+                />
+                <!-- Legacy PNG icon (fallback) -->
                 <img
+                  v-else
                   :src="category.icon_url || `/icons/categories/${category.slug}.png`"
                   :alt="category.name_en"
                   class="h-8 w-8"
@@ -148,6 +157,7 @@ import { useCategoriesStore } from '@/stores/categories'
 import AdminLayout from '@/components/admin/AdminLayout.vue'
 import CategoryEditModal from '@/components/admin/CategoryEditModal.vue'
 import CategoryDeleteModal from '@/components/admin/CategoryDeleteModal.vue'
+import DynamicMarker from '@/components/common/DynamicMarker.vue'
 import type { Database } from '@/types/database'
 
 type Category = Database['public']['Tables']['categories']['Row']

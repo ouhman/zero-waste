@@ -47,6 +47,10 @@ interface Location {
       description_en: string | null
       created_at: string
       updated_at: string | null
+      // Dynamic marker fields
+      icon_name: string | null
+      marker_size: number | null
+      always_open: boolean | null
     }
   }[]
 }
@@ -63,9 +67,9 @@ export const useLocationsStore = defineStore('locations', () => {
     )
   })
 
-  async function fetchLocations() {
-    // Cache: Don't fetch if already loaded
-    if (hasFetched.value) {
+  async function fetchLocations(force = false) {
+    // Cache: Don't fetch if already loaded (unless force is true)
+    if (hasFetched.value && !force) {
       return
     }
 

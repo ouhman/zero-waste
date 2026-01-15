@@ -7,7 +7,7 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Database } from '@/types/database'
-import { getCategoryIcon } from '@/lib/markerIcons'
+import { getCategoryIcon, getDynamicMarkerIcon } from '@/lib/markerIcons'
 import { generatePopupHTML } from './PopupCard'
 import { useAnalytics } from '@/composables/useAnalytics'
 
@@ -106,7 +106,7 @@ function handleShareClick(e: Event) {
   }
 }
 
-function addMarkers() {
+async function addMarkers() {
   if (!map) return
 
   // Clear existing markers
@@ -116,15 +116,24 @@ function addMarkers() {
   highlightedMarkerId = null
 
   // Add markers for each location
-  props.locations.forEach(location => {
+  for (const location of props.locations) {
     const lat = parseFloat(location.latitude)
     const lng = parseFloat(location.longitude)
 
-    if (isNaN(lat) || isNaN(lng)) return
+    if (isNaN(lat) || isNaN(lng)) continue
 
     // Get primary category for icon
-    const primaryCategorySlug = location.location_categories?.[0]?.categories?.slug || null
-    const icon = getCategoryIcon(primaryCategorySlug)
+    const primaryCategory = location.location_categories?.[0]?.categories
+
+    // Choose icon strategy: dynamic markers (icon_name) or legacy (PNG)
+    let icon: L.Icon | L.DivIcon
+    if (primaryCategory?.icon_name) {
+      // Use new dynamic marker system
+      icon = await getDynamicMarkerIcon(primaryCategory)
+    } else {
+      // Fallback to legacy PNG icons
+      icon = getCategoryIcon(primaryCategory?.slug || null, primaryCategory?.icon_url)
+    }
 
     const marker = L.marker([lat, lng], { icon }).addTo(map!)
 
@@ -138,7 +147,7 @@ function addMarkers() {
     marker.bindPopup(popupContent, { maxWidth: 320 })
     markers.push(marker)
     markerMap.set(location.id, marker)
-  })
+  }
 }
 
 // Watch locations and update markers when they change
@@ -283,7 +292,8 @@ onUnmounted(() => {
 }
 
 /* Global styles for marker highlighting (Leaflet markers are outside Vue scope) */
-.leaflet-marker-icon.marker-highlighted {
+/* PNG markers (L.Icon) - NOT dynamic markers */
+.leaflet-marker-icon.marker-highlighted:not(.dynamic-marker) {
   z-index: 1000 !important;
   filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.4));
   /* Scale via width/height since transform is used by Leaflet for positioning */
@@ -292,5 +302,25 @@ onUnmounted(() => {
   margin-left: -25px !important;
   margin-top: -50px !important;
   transition: filter 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+}
+
+/* Dynamic marker (DivIcon) styling */
+.dynamic-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Highlighted dynamic markers (DivIcon with SVG) */
+.leaflet-marker-icon.dynamic-marker.marker-highlighted {
+  z-index: 1000 !important;
+  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.4));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+/* Scale the SVG inside the dynamic marker */
+.leaflet-marker-icon.dynamic-marker.marker-highlighted svg {
+  transform: scale(1.4);
+  transform-origin: center bottom;
+  transition: transform 0.2s ease;
 }
 </style>

@@ -24,6 +24,8 @@ export interface Database {
           description_en: string | null
           updated_at: string | null
           always_open: boolean | null
+          icon_name: string | null
+          marker_size: number | null
         }
         Insert: {
           id?: string
@@ -39,6 +41,8 @@ export interface Database {
           description_en?: string | null
           updated_at?: string | null
           always_open?: boolean | null
+          icon_name?: string | null
+          marker_size?: number | null
         }
         Update: {
           id?: string
@@ -54,6 +58,8 @@ export interface Database {
           description_en?: string | null
           updated_at?: string | null
           always_open?: boolean | null
+          icon_name?: string | null
+          marker_size?: number | null
         }
       }
       locations: {
