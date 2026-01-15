@@ -315,6 +315,15 @@
       "title": "Ort ablehnen",
       "placeholder": "Grund für Ablehnung..."
     },
+    "iconSelector": {
+      "label": "Icon",
+      "placeholder": "Icons suchen...",
+      "suggestions": "Vorgeschlagene Icons",
+      "searchResults": "Suchergebnisse",
+      "noResults": "Keine Icons gefunden",
+      "loading": "Suche läuft...",
+      "error": "Fehler bei der Icon-Suche. Bitte versuchen Sie es erneut."
+    },
     "categories": {
       "title": "Kategorien",
       "addCategory": "Kategorie hinzufügen",
@@ -338,7 +347,18 @@
         "sortOrderHelp": "Kleinere Zahlen erscheinen zuerst",
         "icon": "Icon",
         "currentIcon": "Aktuelles Icon",
-        "iconHelp": "Nur PNG-Dateien, empfohlene Größe: 56x56px"
+        "iconHelp": "Nur PNG-Dateien, empfohlene Größe: 56x56px",
+        "markerSettings": "Marker-Einstellungen",
+        "searchIcons": "Icons suchen...",
+        "markerColor": "Marker-Farbe",
+        "markerSize": "Marker-Größe",
+        "sizeSmall": "Klein (24px)",
+        "sizeMedium": "Mittel (32px)",
+        "sizeLarge": "Groß (40px)",
+        "preview": "Vorschau",
+        "selectIcon": "Ein Icon auswählen",
+        "legacyIcon": "Altes Icon",
+        "legacyIconWarning": "Diese Kategorie verwendet ein hochgeladenes Icon. Wählen Sie oben ein Icon aus, um zum neuen dynamischen Marker-System zu wechseln."
       },
       "deleteConfirmation": "Sind Sie sicher, dass Sie die Kategorie \"{name}\" löschen möchten?",
       "affectedLocations": "{count} Ort(e) werden einer anderen Kategorie zugewiesen",

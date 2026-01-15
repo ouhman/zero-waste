@@ -22,6 +22,8 @@ npm run test:watch     # Run tests in watch mode
 npm run test:e2e       # Run Playwright e2e tests
 npm run type-check     # TypeScript check
 npm run deploy:frontend # Deploy frontend to S3/CloudFront
+npm run db:push        # Push migrations (with environment confirmation)
+npm run db:push:dev    # Push migrations directly to DEV
 ```
 
 ## Project Structure
@@ -335,6 +337,10 @@ See [docs/analytics.md](docs/analytics.md) for detailed analytics documentation.
 
 ## Code Conventions
 
+### Critical Rules
+
+- **NEVER use `npx supabase db push` directly** - Always use `npm run db:push` which includes environment confirmation to prevent accidental production deployments
+
 ### General Rules
 
 - **Use TypeScript strictly** - Avoid `any` types, prefer proper type definitions
@@ -357,6 +363,10 @@ See [docs/analytics.md](docs/analytics.md) for detailed analytics documentation.
 - **AbortController for async operations** - Cancel pending requests on component unmount
 - **Caching** - Cache expensive operations (geospatial queries, search results)
 - **Optimistic updates** - Update UI immediately, rollback on error
+
+### Dynamic Markers (Iconify)
+
+Map markers use Iconify icons rendered via `@iconify/utils`. When working with icons programmatically, use the JSON API - not raw SVG fetching. See [docs/design-system.md](docs/design-system.md#dynamic-markers-iconify) for implementation details.
 
 ### Testing
 
@@ -401,16 +411,26 @@ This project uses separate Supabase projects for development and production to e
 
 ### Database Migrations
 
+**CRITICAL: Never use `npx supabase db push` directly. Always use the safe wrapper command.**
+
 ```bash
 # Create new migration
 npx supabase migration new migration_name
 
-# Test against DEV project
-npx supabase link --project-ref lccpndhssuemudzpfvvg
-npx supabase db push
+# Push migrations (shows environment and requires confirmation)
+npm run db:push
+
+# Or push directly to DEV (no confirmation)
+npm run db:push:dev
 
 # Production deployment happens automatically via GitHub Actions on merge to main
 ```
+
+The `npm run db:push` script:
+1. Detects which environment is currently linked (DEV or PROD)
+2. Shows a clear confirmation prompt
+3. Requires typing `yes-prod` to push to production (extra safety)
+4. Auto-links to DEV if no project is linked
 
 **Important:** Always test migrations in DEV before merging to main. See [docs/dev-environment.md](docs/dev-environment.md) for detailed workflow.
 

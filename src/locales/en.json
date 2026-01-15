@@ -315,6 +315,15 @@
       "title": "Reject Location",
       "placeholder": "Reason for rejection..."
     },
+    "iconSelector": {
+      "label": "Icon",
+      "placeholder": "Search icons...",
+      "suggestions": "Suggested Icons",
+      "searchResults": "Search Results",
+      "noResults": "No icons found",
+      "loading": "Searching...",
+      "error": "Failed to search icons. Please try again."
+    },
     "categories": {
       "title": "Categories",
       "addCategory": "Add Category",
@@ -338,7 +347,18 @@
         "sortOrderHelp": "Lower numbers appear first",
         "icon": "Icon",
         "currentIcon": "Current icon",
-        "iconHelp": "PNG file only, recommended size: 56x56px"
+        "iconHelp": "PNG file only, recommended size: 56x56px",
+        "markerSettings": "Marker Settings",
+        "searchIcons": "Search icons...",
+        "markerColor": "Marker Color",
+        "markerSize": "Marker Size",
+        "sizeSmall": "Small (24px)",
+        "sizeMedium": "Medium (32px)",
+        "sizeLarge": "Large (40px)",
+        "preview": "Preview",
+        "selectIcon": "Select an icon",
+        "legacyIcon": "Legacy Icon",
+        "legacyIconWarning": "This category uses an uploaded icon. Select an icon above to switch to the new dynamic marker system."
       },
       "deleteConfirmation": "Are you sure you want to delete the category \"{name}\"?",
       "affectedLocations": "{count} location(s) will be reassigned to another category",

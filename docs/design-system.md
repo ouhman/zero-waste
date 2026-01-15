@@ -51,6 +51,62 @@ Category icons appear as map markers and in category filters.
 
 ---
 
+## Dynamic Markers (Iconify)
+
+Category markers on the map use [Iconify](https://iconify.design/) icons rendered dynamically. The admin panel allows selecting any Iconify icon for a category.
+
+### Architecture
+
+- **Admin preview**: Uses `@iconify/vue` `<Icon>` component (`DynamicMarker.vue`)
+- **Map markers**: Uses `@iconify/utils` to generate SVG strings for Leaflet (`dynamicMarkerUtils.ts`)
+
+Both use the same underlying Iconify libraries for consistent rendering.
+
+### Implementation: Fetching Icons Programmatically
+
+**Important**: When rendering Iconify icons outside Vue components (e.g., for Leaflet DivIcon HTML), use the **JSON API** with `@iconify/utils`, NOT raw SVG fetching.
+
+**Why**: Different icon sets have different SVG structures (`<path>`, `<circle>`, `<g>`, nested elements, etc.). Regex-based SVG parsing breaks on many icons.
+
+#### ✅ Correct approach
+
+```typescript
+// src/lib/dynamicMarkerUtils.ts
+
+import { iconToSVG, iconToHTML, replaceIDs } from '@iconify/utils'
+
+// 1. Fetch JSON data (provides structured icon info)
+const [prefix, name] = 'ph:bread'.split(':')
+const response = await fetch(`https://api.iconify.design/${prefix}.json?icons=${name}`)
+const data = await response.json()
+const iconData = data.icons[name]
+
+// 2. Use @iconify/utils to render (same lib @iconify/vue uses internally)
+const renderData = iconToSVG(iconData, { height: 24 })
+const html = iconToHTML(replaceIDs(renderData.body), renderData.attributes)
+```
+
+#### ❌ Wrong approach
+
+```typescript
+// Don't do this - breaks on many icon sets!
+const response = await fetch('https://api.iconify.design/ph:bread.svg')
+const svg = await response.text()
+// Regex parsing fails if icon uses <circle>, <g>, <rect>, etc.
+const path = svg.match(/<path[^>]*>/)
+```
+
+### Cache Invalidation
+
+When a category's icon is updated in admin:
+1. `clearMarkerIconCaches()` clears the Leaflet DivIcon cache
+2. `clearIconSvgCache()` clears the Iconify JSON cache
+3. Locations are force-refetched to get updated category data
+
+See `src/stores/categories.ts` → `updateCategory()`.
+
+---
+
 ## Map Controls (Google Maps Style)
 
 Map controls are positioned in the bottom-right corner, following Google Maps conventions.
