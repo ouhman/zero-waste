@@ -67,8 +67,7 @@ tests/
     ├── admin.spec.ts      # Admin workflow
     ├── filter.spec.ts     # Filtering and search
     ├── map.spec.ts        # Map interactions
-    ├── favorites.spec.ts  # Favorites functionality
-    └── submit.spec.ts     # Location submission
+    └── favorites.spec.ts  # Favorites functionality
 ```
 
 ### Naming Conventions
@@ -194,6 +193,46 @@ describe('ContactInfo', () => {
 - Authentication flows
 - Error handling
 
+#### E2E Selector Best Practices
+
+**DON'T add `data-testid` attributes for E2E tests.** Instead, use Playwright's recommended selector priority:
+
+| Priority | Selector | Example | When to Use |
+|----------|----------|---------|-------------|
+| 1st | **Role** | `getByRole('button', { name: 'Save' })` | Interactive elements |
+| 2nd | **Label** | `getByLabel('Email')` | Form inputs |
+| 3rd | **Text** | `getByText('Submit')` | Static content |
+| 4th | **Placeholder** | `getByPlaceholder('Search...')` | Search inputs |
+| Last | **TestId** | `getByTestId('dropdown')` | Only for dynamic elements |
+
+**Why avoid `data-testid`:**
+- Tests should mirror how real users interact with your app
+- `data-testid` doesn't verify correct text or accessibility
+- If a role/label selector fails, it often reveals a real accessibility bug
+
+**Example - Good vs Bad:**
+
+```typescript
+// ❌ BAD: Relies on test-specific attribute
+await page.locator('[data-testid="submit-btn"]').click()
+await page.locator('input[name="email"]').fill('test@example.com')
+
+// ✅ GOOD: Uses user-facing selectors
+await page.getByRole('button', { name: 'Submit' }).click()
+await page.getByLabel('Email').fill('test@example.com')
+
+// ✅ GOOD: Bilingual support with regex
+await page.getByRole('button', { name: /Save|Speichern/ }).click()
+await page.getByRole('tab', { name: /Pending|Ausstehend/ }).click()
+```
+
+**When `data-testid` IS appropriate:**
+- Dynamic containers without semantic meaning (e.g., dropdown menus)
+- Elements that have no visible text or label
+- Complex widgets where role selectors are impractical
+
+See [Playwright Locators Documentation](https://playwright.dev/docs/locators) for more details.
+
 **Example:**
 
 ```typescript
@@ -203,29 +242,29 @@ test.describe('Location Submission', () => {
   test('should submit a new location successfully', async ({ page }) => {
     await page.goto('/submit')
 
-    // Fill form
-    await page.fill('[name="name"]', 'Test Location')
-    await page.fill('[name="address"]', 'Test Street 123, Frankfurt')
-    await page.fill('[name="email"]', 'test@example.com')
+    // Fill form using labels (accessible)
+    await page.getByLabel('Name').fill('Test Location')
+    await page.getByLabel('Address').fill('Test Street 123, Frankfurt')
+    await page.getByLabel('Email').fill('test@example.com')
 
-    // Select categories
-    await page.check('[data-category="unverpackt"]')
+    // Select category using role
+    await page.getByRole('checkbox', { name: 'Unverpackt' }).check()
 
-    // Submit form
-    await page.click('button[type="submit"]')
+    // Submit using button role
+    await page.getByRole('button', { name: /Submit|Absenden/ }).click()
 
     // Verify success message
-    await expect(page.locator('.toast-success')).toContainText('verification email')
+    await expect(page.getByText(/verification email/i)).toBeVisible()
   })
 
   test('should show validation errors for empty required fields', async ({ page }) => {
     await page.goto('/submit')
 
     // Try to submit without filling required fields
-    await page.click('button[type="submit"]')
+    await page.getByRole('button', { name: /Submit|Absenden/ }).click()
 
-    // Verify error messages
-    await expect(page.locator('.error-message')).toHaveCount(3)
+    // Verify error messages are visible
+    await expect(page.getByRole('alert')).toHaveCount(3)
   })
 })
 ```

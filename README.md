@@ -208,9 +208,9 @@ tests/
 │   └── views/          # View components (122 tests)
 └── e2e/                # End-to-end tests
     ├── admin.spec.ts
+    ├── favorites.spec.ts
     ├── filter.spec.ts
-    ├── map.spec.ts
-    └── submit.spec.ts
+    └── map.spec.ts
 ```
 
 ### Running Tests
