@@ -10,6 +10,7 @@ import type { Database } from '@/types/database'
 import { getCategoryIcon, getDynamicMarkerIcon } from '@/lib/markerIcons'
 import { generatePopupHTML } from './PopupCard'
 import { useAnalytics } from '@/composables/useAnalytics'
+import { useDarkMode } from '@/composables/useDarkMode'
 
 type Location = Database['public']['Tables']['locations']['Row'] & {
   location_categories?: {
@@ -32,6 +33,9 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   'show-details': [locationId: string]
   'share-location': [locationId: string]
+  'popup-opened': [locationId: string]
+  'popup-closed': [locationId: string]
+  'markers-added': []
 }>()
 
 const DEFAULT_ZOOM = 13
@@ -42,7 +46,54 @@ const markers: L.Marker[] = []
 const markerMap = new Map<string, L.Marker>() // locationId -> marker
 let highlightedMarkerId: string | null = null
 const { trackMapRendered } = useAnalytics()
+const { isDark } = useDarkMode()
 let mapTracked = false
+let currentTileLayer: L.TileLayer | null = null
+
+// Tile layer configurations
+const JAWG_TOKEN = import.meta.env.VITE_JAWG_ACCESS_TOKEN
+const TILE_CONFIGS = {
+  light: JAWG_TOKEN
+    ? {
+        url: `https://tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=${JAWG_TOKEN}`,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://jawg.io">Jawg</a>',
+        options: { maxZoom: 22 }
+      }
+    : {
+        // Fallback to CartoDB Voyager if no Jawg token
+        url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        options: { maxZoom: 20, subdomains: 'abcd' }
+      },
+  dark: JAWG_TOKEN
+    ? {
+        url: `https://tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token=${JAWG_TOKEN}`,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://jawg.io">Jawg</a>',
+        options: { maxZoom: 22 }
+      }
+    : {
+        // Fallback to CartoDB dark if no Jawg token
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        options: { maxZoom: 19, subdomains: 'abcd' }
+      }
+}
+
+function setTileLayer(dark: boolean) {
+  if (!map) return
+
+  // Remove current tile layer
+  if (currentTileLayer) {
+    map.removeLayer(currentTileLayer)
+  }
+
+  // Add new tile layer
+  const config = dark ? TILE_CONFIGS.dark : TILE_CONFIGS.light
+  currentTileLayer = L.tileLayer(config.url, {
+    attribution: config.attribution,
+    ...config.options
+  }).addTo(map)
+}
 
 function initializeMap() {
   if (!mapElement.value || map) return
@@ -55,14 +106,21 @@ function initializeMap() {
   // Add zoom control to bottom right
   L.control.zoom({ position: 'bottomright' }).addTo(map)
 
-  // Add tile layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
-  }).addTo(map)
+  // Add tile layer based on current dark mode state
+  setTileLayer(isDark.value)
 
   // Handle clicks on details and share buttons in popups
-  map.on('popupopen', () => {
+  map.on('popupopen', (e: L.PopupEvent) => {
+    // Highlight the marker immediately when popup opens
+    const marker = (e.popup as unknown as { _source?: L.Marker })._source
+    if (marker) {
+      const locationId = getLocationIdByMarker(marker)
+      if (locationId) {
+        highlightMarker(locationId)
+        emit('popup-opened', locationId)
+      }
+    }
+
     // Wait for DOM to update, then attach click handlers
     setTimeout(() => {
       const detailButtons = document.querySelectorAll('.location-details-btn')
@@ -74,6 +132,17 @@ function initializeMap() {
         btn.addEventListener('click', handleShareClick)
       })
     }, 0)
+  })
+
+  // Handle popup close - emit event for parent to decide whether to unhighlight
+  map.on('popupclose', (e: L.PopupEvent) => {
+    const marker = (e.popup as unknown as { _source?: L.Marker })._source
+    if (marker) {
+      const locationId = getLocationIdByMarker(marker)
+      if (locationId) {
+        emit('popup-closed', locationId)
+      }
+    }
   })
 
   // Add markers after map is ready
@@ -106,6 +175,14 @@ function handleShareClick(e: Event) {
   }
 }
 
+// Get locationId for a marker (reverse lookup)
+function getLocationIdByMarker(marker: L.Marker): string | undefined {
+  for (const [id, m] of markerMap.entries()) {
+    if (m === marker) return id
+  }
+  return undefined
+}
+
 async function addMarkers() {
   if (!map) return
 
@@ -114,6 +191,7 @@ async function addMarkers() {
   markers.length = 0
   markerMap.clear()
   highlightedMarkerId = null
+  categoryHighlightedIds.clear()
 
   // Add markers for each location
   for (const location of props.locations) {
@@ -148,6 +226,9 @@ async function addMarkers() {
     markers.push(marker)
     markerMap.set(location.id, marker)
   }
+
+  // Notify parent that markers are ready
+  emit('markers-added')
 }
 
 // Watch locations and update markers when they change
@@ -184,7 +265,7 @@ function focusLocation(locationId: string, zoom: number = 17) {
   }
 }
 
-// Highlight/unhighlight a marker
+// Highlight/unhighlight a marker (for individual selection)
 function highlightMarker(locationId: string | null) {
   // Remove highlight from previous marker
   if (highlightedMarkerId) {
@@ -213,6 +294,38 @@ function highlightMarker(locationId: string | null) {
   highlightedMarkerId = locationId
 }
 
+// Track which markers are highlighted due to category filter
+let categoryHighlightedIds: Set<string> = new Set()
+
+// Highlight all markers (for category filter)
+function highlightAllMarkers() {
+  markerMap.forEach((marker, locationId) => {
+    const el = marker.getElement() as HTMLElement | undefined
+    if (el) {
+      el.classList.add('marker-highlighted')
+      categoryHighlightedIds.add(locationId)
+    }
+  })
+}
+
+// Unhighlight all category-filtered markers (but keep individual selection)
+function unhighlightAllMarkers() {
+  categoryHighlightedIds.forEach(locationId => {
+    // Don't unhighlight if it's the individually selected marker
+    if (locationId === highlightedMarkerId) return
+
+    const marker = markerMap.get(locationId)
+    if (marker) {
+      const el = marker.getElement() as HTMLElement | undefined
+      if (el) {
+        el.classList.remove('marker-highlighted')
+        el.style.zIndex = ''
+      }
+    }
+  })
+  categoryHighlightedIds.clear()
+}
+
 // Ensure a location is visible on the map (pan only if outside current view)
 function ensureVisible(lat: number, lng: number) {
   if (!map) return
@@ -237,8 +350,13 @@ watch(
   { deep: true }
 )
 
+// Watch dark mode changes and swap tile layer
+watch(isDark, (dark) => {
+  setTileLayer(dark)
+})
+
 // Expose methods for parent components
-defineExpose({ centerOn, focusLocation, highlightMarker, ensureVisible })
+defineExpose({ centerOn, focusLocation, highlightMarker, highlightAllMarkers, unhighlightAllMarkers, ensureVisible })
 
 onMounted(() => {
   initializeMap()
@@ -295,13 +413,12 @@ onUnmounted(() => {
 /* PNG markers (L.Icon) - NOT dynamic markers */
 .leaflet-marker-icon.marker-highlighted:not(.dynamic-marker) {
   z-index: 1000 !important;
-  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.4));
   /* Scale via width/height since transform is used by Leaflet for positioning */
   width: 50px !important;
   height: 50px !important;
   margin-left: -25px !important;
   margin-top: -50px !important;
-  transition: filter 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease;
 }
 
 /* Dynamic marker (DivIcon) styling */
@@ -313,8 +430,7 @@ onUnmounted(() => {
 /* Highlighted dynamic markers (DivIcon with SVG) */
 .leaflet-marker-icon.dynamic-marker.marker-highlighted {
   z-index: 1000 !important;
-  filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.4));
-  transition: filter 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 /* Scale the SVG inside the dynamic marker (direct child only to avoid nested SVG double-scaling) */
@@ -322,5 +438,148 @@ onUnmounted(() => {
   transform: scale(1.4);
   transform-origin: center center;
   transition: transform 0.2s ease;
+}
+
+/* ==================== Popup Card Styles ==================== */
+.leaflet-popup-content-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background: #1f2937;
+}
+
+.leaflet-popup-tip {
+  background: white;
+}
+
+.dark .leaflet-popup-tip {
+  background: #1f2937;
+}
+
+.leaflet-popup-close-button {
+  color: #6b7280 !important;
+}
+
+.dark .leaflet-popup-close-button {
+  color: #9ca3af !important;
+}
+
+.popup-card {
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.popup-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.dark .popup-title {
+  color: #f3f4f6;
+}
+
+.popup-info-row {
+  display: flex;
+  align-items: start;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.dark .popup-info-row {
+  color: #9ca3af;
+}
+
+.popup-description {
+  margin: 10px 0;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.dark .popup-description {
+  color: #d1d5db;
+}
+
+.popup-actions {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 8px;
+}
+
+.dark .popup-actions {
+  border-top-color: #374151;
+}
+
+.popup-btn-primary {
+  flex: 1;
+  display: inline-block;
+  padding: 8px 12px;
+  background: #10b981;
+  color: white;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.popup-btn-primary:hover {
+  background: #059669;
+}
+
+.popup-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dark .popup-btn-secondary {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.popup-btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.dark .popup-btn-secondary:hover {
+  background: #4b5563;
+}
+
+/* Category badges in popup - update existing inline styles */
+.popup-card span[style*="background: #f0fdf4"] {
+  background: #f0fdf4 !important;
+}
+
+.dark .popup-card span[style*="background: #f0fdf4"] {
+  background: rgba(6, 78, 59, 0.4) !important;
+  color: #34d399 !important;
+}
+
+/* Links in popup */
+.popup-card a {
+  color: #2563eb;
+}
+
+.dark .popup-card a {
+  color: #60a5fa;
 }
 </style>

@@ -4,11 +4,345 @@
 @source "./**/*.vue";
 @source "./**/*.ts";
 
+/* Enable class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.5;
     color: #1e293b;
+    background-color: #ffffff;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  html.dark body {
+    background-color: #111827;
+    color: #f3f4f6;
+  }
+
+  /* Dark mode for submit page */
+  html.dark .submit-page {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%) !important;
+  }
+
+  /* Dark mode for wizard/form container */
+  html.dark .wizard {
+    background: #1f2937 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* Dark mode for method cards */
+  html.dark .method-card {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+
+  html.dark .method-card:hover {
+    background: rgba(16, 185, 129, 0.1) !important;
+  }
+
+  /* Dark mode for tutorial */
+  html.dark .tutorial {
+    color: #f3f4f6;
+  }
+
+  html.dark .intro-title,
+  html.dark .step-title {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .step-description {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for URL input */
+  html.dark .url-input {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #f3f4f6 !important;
+  }
+
+  /* Dark mode for location pin map */
+  html.dark .location-pin-map {
+    color: #f3f4f6;
+  }
+
+  html.dark .search-input {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .btn-geolocation {
+    background: #1f2937 !important;
+    color: #34d399 !important;
+    border-color: #34d399 !important;
+  }
+
+  html.dark .selected-address {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    color: #6ee7b7 !important;
+  }
+
+  /* Dark mode for nearby POI selector */
+  html.dark .nearby-poi-selector {
+    color: #f3f4f6;
+  }
+
+  html.dark .nearby-poi-selector .title {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .nearby-poi-selector .subtitle {
+    color: #9ca3af !important;
+  }
+
+  html.dark .poi-card {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+  }
+
+  html.dark .poi-card.selected {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-color: #34d399 !important;
+  }
+
+  html.dark .poi-name {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .poi-type {
+    color: #9ca3af !important;
+  }
+
+  html.dark .btn-manual {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode text colors */
+  html.dark .method-title,
+  html.dark .heading {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .method-description {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for form inputs */
+  html.dark .input {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .label {
+    color: #d1d5db !important;
+  }
+
+  /* Dark mode for section titles */
+  html.dark .section-title {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .section-description {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for back buttons */
+  html.dark .btn-back,
+  html.dark .back-button {
+    color: #9ca3af !important;
+  }
+
+  html.dark .btn-back:hover,
+  html.dark .back-button:hover {
+    color: #d1d5db !important;
+  }
+
+  /* Dark mode for submit page header */
+  html.dark .submit-header h1 {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .submit-header .subtitle {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for summary section (step 4) */
+  html.dark .summary {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+  }
+
+  html.dark .summary-item {
+    border-color: #4b5563 !important;
+  }
+
+  html.dark .summary-label {
+    color: #9ca3af !important;
+  }
+
+  html.dark .summary-value {
+    color: #f3f4f6 !important;
+  }
+
+  /* Dark mode for submit button disabled state */
+  html.dark .btn-primary:disabled,
+  html.dark .btn-submit:disabled {
+    background: #374151 !important;
+    color: #6b7280 !important;
+    border-color: #4b5563 !important;
+  }
+
+  /* Dark mode for map container/preview */
+  html.dark .map-element {
+    border: 1px solid #374151 !important;
+  }
+
+  /* Dark mode for map attribution */
+  html.dark .map-element .leaflet-control-attribution {
+    background: rgba(31, 41, 55, 0.8) !important;
+    color: #9ca3af !important;
+  }
+
+  html.dark .map-element .leaflet-control-attribution a {
+    color: #60a5fa !important;
+  }
+
+  /* Dark mode for instruction text */
+  html.dark .instruction-text {
+    color: #9ca3af !important;
+  }
+
+  html.dark .instruction-text.hint {
+    color: #6b7280 !important;
+  }
+
+  /* Dark mode for error messages */
+  html.dark .error-message {
+    background: rgba(127, 29, 29, 0.3) !important;
+    border-color: #991b1b !important;
+    color: #fca5a5 !important;
+  }
+
+  /* Dark mode for missing warning */
+  html.dark .missing-warning {
+    background: rgba(146, 64, 14, 0.2) !important;
+    border-color: #b45309 !important;
+    color: #fcd34d !important;
+  }
+
+  /* Dark mode for footer */
+  html.dark .submit-footer {
+    border-top-color: #374151 !important;
+  }
+
+  html.dark .submit-footer p {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for step header text */
+  html.dark .step-header .step-title {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .step-header .step-description {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for progress text */
+  html.dark .progress-text {
+    color: #6b7280 !important;
+  }
+
+  /* Dark mode for icon wrapper in method cards */
+  html.dark .icon-wrapper {
+    background: rgba(16, 185, 129, 0.2) !important;
+  }
+
+  html.dark .method-card:hover .icon-wrapper {
+    background: rgba(16, 185, 129, 0.3) !important;
+  }
+
+  /* Dark mode for video section */
+  html.dark .video-section {
+    background: #1f2937 !important;
+    border: 1px solid #374151 !important;
+  }
+
+  html.dark .video-container {
+    background: #111827 !important;
+  }
+
+  /* Dark mode for CTA button section */
+  html.dark .cta-section {
+    color: #f3f4f6;
+  }
+
+  /* Dark mode for mobile hint */
+  html.dark .mobile-hint {
+    background: rgba(146, 64, 14, 0.2) !important;
+    border-color: #b45309 !important;
+    color: #fcd34d !important;
+  }
+
+  /* Dark mode for accuracy info */
+  html.dark .accuracy-info {
+    color: #34d399 !important;
+  }
+
+  /* Dark mode for coordinates toggle */
+  html.dark .coordinates-toggle {
+    color: #9ca3af !important;
+  }
+
+  html.dark .coordinates-toggle:hover {
+    color: #d1d5db !important;
+  }
+
+  /* Dark mode for auto-filled info */
+  html.dark .auto-filled-info {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    color: #6ee7b7 !important;
+  }
+
+  /* Dark mode for loading spinner text */
+  html.dark .loading-text {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for empty state */
+  html.dark .empty-state .empty-icon {
+    color: #4b5563 !important;
+  }
+
+  html.dark .empty-state .empty-text {
+    color: #9ca3af !important;
+  }
+
+  /* Dark mode for success page */
+  html.dark .success-message {
+    background: #1f2937 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  html.dark .success-message h2 {
+    color: #f3f4f6 !important;
+  }
+
+  html.dark .success-message p {
+    color: #9ca3af !important;
+  }
+
+  html.dark .success-icon {
+    background: #10b981 !important;
+    color: white !important;
   }
 }
 

@@ -15,8 +15,11 @@ import CookieConsentBanner from '@/components/common/CookieConsentBanner.vue'
 import EnvironmentBadge from '@/components/common/EnvironmentBadge.vue'
 import { useConsent } from '@/composables/useConsent'
 import { initAnalytics } from '@/composables/useAnalytics'
+import { useDarkMode } from '@/composables/useDarkMode'
 
 const { loadConsent } = useConsent()
+// Initialize dark mode globally - reads from localStorage/system preference
+useDarkMode()
 
 onMounted(async () => {
   loadConsent()

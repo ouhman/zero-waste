@@ -162,7 +162,7 @@ export function generatePopupHTML(
   // Build description section
   const descriptionHTML = location.description_de
     ? `
-      <p style="margin: 10px 0; font-size: 13px; color: #475569; line-height: 1.4;">
+      <p class="popup-description">
         ${location.description_de.length > 120
           ? location.description_de.substring(0, 120) + '...'
           : location.description_de}
@@ -173,7 +173,7 @@ export function generatePopupHTML(
   // Build opening hours section
   const openingHoursHTML = location.opening_hours_text
     ? `
-      <div style="display: flex; align-items: start; gap: 6px; margin-bottom: 8px; color: #64748b; font-size: 13px;">
+      <div class="popup-info-row">
         <span>🕐</span>
         <span>${location.opening_hours_text}</span>
       </div>
@@ -186,21 +186,8 @@ export function generatePopupHTML(
   if (showDetailsButton) {
     actionsHTML.push(`
       <button
-        class="location-details-btn"
+        class="location-details-btn popup-btn-primary"
         data-location-id="${location.id}"
-        style="
-          flex: 1;
-          display: inline-block;
-          padding: 8px 12px;
-          background: #10b981;
-          color: white;
-          border: none;
-          font-size: 13px;
-          font-weight: 500;
-          border-radius: 6px;
-          text-align: center;
-          cursor: pointer;
-        "
       >
         Details →
       </button>
@@ -210,20 +197,8 @@ export function generatePopupHTML(
   if (showShareButton) {
     actionsHTML.push(`
       <button
-        class="location-share-btn"
+        class="location-share-btn popup-btn-secondary"
         data-location-id="${location.id}"
-        style="
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 8px 12px;
-          background: #f1f5f9;
-          color: #475569;
-          border: none;
-          font-size: 13px;
-          border-radius: 6px;
-          cursor: pointer;
-        "
         title="Teilen"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -243,17 +218,7 @@ export function generatePopupHTML(
         href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=bicycling"
         target="_blank"
         rel="noopener"
-        style="
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 8px 12px;
-          background: #f1f5f9;
-          color: #475569;
-          text-decoration: none;
-          font-size: 13px;
-          border-radius: 6px;
-        "
+        class="popup-btn-secondary"
         title="Route planen"
       >
         🚲
@@ -263,21 +228,21 @@ export function generatePopupHTML(
 
   const actionsRowHTML = actionsHTML.length > 0
     ? `
-      <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px;">
+      <div class="popup-actions">
         ${actionsHTML.join('')}
       </div>
     `
     : ''
 
   return `
-    <div style="min-width: 250px; max-width: 300px;">
-      <h3 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #1e293b;">
+    <div class="popup-card">
+      <h3 class="popup-title">
         ${location.name}
       </h3>
 
       ${categoriesHTML}
 
-      <div style="display: flex; align-items: start; gap: 6px; margin-bottom: 8px; color: #64748b; font-size: 13px;">
+      <div class="popup-info-row">
         <span>📍</span>
         <span>${location.address}${location.postal_code ? `, ${location.postal_code}` : ''} ${location.city || 'Frankfurt'}</span>
       </div>
