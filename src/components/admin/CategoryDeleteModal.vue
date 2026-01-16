@@ -1,10 +1,15 @@
 <template>
   <Teleport to="body">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4" @click.self="$emit('close')">
-      <div class="bg-white rounded-lg shadow-xl max-w-lg w-full">
+      <div
+        class="bg-white rounded-lg shadow-xl max-w-lg w-full"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-modal-title"
+      >
         <!-- Header -->
         <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-medium text-gray-900">
+          <h3 id="delete-modal-title" class="text-lg font-medium text-gray-900">
             {{ t('admin.categories.deleteCategory') }}
           </h3>
         </div>
@@ -59,6 +64,7 @@
                 v-model="selectedReassignCategory"
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                 required
+                aria-required="true"
               >
                 <option value="">{{ t('admin.categories.selectCategory') }}</option>
                 <option

@@ -16,6 +16,7 @@
             v-model="formData.name"
             type="text"
             required
+            aria-required="true"
             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             @input="handleNameChange"
           />
@@ -107,6 +108,7 @@
             v-model="formData.address"
             type="text"
             required
+            aria-required="true"
             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
@@ -121,6 +123,7 @@
               v-model="formData.city"
               type="text"
               required
+              aria-required="true"
               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -183,6 +186,7 @@
               v-model="formData.latitude"
               type="text"
               required
+              aria-required="true"
               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
             />
           </div>
@@ -196,6 +200,7 @@
               v-model="formData.longitude"
               type="text"
               required
+              aria-required="true"
               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
             />
           </div>

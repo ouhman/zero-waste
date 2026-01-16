@@ -11,9 +11,9 @@ test.describe('Filtering', () => {
     await page.waitForSelector('.leaflet-marker-icon', { timeout: 10000 })
     const initialMarkers = await page.locator('.leaflet-marker-icon').count()
 
-    // Click a category filter chip
-    const categoryChip = page.locator('[data-testid="category-chip"]').first()
-    await categoryChip.click()
+    // Click a category filter item (category-item class)
+    const categoryItem = page.locator('.category-item').first()
+    await categoryItem.click()
 
     // Wait for filter to apply
     await page.waitForTimeout(500)
@@ -31,8 +31,8 @@ test.describe('Filtering', () => {
     // Wait for page to load
     await page.waitForSelector('.leaflet-container', { timeout: 10000 })
 
-    // Find search input
-    const searchInput = page.locator('input[type="search"], input[placeholder*="Search"], input[placeholder*="Suche"]')
+    // Find search input (use .first() to avoid strict mode violation with multiple search inputs)
+    const searchInput = page.locator('input[type="search"], input[placeholder*="Search"], input[placeholder*="Suche"]').first()
     await searchInput.fill('test')
 
     // Wait for search results

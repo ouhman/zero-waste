@@ -7,6 +7,8 @@
           :key="toast.id"
           :class="['toast', `toast-${toast.type}`]"
           role="alert"
+          aria-live="polite"
+          aria-atomic="true"
         >
           <div class="toast-icon">
             <span v-if="toast.type === 'success'">✓</span>

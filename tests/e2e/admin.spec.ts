@@ -72,12 +72,15 @@ test.describe('Admin Section', () => {
   test('displays error message for invalid actions', async ({ page }) => {
     await page.goto('/bulk-station/login')
 
-    // Try to submit without email
+    // Verify submit button is disabled when no email is entered
     const submitButton = page.locator('button[type="submit"]')
-    await submitButton.click()
+    await expect(submitButton).toBeDisabled()
 
-    // HTML5 validation should prevent submission
+    // Enter invalid email
     const emailInput = page.locator('input[type="email"]')
+    await emailInput.fill('invalid-email')
+
+    // HTML5 validation should show invalid state
     const isInvalid = await emailInput.evaluate((el: HTMLInputElement) => !el.validity.valid)
     expect(isInvalid).toBe(true)
   })

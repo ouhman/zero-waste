@@ -1,10 +1,15 @@
 <template>
   <Teleport to="body">
     <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4 backdrop-blur-sm" @click.self="$emit('close')">
-      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div
+        class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="category-modal-title"
+      >
         <!-- Header -->
         <div class="px-6 py-4 border-b border-gray-200">
-          <h3 class="text-lg font-medium text-gray-900">
+          <h3 id="category-modal-title" class="text-lg font-medium text-gray-900">
             {{ isEdit ? t('admin.categories.editCategory') : t('admin.categories.addCategory') }}
           </h3>
         </div>
@@ -21,11 +26,14 @@
               v-model="formData.name_de"
               type="text"
               required
+              aria-required="true"
+              :aria-invalid="!!errors.name_de"
+              :aria-describedby="errors.name_de ? 'name_de_error' : undefined"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               :class="{ 'border-red-300': errors.name_de }"
               @input="generateSlug"
             />
-            <p v-if="errors.name_de" class="mt-1 text-sm text-red-600">{{ errors.name_de }}</p>
+            <p v-if="errors.name_de" id="name_de_error" class="mt-1 text-sm text-red-600">{{ errors.name_de }}</p>
           </div>
 
           <!-- Name (English) -->
@@ -38,10 +46,13 @@
               v-model="formData.name_en"
               type="text"
               required
+              aria-required="true"
+              :aria-invalid="!!errors.name_en"
+              :aria-describedby="errors.name_en ? 'name_en_error' : undefined"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               :class="{ 'border-red-300': errors.name_en }"
             />
-            <p v-if="errors.name_en" class="mt-1 text-sm text-red-600">{{ errors.name_en }}</p>
+            <p v-if="errors.name_en" id="name_en_error" class="mt-1 text-sm text-red-600">{{ errors.name_en }}</p>
           </div>
 
           <!-- Slug -->
@@ -54,12 +65,15 @@
               v-model="formData.slug"
               type="text"
               required
+              aria-required="true"
               pattern="[a-z0-9-]+"
+              :aria-invalid="!!errors.slug"
+              :aria-describedby="errors.slug ? 'slug_error slug_help' : 'slug_help'"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm font-mono"
               :class="{ 'border-red-300': errors.slug }"
             />
-            <p class="mt-1 text-sm text-gray-500">{{ t('admin.form.slugHelp') }}</p>
-            <p v-if="errors.slug" class="mt-1 text-sm text-red-600">{{ errors.slug }}</p>
+            <p id="slug_help" class="mt-1 text-sm text-gray-500">{{ t('admin.form.slugHelp') }}</p>
+            <p v-if="errors.slug" id="slug_error" class="mt-1 text-sm text-red-600">{{ errors.slug }}</p>
           </div>
 
           <!-- Description (German) -->
