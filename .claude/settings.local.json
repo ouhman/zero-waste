@@ -16,7 +16,10 @@
       "Bash(git commit:*)",
       "Bash(npx tsc:*)",
       "Bash(npx vue-tsc:*)",
-      "Bash(npm run lint:*)"
+      "Bash(npm run lint:*)",
+      "Bash(grep:*)",
+      "Bash(node -c:*)",
+      "Bash(npx playwright test:*)"
     ]
   }
 }
