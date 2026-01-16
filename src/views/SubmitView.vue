@@ -1,8 +1,23 @@
 <template>
   <div class="submit-page">
-    <!-- Language Switcher -->
-    <div class="language-switcher-container">
+    <!-- Language Switcher & Dark Mode Toggle -->
+    <div class="top-controls">
       <LanguageSwitcher />
+      <button
+        type="button"
+        class="dark-mode-toggle cursor-pointer"
+        :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+        @click="toggleDarkMode"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="toggle-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="toggle-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+      </button>
     </div>
 
     <div class="submit-container">
@@ -49,8 +64,11 @@ import LocationForm from '@/components/LocationForm.vue'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import { useSubmission } from '@/composables/useSubmission'
 import { useAnalytics } from '@/composables/useAnalytics'
+import { useDarkMode } from '@/composables/useDarkMode'
 
 const { t } = useI18n()
+// Initialize dark mode from localStorage/system preference
+const { isDark, toggle: toggleDarkMode } = useDarkMode()
 const { submit, loading: submitting, error: submissionError, success } = useSubmission()
 const { trackSubmissionCompleted } = useAnalytics()
 
@@ -80,11 +98,52 @@ async function handleSubmit(data: any) {
   position: relative;
 }
 
-.language-switcher-container {
+:global(.dark) .submit-page {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #111827 100%);
+}
+
+.top-controls {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #6b7280;
+  transition: all 200ms ease;
+}
+
+:global(.dark) .dark-mode-toggle {
+  background: #374151;
+  border-color: #4b5563;
+  color: #fbbf24;
+}
+
+.dark-mode-toggle:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+:global(.dark) .dark-mode-toggle:hover {
+  background: #4b5563;
+  color: #fcd34d;
+}
+
+.toggle-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .submit-container {
@@ -110,6 +169,14 @@ async function handleSubmit(data: any) {
   color: #059669;
 }
 
+:global(.dark) .back-link {
+  color: #34d399;
+}
+
+:global(.dark) .back-link:hover {
+  color: #6ee7b7;
+}
+
 .submit-header h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -117,9 +184,17 @@ async function handleSubmit(data: any) {
   margin-bottom: 0.5rem;
 }
 
+:global(.dark) .submit-header h1 {
+  color: #f3f4f6;
+}
+
 .subtitle {
   color: #64748b;
   font-size: 1rem;
+}
+
+:global(.dark) .subtitle {
+  color: #9ca3af;
 }
 
 .success-message {
@@ -128,6 +203,11 @@ async function handleSubmit(data: any) {
   padding: 3rem 2rem;
   text-align: center;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+:global(.dark) .success-message {
+  background: #1f2937;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
 }
 
 .success-icon {
@@ -148,9 +228,17 @@ async function handleSubmit(data: any) {
   margin-bottom: 0.5rem;
 }
 
+:global(.dark) .success-message h2 {
+  color: #f3f4f6;
+}
+
 .success-message p {
   color: #64748b;
   margin-bottom: 1.5rem;
+}
+
+:global(.dark) .success-message p {
+  color: #9ca3af;
 }
 
 .error-message {
@@ -160,6 +248,12 @@ async function handleSubmit(data: any) {
   padding: 1rem 1.5rem;
   border-radius: 12px;
   margin-bottom: 1.5rem;
+}
+
+:global(.dark) .error-message {
+  background: rgba(127, 29, 29, 0.3);
+  border-color: #991b1b;
+  color: #fca5a5;
 }
 
 .error-message strong {
@@ -174,6 +268,7 @@ async function handleSubmit(data: any) {
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -192,8 +287,16 @@ async function handleSubmit(data: any) {
   border-top: 1px solid #e2e8f0;
 }
 
+:global(.dark) .submit-footer {
+  border-top-color: #374151;
+}
+
 .submit-footer p {
   color: #64748b;
   font-size: 0.875rem;
+}
+
+:global(.dark) .submit-footer p {
+  color: #9ca3af;
 }
 </style>

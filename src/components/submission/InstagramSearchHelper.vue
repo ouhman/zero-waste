@@ -67,6 +67,14 @@ const ariaLabel = computed(() => {
   text-decoration: underline;
 }
 
+:global(.dark) .helper-link {
+  color: #6b7280;
+}
+
+:global(.dark) .helper-link:hover {
+  color: #9ca3af;
+}
+
 .search-icon {
   width: 14px;
   height: 14px;

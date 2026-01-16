@@ -168,6 +168,12 @@ function handleBack() {
   color: #92400e;
 }
 
+:global(.dark) .mobile-hint {
+  background: rgba(146, 64, 14, 0.2);
+  border-color: #b45309;
+  color: #fcd34d;
+}
+
 .hint-icon {
   width: 20px;
   height: 20px;
@@ -183,6 +189,10 @@ function handleBack() {
   font-weight: 600;
   color: #111827;
   margin: 0;
+}
+
+:global(.dark) .intro-title {
+  color: #f3f4f6;
 }
 
 .tutorial-steps {
@@ -224,11 +234,19 @@ function handleBack() {
   margin: 0 0 0.25rem 0;
 }
 
+:global(.dark) .step-title {
+  color: #f3f4f6;
+}
+
 .step-description {
   font-size: 0.875rem;
   color: #6b7280;
   margin: 0 0 0.75rem 0;
   line-height: 1.5;
+}
+
+:global(.dark) .step-description {
+  color: #9ca3af;
 }
 
 .cta-section {
@@ -287,12 +305,23 @@ function handleBack() {
   font-size: 0.9375rem;
   transition: border-color 150ms, box-shadow 150ms;
   background: white;
+  color: #111827;
+}
+
+:global(.dark) .url-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
 }
 
 .url-input:focus {
   outline: none;
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+:global(.dark) .url-input:focus {
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
 }
 
 .url-input::placeholder {
@@ -315,13 +344,26 @@ function handleBack() {
   transition: all 150ms ease;
 }
 
+:global(.dark) .back-button {
+  color: #9ca3af;
+}
+
 .back-button:hover {
   color: #374151;
   background: #f3f4f6;
 }
 
+:global(.dark) .back-button:hover {
+  color: #d1d5db;
+  background: #374151;
+}
+
 .back-button:active {
   background: #e5e7eb;
+}
+
+:global(.dark) .back-button:active {
+  background: #4b5563;
 }
 
 .cursor-pointer {

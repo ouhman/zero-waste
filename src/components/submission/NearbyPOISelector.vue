@@ -232,6 +232,14 @@ onUnmounted(() => {
   color: #111827;
 }
 
+:global(.dark) .btn-back {
+  color: #9ca3af;
+}
+
+:global(.dark) .btn-back:hover {
+  color: #d1d5db;
+}
+
 .header {
   text-align: center;
 }
@@ -247,6 +255,14 @@ onUnmounted(() => {
   font-size: 0.875rem;
   color: #6b7280;
   margin: 0;
+}
+
+:global(.dark) .title {
+  color: #f3f4f6;
+}
+
+:global(.dark) .subtitle {
+  color: #9ca3af;
 }
 
 .loading-state {
@@ -287,6 +303,10 @@ onUnmounted(() => {
   margin: 0;
 }
 
+:global(.dark) .loading-text {
+  color: #9ca3af;
+}
+
 .error-message {
   padding: 0.75rem 1rem;
   background: #fee2e2;
@@ -294,6 +314,12 @@ onUnmounted(() => {
   border-radius: 8px;
   color: #991b1b;
   font-size: 0.875rem;
+}
+
+:global(.dark) .error-message {
+  background: rgba(127, 29, 29, 0.3);
+  border-color: #991b1b;
+  color: #fca5a5;
 }
 
 .poi-count {
@@ -340,6 +366,26 @@ onUnmounted(() => {
   box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
 }
 
+:global(.dark) .poi-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+:global(.dark) .poi-card:hover {
+  border-color: #34d399;
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
+}
+
+:global(.dark) .poi-card:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+:global(.dark) .poi-card.selected {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #34d399;
+}
+
 .checkmark {
   flex-shrink: 0;
   width: 24px;
@@ -374,6 +420,18 @@ onUnmounted(() => {
   font-size: 0.8125rem;
   color: #9ca3af;
   margin: 0;
+}
+
+:global(.dark) .poi-name {
+  color: #f3f4f6;
+}
+
+:global(.dark) .poi-type {
+  color: #9ca3af;
+}
+
+:global(.dark) .poi-address {
+  color: #6b7280;
 }
 
 .tap-again-hint {
@@ -416,6 +474,14 @@ onUnmounted(() => {
   margin: 0;
 }
 
+:global(.dark) .empty-icon {
+  color: #4b5563;
+}
+
+:global(.dark) .empty-text {
+  color: #9ca3af;
+}
+
 .btn-manual {
   width: 100%;
   padding: 1rem;
@@ -436,6 +502,18 @@ onUnmounted(() => {
   border-color: #10b981;
   color: #10b981;
   background: #f9fafb;
+}
+
+:global(.dark) .btn-manual {
+  background: #1f2937;
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+:global(.dark) .btn-manual:hover {
+  border-color: #34d399;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
 }
 
 .btn-continue {

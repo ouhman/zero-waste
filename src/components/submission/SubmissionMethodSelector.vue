@@ -109,6 +109,10 @@ function selectMethod(method: SubmissionMethod) {
   letter-spacing: -0.02em;
 }
 
+:global(.dark) .heading {
+  color: #f3f4f6;
+}
+
 .methods-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -135,6 +139,11 @@ function selectMethod(method: SubmissionMethod) {
   justify-content: center;
 }
 
+:global(.dark) .method-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
 .method-card:hover {
   border-color: #10b981;
   background: #f0fdf4;
@@ -142,10 +151,19 @@ function selectMethod(method: SubmissionMethod) {
   box-shadow: 0 8px 16px rgba(16, 185, 129, 0.1);
 }
 
+:global(.dark) .method-card:hover {
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
+}
+
 .method-card:focus {
   outline: none;
   border-color: #10b981;
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+:global(.dark) .method-card:focus {
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
 }
 
 .method-card:active {
@@ -168,15 +186,27 @@ function selectMethod(method: SubmissionMethod) {
   transition: all 200ms ease;
 }
 
+:global(.dark) .icon-wrapper {
+  background: rgba(16, 185, 129, 0.2);
+}
+
 .method-card:hover .icon-wrapper {
   background: #d1fae5;
   transform: scale(1.05);
+}
+
+:global(.dark) .method-card:hover .icon-wrapper {
+  background: rgba(16, 185, 129, 0.3);
 }
 
 .icon {
   width: 32px;
   height: 32px;
   color: #10b981;
+}
+
+:global(.dark) .icon {
+  color: #34d399;
 }
 
 .method-title {
@@ -186,11 +216,19 @@ function selectMethod(method: SubmissionMethod) {
   margin: 0 0 0.5rem 0;
 }
 
+:global(.dark) .method-title {
+  color: #f3f4f6;
+}
+
 .method-description {
   font-size: 0.875rem;
   color: #6b7280;
   margin: 0;
   line-height: 1.4;
+}
+
+:global(.dark) .method-description {
+  color: #9ca3af;
 }
 
 @media (max-width: 639px) {

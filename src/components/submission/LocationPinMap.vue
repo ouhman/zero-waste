@@ -94,6 +94,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useGeolocation } from '@/composables/useGeolocation'
 import { useNominatim } from '@/composables/useNominatim'
+import { useDarkMode } from '@/composables/useDarkMode'
 
 interface Props {
   initialLocation?: {
@@ -113,10 +114,54 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const { isDark } = useDarkMode()
 
 // Composables
 const { getUserLocation, loading: geolocationLoading, error: geolocationError } = useGeolocation()
 const { debouncedGeocode, reverseGeocode, result, reverseResult, error: geocodingError } = useNominatim()
+
+// Tile layer configurations (same as main map)
+const JAWG_TOKEN = import.meta.env.VITE_JAWG_ACCESS_TOKEN
+const TILE_CONFIGS = {
+  light: JAWG_TOKEN
+    ? {
+        url: `https://tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=${JAWG_TOKEN}`,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://jawg.io">Jawg</a>',
+        options: { maxZoom: 22 }
+      }
+    : {
+        url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        options: { maxZoom: 20, subdomains: 'abcd' }
+      },
+  dark: JAWG_TOKEN
+    ? {
+        url: `https://tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token=${JAWG_TOKEN}`,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://jawg.io">Jawg</a>',
+        options: { maxZoom: 22 }
+      }
+    : {
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        options: { maxZoom: 19, subdomains: 'abcd' }
+      }
+}
+
+let currentTileLayer: L.TileLayer | null = null
+
+function setTileLayer(dark: boolean) {
+  if (!map) return
+
+  if (currentTileLayer) {
+    map.removeLayer(currentTileLayer)
+  }
+
+  const config = dark ? TILE_CONFIGS.dark : TILE_CONFIGS.light
+  currentTileLayer = L.tileLayer(config.url, {
+    attribution: config.attribution,
+    ...config.options
+  }).addTo(map)
+}
 
 // Watch for geocoding results (since debouncedGeocode is async/debounced)
 watch(result, (newResult) => {
@@ -170,15 +215,21 @@ function initializeMap() {
   // Create map centered on Frankfurt
   map = L.map(mapElement.value).setView(FRANKFURT_CENTER, DEFAULT_ZOOM)
 
-  // Add tile layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
-  }).addTo(map)
+  // Add tile layer based on current dark mode state
+  setTileLayer(isDark.value)
 
   // Handle map click to place marker
   map.on('click', handleMapClick)
 }
+
+// Watch for dark mode changes to update tile layer and marker
+watch(isDark, (dark) => {
+  setTileLayer(dark)
+  // Update marker icon if marker exists
+  if (marker && markerPosition.value) {
+    updateMarker(markerPosition.value.lat, markerPosition.value.lng)
+  }
+})
 
 // Minimum zoom level to see street names
 const MIN_STREET_ZOOM = 16
@@ -224,18 +275,38 @@ function updateMarker(lat: number, lng: number, draggable = true) {
     marker.remove()
   }
 
-  // Create custom icon for draggable pin
-  const pinIcon = L.icon({
+  // Create custom icon with leaf for eco-friendly submission
+  // Light mode: green pin with white leaf
+  // Dark mode: white pin with green leaf
+  const lightIcon = L.icon({
     iconUrl: 'data:image/svg+xml;base64,' + btoa(`
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">
-        <path fill="#10b981" stroke="#065f46" stroke-width="2" d="M16 0C7.163 0 0 7.163 0 16c0 13 16 26 16 26s16-13 16-26C32 7.163 24.837 0 16 0z"/>
-        <circle fill="white" cx="16" cy="16" r="6"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46">
+        <path fill="#10b981" stroke="#065f46" stroke-width="2" d="M18 1C8.611 1 1 8.611 1 18c0 14 17 27 17 27s17-13 17-27C35 8.611 27.389 1 18 1z"/>
+        <g transform="translate(7, 12) scale(0.9)">
+          <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v8m0-8v1h3a6 6 0 0 0 6-6V6h-3a6 6 0 0 0-6 6m0-2v1H9a6 6 0 0 1-6-6V4h3a6 6 0 0 1 6 6"/>
+        </g>
       </svg>
     `),
-    iconSize: [32, 42],
-    iconAnchor: [16, 42],
-    popupAnchor: [0, -42]
+    iconSize: [36, 46],
+    iconAnchor: [18, 46],
+    popupAnchor: [0, -46]
   })
+
+  const darkIcon = L.icon({
+    iconUrl: 'data:image/svg+xml;base64,' + btoa(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46">
+        <path fill="white" stroke="#d1d5db" stroke-width="2" d="M18 1C8.611 1 1 8.611 1 18c0 14 17 27 17 27s17-13 17-27C35 8.611 27.389 1 18 1z"/>
+        <g transform="translate(7, 12) scale(0.9)">
+          <path fill="none" stroke="#10b981" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v8m0-8v1h3a6 6 0 0 0 6-6V6h-3a6 6 0 0 0-6 6m0-2v1H9a6 6 0 0 1-6-6V4h3a6 6 0 0 1 6 6"/>
+        </g>
+      </svg>
+    `),
+    iconSize: [36, 46],
+    iconAnchor: [18, 46],
+    popupAnchor: [0, -46]
+  })
+
+  const pinIcon = isDark.value ? darkIcon : lightIcon
 
   // Create marker
   marker = L.marker([lat, lng], {
@@ -381,8 +452,16 @@ onUnmounted(() => {
   transition: color 200ms ease;
 }
 
+:global(.dark) .btn-back {
+  color: #9ca3af;
+}
+
 .btn-back:hover {
   color: #111827;
+}
+
+:global(.dark) .btn-back:hover {
+  color: #d1d5db;
 }
 
 .search-container {
@@ -397,12 +476,28 @@ onUnmounted(() => {
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 200ms ease;
+  background: white;
+  color: #111827;
+}
+
+:global(.dark) .search-input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+:global(.dark) .search-input::placeholder {
+  color: #9ca3af;
 }
 
 .search-input:focus {
   outline: none;
   border-color: #10b981;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+:global(.dark) .search-input:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 .btn-geolocation {
@@ -420,9 +515,19 @@ onUnmounted(() => {
   transition: all 200ms ease;
 }
 
+:global(.dark) .btn-geolocation {
+  background: #1f2937;
+  color: #34d399;
+  border-color: #34d399;
+}
+
 .btn-geolocation:hover:not(:disabled) {
   background: #ecfdf5;
   transform: translateY(-1px);
+}
+
+:global(.dark) .btn-geolocation:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.1);
 }
 
 .btn-geolocation:disabled {
@@ -463,6 +568,12 @@ onUnmounted(() => {
   font-size: 0.875rem;
 }
 
+:global(.dark) .error-message {
+  background: rgba(127, 29, 29, 0.3);
+  border-color: #991b1b;
+  color: #fca5a5;
+}
+
 .map-element {
   width: 100%;
   height: 400px;
@@ -484,6 +595,10 @@ onUnmounted(() => {
   margin: 0;
 }
 
+:global(.dark) .instruction-text {
+  color: #9ca3af;
+}
+
 .accuracy-info {
   text-align: center;
   color: #10b981;
@@ -500,6 +615,12 @@ onUnmounted(() => {
   font-size: 0.875rem;
   color: #065f46;
   text-align: center;
+}
+
+:global(.dark) .selected-address {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
 }
 
 .btn-confirm {
