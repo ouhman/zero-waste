@@ -7,6 +7,7 @@ import { getAdminNotificationTemplate } from '../_shared/email-templates.ts'
 const ALLOWED_ORIGINS = [
   'https://map.zerowastefrankfurt.de',
   'http://localhost:5173', // Vite dev server
+  'http://localhost:5174', // Vite dev server (alternate port)
   'http://localhost:4173', // Vite preview
 ]
 
@@ -206,6 +207,29 @@ serve(async (req) => {
     if (!token) {
       return new Response(
         JSON.stringify({ error: 'Token is required' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    // DEV ONLY: Test tokens for UI testing
+    // These only work on the dev Supabase project
+    const isDevEnvironment = Deno.env.get('SUPABASE_URL')?.includes('lccpndhssuemudzpfvvg')
+
+    if (isDevEnvironment && token === 'test-success') {
+      return new Response(
+        JSON.stringify({
+          success: true,
+          status: 'pending',
+          message: 'Test verification successful',
+          locationName: 'Test Location',
+        }),
+        { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+
+    if (isDevEnvironment && token === 'test-error') {
+      return new Response(
+        JSON.stringify({ error: 'This is a test error message for UI testing' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
