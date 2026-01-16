@@ -105,7 +105,7 @@ function clearSearch() {
   font-size: 14px;
   color: #1f2937;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
 }
 
 .search-input::placeholder {
@@ -250,5 +250,72 @@ function clearSearch() {
   font-size: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 100;
+}
+</style>
+
+<style>
+/* Dark mode styles (unscoped to work with .dark on html) */
+.dark .search-input {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #f3f4f6 !important;
+}
+
+.dark .search-input::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark .search-input:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+.dark .clear-button {
+  background: #4b5563 !important;
+}
+
+.dark .clear-button:hover {
+  background: #6b7280 !important;
+}
+
+.dark .clear-button svg {
+  color: #d1d5db !important;
+}
+
+.dark .spinner {
+  border-color: #374151 !important;
+  border-top-color: #10b981 !important;
+}
+
+.dark .search-results {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+.dark .results-header {
+  background: #111827 !important;
+  border-color: #374151 !important;
+  color: #9ca3af !important;
+}
+
+.dark .result-item {
+  border-color: #374151 !important;
+}
+
+.dark .result-item:hover {
+  background: #374151 !important;
+}
+
+.dark .result-name {
+  color: #f3f4f6 !important;
+}
+
+.dark .result-address {
+  color: #9ca3af !important;
+}
+
+.dark .no-results {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #9ca3af !important;
 }
 </style>

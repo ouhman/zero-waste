@@ -111,6 +111,7 @@ function clearFilters() {
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   border: 1px solid #e5e7eb;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .filter-header {
@@ -256,5 +257,60 @@ function clearFilters() {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+</style>
+
+<style>
+/* Dark mode styles (unscoped to work with .dark on html) */
+.dark .category-filter {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+.dark .filter-header:hover {
+  background: #374151 !important;
+}
+
+.dark .filter-title {
+  color: #f3f4f6 !important;
+}
+
+.dark .selected-count {
+  color: #34d399 !important;
+}
+
+.dark .clear-btn {
+  color: #9ca3af !important;
+}
+
+.dark .clear-btn:hover {
+  color: #f3f4f6 !important;
+  background: #4b5563 !important;
+}
+
+.dark .category-item:hover {
+  background: #374151 !important;
+}
+
+.dark .category-item-selected {
+  background: #064e3b !important;
+}
+
+.dark .category-item-selected:hover {
+  background: #065f46 !important;
+}
+
+.dark .checkbox {
+  border-color: #4b5563 !important;
+  background: #374151 !important;
+}
+
+.dark .checkbox-checked {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+.dark .category-name {
+  color: #d1d5db !important;
 }
 </style>

@@ -1079,12 +1079,21 @@ function handleSubmit() {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
+:global(.dark) .wizard {
+  background: #1f2937;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
 .progress {
   height: 4px;
   background: #e5e7eb;
   border-radius: 2px;
   overflow: hidden;
   margin-bottom: 8px;
+}
+
+:global(.dark) .progress {
+  background: #374151;
 }
 
 .progress-bar {
@@ -1135,10 +1144,18 @@ function handleSubmit() {
   letter-spacing: -0.02em;
 }
 
+:global(.dark) .step-title {
+  color: #f3f4f6;
+}
+
 .step-description {
   font-size: 15px;
   color: #6b7280;
   margin: 0;
+}
+
+:global(.dark) .step-description {
+  color: #9ca3af;
 }
 
 .section-header {
@@ -1153,10 +1170,18 @@ function handleSubmit() {
   letter-spacing: -0.02em;
 }
 
+:global(.dark) .section-title {
+  color: #f3f4f6;
+}
+
 .section-description {
   font-size: 15px;
   color: #6b7280;
   margin: 0;
+}
+
+:global(.dark) .section-description {
+  color: #9ca3af;
 }
 
 .step-content {
@@ -1191,6 +1216,10 @@ function handleSubmit() {
   margin-bottom: 8px;
 }
 
+:global(.dark) .label {
+  color: #d1d5db;
+}
+
 .input {
   width: 100%;
   padding: 12px 16px;
@@ -1199,6 +1228,17 @@ function handleSubmit() {
   font-size: 15px;
   transition: border-color 150ms, box-shadow 150ms;
   background: white;
+  color: #111827;
+}
+
+:global(.dark) .input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+:global(.dark) .input::placeholder {
+  color: #9ca3af;
 }
 
 .input:focus {
@@ -1207,9 +1247,18 @@ function handleSubmit() {
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
 }
 
+:global(.dark) .input:focus {
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
 .input.error {
   border-color: #ef4444;
   background: #fef2f2;
+}
+
+:global(.dark) .input.error {
+  border-color: #dc2626;
+  background: rgba(127, 29, 29, 0.3);
 }
 
 .input-large {
@@ -1255,12 +1304,24 @@ function handleSubmit() {
   margin-top: 12px;
 }
 
+:global(.dark) .status-text {
+  color: #9ca3af;
+}
+
 .status-text.success {
   color: #10b981;
 }
 
+:global(.dark) .status-text.success {
+  color: #34d399;
+}
+
 .status-text.error {
   color: #ef4444;
+}
+
+:global(.dark) .status-text.error {
+  color: #f87171;
 }
 
 .coordinates-toggle {
@@ -1268,6 +1329,10 @@ function handleSubmit() {
   color: #6b7280;
   cursor: pointer;
   margin-top: 16px;
+}
+
+:global(.dark) .coordinates-toggle {
+  color: #9ca3af;
 }
 
 .coordinates-toggle summary {
@@ -1279,6 +1344,10 @@ function handleSubmit() {
   border-radius: 12px;
   padding: 20px;
   margin-top: 24px;
+}
+
+:global(.dark) .summary {
+  background: #111827;
 }
 
 .summary h4 {
@@ -1297,6 +1366,10 @@ function handleSubmit() {
   border-bottom: 1px solid #e5e7eb;
 }
 
+:global(.dark) .summary-item {
+  border-bottom-color: #374151;
+}
+
 .summary-item:last-child {
   border-bottom: none;
 }
@@ -1306,6 +1379,10 @@ function handleSubmit() {
   color: #6b7280;
 }
 
+:global(.dark) .summary-label {
+  color: #9ca3af;
+}
+
 .summary-value {
   font-size: 13px;
   font-weight: 500;
@@ -1313,6 +1390,10 @@ function handleSubmit() {
   text-align: right;
   max-width: 60%;
   word-break: break-word;
+}
+
+:global(.dark) .summary-value {
+  color: #f3f4f6;
 }
 
 .missing-warning {
@@ -1326,6 +1407,12 @@ function handleSubmit() {
   font-size: 13px;
   color: #92400e;
   margin-top: 16px;
+}
+
+:global(.dark) .missing-warning {
+  background: rgba(146, 64, 14, 0.2);
+  border-color: #b45309;
+  color: #fcd34d;
 }
 
 .warning-icon {
@@ -1369,8 +1456,17 @@ function handleSubmit() {
   width: 100%;
 }
 
+:global(.dark) .btn-secondary {
+  background: #374151;
+  color: #d1d5db;
+}
+
 .btn-secondary:hover {
   background: #e5e7eb;
+}
+
+:global(.dark) .btn-secondary:hover {
+  background: #4b5563;
 }
 
 .btn-ghost {
@@ -1379,8 +1475,16 @@ function handleSubmit() {
   border: none;
 }
 
+:global(.dark) .btn-ghost {
+  color: #9ca3af;
+}
+
 .btn-ghost:hover {
   color: #374151;
+}
+
+:global(.dark) .btn-ghost:hover {
+  color: #d1d5db;
 }
 
 .btn-submit {
@@ -1413,6 +1517,12 @@ function handleSubmit() {
   font-size: 13px;
   color: #1e40af;
   margin-top: 16px;
+}
+
+:global(.dark) .auto-filled-info {
+  background: rgba(30, 64, 175, 0.2);
+  border-color: #3b82f6;
+  color: #93c5fd;
 }
 
 .info-icon {

@@ -2,7 +2,7 @@
   <div class="relative">
     <button
       @click="isOpen = !isOpen"
-      class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 bg-white rounded-lg shadow-sm border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+      class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
     >
       <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="10"/>
@@ -20,15 +20,15 @@
 
     <div
       v-if="isOpen"
-      class="absolute right-0 mt-1 w-28 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
+      class="absolute right-0 mt-1 w-28 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50"
     >
       <button
         @click="switchLanguage('de')"
         :class="[
           'w-full px-3 py-2 text-left text-sm font-medium transition-colors cursor-pointer',
           currentLocale === 'de'
-            ? 'bg-green-50 text-green-700'
-            : 'text-gray-700 hover:bg-gray-50'
+            ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+            : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
         ]"
       >
         🇩🇪 Deutsch
@@ -38,8 +38,8 @@
         :class="[
           'w-full px-3 py-2 text-left text-sm font-medium transition-colors cursor-pointer',
           currentLocale === 'en'
-            ? 'bg-green-50 text-green-700'
-            : 'text-gray-700 hover:bg-gray-50'
+            ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+            : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700'
         ]"
       >
         🇬🇧 English
