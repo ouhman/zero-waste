@@ -1,9 +1,9 @@
 <template>
   <div class="w-full h-screen relative flex flex-col">
     <!-- Header -->
-    <div class="bg-white border-b border-gray-200 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
+    <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
       <div class="flex justify-between items-center gap-3 max-w-7xl mx-auto">
-        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 truncate">{{ t('map.title') }}</h1>
+        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate">{{ t('map.title') }}</h1>
         <div class="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
           <router-link
             to="/submit"
@@ -13,6 +13,21 @@
             <span class="sm:hidden">+ {{ t('map.submitLocationShort') }}</span>
           </router-link>
           <LanguageSwitcher />
+          <!-- Dark Mode Toggle -->
+          <button
+            @click="toggleDarkMode"
+            class="ml-1 sm:ml-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+          >
+            <!-- Sun icon (shown in dark mode) -->
+            <svg v-if="isDark" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+            </svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg v-else class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -24,13 +39,13 @@
     </div>
 
     <!-- Mobile Controls Panel (bottom) -->
-    <div class="md:hidden absolute bottom-8 left-4 right-20 z-[1000] bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col-reverse">
+    <div class="md:hidden absolute bottom-8 left-4 right-20 z-[1000] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col-reverse">
       <!-- Toggle Button -->
       <button
         @click="togglePanel"
-        class="flex items-center gap-2.5 w-full px-4 py-3.5 text-sm font-semibold text-gray-800 cursor-pointer"
+        class="flex items-center gap-2.5 w-full px-4 py-3.5 text-sm font-semibold text-gray-800 dark:text-gray-100 cursor-pointer"
       >
-        <svg class="w-5 h-5 text-gray-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"/>
         </svg>
         <span class="flex-1 text-left">{{ t('filters.title') }}</span>
@@ -41,7 +56,7 @@
           {{ selectedCategories.length }}
         </span>
         <svg
-          :class="['w-4 h-4 text-gray-400 transition-transform duration-200', isPanelCollapsed ? 'rotate-180' : '']"
+          :class="['w-4 h-4 text-gray-400 dark:text-gray-500 transition-transform duration-200', isPanelCollapsed ? 'rotate-180' : '']"
           viewBox="0 0 16 16"
           fill="none"
         >
@@ -52,7 +67,7 @@
       <!-- Panel Content -->
       <div
         v-show="!isPanelCollapsed"
-        class="px-3 pb-3 pt-2 flex flex-col gap-3 border-b border-gray-100"
+        class="px-3 pb-3 pt-2 flex flex-col gap-3 border-b border-gray-100 dark:border-gray-700"
       >
         <SearchBar @select="handleSearchSelect" />
         <CategoryFilter v-model:selectedCategories="selectedCategories" />
@@ -75,6 +90,8 @@
       class="flex-1"
       @show-details="handleShowDetails"
       @share-location="handleShareLocation"
+      @popup-closed="handlePopupClosed"
+      @markers-added="handleMarkersAdded"
     />
 
     <!-- Location Detail Panel -->
@@ -98,15 +115,15 @@
           class="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/50"
           @click.self="handleCloseNotFound"
         >
-          <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
-            <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
               <svg class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h2 class="text-xl font-bold text-gray-900 mb-2">{{ t('notFound.title') }}</h2>
-            <p class="text-gray-600 mb-6">{{ t('notFound.locationMessage') }}</p>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ t('notFound.title') }}</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">{{ t('notFound.locationMessage') }}</p>
             <button
               @click="handleCloseNotFound"
               class="w-full px-4 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors cursor-pointer"
@@ -134,6 +151,7 @@ import ShareModal from '@/components/ShareModal.vue'
 import { useLocations } from '@/composables/useLocations'
 import { useFilters } from '@/composables/useFilters'
 import { useSeo } from '@/composables/useSeo'
+import { useDarkMode } from '@/composables/useDarkMode'
 import type { Database } from '@/types/database'
 
 type Location = Database['public']['Tables']['locations']['Row']
@@ -148,6 +166,7 @@ const route = useRoute()
 const router = useRouter()
 const { locations, fetchLocations, getLocationBySlug } = useLocations()
 const { filterByCategories } = useFilters()
+const { isDark, toggle: toggleDarkMode } = useDarkMode()
 
 // SEO
 useSeo({
@@ -287,6 +306,21 @@ function handleCloseNotFound() {
   showNotFound.value = false
   notFoundSlug.value = ''
   router.push({ name: 'map' })
+}
+
+function handlePopupClosed(_locationId: string) {
+  // Only unhighlight if detail panel is NOT open
+  // (If user clicked "Details", the panel will be open and we keep the highlight)
+  if (!selectedLocation.value) {
+    mapRef.value?.highlightMarker(null)
+  }
+}
+
+function handleMarkersAdded() {
+  // When markers are added and categories are filtered, highlight all markers
+  if (selectedCategories.value.length > 0) {
+    mapRef.value?.highlightAllMarkers()
+  }
 }
 </script>
 
