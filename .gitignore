@@ -20,11 +20,13 @@ lerna-debug.log*
 .env.*.local
 .env.development
 .env.production
+.env.test
 
 # Keep example templates
 !.env.example
 !.env.development.example
 !.env.production.example
+!.env.test.example
 
 # Editor directories and files
 .vscode/*
@@ -55,3 +57,4 @@ coverage/
 
 # Claude working files
 .claude/*
+tests/.auth/
