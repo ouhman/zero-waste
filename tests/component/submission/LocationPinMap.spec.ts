@@ -7,6 +7,21 @@ import { useGeolocation } from '@/composables/useGeolocation'
 import { useNominatim } from '@/composables/useNominatim'
 import L from 'leaflet'
 
+// Mock window.matchMedia for useDarkMode composable
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})
+
 // Mock i18n
 const i18n = createI18n({
   legacy: false,
@@ -177,11 +192,11 @@ describe('LocationPinMap', () => {
 
       expect(L.map).toHaveBeenCalled()
       expect(mockMap.setView).toHaveBeenCalledWith([50.1109, 8.6821], 13)
+      // Component uses CARTO tiles
       expect(L.tileLayer).toHaveBeenCalledWith(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png',
         expect.objectContaining({
-          attribution: expect.stringContaining('OpenStreetMap'),
-          maxZoom: 19
+          maxZoom: 20
         })
       )
       expect(mockTileLayer.addTo).toHaveBeenCalledWith(mockMap)

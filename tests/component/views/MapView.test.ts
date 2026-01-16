@@ -10,6 +10,21 @@ import {
 } from '../../utils/test-helpers'
 import { useLocationsStore } from '@/stores/locations'
 
+// Mock window.matchMedia for useDarkMode composable
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})
+
 // Create mock functions for MapContainer methods
 const mockCenterOn = vi.fn()
 const mockEnsureVisible = vi.fn()
@@ -382,8 +397,9 @@ describe('MapView', () => {
       // Panel should be collapsed initially
       expect(wrapper.vm.isPanelCollapsed).toBe(true)
 
-      // Find and click toggle button
-      const toggleButton = wrapper.find('button')
+      // Find the mobile panel toggle button (inside the .md\\:hidden container)
+      const mobilePanel = wrapper.find('.md\\:hidden')
+      const toggleButton = mobilePanel.find('button')
       await toggleButton.trigger('click')
 
       // Panel should be expanded

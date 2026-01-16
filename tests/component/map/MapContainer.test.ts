@@ -5,6 +5,21 @@ import MapContainer from '@/components/map/MapContainer.vue'
 import { createMockLocation } from '../../utils/test-helpers'
 import type { Database } from '@/types/database'
 
+// Mock window.matchMedia for useDarkMode composable
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})
+
 type Location = Database['public']['Tables']['locations']['Row'] & {
   location_categories?: {
     categories: Database['public']['Tables']['categories']['Row']
@@ -226,8 +241,13 @@ describe('MapContainer', () => {
     mockButton.dataset.locationId = 'test-location-id'
     document.body.appendChild(mockButton)
 
-    // Trigger popupopen
-    popupopenCallback()
+    // Trigger popupopen with mock event object
+    const mockPopupEvent = {
+      popup: {
+        _source: mockMarker
+      }
+    }
+    popupopenCallback(mockPopupEvent)
 
     // Wait for setTimeout in popupopen handler
     await new Promise(resolve => setTimeout(resolve, 10))
@@ -252,11 +272,16 @@ describe('MapContainer', () => {
     mockButton.dataset.locationId = 'share-test-id'
     document.body.appendChild(mockButton)
 
-    // Trigger popupopen
+    // Trigger popupopen with mock event object
     const popupopenCallback = mockMap.on.mock.calls.find(
       call => call[0] === 'popupopen'
     )?.[1]
-    popupopenCallback()
+    const mockPopupEvent = {
+      popup: {
+        _source: mockMarker
+      }
+    }
+    popupopenCallback(mockPopupEvent)
 
     await new Promise(resolve => setTimeout(resolve, 10))
 
@@ -471,11 +496,16 @@ describe('MapContainer', () => {
     mockButton.dataset.locationId = 'test-id'
     document.body.appendChild(mockButton)
 
-    // Trigger popupopen
+    // Trigger popupopen with mock event object
     const popupopenCallback = mockMap.on.mock.calls.find(
       call => call[0] === 'popupopen'
     )?.[1]
-    popupopenCallback()
+    const mockPopupEvent = {
+      popup: {
+        _source: mockMarker
+      }
+    }
+    popupopenCallback(mockPopupEvent)
 
     await new Promise(resolve => setTimeout(resolve, 10))
 
@@ -497,11 +527,16 @@ describe('MapContainer', () => {
     mockButton.dataset.locationId = 'test-id'
     document.body.appendChild(mockButton)
 
-    // Trigger popupopen
+    // Trigger popupopen with mock event object
     const popupopenCallback = mockMap.on.mock.calls.find(
       call => call[0] === 'popupopen'
     )?.[1]
-    popupopenCallback()
+    const mockPopupEvent = {
+      popup: {
+        _source: mockMarker
+      }
+    }
+    popupopenCallback(mockPopupEvent)
 
     await new Promise(resolve => setTimeout(resolve, 10))
 

@@ -5,6 +5,21 @@ import { createI18n } from 'vue-i18n'
 import SubmitView from '@/views/SubmitView.vue'
 import VerifyView from '@/views/VerifyView.vue'
 
+// Mock window.matchMedia for useDarkMode composable
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})
+
 // Mock fetch for Edge Function calls
 global.fetch = vi.fn()
 
@@ -92,8 +107,8 @@ describe('Submission Flow', () => {
     await verifyWrapper.vm.$nextTick()
     await new Promise(resolve => setTimeout(resolve, 150))
 
-    // Should show success (check for success styling)
-    expect(verifyWrapper.html()).toContain('bg-green-100')
+    // Should show success (redesigned component uses gradient for success header)
+    expect(verifyWrapper.html()).toContain('bg-gradient-to-br')
   })
 
   it('update location: select existing → form → email → verify', async () => {
