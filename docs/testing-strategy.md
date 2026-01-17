@@ -7,6 +7,7 @@ This document outlines the testing strategy for Zero Waste Frankfurt, including 
 - [Overview](#overview)
 - [Test Organization](#test-organization)
 - [Testing Levels](#testing-levels)
+- [E2E Testing with Playwright](#e2e-testing-with-playwright)
 - [What to Test](#what-to-test)
 - [Mocking Strategies](#mocking-strategies)
 - [Writing Good Tests](#writing-good-tests)
@@ -418,6 +419,256 @@ describe('Location Store', () => {
 })
 ```
 
+## E2E Testing with Playwright
+
+### Overview
+
+E2E tests run in a real browser against the dev server. They test critical user flows and catch integration issues that unit tests miss.
+
+### Project Structure
+
+Playwright is configured with **5 projects** that run in a specific order:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      ADMIN TEST CHAIN                           │
+├─────────────────────────────────────────────────────────────────┤
+│  1. admin-setup     → Seeds test data, creates auth session     │
+│         ↓                                                       │
+│  2. admin           → Runs admin tests (uses auth state)        │
+│         ↓                                                       │
+│  3. admin-teardown  → Cleans up test data                       │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                     PUBLIC TEST CHAIN                           │
+├─────────────────────────────────────────────────────────────────┤
+│  4. global-setup    → Dismisses cookie banner, saves state      │
+│         ↓                                                       │
+│  5. chromium        → Runs public-facing tests                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+| Project | Purpose | Test Location |
+|---------|---------|---------------|
+| `admin-setup` | Seeds admin user, test location, test category; creates authenticated session | `tests/e2e/admin/admin.setup.ts` |
+| `admin` | Admin panel tests (CRUD, approval workflow, etc.) | `tests/e2e/admin/specs/*.spec.ts` |
+| `admin-teardown` | Cleans up test data from database | `tests/e2e/admin/admin.teardown.ts` |
+| `global-setup` | Dismisses cookie consent banner for public tests | `tests/e2e/global.setup.ts` |
+| `chromium` | Public-facing tests (map, filters, favorites) | `tests/e2e/*.spec.ts` |
+
+### Directory Structure
+
+```
+tests/e2e/
+├── admin/
+│   ├── admin.setup.ts          # Seeds data + auth session
+│   ├── admin.teardown.ts       # Cleanup
+│   ├── fixtures/
+│   │   ├── index.ts            # Export all fixtures
+│   │   └── test-data.ts        # Test data factories
+│   ├── helpers/
+│   │   ├── auth.ts             # Session creation helpers
+│   │   └── supabase.ts         # Direct DB access for seeding
+│   ├── pages/                  # Page Object Models
+│   │   ├── base.page.ts
+│   │   ├── dashboard.page.ts
+│   │   ├── locations-list.page.ts
+│   │   ├── location-edit.page.ts
+│   │   ├── categories.page.ts
+│   │   └── login.page.ts
+│   └── specs/                  # Test specifications
+│       ├── accessibility.spec.ts
+│       ├── error-handling.spec.ts
+│       ├── location-approve.spec.ts
+│       ├── location-edit.spec.ts
+│       ├── locations-list.spec.ts
+│       ├── mobile.spec.ts
+│       └── session.spec.ts
+├── global.setup.ts             # Cookie consent setup
+├── filter.spec.ts              # Filter/search tests
+└── map.spec.ts                 # Map interaction tests
+
+tests/.auth/
+├── admin.json                  # Admin auth state (generated)
+└── user.json                   # Public user state (generated)
+```
+
+### Why Parallel Execution Is Disabled
+
+**The Playwright config defaults to `workers: 1` (sequential execution).**
+
+Parallel execution causes flaky failures because:
+
+1. **Shared Database State** - Tests create, modify, and delete the same test records. Parallel tests cause race conditions:
+   - Test A creates a location, Test B deletes it before Test A can verify
+   - Multiple tests try to approve the same pending location
+
+2. **Shared Auth State** - All admin tests reuse `tests/.auth/admin.json`. Parallel tests can interfere with session state.
+
+3. **Sequential Dependencies** - Setup must complete before tests, tests must complete before teardown.
+
+If you need to override for specific scenarios, use `--workers=N` flag.
+
+### Running E2E Tests
+
+#### Basic Commands
+
+```bash
+# Run ALL e2e tests (sequential, workers=1)
+npm run test:e2e
+
+# Run with Playwright UI (recommended for debugging)
+npx playwright test --ui
+
+# Run with visible browser
+npx playwright test --headed
+```
+
+#### Running Specific Projects
+
+```bash
+# Run only admin tests
+npx playwright test --project=admin
+
+# Run only public tests
+npx playwright test --project=chromium
+
+# Run admin setup only (useful for debugging seeding)
+npx playwright test --project=admin-setup
+
+# Run full admin chain
+npx playwright test --project=admin-setup --project=admin --project=admin-teardown
+```
+
+#### Running Specific Test Files
+
+```bash
+# Run a specific spec file
+npx playwright test tests/e2e/admin/specs/location-edit.spec.ts
+
+# Run tests matching a pattern
+npx playwright test --grep "approve"
+
+# Run a single test by title
+npx playwright test --grep "should approve pending location"
+```
+
+#### Debugging
+
+```bash
+# Debug mode (step through tests)
+npx playwright test --debug
+
+# Show test report after run
+npx playwright show-report
+
+# Run with trace recording (for post-mortem debugging)
+npx playwright test --trace on
+```
+
+### Environment Setup
+
+E2E tests require a `.env.test` file with test admin credentials:
+
+```bash
+# Copy the example file
+cp .env.test.example .env.test
+```
+
+Required variables in `.env.test`:
+
+```env
+# Test admin credentials (must exist in DEV Supabase)
+TEST_ADMIN_EMAIL=e2e-admin@zerowastefrankfurt.de
+TEST_ADMIN_PASSWORD=your-test-password
+
+# Optional: Override Supabase URL for tests
+# VITE_SUPABASE_URL=https://your-dev-project.supabase.co
+```
+
+**Note:** The test admin user must be manually created in Supabase DEV with the admin role. See [CLAUDE.md](../CLAUDE.md#creating-admin-users) for instructions.
+
+### Writing New E2E Tests
+
+#### For Admin Tests
+
+1. Add test data factories to `tests/e2e/admin/fixtures/test-data.ts`
+2. Create Page Object Models in `tests/e2e/admin/pages/`
+3. Write specs in `tests/e2e/admin/specs/`
+
+Example spec:
+
+```typescript
+import { test, expect } from '@playwright/test'
+import { LocationsListPage } from '../pages/locations-list.page'
+
+test.describe('Location Management', () => {
+  let locationsPage: LocationsListPage
+
+  test.beforeEach(async ({ page }) => {
+    locationsPage = new LocationsListPage(page)
+    await locationsPage.goto()
+  })
+
+  test('should filter locations by status', async () => {
+    await locationsPage.filterByStatus('pending')
+    await expect(locationsPage.locationRows).toHaveCount(1)
+  })
+})
+```
+
+#### For Public Tests
+
+Add specs directly to `tests/e2e/`:
+
+```typescript
+import { test, expect } from '@playwright/test'
+
+test.describe('Map Filters', () => {
+  test('should filter by category', async ({ page }) => {
+    await page.goto('/')
+
+    // Use role-based selectors
+    await page.getByRole('button', { name: /Filter|Filtern/i }).click()
+    await page.getByRole('checkbox', { name: /Unverpackt/i }).check()
+
+    // Verify filter applied
+    await expect(page.getByRole('button', { name: /1 filter/i })).toBeVisible()
+  })
+})
+```
+
+### CI Configuration
+
+Tests always run with `workers: 1` (see `playwright.config.ts`):
+
+```typescript
+// Always use 1 worker - tests share database state and auth sessions
+workers: 1,
+```
+
+The GitHub Actions workflow runs:
+
+```yaml
+- name: Run E2E tests
+  run: npm run test:e2e
+  env:
+    TEST_ADMIN_EMAIL: ${{ secrets.TEST_ADMIN_EMAIL }}
+    TEST_ADMIN_PASSWORD: ${{ secrets.TEST_ADMIN_PASSWORD }}
+```
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| "Browser not installed" | Run `npx playwright install chromium` |
+| Auth state not found | Run `--project=admin-setup` first |
+| Cookie banner interfering | Check `global.setup.ts` ran successfully |
+| Test data not cleaned up | Run `--project=admin-teardown` manually |
+| Session expired | Delete `tests/.auth/admin.json` and re-run setup |
+| Slug constraint violation | Run cleanup: `npx playwright test --project=admin-teardown` |
+
 ## Mocking Strategies
 
 ### Mocking Supabase
@@ -651,11 +902,14 @@ npm test -- --grep "ContactInfo"
 # Run with coverage
 npm test -- --coverage
 
-# E2E tests (headless)
+# E2E tests (see "E2E Testing with Playwright" section for details)
 npm run test:e2e
 
+# E2E admin tests only
+npx playwright test --project=admin
+
 # E2E tests with UI
-npm run test:e2e:ui
+npx playwright test --ui
 
 # Type checking
 npm run type-check
