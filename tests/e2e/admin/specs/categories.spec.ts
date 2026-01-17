@@ -42,8 +42,9 @@ test.describe('Category Management', () => {
     await page.modalSaveButton.click()
     await page.editModal.waitFor({ state: 'hidden', timeout: 15000 })
 
-    // Wait for save to complete
-    await page.playwrightPage.waitForTimeout(1500)
+    // Wait for the new category row to appear in the table (confirms save completed)
+    const newCategoryRow = page.getCategoryRow('e2e-neue-kategorie')
+    await newCategoryRow.waitFor({ state: 'visible', timeout: 10000 })
 
     // Verify created in database
     const category = await getCategoryBySlug('e2e-neue-kategorie')

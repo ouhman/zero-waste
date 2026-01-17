@@ -45,8 +45,9 @@ test.describe('Categories List', () => {
     // Navigate to page again to see the new category
     await page.goto()
 
-    // Find the category row
+    // Find the category row and wait for it to appear
     const row = page.getCategoryRow('e2e-test-category')
+    await row.waitFor({ state: 'visible', timeout: 10000 })
 
     // Check that the row displays all expected information
     await expect(row).toContainText(category!.name_de)

@@ -69,22 +69,29 @@ export async function seedTestLocation(): Promise<string> {
     throw new Error('No categories found. Cannot create test location without a category.')
   }
 
-  // Check if location already exists (by name)
-  const { data: existing } = await testSupabase
+  // Clean up any existing test locations first (handles slug conflicts from previous runs)
+  // This catches locations where the name was modified by a test but slug remained
+  const { data: existingLocations } = await testSupabase
     .from('locations')
     .select('id')
-    .eq('name', TEST_LOCATION.name)
-    .single()
+    .or('name.ilike.E2E Test%,slug.ilike.e2e-test-%')
 
-  if (existing) {
-    // Reset to pending status and return existing ID
+  if (existingLocations && existingLocations.length > 0) {
+    const existingIds = existingLocations.map(l => (l as any).id as string)
+
+    // Delete junction records first
+    await testSupabase
+      .from('location_categories')
+      .delete()
+      .in('location_id', existingIds)
+
+    // Delete locations
     await testSupabase
       .from('locations')
-      .update({ status: 'pending' })
-      .eq('id', (existing as any).id)
+      .delete()
+      .in('id', existingIds)
 
-    console.log(`Test location reset: ${TEST_LOCATION.name} (${(existing as any).id})`)
-    return (existing as any).id as string
+    console.log(`Cleaned up ${existingIds.length} existing test location(s)`)
   }
 
   // Insert new location
