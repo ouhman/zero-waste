@@ -14,10 +14,11 @@ dotenv.config({ path: resolve(__dirname, '.env.development') })
 
 export default defineConfig({
   testDir: './tests/e2e',
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // Always use 1 worker - tests share database state and auth sessions
+  workers: 1,
   reporter: 'html',
   use: {
     baseURL: 'http://localhost:5173',
