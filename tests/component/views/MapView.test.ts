@@ -612,8 +612,9 @@ describe('MapView', () => {
       expect(testRouter.currentRoute.value.name).toBe('location-detail')
       expect(testRouter.currentRoute.value.params.slug).toBe('non-existent')
 
-      // Find close button
-      const closeButton = wrapper.find('.bg-green-500')
+      // Find close button inside the 404 modal (not the BETA button in header)
+      const modal = wrapper.find('.fixed.inset-0')
+      const closeButton = modal.find('.bg-green-500')
       expect(closeButton.exists()).toBe(true)
 
       await closeButton.trigger('click')
