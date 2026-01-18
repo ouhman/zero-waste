@@ -15,7 +15,8 @@
     "deploy:frontend": "./scripts/deploy-frontend.sh",
     "db:push": "./scripts/db-push.sh",
     "db:push:dev": "npx supabase link --project-ref lccpndhssuemudzpfvvg && npx supabase db push",
-    "test:all": "./scripts/test-all.sh"
+    "test:all": "./scripts/test-all.sh",
+    "validate:locales": "./scripts/validate-locales.sh"
   },
   "dependencies": {
     "@iconify/utils": "^3.1.0",
