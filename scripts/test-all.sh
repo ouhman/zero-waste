@@ -20,10 +20,16 @@ else
   NC=''
 fi
 
+LOCALES_EXIT=0
 UNIT_EXIT=0
 E2E_EXIT=0
 UNIT_FAILED=()
 E2E_FAILED=()
+
+# Validate locale files (fast, run first)
+echo "Validating locale files..."
+LOCALES_OUTPUT=$("$SCRIPT_DIR/validate-locales.sh" 2>&1)
+LOCALES_EXIT=$?
 
 # Run unit tests
 echo "Running unit tests..."
@@ -67,12 +73,19 @@ fi
 echo ""
 echo "========================================"
 
-if [[ $UNIT_EXIT -eq 0 && $E2E_EXIT -eq 0 ]]; then
+if [[ $LOCALES_EXIT -eq 0 && $UNIT_EXIT -eq 0 && $E2E_EXIT -eq 0 ]]; then
   echo -e "${GREEN}All tests passed${NC}"
   exit 0
 fi
 
 FINAL_EXIT=1
+
+if [[ $LOCALES_EXIT -ne 0 ]]; then
+  echo -e "${RED}Locale validation FAILED${NC}"
+  echo "$LOCALES_OUTPUT" | grep -E "^(ERROR|WARNING|  )" | head -10
+  echo "  Run: npm run validate:locales"
+  echo ""
+fi
 
 if [[ $UNIT_EXIT -ne 0 ]]; then
   echo -e "${RED}Unit tests FAILED${NC}"
