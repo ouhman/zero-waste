@@ -470,18 +470,18 @@
   },
   "beta": {
     "tooltip": "Klicke hier, um mehr über das Projekt zu erfahren",
-    "title": "Willkommen, Zero Waste Abenteurer",
-    "subtitle": "Wir haben noch nicht offiziell gestartet, also bekommst du einen ersten Einblick. Manchmal könnte etwas nicht funktionieren oder sich seltsam verhalten. Hab Nachsicht mit uns.",
-    "whatIsThisTitle": "Was ist das hier?",
-    "whatIsThisText": "Eine Karte, die dir hilft, nachhaltige Läden, Refill-Stationen und Zero Waste Orte in Frankfurt zu finden. Wir fangen lokal an, aber wir haben größere Pläne.",
-    "whyBuildingTitle": "Warum wir das bauen",
-    "whyBuildingText": "Wir wollen den Zero Waste Weg weniger überwältigend machen. Die richtigen Orte zu finden sollte nicht schwer sein. Und wir glauben, dass alle profitieren, wenn Menschen teilen, was sie wissen.",
-    "sideProject": "Das hier ist ein Nebenprojekt, das abends nach der Arbeit entsteht. Fortschritt passiert, wenn das Leben es zulässt, aber wir bleiben dran.",
-    "everyStep": "Jeder kleine Schritt zählt. Auch die ganz kleinen.",
+    "title": "Willkommen auf deinem Zero Waste Abenteuer!",
+    "subtitle": "Wir sind noch nicht offiziell gestartet, du bekommst also einen kleinen Vorgeschmack. Es kann sein, dass noch nicht alles reibungslos funktioniert oder sich manches seltsam verhält. Hab bitte etwas Geduld mit uns.",
+    "whatIsThisTitle": "Was ist das?",
+    "whatIsThisText": "Eine Karte, die dir hilft, nachhaltige Läden, Unverpackt-Stationen und Zero-Waste-Orte in Frankfurt zu finden. Wir fangen lokal an, aber wir haben größere Pläne.",
+    "whyBuildingTitle": "Warum wir das machen?",
+    "whyBuildingText": "Wir wollen den Weg zu einem Zero-Waste-Lebensstil einfacher und weniger überwältigend gestalten. Außerdem glauben wir fest daran: gemeinsam profitieren wir alle.",
+    "sideProject": "Das hier ist ein Herzensprojekt, an dem wir in unserer Freizeit arbeiten.",
+    "everyStep": "Jeder kleine Schritt zählt. Danke, dass du hier bist.",
     "feedbackTitle": "Etwas kaputt gefunden? Eine Idee?",
     "feedbackSubtitle": "Wir wollen wirklich davon hören.",
     "feedbackPlaceholder": "Sag uns, was du denkst...",
-    "emailPlaceholder": "deine@email.com",
+    "emailPlaceholder": "deine{'@'}email.com",
     "submit": "Senden",
     "successTitle": "Danke, dass du hier bist.",
     "successMessage": "Dein Feedback wurde gesendet. Wir schätzen es sehr, dass du dir die Zeit genommen hast.",
@@ -493,6 +493,6 @@
     "emailLabelOptional": "(nur wenn du eine Antwort möchtest)",
     "close": "Schließen",
     "thanks": "Danke, dass du hier bist.",
-    "feedbackToggle": "Manchmal darf man auch einfach was Nettes sagen! ;)"
+    "feedbackToggle": "Wir freuen uns über dein Feedback - und ja, nette Worte sind auch erlaubt ;)"
   }
 }

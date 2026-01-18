@@ -481,7 +481,7 @@
     "feedbackTitle": "Found something broken? Have an idea?",
     "feedbackSubtitle": "We actually want to hear about it.",
     "feedbackPlaceholder": "Tell us what's on your mind...",
-    "emailPlaceholder": "your@email.com",
+    "emailPlaceholder": "your{'@'}email.com",
     "submit": "Send",
     "successTitle": "Thanks for being here.",
     "successMessage": "Your feedback has been sent. We appreciate you taking the time to share your thoughts.",
