@@ -147,7 +147,6 @@
                 {{ t('admin.locations.viewOnMap') }}
               </a>
               <button
-                v-if="location.status === 'rejected'"
                 @click="openDeleteModal(location)"
                 class="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200 cursor-pointer"
               >
