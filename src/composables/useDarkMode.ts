@@ -4,14 +4,14 @@ const isDark = ref(false)
 let initialized = false
 
 export function useDarkMode() {
-  // Initialize from localStorage or system preference
+  // Initialize from localStorage or default to light mode
   function init() {
     const stored = localStorage.getItem('darkMode')
     if (stored !== null) {
       isDark.value = stored === 'true'
     } else {
-      // Fall back to system preference
-      isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+      // Default to light mode (users can toggle to dark if preferred)
+      isDark.value = false
     }
     applyTheme()
   }
