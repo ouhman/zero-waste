@@ -3,7 +3,13 @@
     <!-- Header -->
     <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
       <div class="flex justify-between items-center gap-3 max-w-7xl mx-auto">
-        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate">{{ t('map.title') }}</h1>
+        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate">
+          {{ t('map.title') }}<button
+            @click="handleBetaClick"
+            :title="t('beta.tooltip')"
+            class="cursor-pointer bg-transparent border-0 p-0"
+          ><sup :class="['ml-1 text-[8px] sm:text-[9px] md:text-[10px] font-semibold text-green-600 dark:text-green-400 align-super tracking-wide', !hasBetaClicked ? 'beta-glow' : '']">BETA</sup></button>
+        </h1>
         <div class="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
           <router-link
             to="/submit"
@@ -107,6 +113,12 @@
       @close="shareModalLocation = null"
     />
 
+    <!-- Beta Modal -->
+    <BetaModal
+      :is-open="showBetaModal"
+      @close="showBetaModal = false"
+    />
+
     <!-- 404 Modal for non-existent locations -->
     <Teleport to="body">
       <Transition name="fade">
@@ -148,6 +160,7 @@ import NearMeButton from '@/components/NearMeButton.vue'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import LocationDetailPanel from '@/components/LocationDetailPanel.vue'
 import ShareModal from '@/components/ShareModal.vue'
+import BetaModal from '@/components/BetaModal.vue'
 import { useLocations } from '@/composables/useLocations'
 import { useFilters } from '@/composables/useFilters'
 import { useSeo } from '@/composables/useSeo'
@@ -181,6 +194,10 @@ const selectedLocation = ref<LocationWithCategories | null>(null)
 const shareModalLocation = ref<LocationWithCategories | null>(null)
 const showNotFound = ref(false)
 const notFoundSlug = ref('')
+
+// BETA modal state
+const hasBetaClicked = ref(localStorage.getItem('betaModalClicked') === 'true')
+const showBetaModal = ref(false)
 
 // Track if this is the initial page load (for direct URL access)
 const isInitialLoad = ref(true)
@@ -322,6 +339,12 @@ function handleMarkersAdded() {
     mapRef.value?.highlightAllMarkers()
   }
 }
+
+function handleBetaClick() {
+  hasBetaClicked.value = true
+  localStorage.setItem('betaModalClicked', 'true')
+  showBetaModal.value = true
+}
 </script>
 
 <style scoped>
@@ -333,5 +356,18 @@ function handleMarkersAdded() {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@keyframes betaGlow {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.8), 0 0 12px rgba(34, 197, 94, 0.4);
+  }
+}
+
+.beta-glow {
+  animation: betaGlow 2s ease-in-out infinite;
 }
 </style>

@@ -467,5 +467,32 @@
     "description": "Wir nutzen Cookies, um zu verstehen, wie die Karte genutzt wird - z.B. welche Funktionen beliebt sind. Wir erfassen niemals persönliche Daten oder deinen Standort. Deine Daten bleiben anonym.",
     "accept": "Ja, kein Problem",
     "decline": "Nein danke"
+  },
+  "beta": {
+    "tooltip": "Klicke hier, um mehr über das Projekt zu erfahren",
+    "title": "Willkommen, Zero Waste Abenteurer",
+    "subtitle": "Wir haben noch nicht offiziell gestartet, also bekommst du einen ersten Einblick. Manchmal könnte etwas nicht funktionieren oder sich seltsam verhalten. Hab Nachsicht mit uns.",
+    "whatIsThisTitle": "Was ist das hier?",
+    "whatIsThisText": "Eine Karte, die dir hilft, nachhaltige Läden, Refill-Stationen und Zero Waste Orte in Frankfurt zu finden. Wir fangen lokal an, aber wir haben größere Pläne.",
+    "whyBuildingTitle": "Warum wir das bauen",
+    "whyBuildingText": "Wir wollen den Zero Waste Weg weniger überwältigend machen. Die richtigen Orte zu finden sollte nicht schwer sein. Und wir glauben, dass alle profitieren, wenn Menschen teilen, was sie wissen.",
+    "sideProject": "Das hier ist ein Nebenprojekt, das abends nach der Arbeit entsteht. Fortschritt passiert, wenn das Leben es zulässt, aber wir bleiben dran.",
+    "everyStep": "Jeder kleine Schritt zählt. Auch die ganz kleinen.",
+    "feedbackTitle": "Etwas kaputt gefunden? Eine Idee?",
+    "feedbackSubtitle": "Wir wollen wirklich davon hören.",
+    "feedbackPlaceholder": "Sag uns, was du denkst...",
+    "emailPlaceholder": "deine@email.com",
+    "submit": "Senden",
+    "successTitle": "Danke, dass du hier bist.",
+    "successMessage": "Dein Feedback wurde gesendet. Wir schätzen es sehr, dass du dir die Zeit genommen hast.",
+    "rateLimitTitle": "Langsam, langsam!",
+    "rateLimitMessage": "Du hast kürzlich Feedback gesendet. Bitte warte noch {seconds}s, bevor du eine weitere Nachricht sendest.",
+    "messageRequired": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+    "messageLabelRequired": "Deine Nachricht",
+    "emailLabel": "E-Mail",
+    "emailLabelOptional": "(nur wenn du eine Antwort möchtest)",
+    "close": "Schließen",
+    "thanks": "Danke, dass du hier bist.",
+    "feedbackToggle": "Manchmal darf man auch einfach was Nettes sagen! ;)"
   }
 }
