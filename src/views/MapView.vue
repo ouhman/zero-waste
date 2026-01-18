@@ -1,14 +1,15 @@
 <template>
-  <div class="w-full h-screen relative flex flex-col">
+  <div class="w-full h-screen relative flex flex-col overflow-hidden">
     <!-- Header -->
     <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
       <div class="flex justify-between items-center gap-3 max-w-7xl mx-auto">
-        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate">
-          {{ t('map.title') }}<button
+        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate flex items-center gap-1.5 sm:gap-2">
+          {{ t('map.title') }}
+          <button
             @click="handleBetaClick"
             :title="t('beta.tooltip')"
-            class="cursor-pointer bg-transparent border-0 p-0"
-          ><sup :class="['ml-1 text-[8px] sm:text-[9px] md:text-[10px] font-semibold text-green-600 dark:text-green-400 align-super tracking-wide', !hasBetaClicked ? 'beta-glow' : '']">BETA</sup></button>
+            :class="['px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[9px] sm:text-[10px] md:text-xs font-semibold bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors cursor-pointer', !hasBetaClicked ? 'beta-glow' : '']"
+          >BETA</button>
         </h1>
         <div class="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
           <router-link
@@ -360,10 +361,10 @@ function handleBetaClick() {
 
 @keyframes betaGlow {
   0%, 100% {
-    text-shadow: 0 0 4px rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.5);
   }
   50% {
-    text-shadow: 0 0 8px rgba(34, 197, 94, 0.8), 0 0 12px rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.8), 0 0 16px rgba(34, 197, 94, 0.4);
   }
 }
 

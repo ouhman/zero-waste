@@ -47,7 +47,22 @@ async function fetchIconData(iconName: string): Promise<object | null> {
     }
 
     const data = await response.json()
-    const iconData = data.icons?.[name]
+
+    // Check for direct icon or resolve alias
+    let iconData = data.icons?.[name]
+
+    // If not found directly, check if it's an alias
+    if (!iconData && data.aliases?.[name]) {
+      const alias = data.aliases[name]
+      const parentName = alias.parent
+      iconData = data.icons?.[parentName]
+
+      // Merge alias properties with parent icon data
+      if (iconData && alias) {
+        iconData = { ...iconData, ...alias }
+        delete iconData.parent // Remove the parent reference
+      }
+    }
 
     if (!iconData) {
       console.warn(`[DynamicMarker] Icon "${iconName}" not found in response`)
