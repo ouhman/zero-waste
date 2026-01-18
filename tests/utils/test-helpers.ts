@@ -51,7 +51,8 @@ export function createTestI18n() {
         map: {
           title: 'Zero Waste Frankfurt',
           submitLocation: 'Submit Location',
-          submitLocationShort: 'Submit'
+          submitLocationShort: 'Submit',
+          betaTooltip: 'Click to learn more about the project'
         },
         filters: {
           title: 'Filters'
@@ -165,7 +166,8 @@ export function createTestI18n() {
           created: 'Created',
           back: 'Back',
           backToMap: 'Back to Map',
-          error: 'Error'
+          error: 'Error',
+          close: 'Close'
         },
         submit: {
           title: 'Submit a Location',
@@ -199,6 +201,33 @@ export function createTestI18n() {
           openingHours: 'Opening Hours',
           paymentMethods: 'Payment Methods',
           contact: 'Contact'
+        },
+        beta: {
+          tooltip: 'Click to learn more about the project',
+          title: 'Welcome, fellow zero waste adventurer',
+          subtitle: 'We haven\'t launched publicly yet, so you\'re getting a sneak peek. Things might break or behave strangely. Bear with us.',
+          whatIsThisTitle: 'What is this?',
+          whatIsThisText: 'A map to help you find sustainable shops, refill stations, and zero waste spots in Frankfurt. We\'re starting local but we have bigger plans.',
+          whyBuildingTitle: 'Why we\'re building this',
+          whyBuildingText: 'We want to make the zero waste journey less overwhelming. Finding the right places shouldn\'t be hard. And we believe that if people share what they know, everyone benefits.',
+          sideProject: 'This is a side project, built in the evenings after work. Progress happens when life allows, but we\'re committed to it.',
+          everyStep: 'Every small step matters. Even the tiny ones.',
+          feedbackTitle: 'Found something broken? Have an idea?',
+          feedbackSubtitle: 'We actually want to hear about it.',
+          feedbackPlaceholder: 'Tell us what\'s on your mind...',
+          emailPlaceholder: 'your@email.com',
+          submit: 'Send',
+          successTitle: 'Thanks for being here.',
+          successMessage: 'Your feedback has been sent. We appreciate you taking the time to share your thoughts.',
+          rateLimitTitle: 'Slow down there!',
+          rateLimitMessage: 'You\'ve sent feedback recently. Please wait {seconds}s before sending another message.',
+          messageRequired: 'Message must be at least 10 characters long',
+          messageLabelRequired: 'Your message',
+          emailLabel: 'Email',
+          emailLabelOptional: '(only if you want a reply)',
+          close: 'Close',
+          thanks: 'Thanks for being here.',
+          feedbackToggle: 'Sometimes it\'s OK to say something nice too! ;)'
         }
       }
     }
