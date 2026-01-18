@@ -20,6 +20,7 @@ npm run build          # Production build
 npm run test           # Run unit tests
 npm run test:watch     # Run tests in watch mode
 npm run test:e2e       # Run Playwright e2e tests
+npm run test:all       # Run all tests (unit + e2e) with minimal output
 npm run type-check     # TypeScript check
 npm run deploy:frontend # Deploy frontend to S3/CloudFront
 npm run db:push        # Push migrations (with environment confirmation)

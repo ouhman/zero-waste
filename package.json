@@ -14,7 +14,8 @@
     "type-check": "vue-tsc --noEmit",
     "deploy:frontend": "./scripts/deploy-frontend.sh",
     "db:push": "./scripts/db-push.sh",
-    "db:push:dev": "npx supabase link --project-ref lccpndhssuemudzpfvvg && npx supabase db push"
+    "db:push:dev": "npx supabase link --project-ref lccpndhssuemudzpfvvg && npx supabase db push",
+    "test:all": "./scripts/test-all.sh"
   },
   "dependencies": {
     "@iconify/utils": "^3.1.0",
