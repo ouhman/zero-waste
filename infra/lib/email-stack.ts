@@ -80,6 +80,8 @@ export class EmailStack extends cdk.Stack {
           `arn:aws:ses:${this.region}:${this.account}:identity/${props.domainName}`,
           // Allow sending to any recipient (required for ses:SendEmail)
           `arn:aws:ses:${this.region}:${this.account}:identity/*`,
+          // Allow using the configuration set (required when ConfigurationSetName is specified)
+          `arn:aws:ses:${this.region}:${this.account}:configuration-set/${configSet.configurationSetName}`,
         ],
       })
     );
