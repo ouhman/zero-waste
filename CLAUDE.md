@@ -35,10 +35,12 @@ src/
     map/             # Map-related components
     admin/           # Admin panel components
     submission/      # Location submission flow components
+    BetaModal.vue    # Beta info modal with feedback form
   composables/
     useAuth.ts        # Authentication & session management
     useDebounce.ts    # Debounce utility
     useFavorites.ts   # Favorites management
+    useFeedback.ts    # Beta modal feedback submission
     useGeolocation.ts # Browser geolocation API
     useNominatim.ts   # OSM data enrichment
     useOverpass.ts    # Overpass API for POI search
@@ -62,10 +64,11 @@ supabase/
   functions/         # Edge Functions
     submit-location/ # Submission with SES email
     verify-submission/  # Email verification
+    send-feedback/   # Beta modal feedback via SES
   schema.sql         # Base database schema
 
 tests/
-  component/         # Component tests (639+ tests)
+  component/         # Component tests (899+ tests)
     admin/          # Admin components (94 tests)
     common/         # Shared components (30 tests)
     map/            # Map components (55 tests)
@@ -302,6 +305,7 @@ Located in `supabase/functions/`:
 
 - **submit-location** - Receives submissions, stores data, sends verification email via SES
 - **verify-submission** - Validates token, creates location record
+- **send-feedback** - Receives user feedback from Beta Modal, sends via SES (rate limited: 1 per 4 min per IP)
 
 Deploy with:
 ```bash
@@ -334,6 +338,26 @@ Analytics uses a provider abstraction (`src/types/analytics.ts`).
 To switch to Plausible/Matomo, implement `AnalyticsProvider` interface.
 
 See [docs/analytics.md](docs/analytics.md) for detailed analytics documentation.
+
+## Beta Modal & Feedback
+
+The BETA badge in the header opens a modal with project information and a feedback form.
+
+### Features
+- **Glow animation** - BETA badge pulses green until first click (stored in localStorage)
+- **Project info** - Explains what the project is and why it's being built
+- **Feedback form** - Hidden by default, revealed via toggle link
+- **Rate limiting** - 1 message per 4 minutes (client + server side)
+- **Email delivery** - Feedback sent via SES to project email
+
+### Key Files
+- `src/components/BetaModal.vue` - Modal component with form
+- `src/composables/useFeedback.ts` - Feedback submission and rate limiting
+- `supabase/functions/send-feedback/` - Edge Function for email delivery
+
+### localStorage Keys
+- `betaModalClicked` - Tracks if user has clicked BETA badge (stops glow)
+- `lastFeedbackSubmit` - Timestamp for client-side rate limiting
 
 ## Code Conventions
 
