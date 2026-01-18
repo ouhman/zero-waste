@@ -22,6 +22,7 @@ npm run test:watch     # Run tests in watch mode
 npm run test:e2e       # Run Playwright e2e tests
 npm run test:all       # Run all tests (unit + e2e) with minimal output
 npm run type-check     # TypeScript check
+npm run validate:locales # Validate i18n locale files
 npm run deploy:frontend # Deploy frontend to S3/CloudFront
 npm run db:push        # Push migrations (with environment confirmation)
 npm run db:push:dev    # Push migrations directly to DEV
@@ -365,6 +366,22 @@ The BETA badge in the header opens a modal with project information and a feedba
 ### Critical Rules
 
 - **NEVER use `npx supabase db push` directly** - Always use `npm run db:push` which includes environment confirmation to prevent accidental production deployments
+
+### i18n / Localization Rules
+
+Vue I18n uses special syntax characters that must be escaped in translation strings:
+
+| Character | Meaning | Escape with |
+|-----------|---------|-------------|
+| `@` | Linked message (`@:key`) | `{'@'}` |
+| `|` | Pluralization | `{'|'}` |
+| `{` `}` | Interpolation | `{'{'}`  `{'}'}`|
+
+**Common mistake**: Email placeholders like `your@email.com` will break because `@email` is interpreted as a linked message reference.
+
+**Correct**: `your{'@'}email.com`
+
+**Validation**: Run `npm run validate:locales` to check for syntax issues before committing.
 
 ### General Rules
 
