@@ -470,7 +470,7 @@
   },
   "beta": {
     "tooltip": "Klicke hier, um mehr über das Projekt zu erfahren",
-    "title": "Willkommen auf deinem Zero Waste Abenteuer!",
+    "title": "Willkommen auf deinem Zero Waste Abenteuer! 🌱",
     "subtitle": "Wir sind noch nicht offiziell gestartet, du bekommst also einen kleinen Vorgeschmack. Es kann sein, dass noch nicht alles reibungslos funktioniert oder sich manches seltsam verhält. Hab bitte etwas Geduld mit uns.",
     "whatIsThisTitle": "Was ist das?",
     "whatIsThisText": "Eine Karte, die dir hilft, nachhaltige Läden, Unverpackt-Stationen und Zero-Waste-Orte in Frankfurt zu finden. Wir fangen lokal an, aber wir haben größere Pläne.",
@@ -493,6 +493,6 @@
     "emailLabelOptional": "(nur wenn du eine Antwort möchtest)",
     "close": "Schließen",
     "thanks": "Danke, dass du hier bist.",
-    "feedbackToggle": "Wir freuen uns über dein Feedback - und ja, nette Worte sind auch erlaubt ;)"
+    "feedbackToggle": "Wir freuen uns über dein Feedback – und ja, nette Worte sind auch erlaubt 😉"
   }
 }
