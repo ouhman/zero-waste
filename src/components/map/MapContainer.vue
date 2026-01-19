@@ -45,6 +45,8 @@ let map: L.Map | null = null
 const markers: L.Marker[] = []
 const markerMap = new Map<string, L.Marker>() // locationId -> marker
 let highlightedMarkerId: string | null = null
+let userLocationMarker: L.CircleMarker | null = null
+let userLocationAccuracyCircle: L.Circle | null = null
 const { trackMapRendered } = useAnalytics()
 const { isDark } = useDarkMode()
 let mapTracked = false
@@ -339,6 +341,48 @@ function ensureVisible(lat: number, lng: number) {
   }
 }
 
+// Show user location marker with accuracy circle
+function showUserLocation(lat: number, lng: number, accuracy: number) {
+  if (!map) return
+
+  // Clear any existing user location markers
+  clearUserLocation()
+
+  // Add accuracy circle (semi-transparent blue)
+  userLocationAccuracyCircle = L.circle([lat, lng], {
+    radius: accuracy,
+    color: '#3b82f6',
+    fillColor: '#3b82f6',
+    fillOpacity: 0.15,
+    weight: 2,
+    opacity: 0.5
+  }).addTo(map)
+
+  // Add user location dot (solid blue circle)
+  userLocationMarker = L.circleMarker([lat, lng], {
+    radius: 8,
+    color: '#ffffff',
+    fillColor: '#3b82f6',
+    fillOpacity: 1,
+    weight: 3
+  }).addTo(map)
+
+  // Bring marker to front
+  userLocationMarker.bringToFront()
+}
+
+// Clear user location marker and accuracy circle
+function clearUserLocation() {
+  if (userLocationMarker) {
+    userLocationMarker.remove()
+    userLocationMarker = null
+  }
+  if (userLocationAccuracyCircle) {
+    userLocationAccuracyCircle.remove()
+    userLocationAccuracyCircle = null
+  }
+}
+
 // Watch center changes and update map view
 watch(
   () => ({ lat: props.centerLat, lng: props.centerLng }),
@@ -356,13 +400,14 @@ watch(isDark, (dark) => {
 })
 
 // Expose methods for parent components
-defineExpose({ centerOn, focusLocation, highlightMarker, highlightAllMarkers, unhighlightAllMarkers, ensureVisible })
+defineExpose({ centerOn, focusLocation, highlightMarker, highlightAllMarkers, unhighlightAllMarkers, ensureVisible, showUserLocation, clearUserLocation })
 
 onMounted(() => {
   initializeMap()
 })
 
 onUnmounted(() => {
+  clearUserLocation()
   if (map) {
     map.remove()
     map = null
@@ -394,7 +439,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  bottom: 1.625rem !important;  /* 26px on mobile - aligned with filter bar center */
+  bottom: calc(1.625rem + env(safe-area-inset-bottom)) !important;  /* 26px + safe area on mobile */
   right: 1.25rem !important;   /* 20px on mobile - equal spacing with filter bar gap */
 }
 

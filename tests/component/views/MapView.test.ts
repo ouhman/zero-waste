@@ -30,6 +30,7 @@ const mockCenterOn = vi.fn()
 const mockEnsureVisible = vi.fn()
 const mockFocusLocation = vi.fn()
 const mockHighlightMarker = vi.fn()
+const mockShowUserLocation = vi.fn()
 
 // Mock components with proper structure and exposed methods
 vi.mock('@/components/map/MapContainer.vue', () => ({
@@ -43,7 +44,8 @@ vi.mock('@/components/map/MapContainer.vue', () => ({
         centerOn: mockCenterOn,
         ensureVisible: mockEnsureVisible,
         focusLocation: mockFocusLocation,
-        highlightMarker: mockHighlightMarker
+        highlightMarker: mockHighlightMarker,
+        showUserLocation: mockShowUserLocation
       })
       return {}
     }
@@ -161,6 +163,7 @@ describe('MapView', () => {
     mockEnsureVisible.mockClear()
     mockFocusLocation.mockClear()
     mockHighlightMarker.mockClear()
+    mockShowUserLocation.mockClear()
   })
 
   afterEach(() => {
@@ -376,11 +379,12 @@ describe('MapView', () => {
       await flushPromises()
 
       const nearMeButton = wrapper.findComponent({ name: 'NearMeButton' })
-      nearMeButton.vm.$emit('locations-found', [], 50.1234, 8.6789)
+      nearMeButton.vm.$emit('locations-found', [], 50.1234, 8.6789, 50)
 
       await nextTick()
 
-      expect(mockCenterOn).toHaveBeenCalledWith(50.1234, 8.6789)
+      expect(mockCenterOn).toHaveBeenCalledWith(50.1234, 8.6789, 16)
+      expect(mockShowUserLocation).toHaveBeenCalledWith(50.1234, 8.6789, 50)
     })
   })
 

@@ -1,15 +1,17 @@
 <template>
-  <div class="w-full h-screen relative flex flex-col overflow-hidden">
+  <div class="w-full h-dvh relative flex flex-col overflow-hidden">
     <!-- Header -->
     <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
       <div class="flex justify-between items-center gap-3 max-w-7xl mx-auto">
-        <h1 class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate flex items-center gap-1.5 sm:gap-2">
+        <h1
+          @click="handleBetaClick"
+          :title="t('beta.tooltip')"
+          class="text-base sm:text-lg md:text-2xl font-bold text-gray-900 dark:text-white truncate flex items-center gap-1.5 sm:gap-2 cursor-pointer group transition-colors hover:text-green-600 dark:hover:text-green-400"
+        >
           {{ t('map.title') }}
-          <button
-            @click="handleBetaClick"
-            :title="t('beta.tooltip')"
-            :class="['px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[9px] sm:text-[10px] md:text-xs font-semibold bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors cursor-pointer', !hasBetaClicked ? 'beta-glow' : '']"
-          >BETA</button>
+          <span
+            :class="['px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[9px] sm:text-[10px] md:text-xs font-semibold bg-green-500 text-white rounded-md group-hover:bg-green-600 transition-colors', !hasBetaClicked ? 'beta-glow' : '']"
+          >BETA</span>
         </h1>
         <div class="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
           <router-link
@@ -46,7 +48,7 @@
     </div>
 
     <!-- Mobile Controls Panel (bottom) -->
-    <div class="md:hidden absolute bottom-8 left-4 right-20 z-[1000] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col-reverse">
+    <div class="md:hidden absolute bottom-[calc(2rem+env(safe-area-inset-bottom))] left-4 right-20 z-[1000] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col-reverse">
       <!-- Toggle Button -->
       <button
         @click="togglePanel"
@@ -83,8 +85,8 @@
 
     <!-- NearMe Button (bottom-right, above zoom controls - Google Maps style) -->
     <!-- Desktop: 24px margin + 61px zoom height + 16px gap = 101px → bottom-[6.5rem] (104px) -->
-    <!-- Mobile: above zoom controls with 20px gap, horizontally centered with +/- -->
-    <div class="absolute bottom-28 md:bottom-[6.5rem] right-4 md:right-12 z-[1000]">
+    <!-- Mobile: above zoom controls with safe area padding -->
+    <div class="absolute bottom-[calc(7rem+env(safe-area-inset-bottom))] md:bottom-[6.5rem] right-4 md:right-12 z-[1000]">
       <NearMeButton compact @locations-found="handleNearbyLocations" />
     </div>
 
@@ -282,10 +284,12 @@ function handleSearchSelect(location: Location) {
   mapRef.value?.focusLocation(location.id)
 }
 
-function handleNearbyLocations(_nearbyLocs: any[], userLat: number, userLng: number) {
-  // Center map on user location
-  mapRef.value?.centerOn(userLat, userLng)
+function handleNearbyLocations(_nearbyLocs: any[], userLat: number, userLng: number, accuracy: number) {
+  // Center and zoom in on user location
+  mapRef.value?.centerOn(userLat, userLng, 16)
   mapCenter.value = { lat: userLat, lng: userLng }
+  // Show user location marker with accuracy circle
+  mapRef.value?.showUserLocation(userLat, userLng, accuracy)
 }
 
 function handleShowDetails(locationId: string) {

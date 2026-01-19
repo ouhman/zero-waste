@@ -67,7 +67,7 @@ export function useNearby() {
    * Get user's current location from browser
    * Now delegates to useGeolocation composable
    */
-  async function getUserLocation(): Promise<{ lat: number; lng: number } | null> {
+  async function getUserLocation(): Promise<{ lat: number; lng: number; accuracy: number } | null> {
     loading.value = true
     setError(null)
 
@@ -77,7 +77,7 @@ export function useNearby() {
       // Update local refs for backward compatibility
       userLat.value = result.lat
       userLng.value = result.lng
-      return { lat: result.lat, lng: result.lng }
+      return { lat: result.lat, lng: result.lng, accuracy: result.accuracy }
     } else {
       // Copy error from geolocation composable (auto-clears after 5s)
       setError(geolocation.error.value)

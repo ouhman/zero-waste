@@ -65,7 +65,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  'locations-found': [locations: any[], userLat: number, userLng: number]
+  'locations-found': [locations: any[], userLat: number, userLng: number, accuracy: number]
 }>()
 
 const { t } = useI18n()
@@ -76,7 +76,7 @@ async function handleNearMe() {
 
   if (location) {
     await findNearby(location.lat, location.lng, 5000)
-    emit('locations-found', results.value, location.lat, location.lng)
+    emit('locations-found', results.value, location.lat, location.lng, location.accuracy)
   }
 }
 </script>
