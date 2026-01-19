@@ -16,7 +16,7 @@
         class="fixed inset-0 z-[1004] flex items-center justify-center p-4"
         @click.self="emit('close')"
       >
-        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+        <div ref="modalContentRef" class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
           <!-- Header -->
           <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-gray-700">
             <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
@@ -68,22 +68,17 @@
             </div>
 
             <!-- Inspirational quote -->
-            <div class="text-center py-2">
+            <div class="text-center py-3">
               <p class="text-sm italic text-gray-500 dark:text-gray-400">
                 {{ t('beta.everyStep') }}
               </p>
             </div>
 
-            <!-- Thanks message -->
-            <p class="text-center text-sm text-gray-500 dark:text-gray-400">
-              {{ t('beta.thanks') }}
-            </p>
-
             <!-- Feedback Toggle -->
             <div v-if="!showFeedbackForm && formState === 'default'" class="text-center">
               <button
-                @click="showFeedbackForm = true"
-                class="text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 hover:underline cursor-pointer transition-colors"
+                @click="handleFeedbackToggle"
+                class="px-4 py-2 text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 hover:bg-green-100 dark:hover:bg-green-900/50 rounded-lg cursor-pointer transition-colors"
               >
                 {{ t('beta.feedbackToggle') }}
               </button>
@@ -109,6 +104,7 @@
                   {{ t('beta.messageLabelRequired') }} <span class="text-red-500">*</span>
                 </label>
                 <textarea
+                  ref="messageInputRef"
                   id="beta-message"
                   v-model="message"
                   rows="4"
@@ -206,11 +202,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useFeedback } from '@/composables/useFeedback'
+import { isDesktop } from '@/lib/viewport'
 
 const { t } = useI18n()
+
+// Refs for modal content scrolling and input focus
+const modalContentRef = ref<HTMLElement | null>(null)
+const messageInputRef = ref<HTMLTextAreaElement | null>(null)
 
 interface Props {
   isOpen: boolean
@@ -258,6 +259,22 @@ watch(() => props.isOpen, (isOpen) => {
     }
   }
 })
+
+// Handle feedback toggle click - show form and scroll to bottom
+async function handleFeedbackToggle() {
+  showFeedbackForm.value = true
+  await nextTick()
+  if (modalContentRef.value?.scrollTo) {
+    modalContentRef.value.scrollTo({
+      top: modalContentRef.value.scrollHeight,
+      behavior: 'smooth'
+    })
+  }
+  // Focus input on desktop only (avoid mobile keyboard popup)
+  if (isDesktop() && messageInputRef.value?.focus) {
+    messageInputRef.value.focus()
+  }
+}
 
 // Countdown timer for rate limit
 let countdownInterval: ReturnType<typeof setInterval> | undefined
