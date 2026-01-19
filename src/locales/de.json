@@ -445,6 +445,11 @@
     "byAppointment": "Nach Vereinbarung",
     "closed": "Geschlossen"
   },
+  "settings": {
+    "label": "Einstellungen",
+    "language": "Sprache",
+    "appearance": "Erscheinungsbild"
+  },
   "hoursSuggestion": {
     "title": "Öffnungszeiten vorschlagen",
     "day": "Tag",

@@ -1,23 +1,8 @@
 <template>
   <div class="submit-page">
-    <!-- Language Switcher & Dark Mode Toggle -->
+    <!-- Settings Dropdown -->
     <div class="top-controls">
-      <LanguageSwitcher />
-      <button
-        type="button"
-        class="dark-mode-toggle cursor-pointer"
-        :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-        @click="toggleDarkMode"
-      >
-        <!-- Sun icon (shown in dark mode) -->
-        <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="toggle-icon">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-        </svg>
-        <!-- Moon icon (shown in light mode) -->
-        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="toggle-icon">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-        </svg>
-      </button>
+      <SettingsDropdown />
     </div>
 
     <div class="submit-container">
@@ -61,14 +46,11 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LocationForm from '@/components/LocationForm.vue'
-import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import SettingsDropdown from '@/components/common/SettingsDropdown.vue'
 import { useSubmission } from '@/composables/useSubmission'
 import { useAnalytics } from '@/composables/useAnalytics'
-import { useDarkMode } from '@/composables/useDarkMode'
 
 const { t } = useI18n()
-// Initialize dark mode from localStorage/system preference
-const { isDark, toggle: toggleDarkMode } = useDarkMode()
 const { submit, loading: submitting, error: submissionError, success } = useSubmission()
 const { trackSubmissionCompleted } = useAnalytics()
 
@@ -107,43 +89,6 @@ async function handleSubmit(data: any) {
   top: 1rem;
   right: 1rem;
   z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.dark-mode-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  color: #6b7280;
-  transition: all 200ms ease;
-}
-
-:global(.dark) .dark-mode-toggle {
-  background: #374151;
-  border-color: #4b5563;
-  color: #fbbf24;
-}
-
-.dark-mode-toggle:hover {
-  background: #f3f4f6;
-  color: #374151;
-}
-
-:global(.dark) .dark-mode-toggle:hover {
-  background: #4b5563;
-  color: #fcd34d;
-}
-
-.toggle-icon {
-  width: 20px;
-  height: 20px;
 }
 
 .submit-container {

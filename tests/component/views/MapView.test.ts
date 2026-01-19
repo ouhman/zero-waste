@@ -78,10 +78,10 @@ vi.mock('@/components/NearMeButton.vue', () => ({
   }
 }))
 
-vi.mock('@/components/LanguageSwitcher.vue', () => ({
+vi.mock('@/components/common/SettingsDropdown.vue', () => ({
   default: {
-    name: 'LanguageSwitcher',
-    template: '<div data-testid="language-switcher"></div>'
+    name: 'SettingsDropdown',
+    template: '<div data-testid="settings-dropdown"></div>'
   }
 }))
 
@@ -184,7 +184,7 @@ describe('MapView', () => {
       expect(wrapper.find('[data-testid="search-bar"]').exists()).toBe(true)
       expect(wrapper.find('[data-testid="category-filter"]').exists()).toBe(true)
       expect(wrapper.find('[data-testid="near-me-button"]').exists()).toBe(true)
-      expect(wrapper.find('[data-testid="language-switcher"]').exists()).toBe(true)
+      expect(wrapper.find('[data-testid="settings-dropdown"]').exists()).toBe(true)
     })
 
     it('displays the page title', () => {

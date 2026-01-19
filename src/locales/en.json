@@ -445,6 +445,11 @@
     "byAppointment": "By appointment",
     "closed": "Closed"
   },
+  "settings": {
+    "label": "Settings",
+    "language": "Language",
+    "appearance": "Appearance"
+  },
   "hoursSuggestion": {
     "title": "Suggest opening hours",
     "day": "Day",
