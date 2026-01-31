@@ -399,8 +399,17 @@ watch(isDark, (dark) => {
   setTileLayer(dark)
 })
 
+// Open popup for a specific marker
+function openPopup(locationId: string) {
+  const marker = markerMap.get(locationId)
+  if (marker) {
+    // Small delay to let map animation complete
+    setTimeout(() => marker.openPopup(), 300)
+  }
+}
+
 // Expose methods for parent components
-defineExpose({ centerOn, focusLocation, highlightMarker, highlightAllMarkers, unhighlightAllMarkers, ensureVisible, showUserLocation, clearUserLocation })
+defineExpose({ centerOn, focusLocation, highlightMarker, highlightAllMarkers, unhighlightAllMarkers, ensureVisible, showUserLocation, clearUserLocation, openPopup })
 
 onMounted(() => {
   initializeMap()

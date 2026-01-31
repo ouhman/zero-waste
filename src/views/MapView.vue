@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-dvh relative flex flex-col overflow-hidden">
+  <div class="w-full h-full relative flex flex-col overflow-hidden">
     <!-- Header -->
     <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
       <div class="flex justify-between items-center gap-3 max-w-7xl mx-auto">
@@ -188,6 +188,9 @@ const showBetaModal = ref(false)
 // Track if this is the initial page load (for direct URL access)
 const isInitialLoad = ref(true)
 
+// Track location ID that needs popup opened after markers are ready (for direct URL navigation)
+const pendingPopupLocationId = ref<string | null>(null)
+
 // Panel collapse state - collapsed by default on mobile
 const isPanelCollapsed = ref(true)
 
@@ -216,7 +219,12 @@ async function openLocationBySlug(slug: string, centerMode: 'center' | 'ensure' 
       }
       // 'none' = don't move the map
     }
+
+    // Always set pending ID as backup (handleMarkersAdded will use it if markers aren't ready)
+    pendingPopupLocationId.value = location.id
+    // Also try immediately (works if markers are already loaded)
     mapRef.value?.highlightMarker(location.id)
+    mapRef.value?.openPopup(location.id)
   } else {
     // Location not found - show 404 modal
     notFoundSlug.value = slug
@@ -325,6 +333,13 @@ function handleMarkersAdded() {
   // When markers are added and categories are filtered, highlight all markers
   if (selectedCategories.value.length > 0) {
     mapRef.value?.highlightAllMarkers()
+  }
+
+  // Handle pending popup from initial URL navigation (markers are now ready)
+  if (pendingPopupLocationId.value) {
+    mapRef.value?.highlightMarker(pendingPopupLocationId.value)
+    mapRef.value?.openPopup(pendingPopupLocationId.value)
+    pendingPopupLocationId.value = null // Clear after use
   }
 }
 
