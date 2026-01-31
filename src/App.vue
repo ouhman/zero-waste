@@ -30,6 +30,16 @@ onMounted(async () => {
 <style>
 /* Base styles moved to index.css @layer base for Tailwind v4 compatibility */
 #app {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Allow RouterView content to fill available space */
+#app > :first-child {
+  flex: 1 1 0%;
+  min-height: 0;
+  overflow: auto;
 }
 </style>
