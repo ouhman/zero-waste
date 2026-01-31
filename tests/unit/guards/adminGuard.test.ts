@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { adminGuard, updateActivity } from '@/router/guards/adminGuard'
 import { supabase } from '@/lib/supabase'
-import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router'
 
 // Mock supabase
 vi.mock('@/lib/supabase', () => ({
@@ -15,8 +15,6 @@ vi.mock('@/lib/supabase', () => ({
 
 describe('adminGuard', () => {
   let mockTo: RouteLocationNormalized
-  let mockFrom: RouteLocationNormalized
-  let mockNext: NavigationGuardNext
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -33,20 +31,6 @@ describe('adminGuard', () => {
       params: {}
     } as RouteLocationNormalized
 
-    mockFrom = {
-      path: '/',
-      name: 'map',
-      matched: [],
-      fullPath: '/',
-      query: {},
-      hash: '',
-      redirectedFrom: undefined,
-      meta: {},
-      params: {}
-    } as RouteLocationNormalized
-
-    mockNext = vi.fn() as any
-
     // Default mocks
     vi.mocked(supabase.auth.getSession).mockResolvedValue({
       data: { session: null },
@@ -61,9 +45,9 @@ describe('adminGuard', () => {
   it('allows access to routes that do not require admin', async () => {
     mockTo.meta = { requiresAdmin: false }
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
-    expect(mockNext).toHaveBeenCalledWith()
+    expect(result).toBe(true)
     expect(supabase.auth.getSession).not.toHaveBeenCalled()
   })
 
@@ -73,9 +57,9 @@ describe('adminGuard', () => {
       error: null
     })
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
-    expect(mockNext).toHaveBeenCalledWith('/bulk-station/login')
+    expect(result).toBe('/bulk-station/login')
   })
 
   it('redirects to login when getSession returns error', async () => {
@@ -84,9 +68,9 @@ describe('adminGuard', () => {
       error: new Error('Session error') as any
     })
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
-    expect(mockNext).toHaveBeenCalledWith('/bulk-station/login')
+    expect(result).toBe('/bulk-station/login')
   })
 
   it('allows access for valid admin session', async () => {
@@ -106,9 +90,9 @@ describe('adminGuard', () => {
       error: null
     })
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
-    expect(mockNext).toHaveBeenCalledWith()
+    expect(result).toBe(true)
   })
 
   it('redirects to login and signs out when user is not admin', async () => {
@@ -128,10 +112,10 @@ describe('adminGuard', () => {
       error: null
     })
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
     expect(supabase.auth.signOut).toHaveBeenCalled()
-    expect(mockNext).toHaveBeenCalledWith('/bulk-station/login')
+    expect(result).toBe('/bulk-station/login')
   })
 
   it('redirects to login and signs out when role is missing', async () => {
@@ -149,18 +133,18 @@ describe('adminGuard', () => {
       error: null
     })
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
     expect(supabase.auth.signOut).toHaveBeenCalled()
-    expect(mockNext).toHaveBeenCalledWith('/bulk-station/login')
+    expect(result).toBe('/bulk-station/login')
   })
 
   it('handles exceptions and redirects to login', async () => {
     vi.mocked(supabase.auth.getSession).mockRejectedValue(new Error('Network error'))
 
-    await adminGuard(mockTo, mockFrom, mockNext)
+    const result = await adminGuard(mockTo)
 
-    expect(mockNext).toHaveBeenCalledWith('/bulk-station/login')
+    expect(result).toBe('/bulk-station/login')
   })
 
   describe('updateActivity', () => {

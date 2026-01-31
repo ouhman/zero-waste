@@ -14,7 +14,7 @@ setup('dismiss cookie banner for non-admin tests', async ({ page }) => {
 
   try {
     // Navigate to home page
-    await page.goto('http://localhost:5173/')
+    await page.goto('http://localhost:5174/')
     await page.waitForURL(/\/$/)
 
     // Dismiss cookie consent banner if present

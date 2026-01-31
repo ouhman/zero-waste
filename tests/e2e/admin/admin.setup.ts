@@ -36,7 +36,7 @@ setup('seed admin test data and authenticate', async ({ page }) => {
     await injectSession(page, session)
 
     // Navigate to admin area to initialize the session in browser
-    await page.goto('http://localhost:5173/bulk-station')
+    await page.goto('http://localhost:5174/bulk-station')
     await page.waitForURL(/\/bulk-station/)
 
     // Dismiss cookie consent banner if present

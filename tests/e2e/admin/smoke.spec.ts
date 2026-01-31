@@ -20,20 +20,22 @@ test.describe('Admin E2E Infrastructure Smoke Test', () => {
   })
 
   test('without auth - redirects to login', async ({ browser }) => {
-    // Create a new context WITHOUT storage state
+    // Create a fresh context without storage state
     const context = await browser.newContext({ storageState: undefined })
     const page = await context.newPage()
 
-    // Navigate to dashboard WITHOUT auth
-    await page.goto('http://localhost:5173/bulk-station')
+    try {
+      // Navigate directly to protected dashboard WITHOUT any auth
+      await page.goto('/bulk-station', { waitUntil: 'networkidle' })
 
-    // Should redirect to login page
-    await expect(page).toHaveURL(/\/bulk-station\/login/)
+      // Should redirect to login page
+      await expect(page).toHaveURL(/\/bulk-station\/login/, { timeout: 10000 })
 
-    // Login form should be visible
-    await expect(page.locator('input[type="email"]')).toBeVisible()
-
-    await context.close()
+      // Login form should be visible
+      await expect(page.locator('input[type="email"]')).toBeVisible()
+    } finally {
+      await context.close()
+    }
   })
 
   test('page objects work - can access dashboard elements', async ({ page }) => {
