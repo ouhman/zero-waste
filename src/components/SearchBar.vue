@@ -29,7 +29,7 @@
 
     <div v-if="results.length > 0" class="search-results">
       <div class="results-header">
-        {{ t('map.resultsFound', results.length, { count: results.length }) }}
+        {{ t('map.resultsFound', { count: results.length }) }}
       </div>
       <div
         v-for="location in results"

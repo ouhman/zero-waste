@@ -308,6 +308,7 @@ import { useAdminStore } from '@/stores/admin'
 import { useCategoriesStore } from '@/stores/categories'
 import AdminLayout from '@/components/admin/AdminLayout.vue'
 import L from 'leaflet'
+import type { Database } from '@/types/database'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -317,7 +318,11 @@ const categoriesStore = useCategoriesStore()
 
 type TabValue = 'all' | 'pending' | 'approved' | 'rejected'
 
-type LocationWithCategories = typeof adminStore.locations.value[number]
+type LocationWithCategories = Database['public']['Tables']['locations']['Row'] & {
+  location_categories?: {
+    categories: Database['public']['Tables']['categories']['Row']
+  }[]
+}
 
 const activeTab = ref<TabValue>('all')
 const searchQuery = ref('')

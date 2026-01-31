@@ -9,7 +9,9 @@ type LocationUpdate = Database['public']['Tables']['locations']['Update']
 type LocationCategoryInsert = Database['public']['Tables']['location_categories']['Insert']
 
 type LocationWithCategories = Location & {
-  location_categories?: { category_id: string }[]
+  location_categories?: {
+    categories: Database['public']['Tables']['categories']['Row']
+  }[]
 }
 
 export const useAdminStore = defineStore('admin', () => {
@@ -56,7 +58,9 @@ export const useAdminStore = defineStore('admin', () => {
         .from('locations')
         .select(`
           *,
-          location_categories(category_id)
+          location_categories(
+            categories(*)
+          )
         `)
         .is('deleted_at', null)
         .order('created_at', { ascending: false })
@@ -73,7 +77,7 @@ export const useAdminStore = defineStore('admin', () => {
       let filteredData = (data || []) as LocationWithCategories[]
       if (categoryId) {
         filteredData = filteredData.filter(location =>
-          location.location_categories?.some((lc: { category_id: string }) => lc.category_id === categoryId)
+          location.location_categories?.some(lc => lc.categories.id === categoryId)
         )
       }
 
@@ -255,7 +259,7 @@ export const useAdminStore = defineStore('admin', () => {
         admin_note: adminNote || null,
         reviewed_at: new Date().toISOString(),
         reviewed_by: userData.user?.id
-      })
+      } as never)
       .eq('id', id)
 
     if (updateError) {
@@ -282,8 +286,8 @@ export const useAdminStore = defineStore('admin', () => {
     return supabase
       .from('locations')
       .update({
-        opening_hours_structured: hours as never
-      })
+        opening_hours_structured: hours
+      } as never)
       .eq('id', locationId)
   }
 
@@ -291,7 +295,7 @@ export const useAdminStore = defineStore('admin', () => {
     // Soft delete by setting deleted_at
     const { error: deleteError } = await supabase
       .from('locations')
-      .update({ deleted_at: new Date().toISOString() })
+      .update({ deleted_at: new Date().toISOString() } as never)
       .eq('id', id)
 
     if (deleteError) {

@@ -640,8 +640,7 @@ async function handlePOISelected(data: {
       await searchWithExtras(
         formData.value.name,
         data.lat,
-        data.lng,
-        enrichmentAbortController.signal
+        data.lng
       )
     } catch (e) {
       console.error('Failed to enrich POI:', e)

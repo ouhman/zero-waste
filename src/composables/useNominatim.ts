@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { parseOsmOpeningHours } from '@/lib/openingHoursParser'
 import { useDebounce } from './useDebounce'
-import type { PaymentMethods, StructuredOpeningHours } from '@/types/osm'
+import type { PaymentMethods, StructuredOpeningHours, OpeningHoursEntry } from '@/types/osm'
 
 export interface GeocodingResult {
   lat: number
