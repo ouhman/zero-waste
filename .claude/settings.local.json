@@ -21,7 +21,8 @@
       "Bash(node -c:*)",
       "Bash(npx playwright test:*)",
       "Bash(test:*)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(npm run test:e2e:*)"
     ]
   }
 }
