@@ -72,31 +72,34 @@ describe('SubmitView', () => {
 
   describe('Initial Rendering', () => {
     it('renders the page title', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       expect(wrapper.text()).toContain('Submit a Location')
     })
 
     it('renders the subtitle', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       expect(wrapper.text()).toContain('Help grow the Zero Waste Frankfurt community')
     })
 
     it('renders the back link', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const backLink = wrapper.find('a[href="/"]')
       expect(backLink.exists()).toBe(true)
@@ -104,21 +107,23 @@ describe('SubmitView', () => {
     })
 
     it('renders the location form', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       expect(wrapper.find('[data-testid="location-form"]').exists()).toBe(true)
     })
 
     it('renders the info footer', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       expect(wrapper.text()).toContain('Your submission will be reviewed before appearing on the map')
     })
@@ -126,25 +131,27 @@ describe('SubmitView', () => {
 
   describe('Form Display', () => {
     it('passes correct mode prop to LocationForm', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const form = wrapper.findComponent({ name: 'LocationForm' })
       expect(form.props('mode')).toBe('submit')
     })
 
     it('hides form when submission is successful', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
       // Set submitted to true
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       const form = wrapper.find('[data-testid="location-form"]')
@@ -152,13 +159,14 @@ describe('SubmitView', () => {
     })
 
     it('shows form when not submitted', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
-      expect(wrapper.vm.submitted).toBe(false)
+      expect((wrapper.vm as any).submitted).toBe(false)
       expect(wrapper.find('[data-testid="location-form"]').exists()).toBe(true)
     })
   })
@@ -168,11 +176,12 @@ describe('SubmitView', () => {
       // Mock successful submission
       mockSubmit.mockResolvedValueOnce(undefined)
 
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const formData = {
         name: 'Test Location',
@@ -193,11 +202,12 @@ describe('SubmitView', () => {
     it('shows success message after successful submission', async () => {
       // This test is for integration - ensuring handleSubmit calls submit
       // The actual success state management is tested at the component level
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const formData = { name: 'Test' }
       const form = wrapper.findComponent({ name: 'LocationForm' })
@@ -212,13 +222,14 @@ describe('SubmitView', () => {
 
   describe('Success State', () => {
     it('displays success message when submitted', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       const successMessage = wrapper.find('.success-message')
@@ -227,13 +238,14 @@ describe('SubmitView', () => {
     })
 
     it('displays success icon', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       const successIcon = wrapper.find('.success-icon')
@@ -242,26 +254,28 @@ describe('SubmitView', () => {
     })
 
     it('shows email verification message', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       expect(wrapper.text()).toContain('Please check your email to verify your submission')
     })
 
     it('displays back to map link after success', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       const link = wrapper.find('.success-message a[href="/"]')
@@ -280,11 +294,12 @@ describe('SubmitView', () => {
       // Note: The mock returns functions instead of refs, which causes
       // the v-if to evaluate as truthy (functions are truthy)
       // In real usage with proper refs, this would work correctly
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       // With the current mock structure (functions instead of refs),
       // the error message div will exist because the function is truthy
@@ -298,11 +313,12 @@ describe('SubmitView', () => {
 
   describe('Loading State', () => {
     it('passes loading prop to LocationForm', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const form = wrapper.findComponent({ name: 'LocationForm' })
       // The loading prop is passed from useSubmission's loading ref
@@ -314,11 +330,12 @@ describe('SubmitView', () => {
 
   describe('Navigation', () => {
     it('navigates to home page when back link clicked', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const backLink = wrapper.find('a[href="/"]')
       await backLink.trigger('click')
@@ -329,13 +346,14 @@ describe('SubmitView', () => {
     })
 
     it('navigates to home after successful submission', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       const backLink = wrapper.find('.success-message a')
@@ -345,39 +363,42 @@ describe('SubmitView', () => {
 
   describe('Component Lifecycle', () => {
     it('initializes with submitted as false', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
-      expect(wrapper.vm.submitted).toBe(false)
+      expect((wrapper.vm as any).submitted).toBe(false)
     })
 
     it('maintains form state across re-renders', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       // Force re-render
       await wrapper.vm.$forceUpdate()
 
-      expect(wrapper.vm.submitted).toBe(true)
+      expect((wrapper.vm as any).submitted).toBe(true)
     })
   })
 
   describe('Edge Cases', () => {
     it('handles multiple rapid submissions', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const formData = { name: 'Test' }
       const form = wrapper.findComponent({ name: 'LocationForm' })
@@ -394,11 +415,12 @@ describe('SubmitView', () => {
     })
 
     it('handles empty form data', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const form = wrapper.findComponent({ name: 'LocationForm' })
       form.vm.$emit('submit', {})
@@ -409,57 +431,63 @@ describe('SubmitView', () => {
     })
 
     it('resets submission state correctly', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
       // Submit successfully
       wrapper.vm.submitted = true
       await nextTick()
 
       // Verify success state
-      expect(wrapper.find('.success-message').exists()).toBe(true)
+      const successMessage = wrapper.find('.success-message')
+      expect(successMessage.exists()).toBe(true)
 
       // Reset
       wrapper.vm.submitted = false
       await nextTick()
 
       // Form should be visible again
-      expect(wrapper.find('[data-testid="location-form"]').exists()).toBe(true)
+      const form = wrapper.find('[data-testid="location-form"]')
+      expect(form.exists()).toBe(true)
     })
   })
 
   describe('Styling and Layout', () => {
     it('applies correct container classes', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const container = wrapper.find('.submit-container')
       expect(container.exists()).toBe(true)
     })
 
     it('applies gradient background', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const page = wrapper.find('.submit-page')
       expect(page.exists()).toBe(true)
     })
 
     it('centers content with max width', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       const container = wrapper.find('.submit-container')
       expect(container.classes()).toContain('submit-container')
@@ -468,11 +496,12 @@ describe('SubmitView', () => {
 
   describe('Accessibility', () => {
     it('has semantic HTML structure', () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any)
 
       expect(wrapper.find('header').exists()).toBe(true)
       expect(wrapper.find('footer').exists()).toBe(true)
@@ -480,13 +509,14 @@ describe('SubmitView', () => {
     })
 
     it('displays error with strong tag for emphasis', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submissionError = 'Error'
+      (wrapper.vm as any).submissionError = 'Error'
       await nextTick()
 
       const strong = wrapper.find('.error-message strong')
@@ -494,13 +524,14 @@ describe('SubmitView', () => {
     })
 
     it('success icon is visible and descriptive', async () => {
-      const wrapper = mount(SubmitView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(SubmitView, mountOptions as any) as any
 
-      wrapper.vm.submitted = true
+      (wrapper.vm as any).submitted = true
       await nextTick()
 
       const icon = wrapper.find('.success-icon')

@@ -133,7 +133,7 @@ test.describe('Category Management', () => {
       .eq('location_id', locationId)
       .single()
 
-    expect(locationCategories?.category_id).toBe(andereCategory.id)
+    expect((locationCategories as { category_id: string } | null)?.category_id).toBe(andereCategory.id)
   })
 
   // ESC closes modal

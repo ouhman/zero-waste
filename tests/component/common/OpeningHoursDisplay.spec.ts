@@ -44,7 +44,7 @@ describe('OpeningHoursDisplay', () => {
       if (args.length === 0) {
         return mockDate
       }
-      return new RealDate(...args)
+      return new (RealDate as any)(...args)
     }
 
     // Preserve static methods

@@ -305,6 +305,7 @@ describe('HoursSuggestionModal', () => {
     const wrapper = mount(HoursSuggestionModal, {
       props: {
         locationId: 'test-location-id',
+        locationSlug: 'test-location',
         locationName: 'Test Location',
         currentHours: null,
         osmFormat: 'Mo-Fr 09:00-18:00'

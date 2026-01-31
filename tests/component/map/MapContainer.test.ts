@@ -468,7 +468,10 @@ describe('MapContainer', () => {
             description_de: null,
             description_en: null,
             created_at: '2024-01-01',
-            updated_at: null
+            updated_at: null,
+            always_open: null,
+            icon_name: null,
+            marker_size: null
           }
         }
       ]
@@ -487,7 +490,7 @@ describe('MapContainer', () => {
   })
 
   it('closes popup when details button is clicked', async () => {
-    const wrapper = mount(MapContainer)
+    mount(MapContainer)
     await new Promise(resolve => setTimeout(resolve, 0))
 
     // Create a mock button in DOM
@@ -518,7 +521,7 @@ describe('MapContainer', () => {
   })
 
   it('closes popup when share button is clicked', async () => {
-    const wrapper = mount(MapContainer)
+    mount(MapContainer)
     await new Promise(resolve => setTimeout(resolve, 0))
 
     // Create a mock button in DOM

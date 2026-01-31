@@ -196,7 +196,10 @@ describe('PendingLocationPreviewPanel', () => {
               description_de: null,
               description_en: null,
               created_at: '2024-01-01',
-              updated_at: null
+              updated_at: null,
+              always_open: null,
+              icon_name: null,
+              marker_size: null
             }
           },
           {
@@ -212,7 +215,10 @@ describe('PendingLocationPreviewPanel', () => {
               description_de: null,
               description_en: null,
               created_at: '2024-01-01',
-              updated_at: null
+              updated_at: null,
+              always_open: null,
+              icon_name: null,
+              marker_size: null
             }
           }
         ]

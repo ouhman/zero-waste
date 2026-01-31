@@ -18,8 +18,9 @@ describe('GoogleAnalyticsProvider', () => {
     vi.spyOn(document, 'createElement').mockReturnValue(mockScript as unknown as HTMLScriptElement)
     vi.spyOn(document.head, 'appendChild').mockImplementation((node) => {
       // Trigger onload immediately in tests
-      if ((node as typeof mockScript).onload) {
-        setTimeout(() => (node as typeof mockScript).onload?.(), 0)
+      const scriptNode = node as unknown as typeof mockScript
+      if (scriptNode.onload) {
+        setTimeout(() => scriptNode.onload?.(), 0)
       }
       return node
     })

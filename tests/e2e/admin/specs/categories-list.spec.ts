@@ -37,7 +37,7 @@ test.describe('Categories List', () => {
 
   test('displays category information correctly', async () => {
     // Seed a test category
-    const categoryId = await seedTestCategory()
+    await seedTestCategory()
     const category = await getCategoryBySlug('e2e-test-category')
 
     expect(category).toBeTruthy()
@@ -64,12 +64,13 @@ test.describe('Categories List', () => {
       .order('sort_order', { ascending: true })
 
     expect(categories).toBeTruthy()
+    if (!categories) return
 
     // Get display order from page
     const displayedSlugs = await page.getCategoryOrder()
 
     // Compare
-    const expectedSlugs = categories!.map(c => c.slug)
+    const expectedSlugs = (categories as { slug: string }[]).map(c => c.slug)
     expect(displayedSlugs).toEqual(expectedSlugs)
   })
 
@@ -86,14 +87,16 @@ test.describe('Categories List', () => {
       return
     }
 
+    const category = categoryWithLocations as { id: string; slug: string }
+
     // Get location count
     const { count } = await testSupabase
       .from('location_categories')
       .select('*', { count: 'exact', head: true })
-      .eq('category_id', categoryWithLocations.id)
+      .eq('category_id', category.id)
 
     // Check that the count is displayed
-    const row = page.getCategoryRow(categoryWithLocations.slug)
+    const row = page.getCategoryRow(category.slug)
 
     if (count && count > 0) {
       await expect(row).toContainText(String(count))
@@ -185,13 +188,15 @@ test.describe('Categories List', () => {
       return
     }
 
+    const category = categoryWithLocations as { id: string; slug: string }
+
     // Get location count
     const { count } = await testSupabase
       .from('location_categories')
       .select('*', { count: 'exact', head: true })
-      .eq('category_id', categoryWithLocations.id)
+      .eq('category_id', category.id)
 
-    const row = page.getCategoryRow(categoryWithLocations.slug)
+    const row = page.getCategoryRow(category.slug)
 
     if (count && count > 0) {
       // Should be a clickable link
@@ -201,7 +206,7 @@ test.describe('Categories List', () => {
       // Link should navigate to locations page with category filter
       const href = await link.getAttribute('href')
       expect(href).toContain('/bulk-station/locations')
-      expect(href).toContain('category=' + categoryWithLocations.id)
+      expect(href).toContain('category=' + category.id)
     }
   })
 })

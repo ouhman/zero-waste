@@ -1,114 +1,24 @@
 import { describe, it, expect } from 'vitest'
 import { useFilters } from '@/composables/useFilters'
-import type { Database } from '@/types/database'
-
-type Location = Database['public']['Tables']['locations']['Row'] & {
-  location_categories?: {
-    categories: Database['public']['Tables']['categories']['Row']
-  }[]
-}
+import { createMockLocation, createMockCategory } from '../../utils/test-helpers'
+import type { Location } from '../../utils/test-helpers'
 
 describe('useFilters', () => {
-  const mockLocations: Location[] = [
+  const cat1 = createMockCategory({ id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store' })
+  const cat2 = createMockCategory({ id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair' })
+
+  const mockLocations: (Location & { location_categories?: { categories: any }[] })[] = [
     {
-      id: '1',
-      name: 'Location 1',
-      slug: 'location-1',
-      description_de: null,
-      description_en: null,
-      address: 'Address 1',
-      city: 'Frankfurt',
-      postal_code: '60311',
-      latitude: '50.1109',
-      longitude: '8.6821',
-      website: null,
-      phone: null,
-      email: null,
-      instagram: null,
-      opening_hours_text: null,
-      payment_methods: null,
-      opening_hours_osm: null,
-      opening_hours_structured: null,
-      submission_type: null,
-      submitted_by_email: null,
-      related_location_id: null,
-      status: 'approved',
-      approved_by: null,
-      rejection_reason: null,
-      admin_notes: null,
-      deleted_at: null,
-      created_at: '2024-01-01',
-      updated_at: '2024-01-01',
-      location_categories: [
-        { categories: { id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store', icon: null, color: null, sort_order: 1, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } }
-      ]
+      ...createMockLocation({ id: '1', name: 'Location 1', slug: 'location-1' }),
+      location_categories: [{ categories: cat1 }]
     },
     {
-      id: '2',
-      name: 'Location 2',
-      slug: 'location-2',
-      description_de: null,
-      description_en: null,
-      address: 'Address 2',
-      city: 'Frankfurt',
-      postal_code: '60311',
-      latitude: '50.1109',
-      longitude: '8.6821',
-      website: null,
-      phone: null,
-      email: null,
-      instagram: null,
-      opening_hours_text: null,
-      payment_methods: null,
-      opening_hours_osm: null,
-      opening_hours_structured: null,
-      submission_type: null,
-      submitted_by_email: null,
-      related_location_id: null,
-      status: 'approved',
-      approved_by: null,
-      rejection_reason: null,
-      admin_notes: null,
-      deleted_at: null,
-      created_at: '2024-01-01',
-      updated_at: '2024-01-01',
-      location_categories: [
-        { categories: { id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair', icon: null, color: null, sort_order: 2, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } }
-      ]
+      ...createMockLocation({ id: '2', name: 'Location 2', slug: 'location-2' }),
+      location_categories: [{ categories: cat2 }]
     },
     {
-      id: '3',
-      name: 'Location 3',
-      slug: 'location-3',
-      description_de: null,
-      description_en: null,
-      address: 'Address 3',
-      city: 'Frankfurt',
-      postal_code: '60311',
-      latitude: '50.1109',
-      longitude: '8.6821',
-      website: null,
-      phone: null,
-      email: null,
-      instagram: null,
-      opening_hours_text: null,
-      payment_methods: null,
-      opening_hours_osm: null,
-      opening_hours_structured: null,
-      submission_type: null,
-      submitted_by_email: null,
-      related_location_id: null,
-      status: 'approved',
-      approved_by: null,
-      rejection_reason: null,
-      admin_notes: null,
-      deleted_at: null,
-      created_at: '2024-01-01',
-      updated_at: '2024-01-01',
-      location_categories: [
-        { categories: { id: '1', slug: 'unverpackt', name_de: 'Unverpackt', name_en: 'Bulk Store', icon: null, color: null, sort_order: 1, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } },
-        { categories: { id: '2', slug: 'reparatur', name_de: 'Reparatur', name_en: 'Repair', icon: null, color: null, sort_order: 2, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null } }
-      ]
+      ...createMockLocation({ id: '3', name: 'Location 3', slug: 'location-3' }),
+      location_categories: [{ categories: cat1 }, { categories: cat2 }]
     }
   ]
 
@@ -147,8 +57,8 @@ describe('useFilters', () => {
   })
 
   it('handles locations without categories', () => {
-    const locationsWithoutCategories: Location[] = [
-      { ...mockLocations[0], location_categories: [] }
+    const locationsWithoutCategories = [
+      { ...createMockLocation({ id: mockLocations[0].id }), location_categories: [] }
     ]
 
     const { filterByCategories } = useFilters()

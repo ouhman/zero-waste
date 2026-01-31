@@ -218,11 +218,9 @@ describe('useOverpass', () => {
       elements: []
     }
 
-    let loadingDuringFetch = false
-
     vi.mocked(fetch).mockImplementation(() => {
       const { loading } = useOverpass()
-      loadingDuringFetch = loading.value
+      loading.value
       return Promise.resolve({
         ok: true,
         json: async () => mockResponse

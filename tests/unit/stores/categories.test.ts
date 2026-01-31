@@ -179,7 +179,10 @@ describe('Category Store', () => {
         icon_url: oldIconUrl,
         description_de: null,
         description_en: null,
-        updated_at: '2024-01-01'
+        updated_at: '2024-01-01',
+        always_open: null,
+        icon_name: null,
+        marker_size: null
       }
 
       const updatedCategory = { ...existingCategory, icon_url: newIconUrl }
@@ -226,7 +229,10 @@ describe('Category Store', () => {
         icon_url: 'https://storage.supabase.co/category-icons/test-123.png',
         description_de: null,
         description_en: null,
-        updated_at: '2024-01-01'
+        updated_at: '2024-01-01',
+        always_open: null,
+        icon_name: null,
+        marker_size: null
       }
 
       const mockStorage = vi.mocked(supabase.storage.from)
@@ -263,6 +269,9 @@ describe('Category Store', () => {
         name_en: 'Other',
         icon: null,
         color: '#000000',
+        always_open: null,
+        icon_name: null,
+        marker_size: null,
         sort_order: 99,
         created_at: '2024-01-01',
         icon_url: null,

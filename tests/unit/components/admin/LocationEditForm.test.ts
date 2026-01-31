@@ -99,6 +99,7 @@ describe('LocationEditForm', () => {
     slug: 'test-location',
     address: '123 Test St',
     city: 'Frankfurt',
+    suburb: 'Bockenheim',
     postal_code: '60311',
     latitude: '50.1109',
     longitude: '8.6821',
@@ -131,8 +132,8 @@ describe('LocationEditForm', () => {
   }
 
   const mockCategories = [
-    { id: 'cat1', name_de: 'Category 1', name_en: 'Category 1', slug: 'cat1', icon: null, color: null, sort_order: 1, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null },
-    { id: 'cat2', name_de: 'Category 2', name_en: 'Category 2', slug: 'cat2', icon: null, color: null, sort_order: 2, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null }
+    { id: 'cat1', name_de: 'Category 1', name_en: 'Category 1', slug: 'cat1', icon: null, color: null, sort_order: 1, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null, always_open: null, icon_name: null, marker_size: null },
+    { id: 'cat2', name_de: 'Category 2', name_en: 'Category 2', slug: 'cat2', icon: null, color: null, sort_order: 2, created_at: '2024-01-01', icon_url: null, description_de: null, description_en: null, updated_at: null, always_open: null, icon_name: null, marker_size: null }
   ]
 
   beforeEach(() => {

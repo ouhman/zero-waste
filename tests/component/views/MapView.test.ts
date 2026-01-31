@@ -31,6 +31,7 @@ const mockEnsureVisible = vi.fn()
 const mockFocusLocation = vi.fn()
 const mockHighlightMarker = vi.fn()
 const mockShowUserLocation = vi.fn()
+const mockOpenPopup = vi.fn()
 
 // Mock components with proper structure and exposed methods
 vi.mock('@/components/map/MapContainer.vue', () => ({
@@ -45,7 +46,8 @@ vi.mock('@/components/map/MapContainer.vue', () => ({
         ensureVisible: mockEnsureVisible,
         focusLocation: mockFocusLocation,
         highlightMarker: mockHighlightMarker,
-        showUserLocation: mockShowUserLocation
+        showUserLocation: mockShowUserLocation,
+        openPopup: mockOpenPopup
       })
       return {}
     }
@@ -146,7 +148,7 @@ describe('MapView', () => {
 
     // Setup locations store with mock data
     const locationsStore = useLocationsStore(pinia)
-    locationsStore.locations = mockLocations
+    locationsStore.locations = mockLocations as any
     locationsStore.loading = false
     locationsStore.error = null
 
@@ -155,7 +157,7 @@ describe('MapView', () => {
 
     // Mock getLocationBySlug to return the correct location
     vi.spyOn(locationsStore, 'getLocationBySlug').mockImplementation((slug: string) => {
-      return mockLocations.find(loc => loc.slug === slug)
+      return mockLocations.find(loc => loc.slug === slug) as any
     })
 
     // Clear all mock functions
@@ -164,6 +166,7 @@ describe('MapView', () => {
     mockFocusLocation.mockClear()
     mockHighlightMarker.mockClear()
     mockShowUserLocation.mockClear()
+    mockOpenPopup.mockClear()
   })
 
   afterEach(() => {
@@ -172,11 +175,12 @@ describe('MapView', () => {
 
   describe('Initial Rendering', () => {
     it('renders the main components', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -188,21 +192,23 @@ describe('MapView', () => {
     })
 
     it('displays the page title', () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       expect(wrapper.text()).toContain('Zero Waste Frankfurt')
     })
 
     it('displays submit location link', () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       const link = wrapper.find('a[href="/submit"]')
       expect(link.exists()).toBe(true)
@@ -226,11 +232,12 @@ describe('MapView', () => {
 
   describe('Location Filtering', () => {
     it('filters locations by selected categories', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -240,11 +247,12 @@ describe('MapView', () => {
     })
 
     it('updates filtered locations when categories change', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -255,17 +263,18 @@ describe('MapView', () => {
       await nextTick()
 
       // Verify map receives updated locations
-      expect(wrapper.vm.selectedCategories).toEqual(['cat-1'])
+      expect((wrapper.vm as any).selectedCategories).toEqual(['cat-1'])
     })
   })
 
   describe('Search Integration', () => {
     it('handles search location selection', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -285,11 +294,12 @@ describe('MapView', () => {
       await router.push({ name: 'location-detail', params: { slug: 'location-1' } })
       await router.isReady()
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       // Wait for mount lifecycle and async operations
       await flushPromises()
@@ -298,18 +308,19 @@ describe('MapView', () => {
 
       // Detail panel should be visible
       expect(wrapper.find('[data-testid="detail-panel"]').exists()).toBe(true)
-      expect(wrapper.vm.selectedLocation?.name).toBe('Location 1')
+      expect((wrapper.vm as any).selectedLocation?.name).toBe('Location 1')
     })
 
     it('shows 404 modal for non-existent slug', async () => {
       await router.push({ name: 'location-detail', params: { slug: 'non-existent' } })
       await router.isReady()
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       // Wait for mount lifecycle and async operations
       await flushPromises()
@@ -317,15 +328,16 @@ describe('MapView', () => {
       await flushPromises()
 
       // 404 modal should be visible
-      expect(wrapper.vm.showNotFound).toBe(true)
+      expect((wrapper.vm as any).showNotFound).toBe(true)
     })
 
     it('updates URL when marker is clicked', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -344,11 +356,12 @@ describe('MapView', () => {
       await router.push({ name: 'location-detail', params: { slug: 'location-1' } })
       await router.isReady()
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       // Wait for initial load
       await flushPromises()
@@ -356,7 +369,7 @@ describe('MapView', () => {
       await flushPromises()
 
       // Panel should be open
-      expect(wrapper.vm.selectedLocation).not.toBeNull()
+      expect((wrapper.vm as any).selectedLocation).not.toBeNull()
 
       // Navigate back to map
       await router.push({ name: 'map' })
@@ -364,17 +377,18 @@ describe('MapView', () => {
       await flushPromises()
 
       // Panel should close
-      expect(wrapper.vm.selectedLocation).toBeNull()
+      expect((wrapper.vm as any).selectedLocation).toBeNull()
     })
   })
 
   describe('Near Me Button', () => {
     it('centers map on user location when nearby locations found', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -390,16 +404,17 @@ describe('MapView', () => {
 
   describe('Mobile Panel Toggle', () => {
     it('toggles mobile panel visibility', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
       // Panel should be collapsed initially
-      expect(wrapper.vm.isPanelCollapsed).toBe(true)
+      expect((wrapper.vm as any).isPanelCollapsed).toBe(true)
 
       // Find the mobile panel toggle button (inside the .md\\:hidden container)
       const mobilePanel = wrapper.find('.md\\:hidden')
@@ -407,24 +422,25 @@ describe('MapView', () => {
       await toggleButton.trigger('click')
 
       // Panel should be expanded
-      expect(wrapper.vm.isPanelCollapsed).toBe(false)
+      expect((wrapper.vm as any).isPanelCollapsed).toBe(false)
 
       // Click again to collapse
       await toggleButton.trigger('click')
-      expect(wrapper.vm.isPanelCollapsed).toBe(true)
+      expect((wrapper.vm as any).isPanelCollapsed).toBe(true)
     })
 
     it('displays category count badge when categories selected', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
       // Set selected categories
-      wrapper.vm.selectedCategories = ['cat-1', 'cat-2']
+      ;(wrapper.vm as any).selectedCategories = ['cat-1', 'cat-2']
       await nextTick()
 
       // Badge should show count
@@ -436,11 +452,12 @@ describe('MapView', () => {
 
   describe('Location Detail Panel', () => {
     it('opens detail panel when show-details event emitted', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -450,18 +467,19 @@ describe('MapView', () => {
       await nextTick()
 
       expect(wrapper.find('[data-testid="detail-panel"]').exists()).toBe(true)
-      expect(wrapper.vm.selectedLocation?.name).toBe('Location 1')
+      expect((wrapper.vm as any).selectedLocation?.name).toBe('Location 1')
     })
 
     it('closes detail panel when close event emitted', async () => {
       await router.push({ name: 'location-detail', params: { slug: 'location-1' } })
       await router.isReady()
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       // Wait for initial load
       await flushPromises()
@@ -475,16 +493,17 @@ describe('MapView', () => {
       await nextTick()
       await flushPromises()
 
-      expect(wrapper.vm.selectedLocation).toBeNull()
+      expect((wrapper.vm as any).selectedLocation).toBeNull()
       expect(router.currentRoute.value.name).toBe('map')
     })
 
     it('highlights marker when detail panel opens', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -500,11 +519,12 @@ describe('MapView', () => {
       await router.push({ name: 'location-detail', params: { slug: 'location-1' } })
       await router.isReady()
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
       await nextTick()
@@ -520,11 +540,12 @@ describe('MapView', () => {
 
   describe('Share Modal', () => {
     it('opens share modal when share-location event emitted', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -534,15 +555,16 @@ describe('MapView', () => {
       await nextTick()
 
       expect(wrapper.find('[data-testid="share-modal"]').exists()).toBe(true)
-      expect(wrapper.vm.shareModalLocation?.name).toBe('Location 1')
+      expect((wrapper.vm as any).shareModalLocation?.name).toBe('Location 1')
     })
 
     it('closes share modal when close event emitted', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -556,7 +578,7 @@ describe('MapView', () => {
       shareModal.vm.$emit('close')
       await nextTick()
 
-      expect(wrapper.vm.shareModalLocation).toBeNull()
+      expect((wrapper.vm as any).shareModalLocation).toBeNull()
     })
   })
 
@@ -581,7 +603,7 @@ describe('MapView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.showNotFound).toBe(true)
+      expect((wrapper.vm as any).showNotFound).toBe(true)
 
       // Check modal content (rendered inline due to Teleport stub)
       const modal = wrapper.find('.fixed.inset-0')
@@ -610,7 +632,7 @@ describe('MapView', () => {
       await nextTick()
 
       // Verify modal is shown
-      expect(wrapper.vm.showNotFound).toBe(true)
+      expect((wrapper.vm as any).showNotFound).toBe(true)
 
       // Verify we're on the location-detail route
       expect(testRouter.currentRoute.value.name).toBe('location-detail')
@@ -628,7 +650,7 @@ describe('MapView', () => {
       await nextTick()
       await flushPromises()
 
-      expect(wrapper.vm.showNotFound).toBe(false)
+      expect((wrapper.vm as any).showNotFound).toBe(false)
       // The main assertion is that the modal closes
       // The router navigation to'map' route happens but may take additional time to reflect
       // For now, we just verify the modal is closed which is the core behavior
@@ -660,7 +682,7 @@ describe('MapView', () => {
         await nextTick()
         await flushPromises()
 
-        expect(wrapper.vm.showNotFound).toBe(false)
+        expect((wrapper.vm as any).showNotFound).toBe(false)
       }
     })
   })
@@ -670,11 +692,13 @@ describe('MapView', () => {
       await router.push({ name: 'location-detail', params: { slug: 'location-1' } })
       await router.isReady()
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      // Mount to trigger lifecycle, but don't need the wrapper
+      mount(MapView, mountOptions as any)
 
       // Wait for mount lifecycle and openLocationBySlug to execute
       await flushPromises()
@@ -689,14 +713,15 @@ describe('MapView', () => {
     })
 
     it('only ensures visibility on back/forward navigation', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
-      wrapper.vm.isInitialLoad = false
+      ;(wrapper.vm as any).isInitialLoad = false
 
       await router.push({ name: 'location-detail', params: { slug: 'location-1' } })
       await nextTick()
@@ -713,11 +738,12 @@ describe('MapView', () => {
       const locationsStore = useLocationsStore(pinia)
       locationsStore.locations = []
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -727,19 +753,19 @@ describe('MapView', () => {
 
     it('handles invalid coordinates in location', async () => {
       const locationsStore = useLocationsStore(pinia)
-      locationsStore.locations = [
-        createMockLocation({
-          id: '1',
-          latitude: 'invalid',
-          longitude: 'invalid'
-        })
-      ]
+      const mockData = {
+        id: '1',
+        latitude: 'invalid',
+        longitude: 'invalid'
+      }
+      locationsStore.locations = [createMockLocation(mockData)] as any
 
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
@@ -748,19 +774,21 @@ describe('MapView', () => {
     })
 
     it('handles location without slug', async () => {
-      const wrapper = mount(MapView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(MapView, mountOptions as any)
 
       await flushPromises()
 
       const mapContainer = wrapper.findComponent({ name: 'MapContainer' })
-      const locationWithoutSlug = { ...mockLocations[0], slug: null }
+      const mockData = { ...mockLocations[0], slug: null }
+      const locationWithoutSlug = createMockLocation(mockData) as any
 
       // Manually set location to test
-      wrapper.vm.selectedLocation = locationWithoutSlug
+      ;(wrapper.vm as any).selectedLocation = locationWithoutSlug
 
       mapContainer.vm.$emit('show-details', '1')
       await nextTick()

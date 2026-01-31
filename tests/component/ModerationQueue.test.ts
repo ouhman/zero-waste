@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { ref, computed } from 'vue'
 import { useAdminStore } from '@/stores/admin'
+import { createMockLocation } from '../utils/test-helpers'
+import type { Location } from '../utils/test-helpers'
 
 // Mock useAdminStore
 vi.mock('@/stores/admin', () => ({
@@ -13,19 +14,19 @@ describe('ModerationQueue', () => {
   })
 
   it('lists pending locations', () => {
-    const mockPendingLocations = [
-      { id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' },
-      { id: '2', name: 'Location 2', status: 'pending', address: 'Address 2', created_at: '2024-01-02' }
+    const mockPendingLocations: Location[] = [
+      createMockLocation({ id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' }),
+      createMockLocation({ id: '2', name: 'Location 2', status: 'pending', address: 'Address 2', created_at: '2024-01-02' })
     ]
 
     vi.mocked(useAdminStore).mockReturnValue({
-      pendingLocations: computed(() => mockPendingLocations),
-      locations: ref([]),
-      loading: ref(false),
-      error: ref(null),
-      approvedLocations: computed(() => []),
-      rejectedLocations: computed(() => []),
-      stats: computed(() => ({ pending: 2, approved: 0, rejected: 0, total: 2 })),
+      pendingLocations: mockPendingLocations,
+      locations: [],
+      loading: false,
+      error: null,
+      approvedLocations: [],
+      rejectedLocations: [],
+      stats: { pending: 2, approved: 0, rejected: 0, total: 2 },
       fetchLocations: vi.fn(),
       approveLocation: vi.fn(),
       rejectLocation: vi.fn(),
@@ -34,26 +35,26 @@ describe('ModerationQueue', () => {
 
     // Check that the mock returns correct data
     const admin = useAdminStore()
-    expect(admin.pendingLocations.value).toHaveLength(2)
-    expect(admin.pendingLocations.value[0].name).toBe('Location 1')
-    expect(admin.pendingLocations.value[1].name).toBe('Location 2')
+    expect(admin.pendingLocations).toHaveLength(2)
+    expect(admin.pendingLocations[0].name).toBe('Location 1')
+    expect(admin.pendingLocations[1].name).toBe('Location 2')
   })
 
   it('shows approve/reject buttons', () => {
     const mockApprove = vi.fn()
     const mockReject = vi.fn()
-    const mockPendingLocations = [
-      { id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' }
+    const mockPendingLocations: Location[] = [
+      createMockLocation({ id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' })
     ]
 
     vi.mocked(useAdminStore).mockReturnValue({
-      pendingLocations: computed(() => mockPendingLocations),
-      locations: ref([]),
-      loading: ref(false),
-      error: ref(null),
-      approvedLocations: computed(() => []),
-      rejectedLocations: computed(() => []),
-      stats: computed(() => ({ pending: 1, approved: 0, rejected: 0, total: 1 })),
+      pendingLocations: mockPendingLocations,
+      locations: [],
+      loading: false,
+      error: null,
+      approvedLocations: [],
+      rejectedLocations: [],
+      stats: { pending: 1, approved: 0, rejected: 0, total: 1 },
       fetchLocations: vi.fn(),
       approveLocation: mockApprove,
       rejectLocation: mockReject,
@@ -70,18 +71,18 @@ describe('ModerationQueue', () => {
 
   it('calls approveLocation when approve button clicked', async () => {
     const mockApprove = vi.fn().mockResolvedValue(undefined)
-    const mockPendingLocations = [
-      { id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' }
+    const mockPendingLocations: Location[] = [
+      createMockLocation({ id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' })
     ]
 
     vi.mocked(useAdminStore).mockReturnValue({
-      pendingLocations: computed(() => mockPendingLocations),
-      locations: ref([]),
-      loading: ref(false),
-      error: ref(null),
-      approvedLocations: computed(() => []),
-      rejectedLocations: computed(() => []),
-      stats: computed(() => ({ pending: 1, approved: 0, rejected: 0, total: 1 })),
+      pendingLocations: mockPendingLocations,
+      locations: [],
+      loading: false,
+      error: null,
+      approvedLocations: [],
+      rejectedLocations: [],
+      stats: { pending: 1, approved: 0, rejected: 0, total: 1 },
       fetchLocations: vi.fn(),
       approveLocation: mockApprove,
       rejectLocation: vi.fn(),
@@ -98,18 +99,18 @@ describe('ModerationQueue', () => {
 
   it('calls rejectLocation when reject button clicked', async () => {
     const mockReject = vi.fn().mockResolvedValue(undefined)
-    const mockPendingLocations = [
-      { id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' }
+    const mockPendingLocations: Location[] = [
+      createMockLocation({ id: '1', name: 'Location 1', status: 'pending', address: 'Address 1', created_at: '2024-01-01' })
     ]
 
     vi.mocked(useAdminStore).mockReturnValue({
-      pendingLocations: computed(() => mockPendingLocations),
-      locations: ref([]),
-      loading: ref(false),
-      error: ref(null),
-      approvedLocations: computed(() => []),
-      rejectedLocations: computed(() => []),
-      stats: computed(() => ({ pending: 1, approved: 0, rejected: 0, total: 1 })),
+      pendingLocations: mockPendingLocations,
+      locations: [],
+      loading: false,
+      error: null,
+      approvedLocations: [],
+      rejectedLocations: [],
+      stats: { pending: 1, approved: 0, rejected: 0, total: 1 },
       fetchLocations: vi.fn(),
       approveLocation: vi.fn(),
       rejectLocation: mockReject,
@@ -126,13 +127,13 @@ describe('ModerationQueue', () => {
 
   it('shows loading state while fetching', () => {
     vi.mocked(useAdminStore).mockReturnValue({
-      pendingLocations: computed(() => []),
-      locations: ref([]),
-      loading: ref(true),
-      error: ref(null),
-      approvedLocations: computed(() => []),
-      rejectedLocations: computed(() => []),
-      stats: computed(() => ({ pending: 0, approved: 0, rejected: 0, total: 0 })),
+      pendingLocations: [],
+      locations: [],
+      loading: true,
+      error: null,
+      approvedLocations: [],
+      rejectedLocations: [],
+      stats: { pending: 0, approved: 0, rejected: 0, total: 0 },
       fetchLocations: vi.fn(),
       approveLocation: vi.fn(),
       rejectLocation: vi.fn(),
@@ -140,18 +141,18 @@ describe('ModerationQueue', () => {
     } as any)
 
     const admin = useAdminStore()
-    expect(admin.loading.value).toBe(true)
+    expect(admin.loading).toBe(true)
   })
 
   it('shows empty state when no pending locations', () => {
     vi.mocked(useAdminStore).mockReturnValue({
-      pendingLocations: computed(() => []),
-      locations: ref([]),
-      loading: ref(false),
-      error: ref(null),
-      approvedLocations: computed(() => []),
-      rejectedLocations: computed(() => []),
-      stats: computed(() => ({ pending: 0, approved: 0, rejected: 0, total: 0 })),
+      pendingLocations: [],
+      locations: [],
+      loading: false,
+      error: null,
+      approvedLocations: [],
+      rejectedLocations: [],
+      stats: { pending: 0, approved: 0, rejected: 0, total: 0 },
       fetchLocations: vi.fn(),
       approveLocation: vi.fn(),
       rejectLocation: vi.fn(),
@@ -159,7 +160,7 @@ describe('ModerationQueue', () => {
     } as any)
 
     const admin = useAdminStore()
-    expect(admin.pendingLocations.value).toHaveLength(0)
-    expect(admin.loading.value).toBe(false)
+    expect(admin.pendingLocations).toHaveLength(0)
+    expect(admin.loading).toBe(false)
   })
 })

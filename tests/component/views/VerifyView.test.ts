@@ -12,6 +12,13 @@ import {
 const mockFetch = vi.fn()
 global.fetch = mockFetch
 
+// Helper to access component internals
+type VerifyViewInternals = {
+  verifying: boolean
+  verified: boolean
+  verificationError: string | null
+}
+
 describe('VerifyView', () => {
   let pinia: ReturnType<typeof createTestPinia>
   let router: ReturnType<typeof createTestRouter>
@@ -26,8 +33,8 @@ describe('VerifyView', () => {
     i18n = createTestI18n()
 
     // Mock environment variables
-    import.meta.env.VITE_SUPABASE_URL = SUPABASE_URL
-    import.meta.env.VITE_SUPABASE_ANON_KEY = 'test-anon-key'
+    vi.stubEnv('VITE_SUPABASE_URL', SUPABASE_URL)
+    vi.stubEnv('VITE_SUPABASE_ANON_KEY', 'test-anon-key')
 
     mockFetch.mockClear()
   })
@@ -99,7 +106,7 @@ describe('VerifyView', () => {
 
       await nextTick()
 
-      expect(wrapper.vm.verifying).toBe(true)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(true)
       // Check for loading spinner (animate-spin class)
       expect(wrapper.find('.animate-spin').exists()).toBe(true)
     })
@@ -145,8 +152,8 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verifying).toBe(false)
-      expect(wrapper.vm.verificationError).toContain('Verification token is missing')
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toContain('Verification token is missing')
     })
 
     it('extracts token from query parameters', async () => {
@@ -192,8 +199,8 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verified).toBe(true)
-      expect(wrapper.vm.verifying).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(true)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(false)
     })
 
     it('displays success message with correct styling', async () => {
@@ -260,7 +267,7 @@ describe('VerifyView', () => {
       await nextTick()
 
       // The component uses i18n, so check that the verified state is set
-      expect(wrapper.vm.verified).toBe(true)
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(true)
     })
 
     it('hides loading state after success', async () => {
@@ -281,7 +288,7 @@ describe('VerifyView', () => {
       await nextTick()
 
       // Loading spinner should not be visible after success
-      expect(wrapper.vm.verifying).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(false)
     })
   })
 
@@ -303,9 +310,9 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toBe('Invalid token')
-      expect(wrapper.vm.verified).toBe(false)
-      expect(wrapper.vm.verifying).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBe('Invalid token')
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(false)
     })
 
     it('displays error message with correct styling', async () => {
@@ -351,7 +358,7 @@ describe('VerifyView', () => {
       // Check for h1 with error title
       const title = wrapper.find('h1')
       expect(title.exists()).toBe(true)
-      expect(wrapper.vm.verificationError).toBeTruthy()
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBeTruthy()
     })
 
     it('handles network errors gracefully', async () => {
@@ -368,8 +375,8 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toBe('Network error')
-      expect(wrapper.vm.verified).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBe('Network error')
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(false)
     })
 
     it('handles missing error message from server', async () => {
@@ -389,7 +396,7 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toBe('Verification failed')
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBe('Verification failed')
     })
 
     it('handles non-Error exceptions', async () => {
@@ -406,11 +413,11 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toBe('Verification error occurred')
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBe('Verification error occurred')
     })
 
     it('shows error when Supabase URL is not configured', async () => {
-      import.meta.env.VITE_SUPABASE_URL = ''
+      vi.stubEnv('VITE_SUPABASE_URL', '')
 
       await router.push({ path: '/verify', query: { token: MOCK_TOKEN } })
 
@@ -423,7 +430,7 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toBe('Supabase URL not configured')
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBe('Supabase URL not configured')
     })
   })
 
@@ -574,12 +581,12 @@ describe('VerifyView', () => {
         }
       })
 
-      expect(wrapper.vm.verifying).toBe(true)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(true)
 
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verifying).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(false)
     })
   })
 
@@ -632,9 +639,9 @@ describe('VerifyView', () => {
 
       // Check for loading spinner
       expect(wrapper.find('.animate-spin').exists()).toBe(true)
-      expect(wrapper.vm.verifying).toBe(true)
-      expect(wrapper.vm.verified).toBe(false)
-      expect(wrapper.vm.verificationError).toBe(null)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(true)
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBe(null)
     })
 
     it('shows only success when verified', async () => {
@@ -656,8 +663,8 @@ describe('VerifyView', () => {
 
       // Success card has gradient header
       expect(wrapper.find('.bg-gradient-to-br').exists()).toBe(true)
-      expect(wrapper.vm.verified).toBe(true)
-      expect(wrapper.vm.verifying).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(true)
+      expect((wrapper.vm as any as VerifyViewInternals).verifying).toBe(false)
     })
 
     it('shows only error when verification failed', async () => {
@@ -679,8 +686,8 @@ describe('VerifyView', () => {
 
       // Error uses amber-50 for error message box, red-100 for error icon container
       expect(wrapper.find('.bg-red-100').exists()).toBe(true)
-      expect(wrapper.vm.verificationError).toBeTruthy()
-      expect(wrapper.vm.verified).toBe(false)
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBeTruthy()
+      expect((wrapper.vm as any as VerifyViewInternals).verified).toBe(false)
     })
   })
 
@@ -742,7 +749,7 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toContain('Verification token is missing')
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toContain('Verification token is missing')
     })
 
     it('handles malformed JSON response', async () => {
@@ -762,7 +769,7 @@ describe('VerifyView', () => {
       await flushPromises()
       await nextTick()
 
-      expect(wrapper.vm.verificationError).toBeTruthy()
+      expect((wrapper.vm as any as VerifyViewInternals).verificationError).toBeTruthy()
     })
   })
 

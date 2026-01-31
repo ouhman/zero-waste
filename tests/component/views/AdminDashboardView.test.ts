@@ -88,14 +88,15 @@ describe('DashboardView', () => {
     const adminStore = useAdminStore(pinia)
     adminStore.locations = [...mockPendingLocations]
 
-    const wrapper = mount(DashboardView, {
+    const mountOptions = {
       global: {
         plugins: [pinia, router, i18n]
       }
-    })
+    } as const
+    const wrapper = mount(DashboardView, mountOptions as any) as any
 
     // Finish loading
-    wrapper.vm.loading = false
+    (wrapper.vm as any).loading = false
     await flushPromises()
     await nextTick()
 
@@ -168,7 +169,7 @@ describe('DashboardView', () => {
 
       // Find first approve button
       const buttons = wrapper.findAll('button')
-      const approveButton = buttons.find(btn => btn.text().includes('Approve'))
+      const approveButton = buttons.find((btn: any) => btn.text().includes('Approve'))
 
       if (approveButton) {
         await approveButton.trigger('click')
@@ -185,7 +186,7 @@ describe('DashboardView', () => {
       const wrapper = await mountWithData()
 
       const buttons = wrapper.findAll('button')
-      const approveButton = buttons.find(btn => btn.text().includes('Approve'))
+      const approveButton = buttons.find((btn: any) => btn.text().includes('Approve'))
 
       if (approveButton) {
         await approveButton.trigger('click')
@@ -202,7 +203,7 @@ describe('DashboardView', () => {
       const wrapper = await mountWithData()
 
       const buttons = wrapper.findAll('button')
-      const approveButton = buttons.find(btn => btn.text().includes('Approve'))
+      const approveButton = buttons.find((btn: any) => btn.text().includes('Approve'))
 
       if (approveButton) {
         await approveButton.trigger('click')
@@ -218,13 +219,14 @@ describe('DashboardView', () => {
       const adminStore = useAdminStore(pinia)
       adminStore.locations = []
 
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
-      wrapper.vm.loading = false
+      (wrapper.vm as any).loading = false
       await flushPromises()
       await nextTick()
 
@@ -234,26 +236,28 @@ describe('DashboardView', () => {
 
   describe('Loading State', () => {
     it('shows loading spinner while fetching data', async () => {
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
-      wrapper.vm.loading = true
+      (wrapper.vm as any).loading = true
       await nextTick()
 
       expect(wrapper.find('[data-testid="loading-spinner"]').exists()).toBe(true)
     })
 
     it('hides content while loading', async () => {
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
-      wrapper.vm.loading = true
+      (wrapper.vm as any).loading = true
       await nextTick()
 
       expect(wrapper.find('.grid').exists()).toBe(false)
@@ -262,14 +266,16 @@ describe('DashboardView', () => {
 
   describe('Error State', () => {
     it('displays error message on fetch failure', async () => {
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
-      wrapper.vm.error = 'Failed to load data'
-      wrapper.vm.loading = false
+      // @ts-ignore - TypeScript circular reference inference issue
+      ;(wrapper.vm as any).error = 'Failed to load data'
+      ;(wrapper.vm as any).loading = false
       await nextTick()
 
       const errorDiv = wrapper.find('.bg-red-50')
@@ -278,14 +284,16 @@ describe('DashboardView', () => {
     })
 
     it('includes try again button on error', async () => {
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
-      wrapper.vm.error = 'Error'
-      wrapper.vm.loading = false
+      // @ts-ignore - TypeScript circular reference inference issue
+      ;(wrapper.vm as any).error = 'Error'
+      ;(wrapper.vm as any).loading = false
       await nextTick()
 
       const tryAgainButton = wrapper.find('button')
@@ -296,17 +304,20 @@ describe('DashboardView', () => {
       const adminStore = useAdminStore(pinia)
       const fetchSpy = vi.spyOn(adminStore, 'fetchLocations')
 
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
       await flushPromises()
+      // @ts-ignore - TypeScript inference issue
       fetchSpy.mockClear()
 
-      wrapper.vm.error = 'Error'
-      wrapper.vm.loading = false
+      // @ts-ignore - TypeScript circular reference inference issue
+      ;(wrapper.vm as any).error = 'Error'
+      ;(wrapper.vm as any).loading = false
       await nextTick()
 
       const tryAgainButton = wrapper.find('button')
@@ -319,35 +330,35 @@ describe('DashboardView', () => {
   describe('Date Formatting', () => {
     it('formats recent dates as "Just now"', async () => {
       const wrapper = await mountWithData()
-      const result = wrapper.vm.formatDate(new Date().toISOString())
+      const result = (wrapper.vm as any).formatDate(new Date().toISOString())
       expect(result).toBe('Just now')
     })
 
     it('formats minutes ago correctly', async () => {
       const wrapper = await mountWithData()
       const date = new Date(Date.now() - 5 * 60000).toISOString()
-      const result = wrapper.vm.formatDate(date)
+      const result = (wrapper.vm as any).formatDate(date)
       expect(result).toBe('5 minutes ago')
     })
 
     it('formats hours ago correctly', async () => {
       const wrapper = await mountWithData()
       const date = new Date(Date.now() - 2 * 3600000).toISOString()
-      const result = wrapper.vm.formatDate(date)
+      const result = (wrapper.vm as any).formatDate(date)
       expect(result).toBe('2 hours ago')
     })
 
     it('formats days ago correctly', async () => {
       const wrapper = await mountWithData()
       const date = new Date(Date.now() - 3 * 86400000).toISOString()
-      const result = wrapper.vm.formatDate(date)
+      const result = (wrapper.vm as any).formatDate(date)
       expect(result).toBe('3 days ago')
     })
 
     it('formats old dates as full date', async () => {
       const wrapper = await mountWithData()
       const date = new Date(Date.now() - 10 * 86400000).toISOString()
-      const result = wrapper.vm.formatDate(date)
+      const result = (wrapper.vm as any).formatDate(date)
       expect(result).toMatch(/\d{1,2}\/\d{1,2}\/\d{4}/)
     })
 
@@ -355,25 +366,26 @@ describe('DashboardView', () => {
       const wrapper = await mountWithData()
 
       const minuteAgo = new Date(Date.now() - 60000).toISOString()
-      expect(wrapper.vm.formatDate(minuteAgo)).toBe('1 minute ago')
+      expect((wrapper.vm as any).formatDate(minuteAgo)).toBe('1 minute ago')
 
       const hourAgo = new Date(Date.now() - 3600000).toISOString()
-      expect(wrapper.vm.formatDate(hourAgo)).toBe('1 hour ago')
+      expect((wrapper.vm as any).formatDate(hourAgo)).toBe('1 hour ago')
 
       const dayAgo = new Date(Date.now() - 86400000).toISOString()
-      expect(wrapper.vm.formatDate(dayAgo)).toBe('1 day ago')
+      expect((wrapper.vm as any).formatDate(dayAgo)).toBe('1 day ago')
     })
   })
 
   describe('Component Integration', () => {
     it('passes correct props to LoadingSpinner', async () => {
-      const wrapper = mount(DashboardView, {
+      const mountOptions = {
         global: {
           plugins: [pinia, router, i18n]
         }
-      })
+      } as const
+      const wrapper = mount(DashboardView, mountOptions as any) as any
 
-      wrapper.vm.loading = true
+      (wrapper.vm as any).loading = true
       await nextTick()
 
       const spinner = wrapper.findComponent({ name: 'LoadingSpinner' })
@@ -387,7 +399,7 @@ describe('DashboardView', () => {
 
       const wrapper = await mountWithData()
 
-      expect(wrapper.vm.stats.pending).toBe(3)
+      expect((wrapper.vm as any).stats.pending).toBe(3)
     })
   })
 })

@@ -80,10 +80,8 @@ test.describe('Location Approval Workflow', () => {
   test('approved location appears in approved tab', async ({ page }) => {
     // Seed a location and approve it
     testLocationId = await seedTestLocation()
-    await testSupabase
-      .from('locations')
-      .update({ status: 'approved' })
-      .eq('id', testLocationId)
+    // @ts-ignore - Using service role key, type inference may be incorrect
+    await testSupabase.from('locations').update({ status: 'approved' }).eq('id', testLocationId)
 
     await page.goto('/bulk-station/locations')
 

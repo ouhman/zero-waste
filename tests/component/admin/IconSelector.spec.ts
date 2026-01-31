@@ -7,7 +7,7 @@ import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount, VueWrapper } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import IconSelector from '@/components/admin/IconSelector.vue'
-import { CURATED_ICONS, getAllCuratedIcons } from '@/lib/curatedIcons'
+import { CURATED_ICONS } from '@/lib/curatedIcons'
 
 describe('IconSelector', () => {
   let wrapper: VueWrapper<any>
@@ -176,7 +176,7 @@ describe('IconSelector', () => {
       const input = wrapper.find('input[type="text"]')
       await input.setValue('recycle')
 
-      expect(input.element.value).toBe('recycle')
+      expect((input.element as HTMLInputElement).value).toBe('recycle')
     })
 
     test('search is debounced', async () => {
@@ -489,7 +489,7 @@ describe('IconSelector', () => {
       const longQuery = 'a'.repeat(500)
       await input.setValue(longQuery)
 
-      expect(input.element.value).toBe(longQuery)
+      expect((input.element as HTMLInputElement).value).toBe(longQuery)
     })
 
     test('handles rapid search input changes', async () => {
@@ -513,7 +513,7 @@ describe('IconSelector', () => {
       vi.advanceTimersByTime(300)
       await nextTick()
 
-      expect(input.element.value).toBe('query9')
+      expect((input.element as HTMLInputElement).value).toBe('query9')
 
       vi.useRealTimers()
     })

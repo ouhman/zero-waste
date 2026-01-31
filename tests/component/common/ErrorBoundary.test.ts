@@ -1,9 +1,9 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { h } from 'vue'
 import { setActivePinia, createPinia } from 'pinia'
 import { createTestRouter } from '../../utils/test-helpers'
 import ErrorBoundary from '@/components/common/ErrorBoundary.vue'
-import { h } from 'vue'
 
 // Component that throws an error
 const ThrowingComponent = {
@@ -11,14 +11,6 @@ const ThrowingComponent = {
     throw new Error('Test error message')
   },
   template: '<div>Should not render</div>'
-}
-
-// Component that throws on mounted
-const ThrowOnMountComponent = {
-  template: '<div>Content</div>',
-  mounted() {
-    throw new Error('Error on mounted')
-  }
 }
 
 describe('ErrorBoundary', () => {

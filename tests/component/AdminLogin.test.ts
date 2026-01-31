@@ -70,8 +70,8 @@ describe('AdminLogin', () => {
   it('sends magic link via Supabase on successful admin check', async () => {
     // Mock rate limit check (allowed)
     vi.mocked(supabase.rpc)
-      .mockResolvedValueOnce({ data: true, error: null }) // check_rate_limit
-      .mockResolvedValueOnce({ data: true, error: null }) // is_admin_email
+      .mockResolvedValueOnce({ data: true as any, error: null, count: null, status: 200, statusText: 'OK' } as any as any) // check_rate_limit
+      .mockResolvedValueOnce({ data: true as any, error: null, count: null, status: 200, statusText: 'OK' } as any as any) // is_admin_email
 
     // Mock magic link send
     vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({
@@ -112,8 +112,8 @@ describe('AdminLogin', () => {
   it('shows success message after sending magic link', async () => {
     // Mock successful flow
     vi.mocked(supabase.rpc)
-      .mockResolvedValueOnce({ data: true, error: null }) // check_rate_limit
-      .mockResolvedValueOnce({ data: true, error: null }) // is_admin_email
+      .mockResolvedValueOnce({ data: true as any, error: null, count: null, status: 200, statusText: 'OK' } as any) // check_rate_limit
+      .mockResolvedValueOnce({ data: true as any, error: null, count: null, status: 200, statusText: 'OK' } as any) // is_admin_email
 
     vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({
       data: {},
@@ -143,8 +143,8 @@ describe('AdminLogin', () => {
   it('shows generic success message even for non-admin emails (security)', async () => {
     // Mock rate limit OK but non-admin email
     vi.mocked(supabase.rpc)
-      .mockResolvedValueOnce({ data: true, error: null }) // check_rate_limit
-      .mockResolvedValueOnce({ data: false, error: null }) // is_admin_email (NOT admin)
+      .mockResolvedValueOnce({ data: true as any, error: null, count: null, status: 200, statusText: 'OK' } as any) // check_rate_limit
+      .mockResolvedValueOnce({ data: false as any, error: null, count: null, status: 200, statusText: 'OK' } as any) // is_admin_email (NOT admin)
 
     const wrapper = mount(AdminLogin, {
       global: {
@@ -167,7 +167,7 @@ describe('AdminLogin', () => {
 
   it('shows error when rate limited', async () => {
     // Mock rate limit exceeded
-    vi.mocked(supabase.rpc).mockResolvedValueOnce({ data: false, error: null })
+    vi.mocked(supabase.rpc).mockResolvedValueOnce({ data: false as any, error: null, count: null, status: 200, statusText: 'OK' } as any)
 
     const wrapper = mount(AdminLogin, {
       global: {
@@ -192,7 +192,7 @@ describe('AdminLogin', () => {
   it('shows loading state during authentication', async () => {
     // Mock slow rate limit check
     vi.mocked(supabase.rpc).mockImplementation(
-      () => new Promise(resolve => setTimeout(() => resolve({ data: true, error: null }), 100))
+      () => new Promise(resolve => setTimeout(() => resolve({ data: true as any, error: null }), 100)) as any
     )
 
     const wrapper = mount(AdminLogin, {
@@ -220,9 +220,9 @@ describe('AdminLogin', () => {
   it('handles RPC errors gracefully', async () => {
     // Mock RPC error
     vi.mocked(supabase.rpc).mockResolvedValueOnce({
-      data: null,
+      data: null as any,
       error: { message: 'Database error' } as any
-    })
+    } as any)
 
     const wrapper = mount(AdminLogin, {
       global: {

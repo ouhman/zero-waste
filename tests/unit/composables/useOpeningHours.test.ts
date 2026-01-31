@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest'
+import { describe, test, expect, beforeEach, afterEach } from 'vitest'
 import { ref } from 'vue'
 import { useOpeningHours } from '@/composables/useOpeningHours'
 import type { StructuredOpeningHours } from '@/types/osm'
@@ -16,7 +16,7 @@ describe('useOpeningHours', () => {
       if (args.length === 0) {
         return mockDate
       }
-      return new RealDate(...args)
+      return new (RealDate as any)(...args)
     }
 
     // Preserve static methods

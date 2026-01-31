@@ -3,7 +3,6 @@ import { mount } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
 import { ref } from 'vue'
 import NearbyPOISelector from '@/components/submission/NearbyPOISelector.vue'
-import * as useOverpassModule from '@/composables/useOverpass'
 import type { POI } from '@/composables/useOverpass'
 
 // Mock useOverpass composable

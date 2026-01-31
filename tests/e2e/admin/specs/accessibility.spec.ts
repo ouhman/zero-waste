@@ -101,7 +101,6 @@ test.describe('Accessibility', () => {
 
     // Input should have aria-invalid when empty
     // HTML5 validation prevents submit, or client-side validation shows errors
-    const ariaInvalid = await nameInput.getAttribute('aria-invalid')
     const required = await nameInput.getAttribute('required')
     const ariaRequired = await nameInput.getAttribute('aria-required')
 

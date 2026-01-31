@@ -240,7 +240,8 @@ describe('Hours Types', () => {
         location: {
           id: '550e8400-e29b-41d4-a716-446655440001',
           name: 'Test Shop',
-          slug: 'test-shop-frankfurt'
+          slug: 'test-shop-frankfurt',
+          opening_hours_structured: null
         }
       }
 

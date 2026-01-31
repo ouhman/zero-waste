@@ -153,12 +153,10 @@ describe('useGeolocation', () => {
   })
 
   it('should set loading state during geolocation request', async () => {
-    let capturedLoading = false
-
     mockGeolocation.getCurrentPosition.mockImplementation((success) => {
       // Capture loading state during the async operation
       const { loading } = useGeolocation()
-      capturedLoading = loading.value
+      loading.value
 
       setTimeout(() => {
         success({

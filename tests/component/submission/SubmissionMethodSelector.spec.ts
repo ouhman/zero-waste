@@ -111,7 +111,7 @@ describe('SubmissionMethodSelector', () => {
     cards.forEach(card => {
       // Check if cursor pointer is set (either via class or inline style)
       const hasPointer = card.classes().includes('cursor-pointer') ||
-        card.element.style.cursor === 'pointer'
+        (card.element as HTMLElement).style.cursor === 'pointer'
       expect(hasPointer).toBe(true)
     })
   })

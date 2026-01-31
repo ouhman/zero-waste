@@ -12,6 +12,7 @@ describe('Database Types', () => {
       description_en: 'A test description',
       address: 'Test Str. 1',
       city: 'Frankfurt',
+      suburb: 'Bockenheim',
       postal_code: '60311',
       latitude: '50.1109',
       longitude: '8.6821',
@@ -59,7 +60,10 @@ describe('Database Types', () => {
       icon_url: null,
       description_de: null,
       description_en: null,
-      updated_at: null
+      updated_at: null,
+      always_open: null,
+      icon_name: null,
+      marker_size: null
     }
 
     // Verify required fields

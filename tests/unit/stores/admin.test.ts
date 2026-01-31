@@ -75,7 +75,9 @@ describe('useAdminStore', () => {
       expect(supabase.from).toHaveBeenCalledWith('locations')
       expect(mockQuery.select).toHaveBeenCalledWith(`
           *,
-          location_categories(category_id)
+          location_categories(
+            categories(*)
+          )
         `)
       expect(mockQuery.is).toHaveBeenCalledWith('deleted_at', null)
       expect(mockQuery.order).toHaveBeenCalledWith('created_at', { ascending: false })

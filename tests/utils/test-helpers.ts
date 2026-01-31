@@ -1,6 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { createRouter, createMemoryHistory, type Router } from 'vue-router'
 import { createI18n } from 'vue-i18n'
+import { vi } from 'vitest'
 import type { Database } from '@/types/database'
 
 export type Location = Database['public']['Tables']['locations']['Row']
@@ -244,6 +245,7 @@ export function createMockLocation(overrides: Partial<Location> = {}): Location 
     slug: 'test-location',
     address: '123 Test Street',
     city: 'Frankfurt am Main',
+    suburb: 'Bockenheim',
     postal_code: '60311',
     latitude: '50.1109',
     longitude: '8.6821',

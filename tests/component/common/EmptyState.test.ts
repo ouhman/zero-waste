@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EmptyState from '@/components/common/EmptyState.vue'
-import { h } from 'vue'
 
 // Mock icon component
 const MockIcon = {
