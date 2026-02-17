@@ -162,8 +162,6 @@ function handleDetailsClick(e: Event) {
   const locationId = btn.dataset.locationId
   if (locationId) {
     emit('show-details', locationId)
-    // Close the popup
-    map?.closePopup()
   }
 }
 

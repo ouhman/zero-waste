@@ -489,8 +489,8 @@ describe('MapContainer', () => {
     expect(L.default.marker).toHaveBeenCalled()
   })
 
-  it('closes popup when details button is clicked', async () => {
-    mount(MapContainer)
+  it('keeps popup open when details button is clicked', async () => {
+    const wrapper = mount(MapContainer)
     await new Promise(resolve => setTimeout(resolve, 0))
 
     // Create a mock button in DOM
@@ -514,7 +514,8 @@ describe('MapContainer', () => {
 
     mockButton.click()
 
-    expect(mockMap.closePopup).toHaveBeenCalled()
+    expect(mockMap.closePopup).not.toHaveBeenCalled()
+    expect(wrapper.emitted('show-details')?.[0]).toEqual(['test-id'])
 
     // Cleanup
     document.body.removeChild(mockButton)
