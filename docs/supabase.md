@@ -57,7 +57,7 @@ RLS is enabled on all tables. Anonymous users can:
 |-------------|---------|-------|-----------|
 | Anyone can view approved locations | SELECT | public | `status = 'approved' AND deleted_at IS NULL` |
 | Anyone can submit pending locations | INSERT | anon, authenticated | `status = 'pending'` |
-| Admins have full access | ALL | authenticated | `user_metadata.role = 'admin'` |
+| Admins have full access | ALL | authenticated | `app_metadata.role = 'admin'` |
 
 #### location_categories table
 
@@ -65,7 +65,40 @@ RLS is enabled on all tables. Anonymous users can:
 |-------------|---------|-------|-----------|
 | Location categories are publicly readable | SELECT | public | Location is approved |
 | Anyone can add categories to locations | INSERT | anon, authenticated | Location is pending |
-| Admins have full access | ALL | authenticated | `user_metadata.role = 'admin'` |
+| Admins have full access | ALL | authenticated | `app_metadata.role = 'admin'` |
+
+---
+
+## Admin Role Security
+
+Admin authorization uses `app_metadata.role = 'admin'` — **never** `user_metadata`.
+
+| Metadata Type | Set By | Editable by User | Use For |
+|---------------|--------|-------------------|---------|
+| `app_metadata` | Server-side only (service role, dashboard, admin API) | No | Authorization, roles |
+| `user_metadata` | Client SDK, server-side | **Yes** | Display name, preferences |
+
+### Where admin role is checked
+
+- **RLS policies** — `(auth.jwt() -> 'app_metadata' ->> 'role') = 'admin'`
+- **`is_admin_email()` function** — `raw_app_meta_data ->> 'role'` from `auth.users`
+- **Frontend guard** — `session.user.app_metadata?.role` in `src/router/guards/adminGuard.ts`
+
+### Setting admin role
+
+Use the Supabase SQL Editor or admin API. Never set roles via `user_metadata`:
+
+```sql
+UPDATE auth.users
+SET raw_app_meta_data = jsonb_set(
+  COALESCE(raw_app_meta_data, '{}'),
+  '{role}',
+  '"admin"'
+)
+WHERE email = 'admin@example.com';
+```
+
+See [admin-user-setup.md](admin-user-setup.md) for full instructions.
 
 ---
 
@@ -265,6 +298,8 @@ See [dev-environment.md](dev-environment.md) for detailed workflow.
 | `20260110170200_generate_unique_slug.sql` | Atomic slug generation with collision handling |
 | `20260110170300_update_slug_trigger.sql` | Auto-generate slugs on INSERT/UPDATE |
 | `20260110180000_slug_unique_constraint.sql` | Adds UNIQUE constraint to slug column |
+| `20260113000000_hours_suggestions.sql` | Hours suggestions table with admin RLS policies |
+| `20260401063550_use_app_metadata_for_admin.sql` | **Security fix:** migrate all admin RLS policies from `user_metadata` to `app_metadata` |
 
 ---
 
