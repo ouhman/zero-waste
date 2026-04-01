@@ -78,7 +78,7 @@ describe('adminGuard', () => {
       user: {
         id: '123',
         email: 'admin@test.com',
-        user_metadata: {
+        app_metadata: {
           role: 'admin'
         }
       },
@@ -100,7 +100,7 @@ describe('adminGuard', () => {
       user: {
         id: '123',
         email: 'user@test.com',
-        user_metadata: {
+        app_metadata: {
           role: 'user'
         }
       },
@@ -123,7 +123,7 @@ describe('adminGuard', () => {
       user: {
         id: '123',
         email: 'user@test.com',
-        user_metadata: {}
+        app_metadata: {}
       },
       access_token: 'token'
     }

@@ -30,8 +30,8 @@ This guide explains how to create an admin user in the production Supabase proje
 
 ```sql
 UPDATE auth.users
-SET raw_user_meta_data = jsonb_set(
-  COALESCE(raw_user_meta_data, '{}'),
+SET raw_app_meta_data = jsonb_set(
+  COALESCE(raw_app_meta_data, '{}'),
   '{role}',
   '"admin"'
 )
@@ -71,7 +71,7 @@ WHERE email = 'admin@zerowastefrankfurt.de';
 **Solution:** Re-run the SQL query from Step 2 and verify:
 
 ```sql
-SELECT email, raw_user_meta_data->>'role' as role
+SELECT email, raw_app_meta_data->>'role' as role
 FROM auth.users
 WHERE email = 'admin@zerowastefrankfurt.de';
 ```
@@ -107,8 +107,8 @@ To revoke admin access:
 
 ```sql
 UPDATE auth.users
-SET raw_user_meta_data = jsonb_set(
-  COALESCE(raw_user_meta_data, '{}'),
+SET raw_app_meta_data = jsonb_set(
+  COALESCE(raw_app_meta_data, '{}'),
   '{role}',
   '"user"'
 )

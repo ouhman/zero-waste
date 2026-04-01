@@ -49,7 +49,7 @@ export async function adminGuard(
     }
 
     // Verify admin role
-    const userRole = session.user.user_metadata?.role
+    const userRole = session.user.app_metadata?.role
     if (userRole !== 'admin') {
       await supabase.auth.signOut()
       return LOGIN_ROUTE

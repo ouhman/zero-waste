@@ -25,7 +25,7 @@ export async function seedTestAdmin(): Promise<string> {
       existingUser.id,
       {
         password: TEST_ADMIN.password,
-        user_metadata: { role: 'admin' },
+        app_metadata: { role: 'admin' },
       }
     )
 
