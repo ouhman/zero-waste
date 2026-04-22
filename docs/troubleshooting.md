@@ -53,11 +53,13 @@ After Supabase applies the fix, all three write probes (`INSERT`, `UPDATE`, `DEL
 
 ### Status
 
-Open with Supabase support. Subject: `Cannot enable RLS on public.spatial_ref_sys — owned by supabase_admin, confirmed exploitable on 2 projects`. Requested actions (any one resolves it):
+Open with Supabase support, ticket `SU-363087` (filed 2026-04-22). Subject: `Cannot enable RLS on public.spatial_ref_sys — owned by supabase_admin, confirmed exploitable on 2 projects`. Requested actions (any one resolves it):
 
 1. Enable RLS and add a `FOR SELECT TO anon, authenticated USING (true)` policy on `spatial_ref_sys` for both projects.
 2. Revoke `INSERT, UPDATE, DELETE, TRUNCATE` from `anon` and `authenticated` on `spatial_ref_sys` (keeping `SELECT`).
 3. Relocate the PostGIS extension to the `extensions` schema (requires a maintenance window).
+
+We're on the free plan, which has no guaranteed SLA. If the ticket stalls, escalation paths that have gotten Supabase staff attention on similar issues in the past are [GitHub Discussions](https://github.com/orgs/supabase/discussions) and the [Supabase Discord](https://discord.supabase.com). Threads like #19143, #26302, and #26584 all got staff responses on this exact class of issue.
 
 ### When support acts
 
