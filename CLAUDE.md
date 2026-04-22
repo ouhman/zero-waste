@@ -72,6 +72,7 @@ infra/               # AWS CDK infrastructure
 | [docs/navigation.md](docs/navigation.md) | Map navigation and slug URLs |
 | [docs/aws-ses.md](docs/aws-ses.md) | AWS SES email setup |
 | [docs/admin-user-setup.md](docs/admin-user-setup.md) | Creating admin users |
+| [docs/troubleshooting.md](docs/troubleshooting.md) | Known issues and open platform-side blockers |
 
 ## Database
 
