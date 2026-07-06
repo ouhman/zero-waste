@@ -199,13 +199,17 @@
       "email": "E-Mail",
       "password": "Passwort",
       "submit": "Anmelden",
-      "magicLinkDescription": "Geben Sie Ihre E-Mail ein, um einen Login-Link zu erhalten",
-      "sendLink": "Login-Link senden",
-      "checkEmail": "Prüfen Sie Ihre E-Mails ({email}) für den Login-Link",
-      "checkEmailGeneric": "Wenn diese E-Mail als Admin registriert ist, erhalten Sie in Kürze einen Login-Link.",
+      "requestDescription": "Geben Sie Ihre E-Mail ein, um einen Login-Code zu erhalten",
+      "sendCode": "Code senden",
+      "codeSentDescription": "Wir haben einen 6-stelligen Code an {email} gesendet. Geben Sie ihn unten ein.",
+      "codeLabel": "Login-Code",
+      "codePlaceholder": "6-stelliger Code",
+      "verifyCode": "Code bestätigen",
+      "resendCode": "Code erneut senden",
+      "changeEmail": "Andere E-Mail verwenden",
+      "codeError": "Der Code ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.",
       "rateLimited": "Zu viele Versuche. Bitte versuchen Sie es in 15 Minuten erneut.",
-      "genericError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut.",
-      "linkError": "Ihr Login-Link war ungültig oder ist abgelaufen. Bitte fordern Sie einen neuen an."
+      "genericError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut."
     },
     "dashboard": {
       "title": "Admin Dashboard",

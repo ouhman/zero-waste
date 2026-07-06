@@ -12,22 +12,21 @@ test.describe('Admin Section', () => {
     await expect(page.locator('button[type="submit"]')).toBeVisible()
   })
 
-  test('magic link login shows email input', async ({ page }) => {
+  test('OTP login shows email input', async ({ page }) => {
     await page.goto('/bulk-station/login')
 
-    // Should have email input for magic link
+    // Should have email input to request a login code
     const emailInput = page.locator('input[type="email"]')
     await expect(emailInput).toBeVisible()
 
-    // Should have send link button
+    // Should have send-code button
     const sendButton = page.locator('button[type="submit"]')
     await expect(sendButton).toBeVisible()
 
-    // Try submitting with email (won't actually work in test env)
+    // Try submitting with email (advances to the code step or shows rate limit)
     await emailInput.fill('test@example.com')
     await sendButton.click()
 
-    // May show success message or rate limit error
     await page.waitForTimeout(1000)
   })
 

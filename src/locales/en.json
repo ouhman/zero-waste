@@ -199,13 +199,17 @@
       "email": "Email",
       "password": "Password",
       "submit": "Sign in",
-      "magicLinkDescription": "Enter your email to receive a login link",
-      "sendLink": "Send Login Link",
-      "checkEmail": "Check your email ({email}) for the login link",
-      "checkEmailGeneric": "If this email is registered as an admin, you will receive a login link shortly.",
+      "requestDescription": "Enter your email to receive a login code",
+      "sendCode": "Send code",
+      "codeSentDescription": "We sent a 6-digit code to {email}. Enter it below.",
+      "codeLabel": "Login code",
+      "codePlaceholder": "6-digit code",
+      "verifyCode": "Verify code",
+      "resendCode": "Resend code",
+      "changeEmail": "Use a different email",
+      "codeError": "The code is invalid or has expired. Please request a new one.",
       "rateLimited": "Too many attempts. Please try again in 15 minutes.",
-      "genericError": "Something went wrong. Please try again later.",
-      "linkError": "Your login link was invalid or has expired. Please request a new one."
+      "genericError": "Something went wrong. Please try again later."
     },
     "dashboard": {
       "title": "Admin Dashboard",
