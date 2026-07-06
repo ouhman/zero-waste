@@ -2,7 +2,15 @@
  * Global test setup file
  * This runs before all tests to set up the test environment
  */
-import { beforeEach } from 'vitest'
+import { afterEach, beforeEach } from 'vitest'
+import { enableAutoUnmount } from '@vue/test-utils'
+
+// Unmount every component mounted via @vue/test-utils after each test. Leaked
+// components keep reactive effects (and timers) alive past the test; when they
+// re-render after vitest tears down the jsdom `window`, vue-i18n's dev-mode
+// `t()` path dereferences the now-undefined `window` and throws
+// "window is not defined". Auto-unmounting stops those effects before teardown.
+enableAutoUnmount(afterEach)
 
 // Create localStorage mock that works with jsdom
 const localStorageMock = (() => {
