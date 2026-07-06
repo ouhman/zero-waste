@@ -41,7 +41,7 @@
         </button>
       </form>
 
-      <!-- Step 2: enter the 6-digit code -->
+      <!-- Step 2: enter the login code -->
       <form v-else class="mt-8 space-y-6" @submit.prevent="verifyCode">
         <div>
           <label for="code" class="sr-only">{{ t('admin.login.codeLabel') }}</label>
@@ -53,7 +53,7 @@
             inputmode="numeric"
             autocomplete="one-time-code"
             pattern="[0-9]*"
-            maxlength="6"
+            maxlength="8"
             required
             :aria-label="t('admin.login.codeLabel')"
             class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 text-center tracking-[0.5em] text-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -69,7 +69,7 @@
         <button
           type="submit"
           class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
-          :disabled="loading || code.trim().length !== 6"
+          :disabled="loading || !isCodeValid"
         >
           {{ loading ? t('common.loading') : t('admin.login.verifyCode') }}
         </button>
@@ -98,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { supabase } from '@/lib/supabase'
@@ -112,6 +112,12 @@ const step = ref<'request' | 'verify'>('request')
 const loading = ref(false)
 const errorMessage = ref('')
 const codeInput = ref<HTMLInputElement | null>(null)
+
+// Supabase's Email OTP length is a per-project setting (6–8 digits are common).
+// Accept that whole range rather than hard-coding one length, so login works
+// regardless of how a given project is configured and lets verifyOtp be the
+// source of truth.
+const isCodeValid = computed(() => /^\d{6,8}$/.test(code.value.trim()))
 
 /**
  * Send an OTP code to the entered email.
@@ -135,7 +141,7 @@ async function sendOtp(): Promise<boolean> {
     .rpc('is_admin_email', { check_email: email.value } as never)
 
   if (isAdmin) {
-    // No emailRedirectTo: the email template delivers a 6-digit code, not a link.
+    // No emailRedirectTo: the email template delivers a numeric code, not a link.
     // shouldCreateUser:false avoids creating accounts for unknown addresses.
     const { error: otpError } = await supabase.auth.signInWithOtp({
       email: email.value,

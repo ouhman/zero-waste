@@ -68,7 +68,7 @@ After the migration, `scripts/probe-spatial-ref-sys.ts` reports the secure termi
 
 ### Symptom
 
-An admin enters their email at `/admin/login` but either receives a **magic link instead of a 6-digit code**, or **no email at all** — login appears to do nothing.
+An admin enters their email at `/admin/login` but either receives a **magic link instead of a code**, or **no email at all** — login appears to do nothing.
 
 ### Cause
 

@@ -205,6 +205,43 @@ describe('AdminLogin', () => {
     expect(mockPush).toHaveBeenCalledWith('/bulk-station')
   })
 
+  it('verifies an 8-digit code (OTP length is a per-project setting)', async () => {
+    const wrapper = mountLogin()
+    await goToVerifyStep(wrapper)
+
+    vi.mocked(supabase.auth.verifyOtp).mockResolvedValue({
+      data: { session: {} },
+      error: null
+    } as any)
+
+    await wrapper.find('#code').setValue('44945805')
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    expect(supabase.auth.verifyOtp).toHaveBeenCalledWith({
+      email: 'admin@test.com',
+      token: '44945805',
+      type: 'email'
+    })
+    expect(mockPush).toHaveBeenCalledWith('/bulk-station')
+  })
+
+  it('enables the verify button only for a 6–8 digit code', async () => {
+    const wrapper = mountLogin()
+    await goToVerifyStep(wrapper)
+
+    const verifyButton = wrapper.find('button[type="submit"]')
+
+    await wrapper.find('#code').setValue('12345') // too short
+    expect(verifyButton.attributes('disabled')).toBeDefined()
+
+    await wrapper.find('#code').setValue('123456') // 6 digits
+    expect(verifyButton.attributes('disabled')).toBeUndefined()
+
+    await wrapper.find('#code').setValue('44945805') // 8 digits
+    expect(verifyButton.attributes('disabled')).toBeUndefined()
+  })
+
   it('shows a code error and stays on the verify step for an invalid code', async () => {
     const wrapper = mountLogin()
     await goToVerifyStep(wrapper)

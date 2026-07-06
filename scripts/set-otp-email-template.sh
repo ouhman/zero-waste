@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Switch the Supabase "Magic Link" email template to emit a 6-digit code
+# Switch the Supabase "Magic Link" email template to emit a login code
 # ({{ .Token }}) instead of a magic link ({{ .ConfirmationURL }}), so admin
 # login delivers an OTP code that verifyOtp() checks in-app.
 #
@@ -10,7 +10,9 @@
 # have their own template).
 #
 # Run it yourself so your access token never leaves your machine:
-#     ! bash scripts/set-otp-email-template.sh
+#     ! bash scripts/set-otp-email-template.sh          # both projects (default)
+#     ! bash scripts/set-otp-email-template.sh dev      # DEV only  — test here first
+#     ! bash scripts/set-otp-email-template.sh prod     # PROD only — after DEV checks out
 #
 # Token resolution order:
 #   1. $SUPABASE_ACCESS_TOKEN (export it if you prefer:
@@ -25,10 +27,16 @@ set -euo pipefail
 DEV_REF="lccpndhssuemudzpfvvg"
 PROD_REF="rivleprddnvqgigxjyuc"
 
+TARGET="${1:-both}"
+case "$TARGET" in
+    dev|prod|both) ;;
+    *) echo "Unknown target '$TARGET' (use: dev | prod | both)"; exit 1 ;;
+esac
+
 SUBJECT="Your Zero Waste Frankfurt login code"
 read -r -d '' TEMPLATE <<'HTML' || true
 <h2>Your login code</h2>
-<p>Enter this 6-digit code to sign in:</p>
+<p>Enter this code to sign in:</p>
 <p style="font-size:24px;font-weight:bold;letter-spacing:3px">{{ .Token }}</p>
 <p>This code expires in 1 hour. If you didn't request it, ignore this email.</p>
 HTML
@@ -69,7 +77,11 @@ patch_project() {
     fi
 }
 
-echo "Setting Magic Link template to 6-digit code ({{ .Token }})..."
-patch_project "$DEV_REF"  "DEV"
-patch_project "$PROD_REF" "PROD"
+echo "Setting Magic Link template to emit the code ({{ .Token }})... (target: $TARGET)"
+if [ "$TARGET" = "dev" ] || [ "$TARGET" = "both" ]; then
+    patch_project "$DEV_REF" "DEV"
+fi
+if [ "$TARGET" = "prod" ] || [ "$TARGET" = "both" ]; then
+    patch_project "$PROD_REF" "PROD"
+fi
 echo "Done. Request a new login code to verify you now receive digits, not a link."

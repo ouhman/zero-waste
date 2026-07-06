@@ -47,7 +47,7 @@ WHERE email = 'admin@zerowastefrankfurt.de';
 1. Go to the production site: https://map.zerowastefrankfurt.de
 2. Navigate to `/admin/login`
 3. Enter the admin email address
-4. Check your email for the 6-digit login code
+4. Check your email for the login code
 5. Enter the code to log in
 6. Verify you can access:
    - `/admin` - Dashboard
@@ -64,7 +64,9 @@ WHERE email = 'admin@zerowastefrankfurt.de';
 
 ## Login email delivery
 
-Admin login uses a **6-digit email OTP**, not a magic link. `signInWithOtp` sends the code and `verifyOtp` checks it in-app (see `src/views/admin/LoginView.vue`). Two independent things must **both** be true for the code email to arrive, and each has its own failure mode. Both bit us at once during rollout — the template still sent a link *and* the address wasn't SES-verified — so if admin login "does nothing", check both before anything else.
+Admin login uses an **email OTP code**, not a magic link. `signInWithOtp` sends the code and `verifyOtp` checks it in-app (see `src/views/admin/LoginView.vue`). Two independent things must **both** be true for the code email to arrive, and each has its own failure mode. Both bit us at once during rollout — the template still sent a link *and* the address wasn't SES-verified — so if admin login "does nothing", check both before anything else.
+
+> **Code length:** the app accepts a **6–8 digit** code (`LoginView.vue` validates `/^\d{6,8}$/`), matching Supabase's per-project *Email OTP Length* setting whether it's 6 or 8. You do **not** need to change that setting — leave the app to be the flexible side.
 
 ### 1. The email template must emit a code, not a link
 
@@ -74,7 +76,7 @@ Dashboard → **Authentication** → **Emails** → **Templates** → **Magic Li
 
 ```html
 <h2>Your login code</h2>
-<p>Enter this 6-digit code to sign in:</p>
+<p>Enter this code to sign in:</p>
 <p style="font-size:24px;font-weight:bold;letter-spacing:3px">{{ .Token }}</p>
 <p>This code expires in 1 hour. If you didn't request it, ignore this email.</p>
 ```
@@ -112,7 +114,7 @@ Expected output: `role: admin`
 
 ### Login code not received (or arrives as a link)
 
-Admin login is a 6-digit OTP code, not a magic link. The two most common causes map to the two requirements in [Login email delivery](#login-email-delivery):
+Admin login is an OTP code, not a magic link. The two most common causes map to the two requirements in [Login email delivery](#login-email-delivery):
 
 1. **You get a link, not a code** → the Magic Link template still uses `{{ .ConfirmationURL }}`. Switch it to `{{ .Token }}` (run `scripts/set-otp-email-template.sh`).
 2. **No email at all** → the address isn't a verified SES identity (SES is in sandbox). Verify it in SES or request production access — see [aws-ses.md](aws-ses.md).
