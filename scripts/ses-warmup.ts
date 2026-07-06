@@ -33,10 +33,6 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 const ses = new SESClient({
   region: AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
-  },
 })
 
 interface Location {
@@ -161,10 +157,9 @@ async function runWarmup(emailCount: number = 4) {
   console.log('='.repeat(60))
   console.log()
 
-  // Check AWS credentials
-  if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
-    console.error('Missing AWS credentials in .env')
-    console.error('Add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY')
+  // Check AWS credentials (profile or explicit keys)
+  if (!process.env.AWS_PROFILE && (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY)) {
+    console.error('Missing AWS credentials. Set AWS_PROFILE or provide AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.')
     process.exit(1)
   }
 
