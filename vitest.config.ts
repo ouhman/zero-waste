@@ -13,7 +13,8 @@ export default defineConfig({
       '**/dist/**',
       '**/e2e/**',
       '**/.{idea,git,cache,output,temp}/**',
-      '**/supabase/functions/**' // Deno tests - run with `deno test` instead
+      '**/supabase/functions/**', // Deno tests - run with `deno test` instead
+      '**/infra/**' // CDK stack tests - run with jest under infra/ instead
     ],
     env: {
       VITE_SUPABASE_URL: 'https://test-project.supabase.co',
