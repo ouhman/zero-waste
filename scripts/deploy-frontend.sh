@@ -69,11 +69,26 @@ echo -e "${GREEN}🌐 Distribution: ${DISTRIBUTION_ID}${NC}"
 echo -e "${YELLOW}📦 Building...${NC}"
 npm run build
 
-# Sync to S3
-echo -e "${YELLOW}☁️  Uploading to S3...${NC}"
-aws s3 sync dist/ "s3://${BUCKET_NAME}/" --delete
+# Sync to S3 in two passes so browsers cache correctly.
+#
+# Pass 1: content-hashed assets in /assets/* never change under a given name, so
+#   mark them immutable and cache them for a year.
+# Pass 2: index.html and the other root files carry no content hash, so mark them
+#   no-cache -> the browser must revalidate before reuse. Without this, responses
+#   ship with NO Cache-Control header and browsers heuristically cache the app
+#   shell, so returning admins keep loading the stale pre-fix bundle (the old one
+#   read user_metadata) and get bounced from /bulk-station. Assets go first so
+#   index.html never references a hashed file that isn't uploaded yet.
+echo -e "${YELLOW}☁️  Uploading hashed assets (immutable, 1y)...${NC}"
+aws s3 sync dist/assets/ "s3://${BUCKET_NAME}/assets/" --delete \
+  --cache-control "public,max-age=31536000,immutable"
 
-# Invalidate only index.html (JS/CSS files have content hashes)
+echo -e "${YELLOW}☁️  Uploading app shell + root files (no-cache)...${NC}"
+aws s3 sync dist/ "s3://${BUCKET_NAME}/" --delete \
+  --exclude "assets/*" \
+  --cache-control "no-cache"
+
+# Invalidate the app shell (hashed assets are immutable and never need it).
 echo -e "${YELLOW}🔄 Invalidating CloudFront cache...${NC}"
 aws cloudfront create-invalidation \
   --distribution-id "$DISTRIBUTION_ID" \

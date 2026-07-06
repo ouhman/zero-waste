@@ -204,7 +204,8 @@
       "checkEmail": "Prüfen Sie Ihre E-Mails ({email}) für den Login-Link",
       "checkEmailGeneric": "Wenn diese E-Mail als Admin registriert ist, erhalten Sie in Kürze einen Login-Link.",
       "rateLimited": "Zu viele Versuche. Bitte versuchen Sie es in 15 Minuten erneut.",
-      "genericError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut."
+      "genericError": "Etwas ist schief gelaufen. Bitte versuchen Sie es später erneut.",
+      "linkError": "Ihr Login-Link war ungültig oder ist abgelaufen. Bitte fordern Sie einen neuen an."
     },
     "dashboard": {
       "title": "Admin Dashboard",

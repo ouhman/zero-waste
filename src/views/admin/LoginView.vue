@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { supabase } from '@/lib/supabase'
 
@@ -60,6 +60,15 @@ const email = ref('')
 const loading = ref(false)
 const errorMessage = ref('')
 const emailSent = ref(false)
+
+onMounted(() => {
+  // A failed magic-link verify (expired/already-used link) redirects here; the
+  // reason was stashed at app startup before Supabase stripped it from the URL.
+  if (sessionStorage.getItem('auth_error')) {
+    sessionStorage.removeItem('auth_error')
+    errorMessage.value = t('admin.login.linkError')
+  }
+})
 
 async function handleLogin() {
   loading.value = true
@@ -83,12 +92,22 @@ async function handleLogin() {
     // Only send magic link if email is actually an admin
     // But always show success message to prevent email enumeration
     if (isAdmin) {
-      await supabase.auth.signInWithOtp({
+      const { error: otpError } = await supabase.auth.signInWithOtp({
         email: email.value,
         options: {
           emailRedirectTo: `${window.location.origin}/bulk-station`
         }
       })
+
+      // Surface send failures (e.g. Supabase email rate limit) instead of
+      // pretending the link went out. This branch only runs for admin emails, so
+      // the message mirrors the app-level rate-limit text to minimise enumeration.
+      if (otpError) {
+        errorMessage.value = otpError.status === 429
+          ? t('admin.login.rateLimited')
+          : t('admin.login.genericError')
+        return
+      }
     }
 
     // Always show success message (security: don't reveal if email is admin)

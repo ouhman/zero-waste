@@ -5,6 +5,17 @@ import router from './router'
 import { i18n } from './plugins/i18n'
 import './index.css'
 
+// Capture magic-link verification errors from the URL hash before the Supabase
+// client (detectSessionInUrl) reads and strips them. A failed verify redirects to
+// /bulk-station#error=...; without this the admin guard bounces to the login form
+// with no explanation. LoginView reads this on mount.
+const authErrorDescription = new URLSearchParams(
+  window.location.hash.replace(/^#/, '')
+).get('error_description')
+if (authErrorDescription) {
+  sessionStorage.setItem('auth_error', authErrorDescription)
+}
+
 const app = createApp(App)
 const pinia = createPinia()
 

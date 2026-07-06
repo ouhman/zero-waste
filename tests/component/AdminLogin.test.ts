@@ -24,6 +24,7 @@ vi.mock('vue-i18n', () => ({
 describe('AdminLogin', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    sessionStorage.clear()
   })
 
   it('shows login form with email input only', () => {
@@ -239,5 +240,69 @@ describe('AdminLogin', () => {
     // Should show generic error (don't expose internals)
     expect(wrapper.find('.bg-red-50').exists()).toBe(true)
     expect(wrapper.text()).toContain('admin.login.rateLimited')
+  })
+
+  it('surfaces email rate-limit (429) instead of faking success', async () => {
+    vi.mocked(supabase.rpc)
+      .mockResolvedValueOnce({ data: true as any, error: null } as any) // check_rate_limit
+      .mockResolvedValueOnce({ data: true as any, error: null } as any) // is_admin_email
+
+    // Supabase throttles the email send
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({
+      data: {},
+      error: { status: 429, message: 'over email send rate limit' }
+    } as any)
+
+    const wrapper = mount(AdminLogin, {
+      global: { stubs: { teleport: true } }
+    })
+
+    await wrapper.find('input[type="email"]').setValue('admin@test.com')
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    // Rate-limit error shown, NOT the fake success message
+    expect(wrapper.find('.bg-red-50').exists()).toBe(true)
+    expect(wrapper.text()).toContain('admin.login.rateLimited')
+    expect(wrapper.find('.bg-green-50').exists()).toBe(false)
+    expect(wrapper.find('form').exists()).toBe(true)
+  })
+
+  it('surfaces a generic error when the magic-link send fails', async () => {
+    vi.mocked(supabase.rpc)
+      .mockResolvedValueOnce({ data: true as any, error: null } as any) // check_rate_limit
+      .mockResolvedValueOnce({ data: true as any, error: null } as any) // is_admin_email
+
+    vi.mocked(supabase.auth.signInWithOtp).mockResolvedValue({
+      data: {},
+      error: { status: 500, message: 'smtp unavailable' }
+    } as any)
+
+    const wrapper = mount(AdminLogin, {
+      global: { stubs: { teleport: true } }
+    })
+
+    await wrapper.find('input[type="email"]').setValue('admin@test.com')
+    await wrapper.find('form').trigger('submit')
+    await flushPromises()
+
+    expect(wrapper.find('.bg-red-50').exists()).toBe(true)
+    expect(wrapper.text()).toContain('admin.login.genericError')
+    expect(wrapper.find('.bg-green-50').exists()).toBe(false)
+  })
+
+  it('explains a failed/expired verify captured on the return redirect', async () => {
+    // main.ts stashes the hash error before Supabase strips it; simulate that
+    sessionStorage.setItem('auth_error', 'Email link is invalid or has expired')
+
+    const wrapper = mount(AdminLogin, {
+      global: { stubs: { teleport: true } }
+    })
+    await flushPromises()
+
+    expect(wrapper.find('.bg-red-50').exists()).toBe(true)
+    expect(wrapper.text()).toContain('admin.login.linkError')
+    // consumed so it does not persist across navigations
+    expect(sessionStorage.getItem('auth_error')).toBeNull()
   })
 })

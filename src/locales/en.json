@@ -204,7 +204,8 @@
       "checkEmail": "Check your email ({email}) for the login link",
       "checkEmailGeneric": "If this email is registered as an admin, you will receive a login link shortly.",
       "rateLimited": "Too many attempts. Please try again in 15 minutes.",
-      "genericError": "Something went wrong. Please try again later."
+      "genericError": "Something went wrong. Please try again later.",
+      "linkError": "Your login link was invalid or has expired. Please request a new one."
     },
     "dashboard": {
       "title": "Admin Dashboard",
