@@ -112,7 +112,9 @@ See `ai/2026-01-11-enhanced-location-submission.md` for implementation details.
 
 Routes: `/admin/login`, `/admin`, `/admin/locations`, `/admin/edit/:id`, `/admin/categories`
 
-Features: Magic link auth, session management (1-hour timeout), location CRUD, category management.
+Features: 6-digit email OTP auth, session management (1-hour timeout), location CRUD, category management.
+
+Login email delivery has two out-of-repo requirements that have failed together before — the Magic Link template must emit `{{ .Token }}` (not a link), and the recipient must be a verified SES identity (SES sandbox). See [docs/admin-user-setup.md#login-email-delivery](docs/admin-user-setup.md#login-email-delivery).
 
 See [docs/admin-user-setup.md](docs/admin-user-setup.md) for creating admin users.
 

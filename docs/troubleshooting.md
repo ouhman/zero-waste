@@ -63,3 +63,20 @@ Migration: `supabase/migrations/20260501082924_relocate_postgis_to_extensions_sc
 | 2026-05-01 | PROD (`rivleprddnvqgigxjyuc`) | Resolved — probe writes return `PGRST205 table not found`; `locations_nearby()` returning 207 results post-fix |
 
 After the migration, `scripts/probe-spatial-ref-sys.ts` reports the secure terminal state (table no longer exposed by PostgREST). To prevent recurrence, see the [Extension placement](supabase.md#extension-placement) rule — every `CREATE EXTENSION` must include `WITH SCHEMA extensions`.
+
+## Admin login OTP email: arrives as a link, or never arrives
+
+### Symptom
+
+An admin enters their email at `/admin/login` but either receives a **magic link instead of a 6-digit code**, or **no email at all** — login appears to do nothing.
+
+### Cause
+
+Two requirements live outside the repo (Supabase dashboard + AWS SES) and failed together during the OTP rollout:
+
+1. **Template** — `signInWithOtp` renders Supabase's **Magic Link** email template. If it still emits the default `{{ .ConfirmationURL }}`, the admin gets a link, not a code. It must emit `{{ .Token }}`. Per-project setting; apply to DEV and PROD with `scripts/set-otp-email-template.sh`.
+2. **Delivery** — auth mail relays through AWS SES in **sandbox mode**, so the recipient must be a **verified SES identity** or nothing is delivered.
+
+### Fix
+
+Full runbook — including the template HTML and the SES verification steps — is in [admin-user-setup.md#login-email-delivery](admin-user-setup.md#login-email-delivery).
