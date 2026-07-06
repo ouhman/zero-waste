@@ -8,11 +8,12 @@
 -- 1. EXTENSIONS
 -- ================================================================
 
--- Enable PostGIS for geospatial queries
-CREATE EXTENSION IF NOT EXISTS postgis;
+-- Enable PostGIS for geospatial queries.
+-- IMPORTANT: install in `extensions`, never `public` — see docs/supabase.md#extension-placement.
+CREATE EXTENSION IF NOT EXISTS postgis  WITH SCHEMA extensions;
 
--- Enable unaccent for slug generation
-CREATE EXTENSION IF NOT EXISTS unaccent;
+-- Enable unaccent for slug generation.
+CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA extensions;
 
 -- ================================================================
 -- 2. TABLES
@@ -109,7 +110,7 @@ CREATE INDEX idx_email_verifications_email ON email_verifications(email);
 -- Geospatial index
 CREATE INDEX idx_locations_geography
   ON locations
-  USING GIST (ST_MakePoint(longitude, latitude)::geography);
+  USING GIST (extensions.geography(extensions.ST_MakePoint(longitude, latitude)));
 
 -- Other location indexes
 CREATE INDEX idx_locations_status ON locations(status);
@@ -224,14 +225,14 @@ RETURNS TABLE (
     l.address,
     l.latitude,
     l.longitude,
-    ST_Distance(
-      ST_MakePoint(l.longitude, l.latitude)::geography,
-      ST_MakePoint(lng, lat)::geography
+    extensions.ST_Distance(
+      extensions.geography(extensions.ST_MakePoint(l.longitude, l.latitude)),
+      extensions.geography(extensions.ST_MakePoint(lng, lat))
     )::integer as distance_meters
   FROM locations l
-  WHERE ST_DWithin(
-    ST_MakePoint(l.longitude, l.latitude)::geography,
-    ST_MakePoint(lng, lat)::geography,
+  WHERE extensions.ST_DWithin(
+    extensions.geography(extensions.ST_MakePoint(l.longitude, l.latitude)),
+    extensions.geography(extensions.ST_MakePoint(lng, lat)),
     radius_meters
   )
   AND l.status = 'approved'

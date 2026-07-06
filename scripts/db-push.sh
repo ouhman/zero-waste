@@ -64,6 +64,26 @@ else
     fi
 fi
 
+# Block migrations that install extensions into the default (public) schema.
+# Convention: `CREATE EXTENSION ... WITH SCHEMA extensions;` on a single line.
+# See docs/supabase.md#extension-placement for context.
+#
+# 20260108000000_initial_schema.sql is the historical record of how PostGIS
+# originally landed in `public`; the 20260501 relocate migration is the fix.
+# We deliberately don't rewrite that file, so the guard skips it.
+BAD_LINES=$(grep -rinE 'create[[:space:]]+extension' supabase/migrations \
+    | grep -ivE 'with[[:space:]]+schema' \
+    | grep -v '20260108000000_initial_schema.sql' || true)
+if [ -n "$BAD_LINES" ]; then
+    echo ""
+    echo -e "${RED}  ✗ Refusing to push: found CREATE EXTENSION without WITH SCHEMA.${NC}"
+    echo -e "${RED}    Extensions must be installed into the extensions schema, not public.${NC}"
+    echo "    See docs/supabase.md#extension-placement"
+    echo ""
+    echo "$BAD_LINES"
+    exit 1
+fi
+
 echo ""
 echo "Pushing migrations..."
 npx supabase db push

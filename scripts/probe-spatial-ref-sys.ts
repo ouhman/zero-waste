@@ -5,20 +5,26 @@
  * to determine if the Supabase Security Advisor "rls_disabled_in_public" warning
  * is exploitable on this project.
  *
+ * Two passing terminal states (both exit 0):
+ *   - "relocated"    public.spatial_ref_sys does not exist (PostGIS now in
+ *                    extensions). PostgREST returns PGRST205 for every probe.
+ *                    This is the post-fix state — see docs/troubleshooting.md.
+ *   - "read-only"    Table still in public, but writes are denied (42501).
+ *
+ * Failing terminal state (exit 1):
+ *   - any write probe succeeds — anon can mutate spatial_ref_sys.
+ *
  * Probes:
- *   1. SELECT existing row              — read baseline
+ *   1. SELECT existing row              — detects which terminal state we're in
  *   2. INSERT a probe row (SRID 998888) — the critical write test
  *   3. UPDATE that probe row
  *   4. DELETE that probe row            — also serves as cleanup
- *
- * A final cleanup step runs unconditionally to remove SRID 998888 in case any
- * intermediate step left an orphan row.
  *
  * Usage:
  *   npx tsx scripts/probe-spatial-ref-sys.ts [.env.development|.env.production]
  *
  * Exit codes:
- *   0 — anon is read-only (INSERT blocked with code 42501). Advisor warning not exploitable.
+ *   0 — secure (relocated or read-only).
  *   1 — anon can write. Advisor warning is real. Investigate.
  *   2 — script setup error.
  */
@@ -73,13 +79,25 @@ async function main() {
   const results: ProbeResult[] = []
   let insertSucceeded = false
 
-  // 1. SELECT — baseline, should succeed.
+  // 1. SELECT — detects which terminal state we're in.
+  //    PGRST205 means PostGIS has been relocated; the table is no longer
+  //    exposed via PostgREST. Anything else means it's still in public, in
+  //    which case the SELECT itself should succeed.
+  let relocated = false
   {
     const { data, error } = await supabase
       .from('spatial_ref_sys')
       .select('srid')
       .limit(1)
-    results.push(classify('SELECT  read one EPSG row', 'success', error, data))
+    relocated = error?.code === 'PGRST205'
+    results.push(
+      classify(
+        'SELECT  read one EPSG row',
+        relocated ? 'denied' : 'success',
+        error,
+        data,
+      ),
+    )
   }
 
   // 2. INSERT — the critical test. Uses a valid-range, non-colliding SRID.
@@ -152,8 +170,13 @@ async function main() {
     console.log(`The advisor "rls_disabled_in_public" warning IS exploitable on this project.`)
     process.exit(1)
   }
-  console.log('RESULT: anon is read-only on spatial_ref_sys.')
-  console.log('Advisor warning is templated; table-level GRANTs block writes.')
+  if (relocated) {
+    console.log('RESULT: public.spatial_ref_sys is not exposed by PostgREST.')
+    console.log('PostGIS has been relocated to the extensions schema (post-fix state).')
+  } else {
+    console.log('RESULT: anon is read-only on spatial_ref_sys.')
+    console.log('Advisor warning is templated; table-level GRANTs block writes.')
+  }
 }
 
 main().catch((err) => {

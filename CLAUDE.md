@@ -140,6 +140,7 @@ Deploy: `supabase functions deploy`
 ### Critical Rules
 
 - **NEVER use `npx supabase db push` directly** - Always use `npm run db:push` which includes environment confirmation
+- **Extensions go in `extensions`, never `public`** - Always write `CREATE EXTENSION ... WITH SCHEMA extensions;`. Schema-qualify calls (`extensions.ST_MakePoint(...)`) in indexes and functions so they don't depend on a role's `search_path`. See [docs/supabase.md#extension-placement](docs/supabase.md#extension-placement) for the why and the incident that motivated this rule.
 
 ### i18n / Localization
 

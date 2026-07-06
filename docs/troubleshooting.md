@@ -51,18 +51,15 @@ npx tsx scripts/probe-spatial-ref-sys.ts .env.production
 
 After Supabase applies the fix, all three write probes (`INSERT`, `UPDATE`, `DELETE`) should return `42501` denied. Currently they all succeed — that's the open vulnerability. The script is safe to rerun on PROD: writes target a non-colliding probe SRID and clean up after themselves.
 
-### Status
+### Resolution
 
-Open with Supabase support, ticket `SU-363087` (filed 2026-04-22). Subject: `Cannot enable RLS on public.spatial_ref_sys — owned by supabase_admin, confirmed exploitable on 2 projects`. Requested actions (any one resolves it):
+Supabase support (ticket `SU-363087`, replied 2026-04-30) pointed at the documented manual relocation in [their PostGIS troubleshooting guide](https://supabase.com/docs/guides/database/extensions/postgis#troubleshooting): drop the extension and reinstall it in the `extensions` schema, which PostgREST does not expose. Safe for this project because we have no geometry/geography columns — lat/lng are plain decimals and the only PostGIS dependents are one GIST index and `locations_nearby()`, both recreated with `extensions.`-qualified calls.
 
-1. Enable RLS and add a `FOR SELECT TO anon, authenticated USING (true)` policy on `spatial_ref_sys` for both projects.
-2. Revoke `INSERT, UPDATE, DELETE, TRUNCATE` from `anon` and `authenticated` on `spatial_ref_sys` (keeping `SELECT`).
-3. Relocate the PostGIS extension to the `extensions` schema (requires a maintenance window).
+Migration: `supabase/migrations/20260501082924_relocate_postgis_to_extensions_schema.sql`.
 
-We're on the free plan, which has no guaranteed SLA. If the ticket stalls, escalation paths that have gotten Supabase staff attention on similar issues in the past are [GitHub Discussions](https://github.com/orgs/supabase/discussions) and the [Supabase Discord](https://discord.supabase.com). Threads like #19143, #26302, and #26584 all got staff responses on this exact class of issue.
+| Date | Project | Status |
+| --- | --- | --- |
+| 2026-05-01 | DEV (`lccpndhssuemudzpfvvg`) | Resolved — probe writes return `PGRST205 table not found`; advisor alert cleared |
+| 2026-05-01 | PROD (`rivleprddnvqgigxjyuc`) | Resolved — probe writes return `PGRST205 table not found`; `locations_nearby()` returning 207 results post-fix |
 
-### When support acts
-
-1. Rerun `scripts/probe-spatial-ref-sys.ts` against DEV and PROD — all write probes should flip to `42501 denied`.
-2. Confirm the Security Advisor alert clears in the Dashboard.
-3. Update this section to note resolution date and what Supabase ran.
+After the migration, `scripts/probe-spatial-ref-sys.ts` reports the secure terminal state (table no longer exposed by PostgREST). To prevent recurrence, see the [Extension placement](supabase.md#extension-placement) rule — every `CREATE EXTENSION` must include `WITH SCHEMA extensions`.
