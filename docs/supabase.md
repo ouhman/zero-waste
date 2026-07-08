@@ -102,6 +102,33 @@ See [admin-user-setup.md](admin-user-setup.md) for full instructions.
 
 ---
 
+## Extension placement
+
+**Every `CREATE EXTENSION` must include `WITH SCHEMA extensions`.** Never install extensions into `public`.
+
+```sql
+-- Correct
+CREATE EXTENSION IF NOT EXISTS postgis  WITH SCHEMA extensions;
+CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA extensions;
+
+-- Wrong — lands in `public`
+CREATE EXTENSION IF NOT EXISTS postgis;
+```
+
+**Why:** Supabase exposes the `public` schema through PostgREST. Some extensions (notably PostGIS) ship system tables like `spatial_ref_sys` with permissive grants and no RLS, on the assumption they live in a private schema. When they end up in `public`, those grants become reachable from the anon API key. We hit this with PostGIS in early 2026 — see [docs/troubleshooting.md](troubleshooting.md) for the incident write-up. Recovery requires `supabase_admin` privileges because the extension's tables are owned by that role and we can't `ALTER TABLE` or revoke grants from `postgres`.
+
+**Calling extension functions:** with extensions in `extensions`, schema-qualify the calls in any new index, function, or migration so they don't depend on a role-specific `search_path`:
+
+```sql
+CREATE INDEX idx_locations_geography
+  ON public.locations
+  USING GIST (extensions.geography(extensions.ST_MakePoint(longitude, latitude)));
+```
+
+`scripts/db-push.sh` blocks pushes that contain an unscoped `CREATE EXTENSION` — if you trip the guard, add `WITH SCHEMA extensions` to the migration.
+
+---
+
 ## Common Issues & Solutions
 
 ### Issue 1: RLS 401 Error on INSERT (42501)

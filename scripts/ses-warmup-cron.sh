@@ -16,7 +16,7 @@ echo "========================================" >> "$LOG_FILE"
 
 # Run the warm-up script
 cd "$PROJECT_DIR"
-npx tsx scripts/ses-warmup.ts 4 >> "$LOG_FILE" 2>&1
+DOTENV_CONFIG_PATH="$PROJECT_DIR/.env.production" AWS_PROFILE=zerowaste-ses-user npx tsx scripts/ses-warmup.ts 4 >> "$LOG_FILE" 2>&1
 
 # Keep log file from growing too large (keep last 1000 lines)
 tail -n 1000 "$LOG_FILE" > "$LOG_FILE.tmp" && mv "$LOG_FILE.tmp" "$LOG_FILE"

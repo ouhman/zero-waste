@@ -112,7 +112,9 @@ See `ai/2026-01-11-enhanced-location-submission.md` for implementation details.
 
 Routes: `/admin/login`, `/admin`, `/admin/locations`, `/admin/edit/:id`, `/admin/categories`
 
-Features: Magic link auth, session management (1-hour timeout), location CRUD, category management.
+Features: email OTP auth (6–8 digit code, app-flexible), session management (1-hour timeout), location CRUD, category management.
+
+Login email delivery has two out-of-repo requirements that have failed together before — the Magic Link template must emit `{{ .Token }}` (not a link), and the recipient must be a verified SES identity (SES sandbox). See [docs/admin-user-setup.md#login-email-delivery](docs/admin-user-setup.md#login-email-delivery).
 
 See [docs/admin-user-setup.md](docs/admin-user-setup.md) for creating admin users.
 
@@ -140,6 +142,7 @@ Deploy: `supabase functions deploy`
 ### Critical Rules
 
 - **NEVER use `npx supabase db push` directly** - Always use `npm run db:push` which includes environment confirmation
+- **Extensions go in `extensions`, never `public`** - Always write `CREATE EXTENSION ... WITH SCHEMA extensions;`. Schema-qualify calls (`extensions.ST_MakePoint(...)`) in indexes and functions so they don't depend on a role's `search_path`. See [docs/supabase.md#extension-placement](docs/supabase.md#extension-placement) for the why and the incident that motivated this rule.
 
 ### i18n / Localization
 
