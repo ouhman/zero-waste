@@ -18,6 +18,7 @@
           <label for="email" class="sr-only">{{ t('admin.login.email') }}</label>
           <input
             id="email"
+            ref="emailInput"
             v-model="email"
             type="email"
             required
@@ -98,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from 'vue'
+import { ref, computed, nextTick, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { supabase } from '@/lib/supabase'
@@ -111,7 +112,13 @@ const code = ref('')
 const step = ref<'request' | 'verify'>('request')
 const loading = ref(false)
 const errorMessage = ref('')
+const emailInput = ref<HTMLInputElement | null>(null)
 const codeInput = ref<HTMLInputElement | null>(null)
+
+// Focus the email field on load so the admin can type straight away.
+onMounted(() => {
+  emailInput.value?.focus()
+})
 
 // Supabase's Email OTP length is a per-project setting (6–8 digits are common).
 // Accept that whole range rather than hard-coding one length, so login works
@@ -217,9 +224,11 @@ async function verifyCode() {
   }
 }
 
-function changeEmail() {
+async function changeEmail() {
   step.value = 'request'
   code.value = ''
   errorMessage.value = ''
+  await nextTick()
+  emailInput.value?.focus()
 }
 </script>
