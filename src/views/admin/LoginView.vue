@@ -115,10 +115,16 @@ const errorMessage = ref('')
 const emailInput = ref<HTMLInputElement | null>(null)
 const codeInput = ref<HTMLInputElement | null>(null)
 
-// Focus the email field on load so the admin can type straight away.
-onMounted(() => {
-  emailInput.value?.focus()
-})
+// Focus the email field so the admin can type straight away. Deferred to the
+// next frame: on initial SPA load onMounted fires before the freshly-inserted
+// input will accept focus, so a synchronous focus() is a silent no-op (it works
+// in the dev server but not in the faster production build). Focusing after the
+// frame is painted is reliable in both.
+function focusEmail() {
+  requestAnimationFrame(() => emailInput.value?.focus())
+}
+
+onMounted(focusEmail)
 
 // Supabase's Email OTP length is a per-project setting (6–8 digits are common).
 // Accept that whole range rather than hard-coding one length, so login works
@@ -229,6 +235,6 @@ async function changeEmail() {
   code.value = ''
   errorMessage.value = ''
   await nextTick()
-  emailInput.value?.focus()
+  focusEmail()
 }
 </script>
