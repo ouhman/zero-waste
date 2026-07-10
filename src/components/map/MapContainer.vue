@@ -409,11 +409,27 @@ function openPopup(locationId: string) {
 // Expose methods for parent components
 defineExpose({ centerOn, focusLocation, highlightMarker, highlightAllMarkers, unhighlightAllMarkers, ensureVisible, showUserLocation, clearUserLocation, openPopup })
 
+// Keep the Leaflet canvas in sync with its container when the viewport changes
+// (device rotation, mobile address bar showing/hiding, window resize). Without
+// this the tiles keep their old size and leave a blank strip below the map.
+let resizeRaf = 0
+function handleViewportResize() {
+  if (resizeRaf) cancelAnimationFrame(resizeRaf)
+  resizeRaf = requestAnimationFrame(() => {
+    map?.invalidateSize()
+  })
+}
+
 onMounted(() => {
   initializeMap()
+  window.addEventListener('resize', handleViewportResize)
+  window.addEventListener('orientationchange', handleViewportResize)
 })
 
 onUnmounted(() => {
+  window.removeEventListener('resize', handleViewportResize)
+  window.removeEventListener('orientationchange', handleViewportResize)
+  if (resizeRaf) cancelAnimationFrame(resizeRaf)
   clearUserLocation()
   if (map) {
     map.remove()
@@ -426,7 +442,8 @@ onUnmounted(() => {
 .map-container {
   width: 100%;
   height: 100%;
-  min-height: 400px;
+  /* No min-height: the map always lives in a flex-1, full-height context.
+     A fixed floor would overflow (and scroll) short viewports. */
 }
 </style>
 

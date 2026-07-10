@@ -13,6 +13,12 @@
   body {
     height: 100%;
     margin: 0;
+    /* Prevent the whole document from scrolling. On mobile a `100%`/`100vh`
+       height resolves against the (taller) layout viewport, so the address bar
+       would otherwise let the page scroll and expose a blank gap below the map.
+       Pages that need to scroll do so inside `#app > :first-child`. */
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 
   body {
