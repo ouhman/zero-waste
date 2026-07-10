@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full relative flex flex-col overflow-hidden">
+  <div class="map-view w-full h-full relative flex flex-col overflow-hidden">
     <!-- Header -->
     <div class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-3 sm:px-4 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-sm z-[1000]">
       <div class="flex justify-between items-center gap-3 max-w-7xl mx-auto">
@@ -349,6 +349,19 @@ function handleBetaClick() {
   showBetaModal.value = true
 }
 </script>
+
+<style>
+/* The map page fills the viewport and must never scroll: all of its UI (filter
+   panel, buttons, popups) is overlaid on a fixed-size map. This overrides the
+   global `#app > :first-child { overflow: auto }` catch-all in App.vue (which
+   scrollable pages like the submission form rely on). Without it, expanding the
+   mobile filter panel on a short viewport lets the whole page scroll and exposes
+   a blank strip below the map. `div.map-view` (specificity 1,1,1) deterministically
+   beats `#app > :first-child` (1,1,0). */
+#app > div.map-view {
+  overflow: hidden;
+}
+</style>
 
 <style scoped>
 .fade-enter-active,

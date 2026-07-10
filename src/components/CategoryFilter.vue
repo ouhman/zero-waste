@@ -196,6 +196,12 @@ function clearFilters() {
 }
 
 .category-item {
+  /* Anchor the visually-hidden checkbox (below) to its own label. Without this
+     the absolutely-positioned input resolves against a far-away ancestor, so its
+     layout position lands far below the fold — which makes focusing it (on tap)
+     scroll-into-view and jump the page. Relative keeps it in place; focus then
+     only scrolls this list, as intended. */
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;

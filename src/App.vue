@@ -32,7 +32,8 @@ onMounted(async () => {
 #app {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;   /* fallback for browsers without dynamic viewport units */
+  height: 100dvh;  /* match the *visible* viewport on mobile (excludes the address bar) */
   overflow: hidden;
 }
 
